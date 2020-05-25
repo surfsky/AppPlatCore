@@ -1,4 +1,4 @@
-﻿using AppBoxCore.Models;
+﻿using App.Models;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppBoxCore.Pages
+namespace App.Pages
 {
     [Authorize]
     public class IndexModel : BaseModel
@@ -44,7 +44,7 @@ namespace AppBoxCore.Pages
             UserName = GetIdentityName();
             OnlineUserCount = (await GetOnlineCountAsync()).ToString();
             ProductVersion = GetProductVersion();
-            ConfigTitle = "AppBoxCore"; // String.Format("AppBoxCore v{0}", GetProductVersion());
+            ConfigTitle = "App"; // String.Format("App v{0}", GetProductVersion());
 
             SystemHelpMenu = GetSystemHelpMenu();
         }

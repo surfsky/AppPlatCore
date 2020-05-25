@@ -1,11 +1,11 @@
-﻿using AppBoxCore.Models;
+﻿using App.Models;
 
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppBoxCore.Pages.Admin
+namespace App.Pages.Admin
 {
     [CheckPower(Name = "CoreRoleView")]
     public class UserSelectRoleModel : BaseAdminModel

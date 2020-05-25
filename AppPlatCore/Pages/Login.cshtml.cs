@@ -1,4 +1,4 @@
-﻿using AppBoxCore.Models;
+﻿using App.Models;
 
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace AppBoxCore.Pages
+namespace App.Pages
 {
     public class LoginModel : BaseModel
     {
@@ -23,7 +23,7 @@ namespace AppBoxCore.Pages
 
         private void LoadData()
         {
-            Window1Title = String.Format("AppBoxCore v{0}", GetProductVersion());
+            Window1Title = String.Format("AppPlat v{0}", GetProductVersion());
         }
         public async Task<IActionResult> OnPostBtnSubmit_ClickAsync(string tbxUserName, string tbxPassword)
         {

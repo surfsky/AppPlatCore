@@ -1,4 +1,4 @@
-﻿using AppBoxCore.Models;
+﻿using App.Models;
 
 
 using FineUICore;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace AppBoxCore.Pages.Admin
+namespace App.Pages.Admin
 {
     [CheckPower(Name = "CoreUserNew")]
     public class UserNewModel : BaseAdminModel

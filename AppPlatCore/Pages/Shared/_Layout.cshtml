@@ -1,14 +1,14 @@
-﻿@{
+﻿@using FineUICore
+@{
     var F = Html.F();
 }
 
-@using FineUICore
 
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AppBoxCore - 通用权限管理系统</title>
+    <title>AppPlat - 快速应用开发平台</title>
 
     @F.RenderCss()
     <link href="~/res/css/common.css" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
 
     @{
         var pm = F.PageManager;
-        
+
         // 主题
         var themeCookie = Context.Request.Cookies["Theme"];
         if (!String.IsNullOrEmpty(themeCookie))
@@ -28,7 +28,7 @@
             Theme theme;
             if (Enum.TryParse<Theme>(themeCookie, true, out theme))
             {
-				pm.CustomTheme(String.Empty);
+                pm.CustomTheme(String.Empty);
                 pm.Theme(theme);
             }
             else

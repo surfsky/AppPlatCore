@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AppBoxCore.Models;
+using App.Models;
 
 
 using FineUICore;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppBoxCore.Pages.Admin
+namespace App.Pages.Admin
 {
     [CheckPower(Name = "CoreTitleUserNew")]
     public class TitleUserNewModel : BaseAdminModel

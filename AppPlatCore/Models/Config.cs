@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     public class Config : IKeyID
     {

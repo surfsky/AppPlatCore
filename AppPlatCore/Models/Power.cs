@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     public class Power : IKeyID
     {

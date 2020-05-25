@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     // https://docs.microsoft.com/zh-cn/aspnet/core/data/ef-rp/intro
     public static class AppPlatContextInitializer

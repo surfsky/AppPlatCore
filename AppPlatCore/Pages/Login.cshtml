@@ -1,5 +1,5 @@
 ﻿@page
-@model AppBoxCore.Pages.LoginModel
+@model App.Pages.LoginModel
 
 @section head {
     <script>
@@ -19,11 +19,16 @@
             height: 160px;
             padding: 10px;
         }
+        .f-mask.f-widget.f-widget-content {
+            background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%) !important;
+        }
+
     </style>
 }
 
 @section body {
-    <f:Window ID="Window1" IsModal="true" Hidden="false" EnableClose="false" EnableMaximize="false" WindowPosition="GoldenSection" Icon="Key" Title="@Model.Window1Title" Layout="HBox" BoxConfigAlign="Stretch" BoxConfigPosition="Start" Width="500">
+    <f:Window ID="Window1" IsModal="true" Hidden="false" EnableClose="false" EnableMaximize="false" WindowPosition="GoldenSection" Icon="Key"
+              Title="@Model.Window1Title" Layout="HBox" BoxConfigAlign="Stretch" BoxConfigPosition="Start" Width="500">
         <Items>
             <f:Image ID="imageLogin" ImageUrl="~/res/images/login/login_2.png" CssClass="login-image"/>
             <f:SimpleForm ID="SimpleForm1" LabelAlign="Top" BoxFlex="1" BodyPadding="30 20" ShowBorder="false" ShowHeader="false">

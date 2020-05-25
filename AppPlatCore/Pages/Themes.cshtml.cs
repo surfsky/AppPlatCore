@@ -1,7 +1,7 @@
-﻿using AppBoxCore.Models;
+﻿using App.Models;
 using System.Threading.Tasks;
 
-namespace AppBoxCore.Pages
+namespace App.Pages
 {
     public class ThemesModel : BaseModel
     {

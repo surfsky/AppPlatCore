@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Linq;
-using AppBoxCore.Models;
+using AppPlat.Models;
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     public class DeptHelper
     {

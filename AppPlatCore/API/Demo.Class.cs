@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 //using System.Web.Script.Serialization;
 using System.Collections;
 
-namespace App
+namespace App.Api
 {
     public partial class Demo
     {

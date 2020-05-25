@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.HttpApi;
 using System.ComponentModel;
 using System.IO;
+using App.HttpApi;
 using App.Utils;
 using App.Web;
 
 namespace App.Api
 {
     [Description("HttpApi Demo")]
-    [Script(CacheDuration =0, ClassName ="Demo", NameSpace ="App")]
+    [HttpApi.Script(CacheDuration =0, ClassName ="Demo", NameSpace ="App")]
     [HttpApi.History("2016-11-01", "SURFSKY", "History log1")]
     [HttpApi.History("2019-08-15", "SURFSKY", "Fix token")]
     public partial class Demo

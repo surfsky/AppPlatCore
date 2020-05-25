@@ -1,10 +1,20 @@
 ﻿@page
-@model AppBoxCore.Pages.IndexModel
+@model App.Pages.IndexModel
 
 @section head {
 
     <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
-
+    <style>
+        div#leftRegion {
+            background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%) !important;
+        }
+        div#header {
+            background: rgb(5, 39, 103);
+        }
+        #bottomRegion .f-panel-body {
+            background: #3a0647;
+        }
+    </style>
 }
 
 @section body{
@@ -48,7 +58,7 @@
             <td style="width: 260px;">
                 &nbsp;版本：<a target="_blank" href="http://fineui.com/mvc">@Model.ProductVersion</a>
             </td>
-            <td style="text-align: center;">Copyright &copy; 2008-2020 合肥三生石上软件有限公司</td>
+            <td style="text-align: center;">AppCore 2020</td>
             <td style="width: 260px; text-align: right;">在线人数：&nbsp;@Model.OnlineUserCount</td>
         </tr>
     </table>
@@ -95,7 +105,8 @@
 
         // 下载源代码
         function onDownloadClick(event) {
-            window.open('http://fineui.com/fans/', '_blank');
+            //window.open('http://fineui.com/fans/', '_blank');
+            window.open('https://surfsky.github.com/AppCore/', '_blank');
         }
 
         // 点击主题仓库

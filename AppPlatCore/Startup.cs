@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using App.HttpApi;
-using App.Web;
-using AppBoxCore.Models;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -15,8 +12,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using App.HttpApi;
+using App.Middlewares;
+using App.Web;
+using App.Models;
+using App.Hubs;
+using App.Components;
 
-namespace AppBoxCore
+namespace App
 {
     public class Startup
     {
@@ -30,6 +34,7 @@ namespace AppBoxCore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Logs.Info("server start");
             services.AddHttpContextAccessor();                  // 注册 HttpContext 服务
             services.AddDistributedMemoryCache();               // 注册内存缓存服务（session用得到）
             services.AddSession();                              // 注册 Session 服务
@@ -50,6 +55,8 @@ namespace AppBoxCore
                 })
                 .AddNewtonsoftJson()                            // 用 NewtonsoftJson 来序列化json（而非自带的）
                 ;
+            services.AddServerSideBlazor();                     // 启用 Blazor
+            services.AddSignalR();                              // 使用 SignalR
 
 
             // 注册数据库连接服务（每次请求时创建）
@@ -58,8 +65,8 @@ namespace AppBoxCore
             var mysql = Configuration.GetConnectionString("MySQL");
             var dm = Configuration.GetConnectionString("DM");
             var sqlite = Configuration.GetConnectionString("Sqlite");
-            services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver2));  // SqlServer linux. EFCore 2.2 ok
-            //services.AddDbContext<AppPlatContext>(options => options.UseSqlite(sqlite));       // EFCore 2.2 ok
+            //services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver2));  // SqlServer linux. EFCore 2.2 ok
+            services.AddDbContext<AppPlatContext>(options => options.UseSqlite(sqlite));       // EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseMySql(mysql));         // MySql(MariDB) linux. EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver, options=> options.UseRowNumberForPaging()));  // SqlServer 2008. EFCore 2.2 ok, EFCore 3.1 fail. see https://aka.ms/AA6h122
             //services.AddDbContext<AppPlatContext>(options => options.UseDm(dm));               // fail
@@ -69,6 +76,7 @@ namespace AppBoxCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // 开发时支持
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
@@ -76,25 +84,34 @@ namespace AppBoxCore
                 app.UseExceptionHandler("/Error");
                 //app.UseHsts();
             }
+            //app.UseHttpsRedirection();                // 自动将 http 转化为 https
 
-            //app.UseHttpsRedirection();   // 自动将 http 转化为 https
-            app.UseStaticFiles();
-            app.UseSession();
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            // 中间件
-            app.UseHttpApi(options =>
+            // 自定义中间件
+            app.UserAppWeb(env.ContentRootPath);       // 配置 App.Web 
+            app.UseMonitor(o => Console.WriteLine("{0} {1} {2}", o.Url, o.Seconds, o.ClientIP));  // 启用监控模块
+            app.UseImage();                            // 启用缩略图及水印
+            app.UseHttpApi(o =>                        // 启用 HttpApi
             {
-                options.TypePrefix = "App.API.";
-                options.FormatEnum = EnumFomatting.Int;
+                o.TypePrefix = "App.API.";
+                o.FormatEnum = EnumFomatting.Int;
             });
-            app.UserAppWeb(env.ContentRootPath);
-            app.UseFineUI();
+
+            // 标准中间件
+            app.UseStaticFiles();                       // 启用静态文件输出
+            app.UseSession();                           // 启用Session
+            app.UseRouting();                           // 启用路由
+            app.UseAuthentication();                    // 启用鉴权（是否登录）
+            app.UseAuthorization();                     // 启用授权（有什么权限属性）
+
+            // 其它中间件
+            app.UseFineUI();                            // 启用 FineUI 控件库
+            app.UseWebSockets();                        // 启用 WebSocket 以支持SignalR
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapRazorPages();              // 启用 RazorPage 解析引擎
+                endpoints.MapHub<ChatHub>("/ChatHub");  // 启用 ChatHub，路径为 /Chat
+                endpoints.MapBlazorHub();                 // 启用 Blazor
+                //endpoints.MapFallbackToPage("/Blazor");  // 
             });
         }
     }

@@ -13,7 +13,7 @@ using System.Collections;
 using App.Utils;
 using System.DrawingCore;
 
-namespace App
+namespace App.Api
 {
     public partial class Demo
     {

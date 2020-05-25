@@ -5,7 +5,7 @@ using System.Web;
 //using App.Core;
 using App.Utils;
 
-namespace App
+namespace App.Api
 {
     /// <summary>
     /// 身份验票

@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+    <Version>3.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Caches\**" />
+    <Compile Remove="Logs\**" />
+    <Compile Remove="Models\**" />
+    <Content Remove="Caches\**" />
+    <Content Remove="Logs\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Caches\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Caches\**" />
+    <None Remove="Logs\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Middlewares\ContentModule.cs" />
+    <Compile Remove="Middlewares\DefenceModule.cs" />
+    <Compile Remove="Middlewares\FriendlyUrlModule.cs" />
+    <Compile Remove="Middlewares\OfficeModule.cs" />
+    <Compile Remove="Middlewares\RouteModule.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="sqlite.db" />
+    <None Remove="Thumbs.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.6" />
+    <PackageReference Include="Radzen.Blazor" Version="2.8.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DmProvider">
+      <HintPath>bin\Debug\netcoreapp3.1\DmProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="EFDmProvider">
+      <HintPath>bin\Debug\netcoreapp3.1\EFDmProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="FineUICore">
+      <HintPath>bin\FineUICore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Dm">
+      <HintPath>bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Dm.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="API\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+    <None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
+    <None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
+    <None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
+    <None Include="wwwroot\css\open-iconic\README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\App.HttpApi\HttpApi-GitHub\NetCore\HttpApiCore\HttpApiCore.csproj" />
+    <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.Entities\App.Entities.csproj" />
+    <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.Utils\App.Utils.csproj" />
+    <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.WebCore\App.WebCore.csproj" />
+    <ProjectReference Include="..\App.BLL\App.BLL.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     /// <summary>
     /// 数据库上下文

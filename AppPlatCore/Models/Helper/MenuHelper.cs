@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Web;
 using System.Linq;
 
-using AppBoxCore.Models;
+using AppPlat.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     public class MenuHelper
     {

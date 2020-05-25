@@ -1,0 +1,14 @@
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.csprojAssemblyReference.cache
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.AssemblyInfoInputs.cache
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.AssemblyInfo.cs
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.BLL.deps.json
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.BLL.dll
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.BLL.pdb
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.Entities.dll
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.Utils.dll
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.Entities.pdb
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\bin\Debug\netstandard2.0\AppPlat.Utils.pdb
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.csproj.CopyComplete
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.dll
+\\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\AppPlat.BLL\obj\Debug\netstandard2.0\AppPlat.BLL.pdb

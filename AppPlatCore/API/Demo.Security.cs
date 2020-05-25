@@ -12,7 +12,7 @@ using System.ComponentModel;
 using System.Collections;
 using App.Web;
 
-namespace App
+namespace App.Api
 {
     public partial class Demo
     {

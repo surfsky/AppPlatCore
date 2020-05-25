@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
-using AppBoxCore.Models;
+using App.Models;
 
 using FineUICore;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
-namespace AppBoxCore.Pages.Admin
+namespace App.Pages.Admin
 {
     [CheckPower(Name = "CoreRolePowerView")]
     public class RolePowerModel : BaseAdminModel

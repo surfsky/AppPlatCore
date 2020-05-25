@@ -4,7 +4,7 @@ using System.Web;
 
 using System.Linq;
 
-namespace AppBoxCore.Models
+namespace AppPlat.Models
 {
     public class ConfigHelper
     {

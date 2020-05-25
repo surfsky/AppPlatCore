@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using AppBoxCore.Models;
+using App.Models;
 
 using FineUICore;
 using Newtonsoft.Json.Linq;
 
-namespace AppBoxCore.Pages.Admin
+namespace App.Pages.Admin
 {
     [CheckPower(Name = "CoreConfigView")]
     public class ConfigModel : BaseAdminModel

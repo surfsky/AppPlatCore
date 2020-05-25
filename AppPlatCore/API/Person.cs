@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 using App.Utils;
 
-namespace App
+namespace App.Api
 {
     /// <summary>
     /// Person sex

@@ -1,4 +1,4 @@
-﻿using AppBoxCore.Models;
+﻿using App.Models;
 
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppBoxCore.Pages.Admin
+namespace App.Pages.Admin
 {
     [CheckPower(Name = "CoreDeptView")]
     public class UserSelectDeptModel : BaseAdminModel
