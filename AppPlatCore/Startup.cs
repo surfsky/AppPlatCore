@@ -61,12 +61,11 @@ namespace App
 
             // 注册数据库连接服务（每次请求时创建）
             var sqlserver = Configuration.GetConnectionString("SQLServer");
-            var sqlserver2 = Configuration.GetConnectionString("SQLServer2");
             var mysql = Configuration.GetConnectionString("MySQL");
             var dm = Configuration.GetConnectionString("DM");
             var sqlite = Configuration.GetConnectionString("Sqlite");
-            //services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver2));  // SqlServer linux. EFCore 2.2 ok
-            services.AddDbContext<AppPlatContext>(options => options.UseSqlite(sqlite));       // EFCore 2.2 ok
+            services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver));  // SqlServer linux. EFCore 2.2 ok
+            //services.AddDbContext<AppPlatContext>(options => options.UseSqlite(sqlite));       // EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseMySql(mysql));         // MySql(MariDB) linux. EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver, options=> options.UseRowNumberForPaging()));  // SqlServer 2008. EFCore 2.2 ok, EFCore 3.1 fail. see https://aka.ms/AA6h122
             //services.AddDbContext<AppPlatContext>(options => options.UseDm(dm));               // fail

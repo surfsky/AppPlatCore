@@ -81,7 +81,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\App.HttpApi\HttpApi-GitHub\NetCore\HttpApiCore\HttpApiCore.csproj" />
-    <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.Entities\App.Entities.csproj" />
     <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.Utils\App.Utils.csproj" />
     <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.WebCore\App.WebCore.csproj" />
     <ProjectReference Include="..\App.BLL\App.BLL.csproj" />

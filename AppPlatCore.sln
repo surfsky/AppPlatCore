@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Utils", "..\..\App.Util
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.WebCore", "..\..\App.Utils\App.Utils-github\NetStandard\App.WebCore\App.WebCore.csproj", "{5A5AFCCD-D2CE-4BF4-BC08-04EA7F84C861}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Entities", "..\..\App.Utils\App.Utils-github\NetStandard\App.Entities\App.Entities.csproj", "{CE20D5B0-5673-43FD-B666-DDBAB5ED3DB3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpApiCore", "..\..\App.HttpApi\HttpApi-GitHub\NetCore\HttpApiCore\HttpApiCore.csproj", "{348AC535-CDA6-4263-BAF1-02EF2EDB4BE5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.BLL", "App.BLL\App.BLL.csproj", "{A21BF208-BA64-42EF-AFDC-587D4A5E7BBB}"
@@ -39,10 +37,6 @@ Global
 		{5A5AFCCD-D2CE-4BF4-BC08-04EA7F84C861}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A5AFCCD-D2CE-4BF4-BC08-04EA7F84C861}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A5AFCCD-D2CE-4BF4-BC08-04EA7F84C861}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE20D5B0-5673-43FD-B666-DDBAB5ED3DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE20D5B0-5673-43FD-B666-DDBAB5ED3DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE20D5B0-5673-43FD-B666-DDBAB5ED3DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE20D5B0-5673-43FD-B666-DDBAB5ED3DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{348AC535-CDA6-4263-BAF1-02EF2EDB4BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{348AC535-CDA6-4263-BAF1-02EF2EDB4BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{348AC535-CDA6-4263-BAF1-02EF2EDB4BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
