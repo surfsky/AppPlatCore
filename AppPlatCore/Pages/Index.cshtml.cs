@@ -44,7 +44,7 @@ namespace App.Pages
             UserName = GetIdentityName();
             OnlineUserCount = (await GetOnlineCountAsync()).ToString();
             ProductVersion = GetProductVersion();
-            ConfigTitle = "App"; // String.Format("App v{0}", GetProductVersion());
+            ConfigTitle = "AppPlat"; // String.Format("App v{0}", GetProductVersion());
 
             SystemHelpMenu = GetSystemHelpMenu();
         }

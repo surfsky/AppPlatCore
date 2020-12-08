@@ -1,39 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj": {}
+    "/Users/CJH/Downloads/Dev/AppPlat/AppPlatCore/AppPlatCore-github/App.BLL/App.BLL.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Entities\\App.Entities.csproj": {
+    "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Entities/App.Entities.csproj": {
       "version": "3.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Entities\\App.Entities.csproj",
+        "projectUniqueName": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Entities/App.Entities.csproj",
         "projectName": "App.Entities",
-        "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Entities\\App.Entities.csproj",
-        "packagesPath": "C:\\Users\\CJH\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Entities\\obj\\",
+        "projectPath": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Entities/App.Entities.csproj",
+        "packagesPath": "/Users/CJH/.nuget/packages/",
+        "outputPath": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Entities/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\CJH\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/CJH/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj": {
-                "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj"
+              "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Utils/App.Utils.csproj": {
+                "projectPath": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Utils/App.Utils.csproj"
               }
             }
           }
@@ -72,33 +68,29 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.4.20268.1\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj": {
-      "version": "3.0.0",
+    "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Utils/App.Utils.csproj": {
+      "version": "3.0.2",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj",
+        "projectUniqueName": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Utils/App.Utils.csproj",
         "projectName": "App.Utils",
-        "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj",
-        "packagesPath": "C:\\Users\\CJH\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\obj\\",
+        "projectPath": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Utils/App.Utils.csproj",
+        "packagesPath": "/Users/CJH/.nuget/packages/",
+        "outputPath": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Utils/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\CJH\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/CJH/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -172,40 +164,36 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.4.20268.1\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj": {
+    "/Users/CJH/Downloads/Dev/AppPlat/AppPlatCore/AppPlatCore-github/App.BLL/App.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
+        "projectUniqueName": "/Users/CJH/Downloads/Dev/AppPlat/AppPlatCore/AppPlatCore-github/App.BLL/App.BLL.csproj",
         "projectName": "App.BLL",
-        "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
-        "packagesPath": "C:\\Users\\CJH\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\obj\\",
+        "projectPath": "/Users/CJH/Downloads/Dev/AppPlat/AppPlatCore/AppPlatCore-github/App.BLL/App.BLL.csproj",
+        "packagesPath": "/Users/CJH/.nuget/packages/",
+        "outputPath": "/Users/CJH/Downloads/Dev/AppPlat/AppPlatCore/AppPlatCore-github/App.BLL/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\CJH\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/CJH/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Entities\\App.Entities.csproj": {
-                "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Entities\\App.Entities.csproj"
+              "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Entities/App.Entities.csproj": {
+                "projectPath": "/Users/CJH/Downloads/Dev/AppPlat/App.Utils/App.Utils-github/NetStandard/App.Entities/App.Entities.csproj"
               }
             }
           }
@@ -236,7 +224,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.4.20268.1\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
         }
       }
     }

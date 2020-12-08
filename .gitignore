@@ -3,3 +3,6 @@
 /AppPlatCore/Code
 /AppPlatCore/obj
 /.vs
+/AppPlatCore/Logs
+/*.DS_Store
+/AppPlatCore/Logslog20200722.txt
