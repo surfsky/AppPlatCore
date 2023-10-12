@@ -9,14 +9,41 @@
     
     <f:Panel ID="Panel1" BodyPadding="5" ShowBorder="false" Layout="VBox" ShowHeader="false" Title="用户管理" IsViewPort="true">
         <Items>
-            <f:Form ID="Form2" ShowBorder="false" ShowHeader="false">
-                <Rows>
-                    <f:FormRow ID="FormRow1">
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="true" DataIDField="ID" DataTextField="Name" AllowSorting="true"
+                    AllowPaging="true" IsDatabasePaging="true"
+                    SortField="@PagingInfo.SortField" SortDirection="@PagingInfo.SortDirection"
+                    PageSize="@PagingInfo.PageSize" RecordCount="@PagingInfo.RecordCount" DataSource="@Model.Users"
+                    OnSort="@Url.Handler("UserList_DoPostBack")" OnSortFields="Panel1"
+                    OnPageIndexChanged="@Url.Handler("UserList_DoPostBack")" OnPageIndexChangedFields="Panel1">
+                <Toolbars>
+                    <f:Toolbar ID="Toolbar1" Position="Top">
                         <Items>
-                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                              ShowTrigger1="false" OnTrigger2Click="@Url.Handler("UserList_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
-                                              OnTrigger1Click="@Url.Handler("UserList_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1">
-                            </f:TwinTriggerBox>
+                            <f:Button ID="btnNew" Icon="Add" Text="新增" Enabled="@Model.PowerCoreUserNew">
+                                <Listeners>
+                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
+                                </Listeners>
+                            </f:Button>
+                            <f:Button ID="btnDeletedSelected" Icon="Delete" Text="删除" Enabled="@Model.PowerCoreUserDelete">
+                                <Listeners>
+                                    <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
+                                </Listeners>
+                            </f:Button>
+                            <f:ToolbarSeparator></f:ToolbarSeparator>
+                            <f:Button ID="btnChangeEnableUsers" Icon="GroupEdit" Text="状态" Enabled="@Model.PowerCoreUserEdit">
+                                <Menu>
+                                    <f:MenuButton ID="btnEnableUsers" Text="启用">
+                                        <Listeners>
+                                            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
+                                        </Listeners>
+                                    </f:MenuButton>
+                                    <f:MenuButton ID="btnDisableUsers" Text="禁用">
+                                        <Listeners>
+                                            <f:Listener Event="click" Handler="onDisableUsersClick"></f:Listener>
+                                        </Listeners>
+                                    </f:MenuButton>
+                                </Menu>
+                            </f:Button>
+                            <f:f:ToolbarSeparator />
                             <f:RadioButtonList ID="rblEnableStatus" OnSelectedIndexChanged="@Url.Handler("UserList_DoPostBack")" OnSelectedIndexChangedFields="Panel1" Label="启用状态" ColumnNumber="3">
                                 <Items>
                                     <f:RadioItem Text="全部" Selected="true" Value="all"></f:RadioItem>
@@ -24,28 +51,26 @@
                                     <f:RadioItem Text="禁用" Value="disabled"></f:RadioItem>
                                 </Items>
                             </f:RadioButtonList>
+                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
+                                              ShowTrigger1="false" OnTrigger2Click="@Url.Handler("UserList_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
+                                              OnTrigger1Click="@Url.Handler("UserList_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1">
+                            </f:TwinTriggerBox>
+
                         </Items>
-                    </f:FormRow>
-                </Rows>
-            </f:Form>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="true" DataIDField="ID" DataTextField="Name" AllowSorting="true"
-                    AllowPaging="true" IsDatabasePaging="true"
-                    SortField="@PagingInfo.SortField" SortDirection="@PagingInfo.SortDirection"
-                    PageSize="@PagingInfo.PageSize" RecordCount="@PagingInfo.RecordCount" DataSource="@Model.Users"
-                    OnSort="@Url.Handler("UserList_DoPostBack")" OnSortFields="Panel1"
-                    OnPageIndexChanged="@Url.Handler("UserList_DoPostBack")" OnPageIndexChangedFields="Panel1">
+                    </f:Toolbar>
+                </Toolbars>
                 <Columns>
                     <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionView"></f:RenderField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionPassword"></f:RenderField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionEdit"></f:RenderField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionDelete"></f:RenderField>
                     <f:RenderField For="Users.First().Name" SortField="Name" Width="100"></f:RenderField>
                     <f:RenderField For="Users.First().ChineseName" SortField="ChineseName" Width="100" />
                     <f:RenderCheckField For="Users.First().Enabled" SortField="Enabled" RenderAsStaticField="true" Width="80" />
                     <f:RenderField For="Users.First().Gender" SortField="Gender" Width="50" />
                     <f:RenderField For="Users.First().Email" SortField="Email" Width="180" />
                     <f:RenderField For="Users.First().Remark" ExpandUnusedSpace="true" />
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionView"></f:RenderField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionPassword"></f:RenderField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionEdit"></f:RenderField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionDelete"></f:RenderField>
                 </Columns>
                 <PageItems>
                     <f:ToolbarSeparator></f:ToolbarSeparator>
@@ -60,38 +85,7 @@
                         </Items>
                     </f:DropDownList>
                 </PageItems>
-                <Toolbars>
-                    <f:Toolbar ID="Toolbar1" Position="Top">
-                        <Items>
-                            <f:Button ID="btnDeletedSelected" Icon="Delete" Text="删除选中记录" Enabled="@Model.PowerCoreUserDelete">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
-                            <f:ToolbarSeparator></f:ToolbarSeparator>
-                            <f:Button ID="btnChangeEnableUsers" Icon="GroupEdit" Text="设置启用状态" Enabled="@Model.PowerCoreUserEdit">
-                                <Menu>
-                                    <f:MenuButton ID="btnEnableUsers" Text="启用选中记录">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
-                                        </Listeners>
-                                    </f:MenuButton>
-                                    <f:MenuButton ID="btnDisableUsers" Text="禁用选中记录">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onDisableUsersClick"></f:Listener>
-                                        </Listeners>
-                                    </f:MenuButton>
-                                </Menu>
-                            </f:Button>
-                            <f:ToolbarFill></f:ToolbarFill>
-                            <f:Button ID="btnNew" Icon="Add" Text="新增用户" Enabled="@Model.PowerCoreUserNew">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
-                        </Items>
-                    </f:Toolbar>
-                </Toolbars>
+
             </f:Grid>
         </Items>
     </f:Panel>

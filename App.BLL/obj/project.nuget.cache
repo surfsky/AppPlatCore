@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MyYHVftuqeS2r5/Xbcp9eEL8DBO6HQQUzU1e147v6/GnKv4J3YS5N2qVc/plCGlKZnc3XSbvFQTFsRXYnsIZsQ==",
+  "dgSpecHash": "P7SMwZiDBmjDF8lwpWnUygyzL6m1VjyGXLuSZwytt/Mq0IkbcVRkXzlN5dYtSXd71W4/HhzNPJc6h3XMSYqDdQ==",
   "success": true,
-  "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
+  "projectFilePath": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-master\\App.BLL\\App.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CJH\\.nuget\\packages\\jint\\2.11.58\\jint.2.11.58.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.0.0-beta2.20059.3\\microsoft.codeanalysis.analyzers.3.0.0-beta2.20059.3.nupkg.sha512",

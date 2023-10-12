@@ -24,3 +24,16 @@
 \\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\App.BLL\bin\Debug\netstandard2.0\App.Utils.pdb
 \\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\App.BLL\obj\Debug\netstandard2.0\App.BLL.csproj.CopyComplete
 \\Mac\Home\Downloads\Dev\AppPlat\AppPlatCore\AppPlatCore-github\App.BLL\obj\Debug\netstandard2.0\App.BLL.csproj.CoreCompileInputs.cache
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\bin\Debug\netstandard2.0\App.BLL.deps.json
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\bin\Debug\netstandard2.0\App.BLL.dll
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\bin\Debug\netstandard2.0\App.BLL.pdb
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\bin\Debug\netstandard2.0\App.Utils.dll
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\bin\Debug\netstandard2.0\App.Utils.pdb
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.csproj.AssemblyReference.cache
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.AssemblyInfoInputs.cache
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.AssemblyInfo.cs
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.csproj.CoreCompileInputs.cache
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.csproj.CopyComplete
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.dll
+\\Mac\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-master\App.BLL\obj\Debug\netstandard2.0\App.BLL.pdb

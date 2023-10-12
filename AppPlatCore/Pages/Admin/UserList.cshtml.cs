@@ -75,7 +75,6 @@ namespace App.Pages.Admin
 
             // 排列和数据库分页
             q = SortAndPage<User>(q, pagingInfo);
-
             return await q.ToListAsync();
         }
 

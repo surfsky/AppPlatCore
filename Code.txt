@@ -1,0 +1,95 @@
+                    <f:Form ID="Form3" ShowBorder="false" ShowHeader="false" LabelAlign="Right">
+                        <Rows>
+                            <f:FormRow>
+                                <Items>
+                                    <f:label></f:label>
+                                </Items>
+                            </f:FormRow>
+                        </Rows>
+                    </f:Form>
+
+                                            <Toolbars>
+                            <f:Toolbar ID="Toolbar1">
+                                <Items>
+                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreTitleUserNew">
+                                        <Listeners>
+                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
+                                        </Listeners>
+                                    </f:Button>
+                                </Items>
+                            </f:Toolbar>
+                        </Toolbars>
+
+
+                                                                <Listeners>
+                                            <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
+                                        </Listeners>
+                                    </f:Button>
+
+                                                                            <Listeners>
+                                            <f:Listener Event="click" Handler="onNewClick"></f:Listener>
+                                        </Listeners>
+                                    </f:Button>
+
+
+                                            private async Task<IEnumerable<User>> GetTitleUsersAsync(int grid1SelectedRowID)
+        {
+            var grid2PagingInfo = new PagingInfoViewModel
+            {
+                SortField = "Name",
+                SortDirection = "DESC",
+                PageIndex = 0,
+                PageSize = ConfigHelper.PageSize
+            };
+            Grid2PagingInfo = grid2PagingInfo;
+            return await GetTitleUsersAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);
+        }
+
+
+            <f:Panel ID="Panel1" BodyPadding="5" ShowBorder="false" ShowHeader="false" Layout="VBox" Title="部门管理" IsViewPort="true">
+        <Items>
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="ID" DataTextField="Name"
+                    EnableSimulateTree="true" DataSource="@Model.Depts">
+                <Toolbars>
+                    <f:Toolbar ID="Toolbar1" Position="Top">
+                        <Items>
+                            <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew">
+                                <Listeners>
+                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
+                                </Listeners>
+                            </f:Button>
+                        </Items>
+                    </f:Toolbar>
+                </Toolbars>
+                <Columns>
+                    <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionEdit"></f:RenderField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionDelete"></f:RenderField>
+                    <f:RenderField For="Depts.First().Name" SortField="Name" DataSimulateTreeLevelField="TreeLevel" Width="180"></f:RenderField>
+                    <f:RenderField For="Depts.First().Remark" SortField="Remark" ExpandUnusedSpace="true"></f:RenderField>
+                    <f:RenderField For="Depts.First().SortIndex" Width="80"></f:RenderField>
+                </Columns>
+            </f:Grid>
+        </Items>
+    </f:Panel>
+
+
+                <f:Form ID="Form2" ShowBorder="false" ShowHeader="false">
+                <Rows>
+                    <f:FormRow ID="FormRow1">
+                        <Items>
+                            <f:RadioButtonList ID="rblEnableStatus" OnSelectedIndexChanged="@Url.Handler("UserList_DoPostBack")" OnSelectedIndexChangedFields="Panel1" Label="启用状态" ColumnNumber="3">
+                                <Items>
+                                    <f:RadioItem Text="全部" Selected="true" Value="all"></f:RadioItem>
+                                    <f:RadioItem Text="启用" Value="enabled"></f:RadioItem>
+                                    <f:RadioItem Text="禁用" Value="disabled"></f:RadioItem>
+                                </Items>
+                            </f:RadioButtonList>
+                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
+                                              ShowTrigger1="false" OnTrigger2Click="@Url.Handler("UserList_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
+                                              OnTrigger1Click="@Url.Handler("UserList_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1">
+                            </f:TwinTriggerBox>
+                        </Items>
+                    </f:FormRow>
+                </Rows>
+            </f:Form>

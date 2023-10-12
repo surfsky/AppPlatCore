@@ -31,21 +31,20 @@ namespace App.Pages
 
         private async Task LoadDataAsync()
         {
-            // 用户可见的菜单列表
+            // 用户菜单
             List<Models.Menu> menus = ResolveUserMenuList();
             if (menus.Count == 0)
             {
                 ShowNotify("系统管理员尚未给你配置菜单！");
                 return;
             }
-
             MenuTreeNodes = GetTreeNodes(menus).ToArray();
 
+            //
             UserName = GetIdentityName();
             OnlineUserCount = (await GetOnlineCountAsync()).ToString();
             ProductVersion = GetProductVersion();
-            ConfigTitle = "AppPlat"; // String.Format("App v{0}", GetProductVersion());
-
+            ConfigTitle = ConfigHelper.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();
         }
 
@@ -53,7 +52,6 @@ namespace App.Pages
         private FineUICore.Menu GetSystemHelpMenu()
         {
             FineUICore.Menu menu = new FineUICore.Menu();
-
             JArray ja = JArray.Parse(ConfigHelper.HelpList);
             foreach (JObject jo in ja)
             {
@@ -61,14 +59,12 @@ namespace App.Pages
                 Icon icon = IconHelper.String2Icon(jo.Value<string>("Icon"), true);
                 string id = jo.Value<string>("ID");
                 string url = jo.Value<string>("URL");
-
                 if (!String.IsNullOrEmpty(text) && !String.IsNullOrEmpty(id) && !String.IsNullOrEmpty(url))
                 {
                     FineUICore.MenuButton menuItem = new FineUICore.MenuButton();
                     menuItem.Text = text;
                     menuItem.Icon = icon;
                     menuItem.OnClientClick = String.Format("addExampleTab('{0}','{1}','{2}')", id, Url.Content(url), text);
-
                     menu.Items.Add(menuItem);
                 }
             }

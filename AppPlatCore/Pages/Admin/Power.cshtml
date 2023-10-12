@@ -29,12 +29,12 @@
                     OnPageIndexChanged="@Url.Handler("Power_DoPostBack")" OnPageIndexChangedFields="Panel1">
                 <Columns>
                     <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionEdit"></f:RenderField>
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionDelete"></f:RenderField>
                     <f:RenderField For="Powers.First().GroupName" SortField="GroupName" Width="120"></f:RenderField>
                     <f:RenderField For="Powers.First().Name" SortField="Name" Width="180"></f:RenderField>
                     <f:RenderField For="Powers.First().Title" SortField="Title" Width="180"></f:RenderField>
                     <f:RenderField For="Powers.First().Remark" SortField="Remark" ExpandUnusedSpace="true"></f:RenderField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionEdit"></f:RenderField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionDelete"></f:RenderField>
                 </Columns>
                 <PageItems>
                     <f:ToolbarSeparator></f:ToolbarSeparator>

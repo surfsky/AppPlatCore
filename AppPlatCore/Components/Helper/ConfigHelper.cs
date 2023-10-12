@@ -101,81 +101,40 @@ namespace App.Models
 
         #region properties
 
-        /// <summary>
-        /// 网站标题
-        /// </summary>
+        /// <summary>网站标题</summary>
         public static string Title
         {
-            get
-            {
-                return GetValue("Title");
-            }
-            set
-            {
-                SetValue("Title", value);
-            }
+            get => GetValue("Title");
+            set => SetValue("Title", value);
         }
 
-        /// <summary>
-        /// 列表每页显示的个数
-        /// </summary>
+        /// <summary>列表每页显示的个数</summary>
         public static int PageSize
         {
-            get
-            {
-                return Convert.ToInt32(GetValue("PageSize"));
-            }
-            set
-            {
-                SetValue("PageSize", value.ToString());
-            }
+            get => Convert.ToInt32(GetValue("PageSize"));
+            set => SetValue("PageSize", value.ToString());
         }
 
-        /// <summary>
-        /// 帮助下拉列表
-        /// </summary>
+        /// <summary>帮助下拉列表</summary>
         public static string HelpList
         {
-            get
-            {
-                return GetValue("HelpList");
-            }
-            set
-            {
-                SetValue("HelpList", value);
-            }
+            get => GetValue("HelpList");
+            set => SetValue("HelpList", value);
         }
 
 
-        /// <summary>
-        /// 菜单样式
-        /// </summary>
+        /// <summary>菜单样式</summary>
         public static string MenuType
         {
-            get
-            {
-                return GetValue("MenuType");
-            }
-            set
-            {
-                SetValue("MenuType", value);
-            }
+            get => GetValue("MenuType");
+            set => SetValue("MenuType", value);
         }
 
-
-        /// <summary>
-        /// 网站主题
-        /// </summary>
+        /// <summary>网站主题</summary>
         public static string Theme
         {
-            get
-            {
-                return GetValue("Theme");
-            }
-            set
-            {
-                SetValue("Theme", value);
-            }
+            get => GetValue("Theme");
+            set => SetValue("Theme", value);
         }
 
 

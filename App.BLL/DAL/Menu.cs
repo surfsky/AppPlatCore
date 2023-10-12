@@ -85,5 +85,10 @@ namespace App.Models
             };
             return menu;
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

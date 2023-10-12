@@ -18,6 +18,7 @@ namespace App.Pages.Admin
         public IEnumerable<Dept> Depts { get; set; }
         public IEnumerable<User> Users { get; set; }
 
+        public bool PowerCoreDeptView { get; set; }
         public bool PowerCoreDeptUserNew { get; set; }
         public bool PowerCoreDeptUserDelete { get; set; }
 
@@ -27,6 +28,7 @@ namespace App.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync()
         {
+            PowerCoreDeptView = CheckPower("CoreDeptView");
             PowerCoreDeptUserNew = CheckPower("CoreDeptUserNew");
             PowerCoreDeptUserDelete = CheckPower("CoreDeptUserDelete");
 

@@ -38,6 +38,7 @@ namespace App
             services.AddHttpContextAccessor();                  // 注册 HttpContext 服务
             services.AddDistributedMemoryCache();               // 注册内存缓存服务（session用得到）
             services.AddSession();                              // 注册 Session 服务
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();  // 修改 cshtml 后自动生效
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = new PathString("/Login");   // 登录页面
@@ -64,7 +65,15 @@ namespace App
             var mysql = Configuration.GetConnectionString("MySQL");
             var dm = Configuration.GetConnectionString("DM");
             var sqlite = Configuration.GetConnectionString("Sqlite");
-            services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver));  // SqlServer linux. EFCore 2.2 ok
+            services.AddDbContext<AppPlatContext>(options => 
+            {
+                options.UseSqlServer(sqlserver, i =>
+                {
+                    i.EnableRetryOnFailure();//可自定义失败重连次数
+                    i.CommandTimeout(60);
+                    i.UseRowNumberForPaging(); //Use a ROW_NUMBER() in queries instead of OFFSET/FETCH. This method is backwards-compatible to SQL Server 2005. 避免错误：'OFFSET' 附近有语法错误。 在 FETCH 语句中选项 NEXT 的用法无效 'OFFSET' 附近有语法错误。 在 FETCH 语句中选项 NEXT 的用法无效
+                });
+            });  // SqlServer linux. EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseSqlite(sqlite));       // EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseMySql(mysql));         // MySql(MariDB) linux. EFCore 2.2 ok
             //services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver, options=> options.UseRowNumberForPaging()));  // SqlServer 2008. EFCore 2.2 ok, EFCore 3.1 fail. see https://aka.ms/AA6h122

@@ -1,6 +1,61 @@
 #--------------------------------------------
+# FineUICore RazorPage Resource
+#--------------------------------------------
+查看官网示例（部分示例尚未更新到最新版本）：
+FineUIPro：https://pro.fineui.com/
+FineUIMvc：https://mvc.fineui.com/
+FineUICore：https://core.fineui.com/
+FineUICore （Razor Pages & Tag Helpers）：https://pages.fineui.com/
+F.js：https://js.fineui.com/
+
+
+#--------------------------------------------
+# Icon
+# https://pages.fineui.com/#/Config/Icons
+#--------------------------------------------
+Disk
+Accept
+
+
+
+#--------------------------------------------
+# FineUI.js
+#--------------------------------------------
+F
+    F.activeWindow.hideRefresh();
+    F.activeWindow.close();
+    F.activeWindow.hideExecuteScript('parent.removeActiveTab();');
+
+
+button
+    F.create({
+        type: 'button', id: 'btn2', renderTo: '#wrap1', text: '禁用的按钮', disabled: true,
+        handler: function (event) {
+            showNotify('你点击了刚刚启用的按钮');
+        }
+    });
+
+
+
+#--------------------------------------------
 # FineUICore RazorPage
 #--------------------------------------------
+// 关闭本窗体（触发窗体的关闭事件）
+PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
+
+
+# button
+    触发及事件
+        <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnLogin_Click")" />
+        <f:Button ID="btnHomePage" EnableDefaultCorner="false" EnableDefaultState="false" IconFont="_Home" IconAlign="Top" ToolTip="官网首页" CssClass="icononlyaction" OnClientClick="window.open('http://pages.fineui.com/','_blank');"></f:Button>
+    js事件
+        <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreTitleUserDelete">
+            <Listeners>
+                <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
+            </Listeners>
+        </f:Button>
+
+
 # 写页面
     <f:Window Width="350" WindowPosition="GoldenSection" EnableClose="false" IsModal="false" Title="登录表单" ID="Window1">
         <Items>

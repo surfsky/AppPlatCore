@@ -16,6 +16,7 @@ namespace App.Pages.Admin
     {
         public bool PowerCoreConfigEdit { get; set; }
         public string HelpListText { get; set; }
+        public string SiteTitle { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -30,10 +31,11 @@ namespace App.Pages.Admin
             {
                 JSBeautifyLib.JSBeautify jsb = new JSBeautifyLib.JSBeautify(ConfigHelper.HelpList, new JSBeautifyLib.JSBeautifyOptions());
                 HelpListText = jsb.GetResult();
+                SiteTitle = ConfigHelper.Title;
             });
         }
 
-        public IActionResult OnPostConfig_btnSave_OnClick(int ddlPageSize, string tbxHelpList)
+        public IActionResult OnPostConfig_btnSave_OnClick(int ddlPageSize, string tbxHelpList, string tbTitle)
         {
             // 在操作之前进行权限检查
             if (!CheckPower("CoreConfigEdit"))
@@ -61,6 +63,7 @@ namespace App.Pages.Admin
             //ConfigHelper.Title = title;
             ConfigHelper.PageSize = ddlPageSize;
             ConfigHelper.HelpList = tbxHelpList.Trim();
+            ConfigHelper.Title = tbTitle.Trim();
             ConfigHelper.SaveAll();
 
             FineUICore.PageContext.RegisterStartupScript("top.window.location.reload(false);");

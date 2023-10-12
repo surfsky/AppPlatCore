@@ -19,9 +19,8 @@
     @Html.AntiForgeryToken()
 
     @{
-        var pm = F.PageManager;
-
         // 主题
+        var pm = F.PageManager;
         var themeCookie = Context.Request.Cookies["Theme"];
         if (!String.IsNullOrEmpty(themeCookie))
         {
@@ -40,9 +39,7 @@
     @F.PageManager
 
     @RenderSection("body", true)
-
     @F.RenderScript()
     @RenderSection("script", false)
-
 </body>
 </html>

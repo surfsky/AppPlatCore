@@ -23,13 +23,13 @@
         <table>
             <tr>
                 <td>
-                    <f:Button ID="btnHomePage" EnableDefaultCorner="false" EnableDefaultState="false" IconFont="_Home" IconAlign="Top" ToolTip="官网首页" CssClass="icononlyaction" OnClientClick="window.open('http://pages.fineui.com/','_blank');"></f:Button>
+                    <f:Button ID="btnHomePage" EnableDefaultCorner="false" EnableDefaultState="false" IconFont="_Home" IconAlign="Top" ToolTip="官网首页" CssClass="icononlyaction"></f:Button>
                     <a class="logo" href="@Url.Content("~/")" title="@Model.ConfigTitle">
                         @Model.ConfigTitle
                     </a>
                 </td>
                 <td style="text-align: right;">
-                    <f:Button CssClass="icontopaction systemhelp" ID="Button1" Text="下载源代码" IconAlign="Top" IconFont="_Download" EnableDefaultState="false" EnableDefaultCorner="false">
+                    <f:Button CssClass="icontopaction systemhelp" ID="Button1" Text="下载源代码" IconAlign="Top" IconFont="_Download" EnableDefaultState="false" EnableDefaultCorner="false" Hidden="true">
                         <Listeners>
                             <f:Listener Event="click" Handler="onDownloadClick"></f:Listener>
                         </Listeners>
@@ -56,7 +56,7 @@
     <table id="footer" class="bottomtable f-widget-header" style="display:none;">
         <tr>
             <td style="width: 260px;">
-                &nbsp;版本：<a target="_blank" href="http://fineui.com/mvc">@Model.ProductVersion</a>
+                &nbsp;版本：@Model.ProductVersion
             </td>
             <td style="text-align: center;">AppCore 2020</td>
             <td style="width: 260px; text-align: right;">在线人数：&nbsp;@Model.OnlineUserCount</td>
@@ -106,7 +106,7 @@
         // 下载源代码
         function onDownloadClick(event) {
             //window.open('http://fineui.com/fans/', '_blank');
-            window.open('https://surfsky.github.com/AppCore/', '_blank');
+            //window.open('https://surfsky.github.com/AppCore/', '_blank');
         }
 
         // 点击主题仓库
@@ -200,8 +200,8 @@
             // maxTabCount: 最大允许打开的选项卡数量
             // maxTabMessage: 超过最大允许打开选项卡数量时的提示信息
             F.initTreeTabStrip(treeMenu, mainTabStrip, {
-                maxTabCount: 10,
-                maxTabMessage: '请先关闭一些选项卡（最多允许打开 10 个）！'
+                maxTabCount: 20,
+                maxTabMessage: '请先关闭一些选项卡！'
             });
 
         });
