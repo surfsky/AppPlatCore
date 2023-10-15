@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.Components;
+using App.Models;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -35,7 +36,7 @@ namespace App.Pages
             List<Models.Menu> menus = ResolveUserMenuList();
             if (menus.Count == 0)
             {
-                ShowNotify("系统管理员尚未给你配置菜单！");
+                UI.ShowNotify("系统管理员尚未给你配置菜单！");
                 return;
             }
             MenuTreeNodes = GetTreeNodes(menus).ToArray();
@@ -43,7 +44,7 @@ namespace App.Pages
             //
             UserName = GetIdentityName();
             OnlineUserCount = (await GetOnlineCountAsync()).ToString();
-            ProductVersion = GetProductVersion();
+            ProductVersion = Common.GetProductVersion();
             ConfigTitle = ConfigHelper.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();
         }

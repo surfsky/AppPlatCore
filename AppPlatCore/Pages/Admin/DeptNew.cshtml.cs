@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.Models;
 using FineUICore;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace App.Pages.Admin
 
         public void OnGet()
         {
-            Depts = ResolveDDL<Dept>(DeptHelper.Depts).ToArray();
+            Depts = UI.ResolveDDL<Dept>(DeptHelper.Depts).ToArray();
         }
 
         public async Task<IActionResult> OnPostDeptNew_btnSaveClose_ClickAsync()
@@ -28,9 +29,7 @@ namespace App.Pages.Admin
             {
                 // 下拉列表的顶级节点值为-1
                 if (Dept.ParentID == -1)
-                {
                     Dept.ParentID = null;
-                }
 
                 DB.Depts.Add(Dept);
                 await DB.SaveChangesAsync();

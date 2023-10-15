@@ -22,11 +22,7 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar9">
                                 <Items>
-                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreRoleUserNew">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
+                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreRoleUserNew" OnClientClick="onEditClick();" />
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>
@@ -49,22 +45,12 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar1">
                                 <Items>
-                                    <f:Button ID="btnNew" Icon="Add" Text="添加" Enabled="@Model.PowerCoreRoleUserNew">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:Button ID="btnDeleteSelected" Icon="Delete" Text="删除" Enabled="@Model.PowerCoreRoleUserDelete">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false">
-                                        <Listeners>
-                                            <f:Listener Event="trigger1click" Handler="RoleUser_Grid2_DoPostBack('trigger1');"></f:Listener>
-                                            <f:Listener Event="trigger2click" Handler="RoleUser_Grid2_DoPostBack('trigger2');"></f:Listener>
-                                        </Listeners>
-                                    </f:TwinTriggerBox>
+                                    <f:Button ID="btnNew" Icon="Add" Text="添加" Enabled="@Model.PowerCoreRoleUserNew" OnClientClick="onNewClick();" />
+                                    <f:Button ID="btnDeleteSelected" Icon="Delete" Text="删除" Enabled="@Model.PowerCoreRoleUserDelete" OnClientClick="onDeleteSelectedClick();" />
+                                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
+                                        OnClientTrigger1Click="RoleUser_Grid2_DoPostBack('trigger1');"
+                                        OnClientTrigger2Click="RoleUser_Grid2_DoPostBack('trigger2');" 
+                                        />
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>

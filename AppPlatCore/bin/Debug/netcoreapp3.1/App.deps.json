@@ -50,7 +50,7 @@
           "System.Configuration.ConfigurationManager": "4.7.0",
           "DmProvider": "1.1.0.0",
           "EFDmProvider": "1.0.0.0",
-          "FineUICore": "6.2.0.0",
+          "FineUICore": "8.2.1.0",
           "Microsoft.EntityFrameworkCore.Dm": "2.1.1.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
@@ -3119,11 +3119,11 @@
           "EFDmProvider.dll": {}
         }
       },
-      "FineUICore/6.2.0.0": {
+      "FineUICore/8.2.1.0": {
         "runtime": {
           "FineUICore.dll": {
-            "assemblyVersion": "6.2.0.0",
-            "fileVersion": "6.2.0.0"
+            "assemblyVersion": "8.2.1.0",
+            "fileVersion": "8.2.1.0"
           }
         },
         "compile": {
@@ -6513,7 +6513,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FineUICore/6.2.0.0": {
+    "FineUICore/8.2.1.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.Components;
+using App.Models;
 
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
@@ -23,7 +24,7 @@ namespace App.Pages
 
         private void LoadData()
         {
-            Window1Title = String.Format("AppPlat v{0}", GetProductVersion());
+            Window1Title = String.Format("AppPlat v{0}", Common.GetProductVersion());
         }
         public async Task<IActionResult> OnPostBtnSubmit_ClickAsync(string tbxUserName, string tbxPassword)
         {

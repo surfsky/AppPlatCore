@@ -10,11 +10,7 @@
         <Toolbars>
             <f:Toolbar ID="Toolbar1" Position="Top">
                 <Items>
-                    <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew">
-                        <Listeners>
-                            <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                        </Listeners>
-                    </f:Button>
+                    <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew"  OnClientClick="onNewClick()"  />
                 </Items>
             </f:Toolbar>
         </Toolbars>
@@ -29,9 +25,10 @@
     </f:Grid>
 
     <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true"
-              EnableIFrame="true" Width="900" Height="550"
-              OnClose="@Url.Handler("Dept_DoPostBack")" OnCloseFields="Panel1"></f:Window>
-
+        EnableIFrame="true" Width="900" Height="550"
+        OnClose="@Url.Handler("Dept_DoPostBack")" OnCloseFields="Grid1" CloseAction="HideRefresh"
+        />
+    
 }
 
 

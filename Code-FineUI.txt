@@ -36,56 +36,181 @@ button
     });
 
 
+confirm
+    F.confirm({
+        message: '确定删除此记录？',
+        target: '_top',
+        ok: function () {
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Dept_DoPostBack")', 'Panel1', {
+                actionType: 'delete',
+                deletedRowID: rowData.id
+            });
+        }
+    });
+
+
+grid
+    F.ui.Grid1.loadData([
+        [1,"系统管理",0,"","","~/res/icon/cog.png","顶级菜单",10],
+        [3,"用户",1,"~/Admin/UserList","CoreUserView","~/res/icon/tag_blue.png","二级菜单",10],
+        [5,"职称用户",1,"~/Admin/TitleUser","CoreTitleUserView","~/res/icon/tag_blue.png","二级菜单",30],
+        [7,"部门用户",1,"~/Admin/DeptUser","CoreDeptUserView","~/res/icon/tag_blue.png","二级菜单",50],
+        [9,"角色用户",1,"~/Admin/RoleUser","CoreRoleUserView","~/res/icon/tag_blue.png","二级菜单",70],
+        [11,"角色权限",1,"~/Admin/RolePower","CoreRolePowerView","~/res/icon/tag_blue.png","二级菜单",90],
+        [12,"菜单",1,"~/Admin/Menu","CoreMenuView","~/res/icon/tag_blue.png","二级菜单",100],
+        [13,"在线统计",1,"~/Admin/Online","CoreOnlineView","~/res/icon/tag_blue.png","二级菜单",110],
+        [14,"系统配置",1,"~/Admin/Config","CoreConfigView","~/res/icon/tag_blue.png","二级菜单",120],
+        [15,"修改密码",1,"~/Admin/ChangePassword","","~/res/icon/tag_blue.png","二级菜单",130],
+        [2,"测试菜单",0,"","","~/res/icon/folder.png","顶级菜单",20],
+        [19,"按钮5",1,"~/Test/ButtonClick","","~/res/icon/tag_yellow.png","",3],
+        [18,"测试页面1",1,"~/Test/FormDynamic","","~/res/icon/tag_yellow.png","三级菜单",10],
+        [17,"测试页面2",1,"~/Test/GridPaging","","~/res/icon/page.png","二级菜单",20]
+    ]);
+    F.ui.Grid1.clearSelection();
+
+
+post
+    F.doPostBack('@Url.Handler("Title_DoPostBack")', 'Panel1', {
+        actionType: 'delete',
+        deletedRowID: rowData.id
+    });
+
+
+
+#--------------------------------------------
+# ???
+#--------------------------------------------
+MenuButton.onclientclick
+    // userlist.cshtml
+    <f:MenuButton ID="btnEnableUsers" Text="启用">
+        <Listeners>
+            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
+        </Listeners>
+    </f:MenuButton>
+
+Grid.sorting, paging
+    <Listeners>
+        <f:Listener Event="sorting" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
+        <f:Listener Event="paging" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
+    </Listeners>
+
+DropDownList.onchange
+    <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@Grid2PagingInfo.PageSize.ToString()" >
+        <Listeners>
+            <f:Listener Event="change" Handler="TitleUser_Grid2_DoPostBack('changeGridPageSize');"></f:Listener>
+        </Listeners>
+
 
 #--------------------------------------------
 # FineUICore RazorPage
 #--------------------------------------------
-// 关闭本窗体（触发窗体的关闭事件）
-PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
+PageContext
+    PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
+    PageContext.RegisterStartupScript(String.Format("$('#mylabel').html('{0}')", "这是修改后的值！" + DateTime.Now.ToLongTimeString()));
+
+ActiveWindow
+    ActiveWindow.HidePostBack();
 
 
-# button
+UIHelper
+    UIHelper.Window("Window1").Hidden(true);
+    UIHelper.Button("btnClientClick2").ClientClick(Alert.GetShowInTopReference("客户端事件已改变！"));
+
+Alert
+    Alert.ShowInTop("删除失败！需要先清空属于此部门的用户！");
+    var js = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
+
+
+ViewBag
+    ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
+
+前后交互
+    <f:Button ID="btnClose" OnClick="@Url.Handler("btnClose_Click")" Text="关闭窗体"></f:Button>
+    public IActionResult OnPostBtnClose_Click()
+    {
+        UIHelper.Window("Window1").Hidden(true);
+        return UIHelper.Result();
+    }
+    <div id=\"mylabel\">这是初始值！</div>
+    <f:Button ID="btnChangeText" OnClick="@Url.Handler("btnChangeText_Click")" Text="修改窗体内的文本值"></f:Button>
+    public IActionResult OnPostBtnChangeText_Click()
+    {
+        FineUICore.PageContext.RegisterStartupScript(String.Format("$('#mylabel').html('{0}')", "这是修改后的值！" + DateTime.Now.ToLongTimeString()));
+        return UIHelper.Result();
+    }
+
+
+
+Button
     触发及事件
         <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnLogin_Click")" />
         <f:Button ID="btnHomePage" EnableDefaultCorner="false" EnableDefaultState="false" IconFont="_Home" IconAlign="Top" ToolTip="官网首页" CssClass="icononlyaction" OnClientClick="window.open('http://pages.fineui.com/','_blank');"></f:Button>
     js事件
-        <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreTitleUserDelete">
+        <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" OnClientClick="F.activeWindow.hide();" />
+        <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreTitleUserDelete" OnClientClick="onDeleteSelectedClick" />
+        <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew" OnClientClick="onNewClick()" />
+        或
+        <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew">
             <Listeners>
-                <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
+                <f:Listener Event="click" Handler="onNewClick"></f:Listener>
             </Listeners>
         </f:Button>
 
 
-# 写页面
+
+TwinTriggerBox
+    这两个方法都可以
+        <f:TwinTriggerBox ID="tbSelectedRole" EnableEdit="false"
+            Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="所属角色"
+            OnClientTrigger1Click="onSelectedRoleTrigger1Click();"
+            OnClientTrigger2Click="onSelectedRoleTrigger2Click();"
+            />
+        <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false">
+            <Listeners>
+                <f:Listener Event="trigger1click" Handler="RoleUser_Grid2_DoPostBack('trigger1');"></f:Listener>
+                <f:Listener Event="trigger2click" Handler="RoleUser_Grid2_DoPostBack('trigger2');"></f:Listener>
+            </Listeners>
+        </f:TwinTriggerBox>
+
+
+
+window
     <f:Window Width="350" WindowPosition="GoldenSection" EnableClose="false" IsModal="false" Title="登录表单" ID="Window1">
         <Items>
             <f:SimpleForm ShowHeader="false" BodyPadding="10" ShowBorder="false" ID="SimpleForm1">
+                <Toolbars>
+                    <f:Toolbar Position="Bottom" ToolbarAlign="Right" ID="Toolbar1">
+                        <Items>
+                            <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1"
+                                      OnClick="@Url.Handler("btnLogin_Click")" OnClickFields="SimpleForm1"></f:Button>
+                            <f:Button Type="Reset" Text="重置" ID="btnReset"></f:Button>
+                        </Items>
+                    </f:Toolbar>
+                </Toolbars>
                 <Items>
                     <f:TextBox ShowRedStar="true" Required="true" Label="用户名" ID="tbxUserName"></f:TextBox>
                     <f:TextBox ShowRedStar="true" Required="true" TextMode="Password" Label="密码" ID="tbxPassword"></f:TextBox>
                 </Items>
             </f:SimpleForm>
         </Items>
-        <Toolbars>
-            <f:Toolbar Position="Bottom" ToolbarAlign="Right" ID="Toolbar1">
-                <Items>
-                    <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1"
-                              OnClick="@Url.Handler("btnLogin_Click")" OnClickFields="SimpleForm1"></f:Button>
-                    <f:Button Type="Reset" Text="重置" ID="btnReset"></f:Button>
-                </Items>
-            </f:Toolbar>
-        </Toolbars>
+    </f:Window>
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550" >
+        <Listeners>
+            <f:Listener Event="close" Handler="DeptUser_Grid2_DoPostBack();"></f:Listener>
+        </Listeners>
     </f:Window>
 
-# 提交表单
-public IActionResult OnPostBtnLogin_Click(IFormCollection values)
-{
-    if (values["tbxUserName"] == "admin" && values["tbxPassword"] == "admin")
-        ShowNotify("成功登录！", MessageBoxIcon.Success);
-    else
-        ShowNotify("用户名或密码错误！", MessageBoxIcon.Error);
-    return UIHelper.Result();
-}
+
+提交表单
+    public IActionResult OnPostBtnLogin_Click(IFormCollection values)
+    {
+        if (values["tbxUserName"] == "admin" && values["tbxPassword"] == "admin")
+            ShowNotify("成功登录！", MessageBoxIcon.Success);
+        else
+            ShowNotify("用户名或密码错误！", MessageBoxIcon.Error);
+        return UIHelper.Result();
+    }
 
 
 # 动态创建

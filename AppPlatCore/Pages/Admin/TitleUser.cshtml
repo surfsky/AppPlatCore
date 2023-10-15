@@ -49,29 +49,19 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar1">
                                 <Items>
-                                    <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreTitleUserDelete">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:Button ID="btnNew" Icon="Add" Text="添加" Enabled="@Model.PowerCoreTitleUserNew">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false">
-                                        <Listeners>
-                                            <f:Listener Event="trigger1click" Handler="TitleUser_Grid2_DoPostBack('trigger1');"></f:Listener>
-                                            <f:Listener Event="trigger2click" Handler="TitleUser_Grid2_DoPostBack('trigger2');"></f:Listener>
-                                        </Listeners>
-                                    </f:TwinTriggerBox>
-                                </Items>
+                                    <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreTitleUserDelete" OnClientClick="onDeleteSelectedClick();" />
+                                    <f:Button ID="btnNew" Icon="Add" Text="添加" Enabled="@Model.PowerCoreTitleUserNew" OnClientClick="onNewClick();" />
+                                    <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
+                                        OnClientTrigger1Click="TitleUser_Grid2_DoPostBack('trigger1');"
+                                        OnClientTrigger2Click="TitleUser_Grid2_DoPostBack('trigger2');"
+                                       />
+                                    </Items>
                             </f:Toolbar>
                         </Toolbars>
                         <PageItems>
                             <f:ToolbarSeparator></f:ToolbarSeparator>
                             <f:ToolbarText Text="每页记录数："></f:ToolbarText>
-                            <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@Grid2PagingInfo.PageSize.ToString()">
+                            <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@Grid2PagingInfo.PageSize.ToString()" >
                                 <Listeners>
                                     <f:Listener Event="change" Handler="TitleUser_Grid2_DoPostBack('changeGridPageSize');"></f:Listener>
                                 </Listeners>

@@ -20,11 +20,7 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar9">
                                 <Items>
-                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreDeptView">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
+                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreDeptView" OnClientClick="onEditClick()" />
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>
@@ -47,16 +43,8 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar1">
                                 <Items>
-                                    <f:Button ID="btnNew" Icon="Add" Text="添加" Enabled="@Model.PowerCoreDeptUserNew">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreDeptUserDelete">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
+                                    <f:Button ID="btnNew" Icon="Add" Text="添加" Enabled="@Model.PowerCoreDeptUserNew" OnClientClick="onNewClick();" />
+                                    <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreDeptUserDelete" OnClientClick="onDeleteSelectedClick();" />
                                     <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false">
                                         <Listeners>
                                             <f:Listener Event="trigger1click" Handler="DeptUser_Grid2_DoPostBack('trigger1');"></f:Listener>
@@ -66,6 +54,17 @@
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>
+                        <Columns>
+                            <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
+                            <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionView"></f:RenderField>
+                            <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionDelete"></f:RenderField>
+                            <f:RenderField For="Users.First().Name" SortField="Name" Width="100"></f:RenderField>
+                            <f:RenderField For="Users.First().ChineseName" SortField="ChineseName" Width="100" />
+                            <f:RenderCheckField For="Users.First().Enabled" SortField="Enabled" RenderAsStaticField="true" Width="80" />
+                            <f:RenderField For="Users.First().Gender" SortField="Gender" Width="50" />
+                            <f:RenderField For="Users.First().Email" SortField="Email" Width="180" />
+                            <f:RenderField For="Users.First().Remark" ExpandUnusedSpace="true" />
+                        </Columns>
                         <PageItems>
                             <f:ToolbarSeparator></f:ToolbarSeparator>
                             <f:ToolbarText Text="每页记录数："></f:ToolbarText>
@@ -81,17 +80,6 @@
                                 </Items>
                             </f:DropDownList>
                         </PageItems>
-                        <Columns>
-                            <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
-                            <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionView"></f:RenderField>
-                            <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="38" RendererFunction="renderActionDelete"></f:RenderField>
-                            <f:RenderField For="Users.First().Name" SortField="Name" Width="100"></f:RenderField>
-                            <f:RenderField For="Users.First().ChineseName" SortField="ChineseName" Width="100" />
-                            <f:RenderCheckField For="Users.First().Enabled" SortField="Enabled" RenderAsStaticField="true" Width="80" />
-                            <f:RenderField For="Users.First().Gender" SortField="Gender" Width="50" />
-                            <f:RenderField For="Users.First().Email" SortField="Email" Width="180" />
-                            <f:RenderField For="Users.First().Remark" ExpandUnusedSpace="true" />
-                        </Columns>
                     </f:Grid>
                 </Items>
             </f:Region>
@@ -99,7 +87,7 @@
     </f:RegionPanel>
 
     <f:Window ID="Window0" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550"  CloseAction="HideRefresh" />
-    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550">
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550" >
         <Listeners>
             <f:Listener Event="close" Handler="DeptUser_Grid2_DoPostBack();"></f:Listener>
         </Listeners>

@@ -22,16 +22,10 @@ namespace App.Pages.Admin
 
         public void OnGet()
         {
-            Menu_LoadData();
-
-            Menus = MenuHelper.Menus;
-        }
-
-        private void Menu_LoadData()
-        {
             PowerCoreMenuNew = CheckPower("CoreMenuNew");
             PowerCoreMenuEdit = CheckPower("CoreMenuEdit");
             PowerCoreMenuDelete = CheckPower("CoreMenuDelete");
+            Menus = MenuHelper.Menus;
         }
 
         public async Task<IActionResult> OnPostMenu_DeleteRowAsync(string[] Grid1_fields, int deletedRowID)

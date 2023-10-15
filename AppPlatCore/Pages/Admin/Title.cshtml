@@ -17,15 +17,11 @@
                 <Toolbars>
                     <f:Toolbar ID="Toolbar1" Position="Top">
                         <Items>
-                            <f:Button ID="btnNew" Icon="Add" Text="新增职称" Enabled="@Model.PowerCoreTitleNew">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
+                            <f:Button ID="btnNew" Icon="Add" Text="新增职称" Enabled="@Model.PowerCoreTitleNew" OnClientClick="onNewClick();" />
                             <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在职称名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
-                                              OnTrigger1Click="@Url.Handler("Title_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1"
-                                              OnTrigger2Click="@Url.Handler("Title_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1">
-                            </f:TwinTriggerBox>
+                                OnTrigger1Click="@Url.Handler("Title_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1"
+                                OnTrigger2Click="@Url.Handler("Title_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
+                                />
                         </Items>
                     </f:Toolbar>
                 </Toolbars>
@@ -40,7 +36,7 @@
                     <f:ToolbarSeparator></f:ToolbarSeparator>
                     <f:ToolbarText Text="每页记录数："></f:ToolbarText>
                     <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@PagingInfo.PageSize.ToString()"
-                                    OnSelectedIndexChanged="@Url.Handler("Title_DoPostBack")" OnSelectedIndexChangedParameter1="@(new Parameter("actionType","changeGridPageSize",ParameterMode.String))" OnSelectedIndexChangedFields="Panel1">
+                        OnSelectedIndexChanged="@Url.Handler("Title_DoPostBack")" OnSelectedIndexChangedParameter1="@(new Parameter("actionType","changeGridPageSize",ParameterMode.String))" OnSelectedIndexChangedFields="Panel1">
                         <Items>
                             <f:ListItem Text="10" Value="10"></f:ListItem>
                             <f:ListItem Text="20" Value="20"></f:ListItem>
@@ -54,9 +50,9 @@
     </f:Panel>
 
     <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
-              EnableMaximize="true" EnableIFrame="true" Width="900" Height="550"
-              OnClose="@Url.Handler("Title_DoPostBack")" OnCloseFields="Panel1">
-    </f:Window>
+        EnableMaximize="true" EnableIFrame="true" Width="900" Height="550"
+        OnClose="@Url.Handler("Title_DoPostBack")" OnCloseFields="Panel1"
+        />
 
 }
 

@@ -36,7 +36,7 @@ namespace App.Models
             // Many-to-many relationships without an entity class to represent the join table are not yet supported.
             // 多对多：不支持没有实体类来表示联接表的多对多关系。
             modelBuilder.Entity<RoleUser>()
-                .ToTable("RoleUsers")
+                //.ToTable("RoleUsers")
                 .HasKey(t => new { t.RoleID, t.UserID });
             modelBuilder.Entity<RoleUser>()
                 .HasOne(u => u.User)
@@ -49,7 +49,7 @@ namespace App.Models
 
 
             modelBuilder.Entity<TitleUser>()
-                .ToTable("TitleUsers")
+                //.ToTable("TitleUsers")
                 .HasKey(t => new { t.TitleID, t.UserID });
             modelBuilder.Entity<TitleUser>()
                 .HasOne(u => u.User)
@@ -62,7 +62,7 @@ namespace App.Models
 
 
             modelBuilder.Entity<RolePower>()
-                .ToTable("RolePowers")
+                //.ToTable("RolePowers")
                 .HasKey(t => new { t.RoleID, t.PowerID });
             modelBuilder.Entity<RolePower>()
                 .HasOne(u => u.Role)

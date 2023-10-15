@@ -53,11 +53,7 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar9">
                                 <Items>
-                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreRolePowerEdit">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
+                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreRolePowerEdit" OnClientClick="onEditClick();" />
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>
@@ -79,22 +75,9 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar1">
                                 <Items>
-                                    <f:Button ID="btnSelectAll" Text="全选" Icon="Accept">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="selectPowerCheckboxs(true);"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:Button ID="btnSelectAll" Text="反选" Icon="ArrowRefresh">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="selectPowerCheckboxs(false);"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                    <f:ToolbarSeparator></f:ToolbarSeparator>
-                                    <f:Button ID="btnGroupUpdate" Icon="Disk" Text="保存" Enabled="@Model.PowerCoreRolePowerEdit">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="RolePower_Grid2_DoPostBack('saveall');"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
+                                    <f:Button ID="btnSelectAll" Text="全选" Icon="Accept" OnClientClick="selectPowerCheckboxs(true);" />
+                                    <f:Button ID="btnSelectAll" Text="反选" Icon="ArrowRefresh" OnClientClick="selectPowerCheckboxs(false);" />
+                                    <f:Button ID="btnGroupUpdate" Icon="Disk" Text="保存" Enabled="@Model.PowerCoreRolePowerEdit" OnClientClick="RolePower_Grid2_DoPostBack('saveall');" />
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>
@@ -111,7 +94,7 @@
 
     <f:Menu ID="Menu2">
         <Items>
-            <f:MenuButton ID="menuSelectRows" Text="全选行">
+            <f:MenuButton ID="menuSelectRows" Text="全选行" >
                 <Listeners>
                     <f:Listener Event="click" Handler="selectPowerCheckboxs(true);"></f:Listener>
                 </Listeners>

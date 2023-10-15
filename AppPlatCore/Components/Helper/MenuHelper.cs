@@ -27,33 +27,34 @@ namespace App.Models
             }
         }
 
-        private static int ResolveMenuCollection(List<Menu> dbMenus, Menu parentMenu, int level)
+        public static void Reload()
+        {
+            _menus = null;
+        }
+
+
+        private static int ResolveMenuCollection(List<Menu> items, Menu parentItem, int level)
         {
             int count = 0;
-            foreach (var menu in dbMenus.Where(m => m.Parent == parentMenu))
+            foreach (var item in items.Where(m => m.Parent == parentItem))
             {
-                menu.TreeLevel = level;
-                menu.IsTreeLeaf = true;
-                menu.Enabled = true;
-                _menus.Add(menu);
+                item.TreeLevel = level;
+                item.IsTreeLeaf = true;
+                item.Enabled = true;
+                _menus.Add(item);
                 count++;
 
-                // 递归子菜单
+                // 递归子节点
                 level++;
-                int childCount = ResolveMenuCollection(dbMenus, menu, level);
+                int childCount = ResolveMenuCollection(items, item, level);
                 if (childCount != 0)
-                    menu.IsTreeLeaf = false;
+                    item.IsTreeLeaf = false;
                 level--;
             }
 
             return count;
         }
 
-
-        public static void Reload()
-        {
-            _menus = null;
-        }
 
     }
 }

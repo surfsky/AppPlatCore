@@ -49,23 +49,20 @@ namespace App.Pages.Admin
         private async Task<IEnumerable<Role>> Role_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage)
         {
             IQueryable<Role> q = DB.Roles;
-
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(p => p.Name.Contains(searchText));
-            }
 
             // 获取总记录数（在添加条件之后，排序和分页之前）
             pagingInfo.RecordCount = await q.CountAsync();
 
             // 排列和数据库分页
             q = SortAndPage<Role>(q, pagingInfo);
-
             return await q.ToListAsync();
         }
 
-        public async Task<IActionResult> OnPostRole_DoPostBackAsync(string[] Grid1_fields, int Grid1_pageIndex, string Grid1_sortField, string Grid1_sortDirection,
+        public async Task<IActionResult> OnPostRole_DoPostBackAsync(
+            string[] Grid1_fields, int Grid1_pageIndex, string Grid1_sortField, string Grid1_sortDirection,
             string ttbSearchMessage, int ddlGridPageSize, string actionType, int? deletedRowID)
         {
             var ttbSearchMessageUI = UIHelper.TwinTriggerBox("ttbSearchMessage");
@@ -73,8 +70,6 @@ namespace App.Pages.Admin
             {
                 ttbSearchMessageUI.Text(String.Empty);
                 ttbSearchMessageUI.ShowTrigger1(false);
-
-                // 清空传入的搜索值
                 ttbSearchMessage = String.Empty;
             }
             else if (actionType == "trigger2")
@@ -113,15 +108,13 @@ namespace App.Pages.Admin
                 PageSize = ddlGridPageSize
             };
             var roles = await Role_GetDataAsync(pagingInfo, ttbSearchMessage);
-            // 1. 设置总项数
-            grid1UI.RecordCount(pagingInfo.RecordCount);
-            // 2. 设置每页显示项数
+            grid1UI.RecordCount(pagingInfo.RecordCount);  // 1. 设置总项数
             if (actionType == "changeGridPageSize")
-            {
                 grid1UI.PageSize(ddlGridPageSize);
-            }
-            // 3.设置分页数据
-            grid1UI.DataSource(roles, Grid1_fields);
+            if (Grid1_fields.Length == 0)
+                grid1UI.DataSource(roles);
+            else
+               grid1UI.DataSource(roles, Grid1_fields);
 
 
             return UIHelper.Result();

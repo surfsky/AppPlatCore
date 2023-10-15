@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-master\\App.BLL\\App.BLL.csproj": {}
+    "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj": {
+    "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj": {
       "version": "3.0.2",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj",
+        "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj",
         "projectName": "App.Utils",
-        "projectPath": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj",
+        "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj",
         "packagesPath": "C:\\Users\\CJH\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\obj\\",
+        "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -108,14 +108,14 @@
         }
       }
     },
-    "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-master\\App.BLL\\App.BLL.csproj": {
+    "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-master\\App.BLL\\App.BLL.csproj",
+        "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj",
         "projectName": "App.BLL",
-        "projectPath": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-master\\App.BLL\\App.BLL.csproj",
+        "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj",
         "packagesPath": "C:\\Users\\CJH\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-master\\App.BLL\\obj\\",
+        "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -127,7 +127,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -135,11 +135,11 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj": {
-                "projectPath": "\\\\Mac\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj"
+              "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj": {
+                "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\App.Utils\\App.Utils-github\\NetStandard\\App.Utils\\App.Utils.csproj"
               }
             }
           }
@@ -151,22 +151,26 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.2.6, )"
+              "version": "[6.0.23, )"
             },
-            "NETStandard.Library": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[6.0.23, )"
+            },
+            "Z.EntityFramework.Extensions.EFCore": {
+              "target": "Package",
+              "version": "[6.100.0.3, )"
             },
             "Z.EntityFramework.Plus.EFCore": {
               "target": "Package",
-              "version": "[2.1.5, )"
+              "version": "[6.100.0.3, )"
             }
           },
           "imports": [
@@ -180,6 +184,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }

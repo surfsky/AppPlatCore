@@ -30,5 +30,9 @@ namespace App.Models
 
         public List<RolePower> RolePowers { get; set; }
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

@@ -93,3 +93,51 @@
                     </f:FormRow>
                 </Rows>
             </f:Form>
+
+
+                                                <f:Button ID="btnEdit" Icon="Pencil" Text="±à¼­" Enabled="@Model.PowerCoreDeptView" OnClientClick="onEditClick">
+                                        <Listeners>
+                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
+                                        </Listeners>
+                                    </f:Button>
+
+
+                                                            <Listeners>
+                            <f:Listener Event="click" Handler="F.activeWindow.hide();"></f:Listener>
+                        </Listeners>
+                    </f:Button>
+
+
+        public IActionResult OnPostMenu_Window1_Close(string[] Grid1_fields)
+        {
+            MenuHelper.Reload();
+            UIHelper.Grid("Grid1").DataSource(MenuHelper.Menus, Grid1_fields);
+
+            return UIHelper.Result();
+        }
+
+
+
+
+                                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="ËÑË÷" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
+                                        OnClientTrigger1Click="RoleUser_Grid2_DoPostBack('trigger1');"
+                                        OnClientTrigger2Click="RoleUser_Grid2_DoPostBack('trigger2');" 
+                                        />
+                                        <Listeners>
+                                            <f:Listener Event="trigger1click" Handler="RoleUser_Grid2_DoPostBack('trigger1');"></f:Listener>
+                                            <f:Listener Event="trigger2click" Handler="RoleUser_Grid2_DoPostBack('trigger2');"></f:Listener>
+                                        </Listeners>
+                                    </f:TwinTriggerBox>
+
+
+                                                                        <f:MenuButton ID="btnEnableUsers" Text="ÆôÓÃ" onclick="onEnableUsersClick();" />
+                                        <Listeners>
+                                            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
+                                        </Listeners>
+                                    </f:MenuButton>
+
+                                                                        <f:MenuButton ID="btnDisableUsers" Text="½ûÓÃ" onclick="onDisableUsersClick(); " />
+                                        <Listeners>
+                                            <f:Listener Event="click" Handler="onDisableUsersClick"></f:Listener>
+                                        </Listeners>
+                                    </f:MenuButton>

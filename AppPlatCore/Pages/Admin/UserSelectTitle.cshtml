@@ -6,37 +6,24 @@
 
 @section body {
 
-    <f:Panel ID="Panel1" ShowBorder="false" ShowHeader="false" AutoScroll="true" IsViewPort="true" Layout="VBox">
+    <f:Form ID="SimpleForm1" ShowBorder="false" ShowHeader=" false" BodyPadding="10" IsViewPort="true">
         <Toolbars>
             <f:Toolbar ID="Toolbar1">
                 <Items>
-                    <f:Button ID="btnClose" Icon="SystemClose" Text="关闭">
-                        <Listeners>
-                            <f:Listener Event="click" Handler="F.activeWindow.hide();"></f:Listener>
-                        </Listeners>
-                    </f:Button>
-                    <f:ToolbarSeparator></f:ToolbarSeparator>
-                    <f:Button ID="btnSaveClose" Icon=" SystemSaveClose" Text="选择后关闭">
-                        <Listeners>
-                            <f:Listener Event="click" Handler="onSaveCloseClick"></f:Listener>
-                        </Listeners>
-                    </f:Button>
+                    <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" OnClientClick="F.activeWindow.hide();" />
+                    <f:Button ID="btnSaveClose" Icon=" SystemSaveClose" Text="选择后关闭" OnClientClick="onSaveCloseClick();" />
                 </Items>
             </f:Toolbar>
         </Toolbars>
-        <Items>
-            <f:Form ID="SimpleForm1" ShowBorder="false" ShowHeader=" false" BodyPadding="10">
-                <Rows>
-                    <f:FormRow>
-                        <Items>
-                            <f:CheckBoxList ID="cblTitle" ColumnNumber="4" Label="拥有职称" DataTextField="Name" DataValueField="ID" DataSource="@Model.Titles"
-                                            SelectedValueArray="@Model.TitleSelectedValueArray"></f:CheckBoxList>
-                        </Items>
-                    </f:FormRow>
-                </Rows>
-            </f:Form>
-        </Items>
-    </f:Panel>
+        <Rows>
+            <f:FormRow>
+                <Items>
+                    <f:CheckBoxList ID="cblTitle" ColumnNumber="4" Label="拥有职称" DataTextField="Name" DataValueField="ID" DataSource="@Model.Titles"
+                                    SelectedValueArray="@Model.TitleSelectedValueArray" />
+                </Items>
+            </f:FormRow>
+        </Rows>
+    </f:Form>
 
 }
 

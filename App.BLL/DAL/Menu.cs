@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using App.Utils;
 
 namespace App.Models
 {
@@ -88,7 +89,7 @@ namespace App.Models
 
         public override string ToString()
         {
-            return this.Name;
+            return "  ".Repeat(this.TreeLevel) + this.Name;
         }
     }
 }

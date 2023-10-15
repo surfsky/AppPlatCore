@@ -17,6 +17,7 @@ namespace App.Models
         [Required]
         public string Name { get; set; }
 
+
         [Display(Name = "邮箱")]
         [StringLength(100)]
         [Required]

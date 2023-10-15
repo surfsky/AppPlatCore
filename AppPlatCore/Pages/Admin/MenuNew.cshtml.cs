@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.Models;
 
 using FineUICore;
@@ -30,7 +31,7 @@ namespace App.Pages.Admin
         {
             IconItems = MenuEdit_GetIconItems().ToArray();
 
-            Menus = ResolveDDL<Models.Menu>(MenuHelper.Menus).ToArray();
+            Menus = UI.ResolveDDL<Models.Menu>(MenuHelper.Menus).ToArray();
 
         }
 

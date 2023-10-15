@@ -17,7 +17,10 @@ namespace App.Models
             {
                 if (_depts == null)
                 {
-                    InitDepts();
+                    _depts = new List<Dept>();
+                    var db = BaseModel.GetDbConnection();
+                    List<Dept> dbDepts = db.Depts.OrderBy(d => d.SortIndex).ToList();
+                    ResolveDeptCollection(dbDepts, null, 0);
                 }
                 return _depts;
             }
@@ -28,37 +31,22 @@ namespace App.Models
             _depts = null;
         }
 
-        private static void InitDepts()
-        {
-            _depts = new List<Dept>();
-
-            var db = BaseModel.GetDbConnection();
-
-            List<Dept> dbDepts = db.Depts.OrderBy(d => d.SortIndex).ToList();
-
-            ResolveDeptCollection(dbDepts, null, 0);
-
-        }
-
-        private static int ResolveDeptCollection(List<Dept> dbDepts, Dept parentDept, int level)
+        private static int ResolveDeptCollection(List<Dept> items, Dept parentItem, int level)
         {
             int count = 0;
-            foreach (var dept in dbDepts.Where(d => d.Parent == parentDept))
+            foreach (var item in items.Where(d => d.Parent == parentItem))
             {
+                item.TreeLevel = level;
+                item.IsTreeLeaf = true;
+                item.Enabled = true;
+                _depts.Add(item);
                 count++;
 
-                _depts.Add(dept);
-                dept.TreeLevel = level;
-                dept.IsTreeLeaf = true;
-                dept.Enabled = true;
-
+                // 递归子节点
                 level++;
-                // 如果这个节点下没有子节点，则这是个终结节点
-                int childCount = ResolveDeptCollection(dbDepts, dept, level);
+                int childCount = ResolveDeptCollection(items, item, level);
                 if (childCount != 0)
-                {
-                    dept.IsTreeLeaf = false;
-                }
+                    item.IsTreeLeaf = false;
                 level--;
 
             }

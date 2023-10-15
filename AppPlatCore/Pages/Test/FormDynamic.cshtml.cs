@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using FineUICore;
-
+using App.Components;
 
 namespace App.Pages.Tests
 {
@@ -38,23 +38,23 @@ namespace App.Pages.Tests
             ddlGender.Items.Add("男", "0");
             ddlGender.Items.Add("女", "1");
             ddlGender.AutoSelectFirstItem = false;
-            // 添加后台事件处理函数
             ddlGender.Events.Add(new Event("change", Url.Handler("ddlGender_SelectedIndexChanged"), "ddlGender"));
             fields.Add(ddlGender);
 
+            // 用 ViewBag 将控件传递给客户端
             ViewBag.DynamicItems = fields.ToArray();
         }
 
 
         public IActionResult OnPostDdlGender_SelectedIndexChanged(string ddlGender_text)
         {
-            ShowNotify("选择的性别：" + ddlGender_text);
+            UI.ShowNotify("选择的性别：" + ddlGender_text);
             return UIHelper.Result();
         }
 
         public IActionResult OnPostButton1_Click(string tbxUserName, string ddlGender_text)
         {
-            ShowNotify("用户名：" + tbxUserName + "  性别：" + ddlGender_text);
+            UI.ShowNotify("用户名：" + tbxUserName + "  性别：" + ddlGender_text);
             return UIHelper.Result();
         }
     }

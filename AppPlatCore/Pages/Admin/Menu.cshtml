@@ -12,11 +12,7 @@
                 <Toolbars>
                     <f:Toolbar ID="Toolbar1" Position="Top">
                         <Items>
-                            <f:Button ID="btnNew" Icon="Add" Text="新增菜单" Enabled="@Model.PowerCoreMenuNew">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
+                            <f:Button ID="btnNew" Icon="Add" Text="新增菜单" Enabled="@Model.PowerCoreMenuNew" OnClientClick="onNewClick();" />
                         </Items>
                     </f:Toolbar>
                 </Toolbars>
@@ -28,8 +24,8 @@
                     <f:RenderField For="Menus.First().NavigateUrl" Width="200"></f:RenderField>
                     <f:RenderField For="Menus.First().ViewPower.Name" Width="150"></f:RenderField>
                     <f:RenderField For="Menus.First().ImageUrl" RendererFunction="renderImageUrl" Width="80"></f:RenderField>
-                    <f:RenderField For="Menus.First().Remark" ExpandUnusedSpace="true"></f:RenderField>
                     <f:RenderField For="Menus.First().SortIndex" Width="80"></f:RenderField>
+                    <f:RenderField For="Menus.First().Remark" ExpandUnusedSpace="true"></f:RenderField>
                 </Columns>
             </f:Grid>
         </Items>
@@ -37,9 +33,9 @@
 
 
     <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
-              EnableMaximize="true" EnableIFrame="true" Width="900" Height="550"
-              OnClose="@Url.Handler("Menu_Window1_Close")" OnCloseFields="Panel1">
-    </f:Window>
+        EnableMaximize="true" EnableIFrame="true" Width="900" Height="550"
+        OnClose="@Url.Handler("Menu_Window1_Close")" OnCloseFields="Panel1"
+        />
 
 }
 

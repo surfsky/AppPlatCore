@@ -235,6 +235,11 @@
             标题的提示文本类型
             </summary>
         </member>
+        <member name="P:FineUICore.CollapsablePanel.TitleToolTipPosition">
+            <summary>
+            标题的提示文本位置
+            </summary>
+        </member>
         <member name="P:FineUICore.CollapsablePanel.ShowHeader">
             <summary>
             是否显示标题栏
@@ -403,6 +408,13 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.CollapsablePanelExtension`2.TitleToolTipPosition(FineUICore.ToolTipPosition)">
+            <summary>
+            标题的提示文本位置
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.CollapsablePanelExtension`2.ShowHeader(System.Boolean)">
             <summary>
             是否显示标题栏
@@ -564,6 +576,11 @@
         <member name="P:FineUICore.CollapsablePanelTagHelper.TitleToolTipType">
             <summary>
             标题的提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.CollapsablePanelTagHelper.TitleToolTipPosition">
+            <summary>
+            标题的提示文本位置
             </summary>
         </member>
         <member name="P:FineUICore.CollapsablePanelTagHelper.ShowHeader">
@@ -1392,6 +1409,16 @@
             表单文本输入框字段基类
             </summary>
         </member>
+        <member name="P:FineUICore.RealTextField.ChangeEventDelay">
+            <summary>
+            触发change事件之前延迟的毫秒数（默认为500ms，如果设为0则不延迟）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RealTextField.InputType">
+            <summary>
+            文本框类型，可设置HTML5属性(url, date, color, tel, number...)
+            </summary>
+        </member>
         <member name="P:FineUICore.RealTextField.EmptyText">
             <summary>
             文本框为空时显示的文本
@@ -1448,6 +1475,20 @@
             <summary>
             当前控件
             </summary>
+        </member>
+        <member name="M:FineUICore.RealTextFieldExtension`2.ChangeEventDelay(System.Int32)">
+            <summary>
+            触发change事件之前延迟的毫秒数（默认为500ms，如果设为0则不延迟）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RealTextFieldExtension`2.InputType(System.String)">
+            <summary>
+            文本框类型，可设置HTML5属性(url, date, color, tel, number...)
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.RealTextFieldExtension`2.EmptyText(System.String)">
             <summary>
@@ -1555,6 +1596,16 @@
         <member name="P:FineUICore.RealTextFieldTagHelper.Source">
             <summary>
             当前控件
+            </summary>
+        </member>
+        <member name="P:FineUICore.RealTextFieldTagHelper.ChangeEventDelay">
+            <summary>
+            触发change事件之前延迟的毫秒数（默认为500ms，如果设为0则不延迟）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RealTextFieldTagHelper.InputType">
+            <summary>
+            文本框类型，可设置HTML5属性(url, date, color, tel, number...)
             </summary>
         </member>
         <member name="P:FineUICore.RealTextFieldTagHelper.EmptyText">
@@ -2576,144 +2627,161 @@
             <param name="context"></param>
             <param name="output"></param>
         </member>
-        <member name="T:FineUICore.TooltipField">
+        <member name="T:FineUICore.ToolTipField">
             <summary>
             支持提示的表单字段基类
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipField.ToolTip">
+        <member name="P:FineUICore.ToolTipField.ToolTip">
             <summary>
             提示文本
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipField.ToolTipTitle">
+        <member name="P:FineUICore.ToolTipField.ToolTipTitle">
             <summary>
             提示文本的标题
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipField.ToolTipType">
+        <member name="P:FineUICore.ToolTipField.ToolTipType">
             <summary>
             提示文本类型
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipField.ToolTipAutoHide">
+        <member name="P:FineUICore.ToolTipField.ToolTipPosition">
+            <summary>
+            提示文本的位置
+            </summary>
+        </member>
+        <member name="P:FineUICore.ToolTipField.ToolTipAutoHide">
             <summary>
             是否自动隐藏提示信息
             </summary>
         </member>
-        <member name="M:FineUICore.TooltipField.OnFirstPreRender">
+        <member name="M:FineUICore.ToolTipField.OnFirstPreRender">
             <summary>
             渲染 HTML 之前调用（页面第一次加载或者普通回发）
             </summary>
         </member>
-        <member name="T:FineUICore.TooltipFieldAjaxHelper`2">
+        <member name="T:FineUICore.ToolTipFieldAjaxHelper`2">
             <summary>
             支持提示的表单字段基类帮助类
             </summary>
             <typeparam name="T"></typeparam>
             <typeparam name="TAjaxHelper"></typeparam>
         </member>
-        <member name="M:FineUICore.TooltipFieldAjaxHelper`2.#ctor(FineUICore.TooltipField)">
+        <member name="M:FineUICore.ToolTipFieldAjaxHelper`2.#ctor(FineUICore.ToolTipField)">
             <summary>
             构造函数
             </summary>
             <param name="source"></param>
         </member>
-        <member name="P:FineUICore.TooltipFieldAjaxHelper`2.Source">
+        <member name="P:FineUICore.ToolTipFieldAjaxHelper`2.Source">
             <summary>
             当前控件
             </summary>
         </member>
-        <member name="M:FineUICore.TooltipFieldAjaxHelper`2.Enabled(System.Boolean)">
+        <member name="M:FineUICore.ToolTipFieldAjaxHelper`2.Enabled(System.Boolean)">
             <summary>
             设置控件的启用状态
             </summary>
             <param name="enabled"></param>
         </member>
-        <member name="M:FineUICore.TooltipFieldAjaxHelper`2.ToolTip(System.String)">
+        <member name="M:FineUICore.ToolTipFieldAjaxHelper`2.ToolTip(System.String)">
             <summary>
             设置提示信息
             </summary>
             <param name="toolTip"></param>
         </member>
-        <member name="T:FineUICore.TooltipFieldExtension`2">
+        <member name="T:FineUICore.ToolTipFieldExtension`2">
             <summary>
             支持提示的表单字段基类扩展
             </summary>
             <typeparam name="T"></typeparam>
             <typeparam name="TExtension"></typeparam>
         </member>
-        <member name="M:FineUICore.TooltipFieldExtension`2.#ctor(FineUICore.TooltipField)">
+        <member name="M:FineUICore.ToolTipFieldExtension`2.#ctor(FineUICore.ToolTipField)">
             <summary>
             构造函数
             </summary>
             <param name="source"></param>
         </member>
-        <member name="P:FineUICore.TooltipFieldExtension`2.Source">
+        <member name="P:FineUICore.ToolTipFieldExtension`2.Source">
             <summary>
             当前控件
             </summary>
         </member>
-        <member name="M:FineUICore.TooltipFieldExtension`2.ToolTip(System.String)">
+        <member name="M:FineUICore.ToolTipFieldExtension`2.ToolTip(System.String)">
             <summary>
             提示文本
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.TooltipFieldExtension`2.ToolTipTitle(System.String)">
+        <member name="M:FineUICore.ToolTipFieldExtension`2.ToolTipTitle(System.String)">
             <summary>
             提示文本的标题
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.TooltipFieldExtension`2.ToolTipType(FineUICore.ToolTipType)">
+        <member name="M:FineUICore.ToolTipFieldExtension`2.ToolTipType(FineUICore.ToolTipType)">
             <summary>
             提示文本类型
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.TooltipFieldExtension`2.ToolTipAutoHide(System.Boolean)">
+        <member name="M:FineUICore.ToolTipFieldExtension`2.ToolTipPosition(FineUICore.ToolTipPosition)">
+            <summary>
+            提示文本的位置
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.ToolTipFieldExtension`2.ToolTipAutoHide(System.Boolean)">
             <summary>
             是否自动隐藏提示信息
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="T:FineUICore.TooltipFieldTagHelper">
+        <member name="T:FineUICore.ToolTipFieldTagHelper">
             <summary>
             支持提示的表单字段基类
             </summary>
         </member>
-        <member name="M:FineUICore.TooltipFieldTagHelper.#ctor(FineUICore.TooltipField)">
+        <member name="M:FineUICore.ToolTipFieldTagHelper.#ctor(FineUICore.ToolTipField)">
             <summary>
             构造函数
             </summary>
             <param name="source"></param>
         </member>
-        <member name="P:FineUICore.TooltipFieldTagHelper.Source">
+        <member name="P:FineUICore.ToolTipFieldTagHelper.Source">
             <summary>
             当前控件
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipFieldTagHelper.ToolTip">
+        <member name="P:FineUICore.ToolTipFieldTagHelper.ToolTip">
             <summary>
             提示文本
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipFieldTagHelper.ToolTipTitle">
+        <member name="P:FineUICore.ToolTipFieldTagHelper.ToolTipTitle">
             <summary>
             提示文本的标题
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipFieldTagHelper.ToolTipType">
+        <member name="P:FineUICore.ToolTipFieldTagHelper.ToolTipType">
             <summary>
             提示文本类型
             </summary>
         </member>
-        <member name="P:FineUICore.TooltipFieldTagHelper.ToolTipAutoHide">
+        <member name="P:FineUICore.ToolTipFieldTagHelper.ToolTipPosition">
+            <summary>
+            提示文本的位置
+            </summary>
+        </member>
+        <member name="P:FineUICore.ToolTipFieldTagHelper.ToolTipAutoHide">
             <summary>
             是否自动隐藏提示信息
             </summary>
@@ -2786,6 +2854,11 @@
         <member name="P:FineUICore.BoxComponent.BoxConfigChildMargin">
             <summary>
             子控件的外边距（当本容器的Layout=VBox或者HBox时有效）
+            </summary>
+        </member>
+        <member name="P:FineUICore.BoxComponent.BoxConfigLastChildMargin">
+            <summary>
+            最后一个子控件的外边距（当本容器的Layout=VBox或者HBox时有效）
             </summary>
         </member>
         <member name="P:FineUICore.BoxComponent.BoxFlex">
@@ -3652,6 +3725,14 @@
             <param name="context"></param>
             <param name="output"></param>
         </member>
+        <member name="M:FineUICore.BaseTagHelper.ProcessTagAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            标签处理
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.BaseTagHelper.PostProcess(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
             <summary>
             标签处理后执行
@@ -3687,6 +3768,11 @@
         <member name="P:FineUICore.ControlBase.ScriptID">
             <summary>
             获取控件实例的JavaScript代码（比如：F.ui.Tree1）
+            </summary>
+        </member>
+        <member name="P:FineUICore.ControlBase.ContentID">
+            <summary>
+            容器内容标识符
             </summary>
         </member>
         <member name="P:FineUICore.ControlBase.RenderWrapperNode">
@@ -3731,6 +3817,11 @@
             控件外部容器的客户端ID（比如：Button1_wrapper）
             </summary>
         </member>
+        <member name="P:FineUICore.ControlBase.AutoGenerateID">
+            <summary>
+            如果未显式定义ID，是否需要自动生成ID（比如：回发脚本中不用自动生成ID，否则可能和页面上现有的控件ID重复）
+            </summary>
+        </member>
         <member name="P:FineUICore.ControlBase.ID">
             <summary>
             控件ID
@@ -3769,11 +3860,6 @@
         <member name="P:FineUICore.ControlBase.Events">
             <summary>
             服务端事件列表
-            </summary>
-        </member>
-        <member name="M:FineUICore.ControlBase.TriggerAjaxPreRenderEvent">
-            <summary>
-            触发 OnFirstPreRender 事件（这个函数是为了避免修改 OnFirstPreRender 的 protected 前缀）
             </summary>
         </member>
         <member name="M:FineUICore.ControlBase.TriggerFirstPreRenderEvent">
@@ -4480,6 +4566,16 @@
             语言
             </summary>
         </member>
+        <member name="P:FineUICore.ConfigSection.FormDotSeparator">
+            <summary>
+            小数分隔符（默认为点号）（仅限于数字输入框的客户端显示）
+            </summary>
+        </member>
+        <member name="P:FineUICore.ConfigSection.FormCommaSeparator">
+            <summary>
+            千分位分隔符（默认为逗号）（仅限于数字输入框的客户端显示）
+            </summary>
+        </member>
         <member name="P:FineUICore.ConfigSection.FormMessageTarget">
             <summary>
             表单验证消息的提示位置
@@ -4548,6 +4644,11 @@
         <member name="P:FineUICore.ConfigSection.AjaxLoadingType">
             <summary>
             AJAX提示的类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.ConfigSection.LoadingCSSNumber">
+            <summary>
+            CSS加载动画的类型
             </summary>
         </member>
         <member name="P:FineUICore.ConfigSection.LoadingImageNumber">
@@ -4663,6 +4764,11 @@
         <member name="P:FineUICore.ConfigSection.DisplayMode">
             <summary>
             显示模式
+            </summary>
+        </member>
+        <member name="P:FineUICore.ConfigSection.CustomScrollbar">
+            <summary>
+            是否自定义滚动条样式（仅在桌面端Chrome、Edge、Safari浏览器下有效）（默认为false）
             </summary>
         </member>
         <member name="T:FineUICore.ConfigSectionBase">
@@ -4838,6 +4944,16 @@
             语言
             </summary>
         </member>
+        <member name="M:FineUICore.GlobalConfig.GetFormCommaSeparator">
+            <summary>
+            千分位分隔符（默认为逗号）（仅限于数字输入框的客户端显示）
+            </summary>
+        </member>
+        <member name="M:FineUICore.GlobalConfig.GetFormDotSeparator">
+            <summary>
+            小数分隔符（默认为点号）（仅限于数字输入框的客户端显示）
+            </summary>
+        </member>
         <member name="M:FineUICore.GlobalConfig.GetFormMessageTarget">
             <summary>
             表单中消息的位置
@@ -4953,6 +5069,11 @@
             AJAX提示的类型
             </summary>
         </member>
+        <member name="M:FineUICore.GlobalConfig.GetLoadingCSSNumber">
+            <summary>
+            CSS加载动画的数字编号
+            </summary>
+        </member>
         <member name="M:FineUICore.GlobalConfig.GetLoadingImageNumber">
             <summary>
             正在加载图片的数字编号
@@ -5026,6 +5147,11 @@
         <member name="M:FineUICore.GlobalConfig.GetDisplayMode">
             <summary>
             显示模式
+            </summary>
+        </member>
+        <member name="M:FineUICore.GlobalConfig.GetCustomScrollbar">
+            <summary>
+            是否自定义滚动条样式（仅在桌面端Chrome、Edge、Safari浏览器下有效）（默认为false）
             </summary>
         </member>
         <member name="T:FineUICore.AjaxLoadingType">
@@ -5325,12 +5451,17 @@
         </member>
         <member name="F:FineUICore.CheckBoxDisplayType.Default">
             <summary>
-            默认
+            默认样式
             </summary>
         </member>
         <member name="F:FineUICore.CheckBoxDisplayType.Switch">
             <summary>
             开关样式
+            </summary>
+        </member>
+        <member name="F:FineUICore.CheckBoxDisplayType.Radio">
+            <summary>
+            单选框样式
             </summary>
         </member>
         <member name="T:FineUICore.CheckBoxDisplayTypeHelper">
@@ -5471,6 +5602,26 @@
         <member name="T:FineUICore.EditorToolbarSetHelper">
             <summary>
             编辑器工具条类型的名称
+            </summary>
+        </member>
+        <member name="T:FineUICore.GridDisplayType">
+            <summary>
+            表格的显示模式
+            </summary>
+        </member>
+        <member name="F:FineUICore.GridDisplayType.Default">
+            <summary>
+            默认=
+            </summary>
+        </member>
+        <member name="F:FineUICore.GridDisplayType.Card">
+            <summary>
+            卡片模式
+            </summary>
+        </member>
+        <member name="T:FineUICore.GridDisplayTypeHelper">
+            <summary>
+            表格的显示模式名称
             </summary>
         </member>
         <member name="T:FineUICore.FieldType">
@@ -18244,9 +18395,64 @@
             Meetup
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Login">
+            <summary>
+            _Login
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Logout">
+            <summary>
+            _Logout
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Sync">
+            <summary>
+            _Sync
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Undo">
+            <summary>
+            _Undo
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Redo">
+            <summary>
+            _Redo
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Reload">
+            <summary>
+            _Reload
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._FilterAlt">
+            <summary>
+            _FilterAlt
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Member">
+            <summary>
+            _Member
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Pro">
+            <summary>
+            _Pro
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._SortAlt">
+            <summary>
+            _SortAlt
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._AddressBook">
             <summary>
             _AddressBook
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Anchor">
+            <summary>
+            _Anchor
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._Android">
@@ -18257,161 +18463,6 @@
         <member name="F:FineUICore.IconFont._Apple">
             <summary>
             _Apple
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Book">
-            <summary>
-            _Book
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Calendar">
-            <summary>
-            _Calendar
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._CheckBoxIndeterminate">
-            <summary>
-            _CheckBoxIndeterminate
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Download">
-            <summary>
-            _Download
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Filter">
-            <summary>
-            _Filter
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Flag">
-            <summary>
-            _Flag
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Gear">
-            <summary>
-            _Gear
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Globe">
-            <summary>
-            _Globe
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Google">
-            <summary>
-            _Google
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Group">
-            <summary>
-            _Group
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Layout">
-            <summary>
-            _Layout
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Lock">
-            <summary>
-            _Lock
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Mail">
-            <summary>
-            _Mail
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Mobile">
-            <summary>
-            _Mobile
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._PowerOff">
-            <summary>
-            _PowerOff
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Print">
-            <summary>
-            _Print
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Search">
-            <summary>
-            _Search
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Send">
-            <summary>
-            _Send
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._SignIn">
-            <summary>
-            _SignIn
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._SignOut">
-            <summary>
-            _SignOut
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Tag">
-            <summary>
-            _Tag
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Trash">
-            <summary>
-            _Trash
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Unlock">
-            <summary>
-            _Unlock
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._User">
-            <summary>
-            _User
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._VolumeDown">
-            <summary>
-            _VolumeDown
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._VolumeOff">
-            <summary>
-            _VolumeOff
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._VolumeUp">
-            <summary>
-            _VolumeUp
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Wifi">
-            <summary>
-            _Wifi
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Windows">
-            <summary>
-            _Windows
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Wrench">
-            <summary>
-            _Wrench
-            </summary>
-        </member>
-        <member name="F:FineUICore.IconFont._Anchor">
-            <summary>
-            _Anchor
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._ArrowDown">
@@ -18464,9 +18515,19 @@
             _Bicycle
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Book">
+            <summary>
+            _Book
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Bookmark">
             <summary>
             _Bookmark
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Calendar">
+            <summary>
+            _Calendar
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._Camera">
@@ -18497,6 +18558,11 @@
         <member name="F:FineUICore.IconFont._CheckBoxChecked">
             <summary>
             _CheckBoxChecked
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._CheckBoxIndeterminate">
+            <summary>
+            _CheckBoxIndeterminate
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._Close">
@@ -18554,6 +18620,11 @@
             _Down
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Download">
+            <summary>
+            _Download
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Edit">
             <summary>
             _Edit
@@ -18584,6 +18655,16 @@
             _File
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Filter">
+            <summary>
+            _Filter
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Flag">
+            <summary>
+            _Flag
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Fold">
             <summary>
             _Fold
@@ -18607,6 +18688,31 @@
         <member name="F:FineUICore.IconFont._Gallery">
             <summary>
             _Gallery
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Gear">
+            <summary>
+            _Gear
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Globe">
+            <summary>
+            _Globe
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Google">
+            <summary>
+            _Google
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Group">
+            <summary>
+            _Group
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Heart">
+            <summary>
+            _Heart
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._Home">
@@ -18634,6 +18740,11 @@
             _Keyboard
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Layout">
+            <summary>
+            _Layout
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Left">
             <summary>
             _Left
@@ -18652,6 +18763,11 @@
         <member name="F:FineUICore.IconFont._Loading">
             <summary>
             _Loading
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Lock">
+            <summary>
+            _Lock
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._LongArrowDown">
@@ -18674,6 +18790,11 @@
             _LongArrowUp
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Mail">
+            <summary>
+            _Mail
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Maximize">
             <summary>
             _Maximize
@@ -18682,6 +18803,11 @@
         <member name="F:FineUICore.IconFont._Minus">
             <summary>
             _Minus
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Mobile">
+            <summary>
+            _Mobile
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._More">
@@ -18722,6 +18848,16 @@
         <member name="F:FineUICore.IconFont._Plus">
             <summary>
             _Plus
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._PowerOff">
+            <summary>
+            _PowerOff
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Print">
+            <summary>
+            _Print
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._PullDown">
@@ -18809,14 +18945,44 @@
             _Save
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Search">
+            <summary>
+            _Search
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Send">
+            <summary>
+            _Send
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._SignIn">
+            <summary>
+            _SignIn
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._SignOut">
+            <summary>
+            _SignOut
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Skin">
             <summary>
             _Skin
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._SmileO">
+            <summary>
+            _SmileO
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Sort">
             <summary>
             _Sort
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Star">
+            <summary>
+            _Star
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._Success">
@@ -18829,6 +18995,16 @@
             _Table
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Tag">
+            <summary>
+            _Tag
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._ThumbsUp">
+            <summary>
+            _ThumbsUp
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Time">
             <summary>
             _Time
@@ -18837,6 +19013,11 @@
         <member name="F:FineUICore.IconFont._Train">
             <summary>
             _Train
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Trash">
+            <summary>
+            _Trash
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._TriangleDown">
@@ -18859,9 +19040,19 @@
             _TriangleUp
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Trophy">
+            <summary>
+            _Trophy
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Unfold">
             <summary>
             _Unfold
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Unlock">
+            <summary>
+            _Unlock
             </summary>
         </member>
         <member name="F:FineUICore.IconFont._Up">
@@ -18874,14 +19065,49 @@
             _Upload
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._User">
+            <summary>
+            _User
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._VolumeDown">
+            <summary>
+            _VolumeDown
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._VolumeOff">
+            <summary>
+            _VolumeOff
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._VolumeUp">
+            <summary>
+            _VolumeUp
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Warn">
             <summary>
             _Warn
             </summary>
         </member>
+        <member name="F:FineUICore.IconFont._Wifi">
+            <summary>
+            _Wifi
+            </summary>
+        </member>
         <member name="F:FineUICore.IconFont._Window">
             <summary>
             _Window
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Windows">
+            <summary>
+            _Windows
+            </summary>
+        </member>
+        <member name="F:FineUICore.IconFont._Wrench">
+            <summary>
+            _Wrench
             </summary>
         </member>
         <member name="T:FineUICore.IconFontHelper">
@@ -19131,6 +19357,56 @@
             提示消息的类型名称
             </summary>
         </member>
+        <member name="T:FineUICore.NumberBoxDisplayType">
+            <summary>
+            数字输入框的显示类型
+            </summary>
+        </member>
+        <member name="F:FineUICore.NumberBoxDisplayType.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:FineUICore.NumberBoxDisplayType.Progress">
+            <summary>
+            进度条
+            </summary>
+        </member>
+        <member name="F:FineUICore.NumberBoxDisplayType.Rate">
+            <summary>
+            评分
+            </summary>
+        </member>
+        <member name="T:FineUICore.NumberBoxDisplayTypeHelper">
+            <summary>
+            数字输入框的显示类型名称
+            </summary>
+        </member>
+        <member name="T:FineUICore.NumberBoxTriggerType">
+            <summary>
+            数字输入框触发图标的类型
+            </summary>
+        </member>
+        <member name="F:FineUICore.NumberBoxTriggerType.Stack">
+            <summary>
+            上下层叠
+            </summary>
+        </member>
+        <member name="F:FineUICore.NumberBoxTriggerType.Tile">
+            <summary>
+            平铺
+            </summary>
+        </member>
+        <member name="F:FineUICore.NumberBoxTriggerType.Separate">
+            <summary>
+            左右分开
+            </summary>
+        </member>
+        <member name="T:FineUICore.NumberBoxTriggerTypeHelper">
+            <summary>
+            数字输入框触发图标的类型名称
+            </summary>
+        </member>
         <member name="T:FineUICore.Operator">
             <summary>
             操作符（用于表单控件的客户端验证）
@@ -19364,6 +19640,46 @@
         <member name="T:FineUICore.SummaryPositionHelper">
             <summary>
             表格合计行的位置名称
+            </summary>
+        </member>
+        <member name="T:FineUICore.SummaryType">
+            <summary>
+            表格合计行类型
+            </summary>
+        </member>
+        <member name="F:FineUICore.SummaryType.Undefined">
+            <summary>
+            未定义
+            </summary>
+        </member>
+        <member name="F:FineUICore.SummaryType.Sum">
+            <summary>
+            总和
+            </summary>
+        </member>
+        <member name="F:FineUICore.SummaryType.Min">
+            <summary>
+            最小值
+            </summary>
+        </member>
+        <member name="F:FineUICore.SummaryType.Max">
+            <summary>
+            最大值
+            </summary>
+        </member>
+        <member name="F:FineUICore.SummaryType.Count">
+            <summary>
+            个数
+            </summary>
+        </member>
+        <member name="F:FineUICore.SummaryType.Avg">
+            <summary>
+            平均
+            </summary>
+        </member>
+        <member name="T:FineUICore.SummaryTypeHelper">
+            <summary>
+            表格合计行类型名称
             </summary>
         </member>
         <member name="T:FineUICore.SwapAnimationType">
@@ -19698,6 +20014,36 @@
             jQueryUI Vader
             </summary>
         </member>
+        <member name="F:FineUICore.Theme.Pure_Black">
+            <summary>
+            Pure Black
+            </summary>
+        </member>
+        <member name="F:FineUICore.Theme.Pure_Blue">
+            <summary>
+            Pure Blue
+            </summary>
+        </member>
+        <member name="F:FineUICore.Theme.Pure_Green">
+            <summary>
+            Pure Green
+            </summary>
+        </member>
+        <member name="F:FineUICore.Theme.Pure_Orange">
+            <summary>
+            Pure Orange
+            </summary>
+        </member>
+        <member name="F:FineUICore.Theme.Pure_Purple">
+            <summary>
+            Pure Purple
+            </summary>
+        </member>
+        <member name="F:FineUICore.Theme.Pure_Red">
+            <summary>
+            Pure Red
+            </summary>
+        </member>
         <member name="T:FineUICore.ThemeHelper">
             <summary>
             主题的类型名称
@@ -19746,6 +20092,81 @@
         <member name="T:FineUICore.ToolbarPositionHelper">
             <summary>
             工具条的位置名称
+            </summary>
+        </member>
+        <member name="T:FineUICore.ToolTipPosition">
+            <summary>
+            提示信息的位置
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.Undefined">
+            <summary>
+            未定义
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.Top">
+            <summary>
+            顶部居中
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.TopStart">
+            <summary>
+            顶部开始
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.TopEnd">
+            <summary>
+            顶部末尾
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.Bottom">
+            <summary>
+            底部居中
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.BottomStart">
+            <summary>
+            底部开始
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.BottomEnd">
+            <summary>
+            底部末尾
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.Left">
+            <summary>
+            左侧居中
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.LeftStart">
+            <summary>
+            左侧开始
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.LeftEnd">
+            <summary>
+            左侧末尾
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.Right">
+            <summary>
+            右侧居中
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.RightStart">
+            <summary>
+            右侧开始
+            </summary>
+        </member>
+        <member name="F:FineUICore.ToolTipPosition.RightEnd">
+            <summary>
+            右侧末尾
+            </summary>
+        </member>
+        <member name="T:FineUICore.ToolTipPositionHelper">
+            <summary>
+            提示信息的位置名称
             </summary>
         </member>
         <member name="T:FineUICore.ToolTipType">
@@ -20171,11 +20592,6 @@
         <member name="P:FineUICore.ResourceManager.AjaxScriptList">
             <summary>
             AJAX时每个控件需要注册的脚本
-            </summary>
-        </member>
-        <member name="P:FineUICore.ResourceManager.AjaxAbsoluteScriptList">
-            <summary>
-            AJAX时不依赖控件的脚本
             </summary>
         </member>
         <member name="P:FineUICore.ResourceManager.Instance">
@@ -20670,6 +21086,17 @@
             <summary>
             处理Ajax回发结果
             </summary>
+        </member>
+        <member name="M:FineUICore.AjaxResult.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:FineUICore.AjaxResult.#ctor(System.Boolean)">
+            <summary>
+            是否检查模型状态（如果模型状态验证失败，则弹出提示对话框）
+            </summary>
+            <param name="checkModelState"></param>
         </member>
         <member name="M:FineUICore.AjaxResult.ExecuteResult(Microsoft.AspNetCore.Mvc.ActionContext)">
             <summary>
@@ -21366,6 +21793,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.UIExtension`2.Grid``1">
+            <summary>
+            表格控件扩展
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.UIExtension`2.Grid">
             <summary>
             表格控件扩展
@@ -21564,6 +21997,20 @@
             扩展工厂帮助类
             </summary>
         </member>
+        <member name="M:FineUICore.UIExtensionForUtility.ConvertToString(System.Object)">
+            <summary>
+            将对象转换为字符串（如果元素为Enum类型，则先转换为整形）
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.UIExtensionForUtility.ConvertIEnumerableToStringArray(System.Collections.IEnumerable)">
+            <summary>
+            将枚举数类型转换为字符串数组（如果枚举数元素为Enum类型，则先转换为整形）
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.UIExtensionForUtility.ProcessCompareControl(FineUICore.TextField,Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata,System.String)">
             <summary>
             v5.5.0 - 假设两个比较的属性在同一级别
@@ -21584,6 +22031,13 @@
             <summary>
             响应Ajax请求
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.UIHelper.Result(System.Boolean)">
+            <summary>
+            响应Ajax请求
+            </summary>
+            <param name="checkModelState">是否检查模型状态（如果模型状态验证失败，则弹出提示对话框）</param>
             <returns></returns>
         </member>
         <member name="M:FineUICore.UIHelper.IsFineUIAjaxPostBack">
@@ -21956,6 +22410,13 @@
             <summary>
             获取隐藏当前激活窗体并触发窗体关闭事件的客户端脚本
             </summary>
+            <returns>客户端脚本</returns>
+        </member>
+        <member name="M:FineUICore.ActiveWindow.GetHidePostBackReference(System.String)">
+            <summary>
+            获取隐藏当前激活窗体并触发窗体关闭事件的客户端脚本
+            </summary>
+            <param name="argument">回发参数</param>
             <returns>客户端脚本</returns>
         </member>
         <member name="M:FineUICore.ActiveWindow.GetHideRefreshReference">
@@ -23960,6 +24421,11 @@
             徽标动画类型
             </summary>
         </member>
+        <member name="P:FineUICore.Button.EnableRoundCorner">
+            <summary>
+            是否为圆角
+            </summary>
+        </member>
         <member name="P:FineUICore.Button.EnableDefaultState">
             <summary>
             是否默认添加CSS类（f-state-default）
@@ -24033,6 +24499,11 @@
         <member name="P:FineUICore.Button.ToolTipType">
             <summary>
             提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.Button.ToolTipPosition">
+            <summary>
+            提示文本的位置
             </summary>
         </member>
         <member name="P:FineUICore.Button.TabIndex">
@@ -24280,6 +24751,13 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.ButtonBaseExtension`2.EnableRoundCorner(System.Boolean)">
+            <summary>
+            是否为圆角
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.ButtonBaseExtension`2.EnableDefaultState(System.Boolean)">
             <summary>
             是否默认添加CSS类（f-state-default）
@@ -24374,6 +24852,13 @@
         <member name="M:FineUICore.ButtonBaseExtension`2.ToolTipType(FineUICore.ToolTipType)">
             <summary>
             提示文本类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.ButtonBaseExtension`2.ToolTipPosition(FineUICore.ToolTipPosition)">
+            <summary>
+            提示文本的位置
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -24579,6 +25064,11 @@
             Tab按键的跳转顺序
             </summary>
         </member>
+        <member name="P:FineUICore.ButtonTagHelper.EnableRoundCorner">
+            <summary>
+            是否为圆角
+            </summary>
+        </member>
         <member name="P:FineUICore.ButtonTagHelper.EnableDefaultState">
             <summary>
             是否默认添加CSS类（f-state-default）
@@ -24647,6 +25137,11 @@
         <member name="P:FineUICore.ButtonTagHelper.ToolTipType">
             <summary>
             提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.ButtonTagHelper.ToolTipPosition">
+            <summary>
+            提示文本的位置
             </summary>
         </member>
         <member name="P:FineUICore.ButtonTagHelper.Type">
@@ -24926,6 +25421,12 @@
             <summary>
             加载数据
             </summary>
+        </member>
+        <member name="M:FineUICore.DataListAjaxHelper.AppendData(FineUICore.DataListItem[])">
+            <summary>
+            追加数据
+            </summary>
+            <param name="items"></param>
         </member>
         <member name="T:FineUICore.DataListExtension">
             <summary>
@@ -25818,6 +26319,11 @@
             显示类型
             </summary>
         </member>
+        <member name="P:FineUICore.Calendar.StackDateTime">
+            <summary>
+            层叠显示日期面板和时间面板（默认为false，仅当DisplayType=day和ShowTime=true时有效）
+            </summary>
+        </member>
         <member name="P:FineUICore.Calendar.ShowTime">
             <summary>
             显示时间（需要设置DateFormatString）
@@ -25923,6 +26429,13 @@
         <member name="M:FineUICore.CalendarExtension.ShowTodayButton(System.Boolean)">
             <summary>
             显示今天按钮
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.CalendarExtension.StackDateTime(System.Boolean)">
+            <summary>
+            层叠显示日期面板和时间面板（默认为false，仅当DisplayType=day和ShowTime=true时有效）
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -26047,6 +26560,11 @@
         <member name="P:FineUICore.CalendarTagHelper.ShowTodayButton">
             <summary>
             显示今天按钮
+            </summary>
+        </member>
+        <member name="P:FineUICore.CalendarTagHelper.StackDateTime">
+            <summary>
+            层叠显示日期面板和时间面板（默认为false，仅当DisplayType=day和ShowTime=true时有效）
             </summary>
         </member>
         <member name="P:FineUICore.CalendarTagHelper.ShowTime">
@@ -27820,6 +28338,11 @@
             自定义页面加载图片
             </summary>
         </member>
+        <member name="P:FineUICore.PageManager.LoadingCSSNumber">
+            <summary>
+            CSS加载动画的数字编码（从1开始，设为0则禁用CSS加载动画）
+            </summary>
+        </member>
         <member name="P:FineUICore.PageManager.LoadingImageNumber">
             <summary>
             加载图片的数字编码
@@ -27838,6 +28361,11 @@
         <member name="P:FineUICore.PageManager.EnablePageLoading">
             <summary>
             是否启用页面加载标示
+            </summary>
+        </member>
+        <member name="P:FineUICore.PageManager.CustomScrollbar">
+            <summary>
+            是否自定义滚动条样式（仅在桌面端Chrome、Edge、Safari浏览器下有效）（默认为false）
             </summary>
         </member>
         <member name="P:FineUICore.PageManager.Theme">
@@ -28005,6 +28533,16 @@
             表单中字段与标签的分隔符
             </summary>
         </member>
+        <member name="P:FineUICore.PageManager.FormDotSeparator">
+            <summary>
+            小数分隔符（默认为点号）（仅限于数字输入框的客户端显示）
+            </summary>
+        </member>
+        <member name="P:FineUICore.PageManager.FormCommaSeparator">
+            <summary>
+            千分位分隔符（默认为逗号）（仅限于数字输入框的客户端显示）
+            </summary>
+        </member>
         <member name="F:FineUICore.PageManager.THEME_LOADING_COLORS">
             <summary>
             正在加载动画图片的背景色和前景色
@@ -28075,6 +28613,13 @@
             <summary>
             页面管理器扩展实例
             </summary>
+        </member>
+        <member name="M:FineUICore.PageManagerExtension.CustomScrollbar(System.Boolean)">
+            <summary>
+            是否自定义滚动条样式（仅在桌面端Chrome、Edge、Safari浏览器下有效）（默认为false）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.PageManagerExtension.EnableAjaxLoading(System.Boolean)">
             <summary>
@@ -28205,6 +28750,13 @@
         <member name="M:FineUICore.PageManagerExtension.EnableIFrameLoading(System.Boolean)">
             <summary>
             启用IFrame面板的页面加载提示
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.PageManagerExtension.LoadingCSSNumber(System.Int32)">
+            <summary>
+            CSS加载动画的数字编码（从1开始，设为0则禁用CSS加载动画）
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -28356,6 +28908,11 @@
             当前控件
             </summary>
         </member>
+        <member name="P:FineUICore.PageManagerTagHelper.CustomScrollbar">
+            <summary>
+            是否自定义滚动条样式（仅在桌面端Chrome、Edge、Safari浏览器下有效）（默认为false）
+            </summary>
+        </member>
         <member name="P:FineUICore.PageManagerTagHelper.EnableAjaxLoading">
             <summary>
             是否显示AJAX提示
@@ -28449,6 +29006,11 @@
         <member name="P:FineUICore.PageManagerTagHelper.EnableIFrameLoading">
             <summary>
             启用IFrame面板的页面加载提示
+            </summary>
+        </member>
+        <member name="P:FineUICore.PageManagerTagHelper.LoadingCSSNumber">
+            <summary>
+            CSS加载动画的数字编码（从1开始，设为0则禁用CSS加载动画）
             </summary>
         </member>
         <member name="P:FineUICore.PageManagerTagHelper.LoadingImageNumber">
@@ -28621,6 +29183,26 @@
             复选框列表控件
             </summary>
         </member>
+        <member name="P:FineUICore.CheckBoxList.SwitchTextVisible">
+            <summary>
+            是否显示开关类型复选框的文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxList.SwitchOnText">
+            <summary>
+            开关类型复选框的选中文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxList.SwitchOffText">
+            <summary>
+            开关类型复选框的未选中文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxList.DisplayType">
+            <summary>
+            复选框的显示类型
+            </summary>
+        </member>
         <member name="P:FineUICore.CheckBoxList.AutoColumnWidth">
             <summary>
             是否自适应列宽度
@@ -28781,6 +29363,34 @@
             当前控件
             </summary>
         </member>
+        <member name="M:FineUICore.CheckBoxListExtension.SwitchTextVisible(System.Boolean)">
+            <summary>
+            是否显示开关类型复选框的文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.CheckBoxListExtension.SwitchOnText(System.String)">
+            <summary>
+            开关类型复选框的选中文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.CheckBoxListExtension.SwitchOffText(System.String)">
+            <summary>
+            开关类型复选框的未选中文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.CheckBoxListExtension.DisplayType(FineUICore.CheckBoxDisplayType)">
+            <summary>
+            复选框的显示类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.CheckBoxListExtension.AutoColumnWidth(System.Boolean)">
             <summary>
             是否自适应列宽度
@@ -28924,6 +29534,26 @@
         <member name="P:FineUICore.CheckBoxListTagHelper.Source">
             <summary>
             当前控件
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxListTagHelper.SwitchTextVisible">
+            <summary>
+            是否显示开关类型复选框的文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxListTagHelper.SwitchOnText">
+            <summary>
+            开关类型复选框的选中文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxListTagHelper.SwitchOffText">
+            <summary>
+            开关类型复选框的未选中文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxListTagHelper.DisplayType">
+            <summary>
+            复选框的显示类型
             </summary>
         </member>
         <member name="P:FineUICore.CheckBoxListTagHelper.AutoColumnWidth">
@@ -29213,12 +29843,27 @@
             复选框控件
             </summary>
         </member>
+        <member name="P:FineUICore.CheckBox.Required">
+            <summary>
+            是否必填项
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBox.RequiredMessage">
+            <summary>
+            为空时提示信息
+            </summary>
+        </member>
         <member name="P:FineUICore.CheckBox.DisplayType">
             <summary>
             复选框的显示类型
             </summary>
         </member>
         <member name="P:FineUICore.CheckBox.ShowSwitchText">
+            <summary>
+            是否显示开关类型的文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBox.SwitchTextVisible">
             <summary>
             是否显示开关类型的文本
             </summary>
@@ -29292,6 +29937,20 @@
             当前控件
             </summary>
         </member>
+        <member name="M:FineUICore.CheckBoxExtension.Required(System.Boolean)">
+            <summary>
+            是否必填项
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.CheckBoxExtension.RequiredMessage(System.String)">
+            <summary>
+            为空时提示信息
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.CheckBoxExtension.DisplayType(FineUICore.CheckBoxDisplayType)">
             <summary>
             复选框的显示类型
@@ -29300,6 +29959,13 @@
             <returns></returns>
         </member>
         <member name="M:FineUICore.CheckBoxExtension.ShowSwitchText(System.Boolean)">
+            <summary>
+            是否显示开关类型的文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.CheckBoxExtension.SwitchTextVisible(System.Boolean)">
             <summary>
             是否显示开关类型的文本
             </summary>
@@ -29388,12 +30054,27 @@
             当前控件
             </summary>
         </member>
+        <member name="P:FineUICore.CheckBoxTagHelper.Required">
+            <summary>
+            是否必填项
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxTagHelper.RequiredMessage">
+            <summary>
+            为空时提示信息
+            </summary>
+        </member>
         <member name="P:FineUICore.CheckBoxTagHelper.DisplayType">
             <summary>
             复选框的显示类型
             </summary>
         </member>
         <member name="P:FineUICore.CheckBoxTagHelper.ShowSwitchText">
+            <summary>
+            是否显示开关类型的文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.CheckBoxTagHelper.SwitchTextVisible">
             <summary>
             是否显示开关类型的文本
             </summary>
@@ -30452,9 +31133,39 @@
             点击链接按钮事件 - 请求参数（字段或容器名称列表，以逗号分隔）
             </summary>
         </member>
-        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameters">
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameter1">
             <summary>
             点击链接按钮事件 - 请求参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameter2">
+            <summary>
+            点击链接按钮事件 - 请求参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameter3">
+            <summary>
+            点击链接按钮事件 - 请求参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameter4">
+            <summary>
+            点击链接按钮事件 - 请求参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameter5">
+            <summary>
+            点击链接按钮事件 - 请求参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickParameter6">
+            <summary>
+            点击链接按钮事件 - 请求参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.LinkButtonTagHelper.OnClickDelegate">
+            <summary>
+            点击链接按钮事件 - 代理方法
             </summary>
         </member>
         <member name="T:FineUICore.Label">
@@ -31184,6 +31895,16 @@
             单选框控件
             </summary>
         </member>
+        <member name="P:FineUICore.RadioButton.Required">
+            <summary>
+            是否必填项
+            </summary>
+        </member>
+        <member name="P:FineUICore.RadioButton.RequiredMessage">
+            <summary>
+            为空时提示信息
+            </summary>
+        </member>
         <member name="P:FineUICore.RadioButton.Text">
             <summary>
             文本
@@ -31253,6 +31974,20 @@
             <summary>
             当前控件
             </summary>
+        </member>
+        <member name="M:FineUICore.RadioButtonExtension.Required(System.Boolean)">
+            <summary>
+            是否必填项
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RadioButtonExtension.RequiredMessage(System.String)">
+            <summary>
+            为空时提示信息
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.RadioButtonExtension.Text(System.String)">
             <summary>
@@ -31327,6 +32062,16 @@
         <member name="P:FineUICore.RadioButtonTagHelper.Source">
             <summary>
             当前控件
+            </summary>
+        </member>
+        <member name="P:FineUICore.RadioButtonTagHelper.Required">
+            <summary>
+            是否必填项
+            </summary>
+        </member>
+        <member name="P:FineUICore.RadioButtonTagHelper.RequiredMessage">
+            <summary>
+            为空时提示信息
             </summary>
         </member>
         <member name="P:FineUICore.RadioButtonTagHelper.Text">
@@ -32093,6 +32838,11 @@
             选中项的值
             </summary>
         </member>
+        <member name="P:FineUICore.DropDownList.FilterFunction">
+            <summary>
+            自定义过滤器函数（仅在EnableEdit=true时有效）
+            </summary>
+        </member>
         <member name="P:FineUICore.DropDownList.EnableClickAction">
             <summary>
             点击输入框是否触发默认行为
@@ -32321,6 +33071,13 @@
             <summary>
             当前控件
             </summary>
+        </member>
+        <member name="M:FineUICore.DropDownListExtension.FilterFunction(System.String)">
+            <summary>
+            自定义过滤器函数（仅在EnableEdit=true时有效）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.DropDownListExtension.EnableClickAction(System.Boolean)">
             <summary>
@@ -32616,6 +33373,11 @@
         <member name="P:FineUICore.DropDownListTagHelper.Source">
             <summary>
             当前控件
+            </summary>
+        </member>
+        <member name="P:FineUICore.DropDownListTagHelper.FilterFunction">
+            <summary>
+            自定义过滤器函数（仅在EnableEdit=true时有效）
             </summary>
         </member>
         <member name="P:FineUICore.DropDownListTagHelper.EnableClickAction">
@@ -33103,6 +33865,11 @@
             自动显示清空图标
             </summary>
         </member>
+        <member name="P:FineUICore.DatePicker.StackDateTime">
+            <summary>
+            层叠显示日期面板和时间面板（默认为false，仅当DisplayType=day和ShowTime=true时有效）
+            </summary>
+        </member>
         <member name="P:FineUICore.DatePicker.ShowTime">
             <summary>
             显示时间（需要设置DateFormatString）
@@ -33246,6 +34013,13 @@
         <member name="M:FineUICore.DatePickerExtension.AutoShowClearIcon(System.Boolean)">
             <summary>
             自动显示清空图标
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.DatePickerExtension.StackDateTime(System.Boolean)">
+            <summary>
+            层叠显示日期面板和时间面板（默认为false，仅当DisplayType=day和ShowTime=true时有效）
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -33421,6 +34195,11 @@
             自动显示清空图标
             </summary>
         </member>
+        <member name="P:FineUICore.DatePickerTagHelper.StackDateTime">
+            <summary>
+            层叠显示日期面板和时间面板（默认为false，仅当DisplayType=day和ShowTime=true时有效）
+            </summary>
+        </member>
         <member name="P:FineUICore.DatePickerTagHelper.ShowTime">
             <summary>
             显示时间（需要设置DateFormatString）
@@ -33566,6 +34345,11 @@
             不支持此属性
             </summary>
         </member>
+        <member name="P:FineUICore.FileUpload.Multiple">
+            <summary>
+            是否可以选择多个文件
+            </summary>
+        </member>
         <member name="P:FineUICore.FileUpload.AcceptFileTypes">
             <summary>
             允许上传的文件类型（仅部分浏览器支持）
@@ -33657,6 +34441,13 @@
             <summary>
             当前控件
             </summary>
+        </member>
+        <member name="M:FineUICore.FileUploadExtension.Multiple(System.Boolean)">
+            <summary>
+            是否可以选择多个文件
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.FileUploadExtension.AcceptFileTypes(System.String)">
             <summary>
@@ -33787,6 +34578,11 @@
         <member name="P:FineUICore.FileUploadTagHelper.Source">
             <summary>
             当前控件
+            </summary>
+        </member>
+        <member name="P:FineUICore.FileUploadTagHelper.Multiple">
+            <summary>
+            是否可以选择多个文件
             </summary>
         </member>
         <member name="P:FineUICore.FileUploadTagHelper.AcceptFileTypes">
@@ -33961,9 +34757,79 @@
             数字输入框控件
             </summary>
         </member>
-        <member name="P:FineUICore.NumberBox.Text">
+        <member name="P:FineUICore.NumberBox.RateAllowClear">
             <summary>
-            文本
+            是否允许通过点击来清除评分
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateAllowHalf">
+            <summary>
+            是否允许半星评分
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateIconFont">
+            <summary>
+            评分图标字体
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateIconFontClass">
+            <summary>
+            自定义评分图标字体的样式类
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateCharacter">
+            <summary>
+            自定义评分字符
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateCount">
+            <summary>
+            评分图标的个数
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateTextVisible">
+            <summary>
+            是否显示评分文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.RateTextRendererFunction">
+            <summary>
+            自定义评分文本的渲染函数
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.TriggerType">
+            <summary>
+            数字输入框触发图标的类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.DisplayType">
+            <summary>
+            数字输入框的显示类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.ProgressHeight">
+            <summary>
+            进度条的高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.ProgressTextVisible">
+            <summary>
+            是否显示进度条文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.ProgressTextInside">
+            <summary>
+            是否将进度条文本显示在进度条内部
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.NumberPrefix">
+            <summary>
+            数字前缀
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.NumberSuffix">
+            <summary>
+            数字后缀
             </summary>
         </member>
         <member name="P:FineUICore.NumberBox.EnableCommas">
@@ -34014,6 +34880,16 @@
         <member name="P:FineUICore.NumberBox.TrimEndZero">
             <summary>
             是否去除小数位后面的零
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.DotSeparator">
+            <summary>
+            小数分隔符（默认为点号）
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBox.CommaSeparator">
+            <summary>
+            千分位分隔符（默认为逗号）
             </summary>
         </member>
         <member name="M:FineUICore.NumberBox.OnFirstPreRender">
@@ -34089,9 +34965,107 @@
             当前控件
             </summary>
         </member>
-        <member name="M:FineUICore.NumberBoxExtension.Text(System.String)">
+        <member name="M:FineUICore.NumberBoxExtension.RateAllowClear(System.Boolean)">
             <summary>
-            文本
+            是否允许通过点击来清除评分
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateAllowHalf(System.Boolean)">
+            <summary>
+            是否允许半星评分
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateIconFont(FineUICore.IconFont)">
+            <summary>
+            评分图标字体
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateIconFontClass(System.String)">
+            <summary>
+            自定义评分图标字体的样式类
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateCharacter(System.String)">
+            <summary>
+            自定义评分字符
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateCount(System.Int32)">
+            <summary>
+            评分图标的个数
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateTextVisible(System.Boolean)">
+            <summary>
+            是否显示评分文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.RateTextRendererFunction(System.String)">
+            <summary>
+            自定义评分文本的渲染函数
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.TriggerType(FineUICore.NumberBoxTriggerType)">
+            <summary>
+            数字输入框触发图标的类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.DisplayType(FineUICore.NumberBoxDisplayType)">
+            <summary>
+            数字输入框的显示类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.ProgressHeight(System.Nullable{System.Int32})">
+            <summary>
+            进度条的高度
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.ProgressTextVisible(System.Boolean)">
+            <summary>
+            是否显示进度条文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.ProgressTextInside(System.Boolean)">
+            <summary>
+            是否将进度条文本显示在进度条内部
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.NumberPrefix(System.String)">
+            <summary>
+            数字前缀
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.NumberSuffix(System.String)">
+            <summary>
+            数字后缀
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -34166,6 +35140,20 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.NumberBoxExtension.CommaSeparator(System.String)">
+            <summary>
+            千分位分隔符（默认为逗号）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.NumberBoxExtension.DotSeparator(System.String)">
+            <summary>
+            小数分隔符（默认为点号）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="T:FineUICore.NumberBoxTagHelper">
             <summary>
             数字输入框控件标签
@@ -34179,6 +35167,81 @@
         <member name="P:FineUICore.NumberBoxTagHelper.Source">
             <summary>
             当前控件
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateAllowClear">
+            <summary>
+            是否允许通过点击来清除评分
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateAllowHalf">
+            <summary>
+            是否允许半星评分
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateIconFont">
+            <summary>
+            评分图标字体
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateIconFontClass">
+            <summary>
+            自定义评分图标字体的样式类
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateCharacter">
+            <summary>
+            自定义评分字符
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateCount">
+            <summary>
+            评分图标的个数
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateTextVisible">
+            <summary>
+            是否显示评分文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.RateTextRendererFunction">
+            <summary>
+            自定义评分文本的渲染函数
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.TriggerType">
+            <summary>
+            数字输入框触发图标的类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.DisplayType">
+            <summary>
+            数字输入框的显示类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.ProgressHeight">
+            <summary>
+            进度条的高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.ProgressTextVisible">
+            <summary>
+            是否显示进度条文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.ProgressTextInside">
+            <summary>
+            是否将进度条文本显示在进度条内部
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.NumberPrefix">
+            <summary>
+            数字前缀
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.NumberSuffix">
+            <summary>
+            数字后缀
             </summary>
         </member>
         <member name="P:FineUICore.NumberBoxTagHelper.EnableCommas">
@@ -34229,6 +35292,16 @@
         <member name="P:FineUICore.NumberBoxTagHelper.TrimEndZero">
             <summary>
             是否去除小数位后面的零
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.CommaSeparator">
+            <summary>
+            千分位分隔符（默认为逗号）
+            </summary>
+        </member>
+        <member name="P:FineUICore.NumberBoxTagHelper.DotSeparator">
+            <summary>
+            小数分隔符（默认为点号）
             </summary>
         </member>
         <member name="P:FineUICore.NumberBoxTagHelper.For">
@@ -34386,11 +35459,6 @@
             文本框类型
             </summary>
         </member>
-        <member name="P:FineUICore.TextBox.InputType">
-            <summary>
-            文本框类型，可设置HTML5属性(url, date, color, tel, number...)
-            </summary>
-        </member>
         <member name="M:FineUICore.TextBox.OnFirstPreRender">
             <summary>
             渲染 HTML 之前调用（页面第一次加载或者普通回发）
@@ -34435,13 +35503,6 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.TextBoxExtension.InputType(System.String)">
-            <summary>
-            文本框类型，可设置HTML5属性(url, date, color, tel, number...)
-            </summary>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
         <member name="T:FineUICore.TextBoxTagHelper">
             <summary>
             文本框控件标签
@@ -34460,11 +35521,6 @@
         <member name="P:FineUICore.TextBoxTagHelper.TextMode">
             <summary>
             文本框类型
-            </summary>
-        </member>
-        <member name="P:FineUICore.TextBoxTagHelper.InputType">
-            <summary>
-            文本框类型，可设置HTML5属性(url, date, color, tel, number...)
             </summary>
         </member>
         <member name="P:FineUICore.TextBoxTagHelper.For">
@@ -36077,6 +37133,43 @@
             当前控件
             </summary>
         </member>
+        <member name="T:FineUICore.ContentPanelTagHelper">
+            <summary>
+            内容面板控件标签
+            </summary>
+        </member>
+        <member name="M:FineUICore.ContentPanelTagHelper.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:FineUICore.ContentPanelTagHelper.Source">
+            <summary>
+            当前控件
+            </summary>
+        </member>
+        <member name="T:FineUICore.ContentTagHelper">
+            <summary>
+            面板内容标签
+            </summary>
+        </member>
+        <member name="M:FineUICore.ContentTagHelper.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:FineUICore.ContentTagHelper.Source">
+            <summary>
+            当前控件
+            </summary>
+        </member>
+        <member name="M:FineUICore.ContentTagHelper.PreProcess(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext,Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)">
+            <summary>
+            标签处理前执行
+            </summary>
+            <param name="context"></param>
+            <param name="output"></param>
+        </member>
         <member name="T:FineUICore.Panel">
             <summary>
             面板控件
@@ -36221,6 +37314,16 @@
             布局类型
             </summary>
         </member>
+        <member name="P:FineUICore.Tree.ShowSelectedNode">
+            <summary>
+            高亮显示选中的节点
+            </summary>
+        </member>
+        <member name="P:FineUICore.Tree.EnableNodeHoverState">
+            <summary>
+            启用节点的鼠标悬停样式
+            </summary>
+        </member>
         <member name="P:FineUICore.Tree.ClickOnContextMenu">
             <summary>
             右键点击时选中当前节点（默认为true）
@@ -36239,6 +37342,11 @@
         <member name="P:FineUICore.Tree.OnlyLeafCheck">
             <summary>
             是否只显示叶子节点复选框
+            </summary>
+        </member>
+        <member name="P:FineUICore.Tree.OnlyFolderCheck">
+            <summary>
+            是否只显示目录节点复选框
             </summary>
         </member>
         <member name="P:FineUICore.Tree.CascadeCheck">
@@ -36554,6 +37662,32 @@
             </summary>
             <param name="nodes">节点数据</param>
         </member>
+        <member name="M:FineUICore.TreeAjaxHelper.ExpandNode(System.String)">
+            <summary>
+            展开节点
+            </summary>
+            <param name="nodeId">需要展开的节点</param>
+        </member>
+        <member name="M:FineUICore.TreeAjaxHelper.ExpandNode(System.String,System.Boolean)">
+            <summary>
+            展开节点
+            </summary>
+            <param name="nodeId">需要展开的节点</param>
+            <param name="deep">是否递归展开本节点的所有子节点</param>
+        </member>
+        <member name="M:FineUICore.TreeAjaxHelper.CollapseNode(System.String)">
+            <summary>
+            折叠节点
+            </summary>
+            <param name="nodeId">需要折叠的节点</param>
+        </member>
+        <member name="M:FineUICore.TreeAjaxHelper.CollapseNode(System.String,System.Boolean)">
+            <summary>
+            折叠节点
+            </summary>
+            <param name="nodeId">需要折叠的节点</param>
+            <param name="deep">是否递归折叠本节点的所有子节点</param>
+        </member>
         <member name="T:FineUICore.TreeExtension">
             <summary>
             树控件扩展
@@ -36569,6 +37703,20 @@
             <summary>
             当前控件
             </summary>
+        </member>
+        <member name="M:FineUICore.TreeExtension.ShowSelectedNode(System.Boolean)">
+            <summary>
+            高亮显示选中的节点
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.TreeExtension.EnableNodeHoverState(System.Boolean)">
+            <summary>
+            启用节点的鼠标悬停样式
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.TreeExtension.ClickOnContextMenu(System.Boolean)">
             <summary>
@@ -36594,6 +37742,13 @@
         <member name="M:FineUICore.TreeExtension.OnlyLeafCheck(System.Boolean)">
             <summary>
             是否只显示叶子节点复选框
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.TreeExtension.OnlyFolderCheck(System.Boolean)">
+            <summary>
+            是否只显示目录节点复选框
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -36950,6 +38105,11 @@
             点击按钮时需要执行的客户端脚本
             </summary>
         </member>
+        <member name="P:FineUICore.TreeNode.CheckBoxDisabled">
+            <summary>
+            是否禁用复选框
+            </summary>
+        </member>
         <member name="P:FineUICore.TreeNode.Checked">
             <summary>
             是否选中
@@ -37118,6 +38278,13 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.TreeNodeExtension.CheckBoxDisabled(System.Boolean)">
+            <summary>
+            是否禁用复选框
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.TreeNodeExtension.Checked(System.Boolean)">
             <summary>
             是否选中
@@ -37273,6 +38440,11 @@
             点击按钮时需要执行的客户端脚本
             </summary>
         </member>
+        <member name="P:FineUICore.TreeNodeTagHelper.CheckBoxDisabled">
+            <summary>
+            是否禁用复选框
+            </summary>
+        </member>
         <member name="P:FineUICore.TreeNodeTagHelper.Checked">
             <summary>
             是否选中
@@ -37383,6 +38555,16 @@
             当前控件
             </summary>
         </member>
+        <member name="P:FineUICore.TreeTagHelper.ShowSelectedNode">
+            <summary>
+            高亮显示选中的节点
+            </summary>
+        </member>
+        <member name="P:FineUICore.TreeTagHelper.EnableNodeHoverState">
+            <summary>
+            启用节点的鼠标悬停样式
+            </summary>
+        </member>
         <member name="P:FineUICore.TreeTagHelper.ClickOnContextMenu">
             <summary>
             右键点击时选中当前节点（默认为true）
@@ -37401,6 +38583,11 @@
         <member name="P:FineUICore.TreeTagHelper.OnlyLeafCheck">
             <summary>
             是否只显示叶子节点复选框
+            </summary>
+        </member>
+        <member name="P:FineUICore.TreeTagHelper.OnlyFolderCheck">
+            <summary>
+            是否只显示目录节点复选框
             </summary>
         </member>
         <member name="P:FineUICore.TreeTagHelper.CascadeCheck">
@@ -38559,6 +39746,46 @@
             布局类型
             </summary>
         </member>
+        <member name="P:FineUICore.Grid.DisplayType">
+            <summary>
+            表格的显示类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.CardRendererFunction">
+            <summary>
+            自定义卡片渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.FixedRowHeight">
+            <summary>
+            行高度固定
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowHeight">
+            <summary>
+            行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowHeightCompact">
+            <summary>
+            紧凑模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowHeightSmall">
+            <summary>
+            小字体模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowHeightLarge">
+            <summary>
+            大字体模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowHeightLargeSpace">
+            <summary>
+            大间距模式下的行高度
+            </summary>
+        </member>
         <member name="P:FineUICore.Grid.AllowCellEditing">
             <summary>
             允许单元格编辑
@@ -38582,6 +39809,11 @@
         <member name="P:FineUICore.Grid.SeparateFilterMenu">
             <summary>
             是否启用单独的过滤菜单
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.InlineFilters">
+            <summary>
+            是否内联过滤
             </summary>
         </member>
         <member name="P:FineUICore.Grid.FilteredData">
@@ -38644,6 +39876,26 @@
             总记录数
             </summary>
         </member>
+        <member name="P:FineUICore.Grid.SortFieldArray">
+            <summary>
+            排序字段列表（每个排序字段后面紧跟着排序方向，例如：["Name","ASC","EntranceYear","DESC"]）
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.SortingMulti">
+            <summary>
+            支持多列排序
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.SortingToolTip">
+            <summary>
+            显示列头的排序提示信息
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.SortingCancel">
+            <summary>
+            允许点击列头来取消排序
+            </summary>
+        </member>
         <member name="P:FineUICore.Grid.AllowSorting">
             <summary>
             允许服务器端排序
@@ -38684,6 +39936,11 @@
             合计行的位置
             </summary>
         </member>
+        <member name="P:FineUICore.Grid.SummaryRowCount">
+            <summary>
+            合计行的行数
+            </summary>
+        </member>
         <member name="P:FineUICore.Grid.DataUrl">
             <summary>
             网址数据源
@@ -38712,6 +39969,51 @@
         <member name="P:FineUICore.Grid.EnableBigDataRowTip">
             <summary>
             启用大数据模式下的行数提示
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.EnableRowGroup">
+            <summary>
+            启用行分组
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.DataRowGroupField">
+            <summary>
+            行数据分组字段名
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowGroupCollapsible">
+            <summary>
+            是否显示行分组折叠图标
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowGroupExpandOnDblClick">
+            <summary>
+            双击展开行分组节点
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.ExpandAllRowGroups">
+            <summary>
+            展开所有的行分组
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowGroupRendererFunction">
+            <summary>
+            自定义行分组渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowGroupSummary">
+            <summary>
+            启用行分组合计行
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.RowGroupSummaryRowCount">
+            <summary>
+            行分组的合计行行数
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.EnableRowHoverState">
+            <summary>
+            是否启用表格行的鼠标悬停样式
             </summary>
         </member>
         <member name="P:FineUICore.Grid.ScrollTopAfterPaging">
@@ -38816,7 +40118,7 @@
         </member>
         <member name="P:FineUICore.Grid.EnableDelayRender">
             <summary>
-            是否延迟渲染（不支持此属性）
+            是否延迟渲染
             </summary>
         </member>
         <member name="P:FineUICore.Grid.ExpandAllRowExpanders">
@@ -38894,6 +40196,11 @@
             成比例改变表格各列的宽度，以防止出现水平滚动条（第一次加载和之后改变表格宽度时都有效）
             </summary>
         </member>
+        <member name="P:FineUICore.Grid.CheckBoxSelectDisplayType">
+            <summary>
+            多选框列的显示类型
+            </summary>
+        </member>
         <member name="P:FineUICore.Grid.CheckBoxSelectWidth">
             <summary>
             多选框列的宽度
@@ -38914,6 +40221,11 @@
             只能通过多选框选中行（仅在启用EnableCheckBoxSelect属性时有效）
             </summary>
         </member>
+        <member name="P:FineUICore.Grid.CheckBoxSelectAutoHide">
+            <summary>
+            是否自动隐藏多选框（仅在启用EnableCheckBoxSelect属性时有效）
+            </summary>
+        </member>
         <member name="P:FineUICore.Grid.EnableMultiSelect">
             <summary>
             启用多行选择
@@ -38932,6 +40244,11 @@
         <member name="P:FineUICore.Grid.ShowSelectedCell">
             <summary>
             高亮显示选中的单元格
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.ShowSelectedRow">
+            <summary>
+            高亮显示选中的行
             </summary>
         </member>
         <member name="P:FineUICore.Grid.ShowPagingMessage">
@@ -39032,6 +40349,26 @@
         <member name="P:FineUICore.Grid.EnableTreeIcons">
             <summary>
             启用树节点图标
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.TreeCheckBox">
+            <summary>
+            是否启用节点复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.TreeOnlyLeafCheck">
+            <summary>
+            是否只显示叶子节点复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.TreeOnlyFolderCheck">
+            <summary>
+            是否只显示目录节点复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.Grid.TreeCascadeCheck">
+            <summary>
+            是否启用级联选择（仅适用于树表格）
             </summary>
         </member>
         <member name="M:FineUICore.Grid.OnFirstPreRender">
@@ -39492,6 +40829,12 @@
             <param name="sortField"></param>
             <param name="sortDirection"></param>
         </member>
+        <member name="M:FineUICore.GridAjaxHelper.SortFieldArray(System.String[])">
+            <summary>
+            设置排序字段列表（仅适用于多列排序）
+            </summary>
+            <param name="sortFields"></param>
+        </member>
         <member name="M:FineUICore.GridAjaxHelper.PageIndex(System.Int32)">
             <summary>
             设置分页索引
@@ -39522,6 +40865,13 @@
             </summary>
             <param name="summaryDataArray"></param>
         </member>
+        <member name="M:FineUICore.GridAjaxHelper.SummaryData(System.Int32,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            设置合计行数据
+            </summary>
+            <param name="summaryRowIndex">合计行索引</param>
+            <param name="summaryData">合计行数据</param>
+        </member>
         <member name="M:FineUICore.GridAjaxHelper.DataSource(System.Object,System.Boolean)">
             <summary>
             设置数据源
@@ -39550,6 +40900,19 @@
             加载数据
             </summary>
             <param name="clearSelection"></param>
+        </member>
+        <member name="M:FineUICore.GridAjaxHelper.AppendData(System.Object,System.String[])">
+            <summary>
+            追加数据
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:FineUICore.GridAjaxHelper.ConfigColumns(FineUICore.GridColumn[],FineUICore.GridConfigOptions)">
+            <summary>
+            重新配置表头
+            </summary>
+            <param name="columns"></param>
+            <param name="configOptions"></param>
         </member>
         <member name="M:FineUICore.GridAjaxHelper.DataSource(System.String,System.Object)">
             <summary>
@@ -39618,6 +40981,36 @@
             设置分页索引并重新加载数据（客户端分页）
             </summary>
             <param name="pageIndex"></param>
+        </member>
+        <member name="T:FineUICore.GridConfigOptions">
+            <summary>
+            表格配置参数
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridConfigOptions.DataIDField">
+            <summary>
+            行数据标识字段名
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridConfigOptions.DataTextField">
+            <summary>
+            行数据文本字段名
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridConfigOptions.EnableCheckBoxSelect">
+            <summary>
+            启用多选框
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridConfigOptions.EnableMultiSelect">
+            <summary>
+            启用多行选择（默认为true）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridConfigOptions.AllowColumnLocking">
+            <summary>
+            允许列锁定
+            </summary>
         </member>
         <member name="T:FineUICore.GridColumn">
             <summary>
@@ -39692,6 +41085,11 @@
         <member name="P:FineUICore.GridColumn.HeaderToolTipType">
             <summary>
             标题栏文字的提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridColumn.HeaderToolTipPosition">
+            <summary>
+            标题栏文字的提示文本位置
             </summary>
         </member>
         <member name="P:FineUICore.GridColumn.Width">
@@ -39891,6 +41289,13 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.GridColumnExtension`2.HeaderToolTipPosition(FineUICore.ToolTipPosition)">
+            <summary>
+            标题栏文字的提示文本位置
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.GridColumnExtension`2.Width(System.Nullable{System.Int32})">
             <summary>
             列宽度
@@ -40023,6 +41428,11 @@
         <member name="P:FineUICore.GridColumnTagHelper.HeaderToolTipType">
             <summary>
             标题栏文字的提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridColumnTagHelper.HeaderToolTipPosition">
+            <summary>
+            标题栏文字的提示文本位置
             </summary>
         </member>
         <member name="P:FineUICore.GridColumnTagHelper.Width">
@@ -40342,6 +41752,11 @@
             表格列的基类
             </summary>
         </member>
+        <member name="P:FineUICore.RenderBaseField.QuickSortField">
+            <summary>
+            快速设置排序字段（当DataField存在时，将SortField的值设置为DataField的值）
+            </summary>
+        </member>
         <member name="P:FineUICore.RenderBaseField.DataField">
             <summary>
             字段名称
@@ -40389,6 +41804,13 @@
             当前控件
             </summary>
         </member>
+        <member name="M:FineUICore.RenderBaseFieldExtension`2.QuickSortField(System.Boolean)">
+            <summary>
+            快速设置排序字段（当DataField存在时，将SortField的值设置为DataField的值）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.RenderBaseFieldExtension`2.DataField(System.String)">
             <summary>
             字段名称
@@ -40419,6 +41841,11 @@
             当前控件
             </summary>
         </member>
+        <member name="P:FineUICore.RenderBaseFieldTagHelper.QuickSortField">
+            <summary>
+            快速设置排序字段（当DataField存在时，将SortField的值设置为DataField的值）
+            </summary>
+        </member>
         <member name="P:FineUICore.RenderBaseFieldTagHelper.DataField">
             <summary>
             字段名称
@@ -40439,6 +41866,11 @@
             表格复选框列
             </summary>
         </member>
+        <member name="P:FineUICore.RenderCheckField.PreciseClick">
+            <summary>
+            精确点击复选框才能改变其选中状态
+            </summary>
+        </member>
         <member name="P:FineUICore.RenderCheckField.RenderAsStaticField">
             <summary>
             渲染为静态图片，否则渲染为可编辑的复选框
@@ -40447,6 +41879,26 @@
         <member name="P:FineUICore.RenderCheckField.RendererFunction">
             <summary>
             自定义渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckField.DisplayType">
+            <summary>
+            复选框的显示类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckField.SwitchTextVisible">
+            <summary>
+            是否显示开关类型的文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckField.SwitchOnText">
+            <summary>
+            开关类型复选框的选中文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckField.SwitchOffText">
+            <summary>
+            开关类型复选框的未选中文本
             </summary>
         </member>
         <member name="M:FineUICore.RenderCheckField.OnFirstPreRender">
@@ -40486,9 +41938,44 @@
             当前控件
             </summary>
         </member>
+        <member name="M:FineUICore.RenderCheckFieldExtension.PreciseClick(System.Boolean)">
+            <summary>
+            精确点击复选框才能改变其选中状态
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.RenderCheckFieldExtension.RenderAsStaticField(System.Boolean)">
             <summary>
             渲染为静态图片，否则渲染为可编辑的复选框
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderCheckFieldExtension.DisplayType(FineUICore.CheckBoxDisplayType)">
+            <summary>
+            复选框的显示类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderCheckFieldExtension.SwitchTextVisible(System.Boolean)">
+            <summary>
+            是否显示开关类型复选框的文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderCheckFieldExtension.SwitchOnText(System.String)">
+            <summary>
+            开关类型复选框的选中文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderCheckFieldExtension.SwitchOffText(System.String)">
+            <summary>
+            开关类型复选框的未选中文本
             </summary>
             <param name="param"></param>
             <returns></returns>
@@ -40515,9 +42002,34 @@
             当前控件
             </summary>
         </member>
+        <member name="P:FineUICore.RenderCheckFieldTagHelper.PreciseClick">
+            <summary>
+            精确点击复选框才能改变其选中状态
+            </summary>
+        </member>
         <member name="P:FineUICore.RenderCheckFieldTagHelper.RenderAsStaticField">
             <summary>
             渲染为静态图片，否则渲染为可编辑的复选框
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckFieldTagHelper.DisplayType">
+            <summary>
+            复选框的显示类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckFieldTagHelper.SwitchTextVisible">
+            <summary>
+            是否显示开关类型复选框的文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckFieldTagHelper.SwitchOnText">
+            <summary>
+            开关类型复选框的选中文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderCheckFieldTagHelper.SwitchOffText">
+            <summary>
+            开关类型复选框的未选中文本
             </summary>
         </member>
         <member name="P:FineUICore.RenderCheckFieldTagHelper.RendererFunction">
@@ -40558,6 +42070,21 @@
         <member name="P:FineUICore.RenderField.ExpandToSelectRow">
             <summary>
             点击行扩展列的图标时选中行
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.RowGroupSummaryText">
+            <summary>
+            行分组的合计行文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.RowGroupSummaryType">
+            <summary>
+            行分组的合计行类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.RowGroupSummaryRendererFunction">
+            <summary>
+            自定义行分组的合计行渲染器函数（JavaScript函数）
             </summary>
         </member>
         <member name="P:FineUICore.RenderField.EnableColumnEdit">
@@ -40607,7 +42134,7 @@
         </member>
         <member name="P:FineUICore.RenderField.NullDisplayText">
             <summary>
-            处理数据库中null值，默认为空字符串
+            不支持此属性
             </summary>
         </member>
         <member name="P:FineUICore.RenderField.ClientHtmlEncode">
@@ -40618,6 +42145,36 @@
         <member name="P:FineUICore.RenderField.AutoSelectEditor">
             <summary>
             单元格编辑时自动选中编辑框内的文本（默认为false）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.SummaryText">
+            <summary>
+            合计行文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.SummaryType">
+            <summary>
+            合计行类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.SummaryRendererFunction">
+            <summary>
+            自定义合计行渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.ShowToolTip">
+            <summary>
+            是否显示单元格文字的提示文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.ToolTipType">
+            <summary>
+            单元格文字的提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderField.ToolTipPosition">
+            <summary>
+            单元格文字的提示文本位置
             </summary>
         </member>
         <member name="M:FineUICore.RenderField.OnFirstPreRender">
@@ -40656,6 +42213,48 @@
             <summary>
             当前控件
             </summary>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.RowGroupSummaryText(System.String)">
+            <summary>
+            行分组的合计行文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.RowGroupSummaryType(FineUICore.SummaryType)">
+            <summary>
+            行分组的合计行类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.RowGroupSummaryRendererFunction(System.String)">
+            <summary>
+            自定义行分组的合计行渲染器函数（JavaScript函数）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.ShowToolTip(System.Boolean)">
+            <summary>
+            是否显示单元格文字的提示文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.ToolTipType(FineUICore.ToolTipType)">
+            <summary>
+            单元格文字的提示文本类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.ToolTipPosition(FineUICore.ToolTipPosition)">
+            <summary>
+            单元格文字的提示文本位置
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:FineUICore.RenderFieldExtension.SorterFunction(System.String)">
             <summary>
@@ -40741,6 +42340,27 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.RenderFieldExtension.SummaryText(System.String)">
+            <summary>
+            合计行文本
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.SummaryType(FineUICore.SummaryType)">
+            <summary>
+            合计行类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.RenderFieldExtension.SummaryRendererFunction(System.String)">
+            <summary>
+            自定义合计行渲染器函数（JavaScript函数）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.RenderFieldExtension.RenderAsRowExpander(System.Boolean)">
             <summary>
             是否渲染为行扩展列
@@ -40798,6 +42418,36 @@
             当前控件
             </summary>
         </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.RowGroupSummaryText">
+            <summary>
+            行分组的合计行文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.RowGroupSummaryType">
+            <summary>
+            行分组的合计行类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.RowGroupSummaryRendererFunction">
+            <summary>
+            自定义行分组的合计行渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.ShowToolTip">
+            <summary>
+            是否显示单元格文字的提示文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.ToolTipType">
+            <summary>
+            单元格文字的提示文本类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.ToolTipPosition">
+            <summary>
+            提示文本的位置
+            </summary>
+        </member>
         <member name="P:FineUICore.RenderFieldTagHelper.SorterFunction">
             <summary>
             自定义客户端排序函数（JavaScript函数）
@@ -40849,7 +42499,7 @@
         </member>
         <member name="P:FineUICore.RenderFieldTagHelper.NullDisplayText">
             <summary>
-            处理数据库中null值，默认为空字符串
+            不支持此属性
             </summary>
         </member>
         <member name="P:FineUICore.RenderFieldTagHelper.ClientHtmlEncode">
@@ -40860,6 +42510,21 @@
         <member name="P:FineUICore.RenderFieldTagHelper.AutoSelectEditor">
             <summary>
             单元格编辑时自动选中编辑框内的文本（默认为false）
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.SummaryText">
+            <summary>
+            合计行文本
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.SummaryType">
+            <summary>
+            合计行类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.RenderFieldTagHelper.SummaryRendererFunction">
+            <summary>
+            自定义合计行渲染器函数（JavaScript函数）
             </summary>
         </member>
         <member name="P:FineUICore.RenderFieldTagHelper.RenderAsRowExpander">
@@ -41008,667 +42673,884 @@
             是否启用树表格行号
             </summary>
         </member>
-        <member name="T:FineUICore.GridExtension">
+        <member name="T:FineUICore.GridExtension`1">
             <summary>
             表格控件扩展
             </summary>
         </member>
-        <member name="M:FineUICore.GridExtension.#ctor(FineUICore.Grid)">
+        <member name="M:FineUICore.GridExtension`1.#ctor(FineUICore.Grid)">
             <summary>
             构造函数
             </summary>
             <param name="source"></param>
         </member>
-        <member name="P:FineUICore.GridExtension.Source">
+        <member name="P:FineUICore.GridExtension`1.Source">
             <summary>
             当前控件
             </summary>
         </member>
-        <member name="M:FineUICore.GridExtension.AutoScroll(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.AutoScroll(System.Boolean)">
             <summary>
             不支持此属性
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ScrollTopAfterPaging(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.DisplayType(FineUICore.GridDisplayType)">
+            <summary>
+            表格的显示类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.CardRendererFunction(System.String)">
+            <summary>
+            自定义卡片渲染器函数（JavaScript函数）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.FixedRowHeight(System.Boolean)">
+            <summary>
+            行高度固定
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowHeight(System.Nullable{System.Int32})">
+            <summary>
+            行高度
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowHeightCompact(System.Nullable{System.Int32})">
+            <summary>
+            紧凑模式下的行高度
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowHeightSmall(System.Nullable{System.Int32})">
+            <summary>
+            小字体模式下的行高度
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowHeightLarge(System.Nullable{System.Int32})">
+            <summary>
+            大字体模式下的行高度
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowHeightLargeSpace(System.Nullable{System.Int32})">
+            <summary>
+            大间距模式下的行高度
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.EnableRowGroup(System.Boolean)">
+            <summary>
+            启用行分组
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.DataRowGroupField(System.String)">
+            <summary>
+            行数据分组字段名
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowGroupCollapsible(System.Boolean)">
+            <summary>
+            是否显示行分组折叠图标
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowGroupExpandOnDblClick(System.Boolean)">
+            <summary>
+            双击展开行分组节点
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.ExpandAllRowGroups(System.Boolean)">
+            <summary>
+            展开所有的行分组
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowGroupRendererFunction(System.String)">
+            <summary>
+            自定义行分组渲染器函数（JavaScript函数）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowGroupSummary(System.Boolean)">
+            <summary>
+            启用行分组合计行
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.RowGroupSummaryRowCount(System.Int32)">
+            <summary>
+            行分组的合计行行数
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.CheckBoxSelectAutoHide(System.Boolean)">
+            <summary>
+            是否自动隐藏多选框（仅在启用EnableCheckBoxSelect属性时有效）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.EnableDelayRender(System.Boolean)">
+            <summary>
+            是否延迟渲染
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.EnableRowHoverState(System.Boolean)">
+            <summary>
+            是否启用表格行的鼠标悬停样式
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.ScrollTopAfterPaging(System.Boolean)">
             <summary>
             翻页后滚动到顶部（默认为false）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ScrollTopAfterSorting(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ScrollTopAfterSorting(System.Boolean)">
             <summary>
             排序后滚动到顶部（默认为false）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ClickOnContextMenu(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ClickOnContextMenu(System.Boolean)">
             <summary>
             右键点击时选中当前行（默认为true）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.PagingType(FineUICore.PagingType)">
+        <member name="M:FineUICore.GridExtension`1.PagingType(FineUICore.PagingType)">
             <summary>
             分页工具栏的显示类型
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.MaxPagingNumberButton(System.Int32)">
+        <member name="M:FineUICore.GridExtension`1.MaxPagingNumberButton(System.Int32)">
             <summary>
             最多显示数字分页按钮的个数（默认值：5）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ShowSelectedCell(System.Nullable{System.Boolean})">
+        <member name="M:FineUICore.GridExtension`1.ShowSelectedCell(System.Nullable{System.Boolean})">
             <summary>
             高亮显示选中的单元格
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableSimulateTree(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ShowSelectedRow(System.Boolean)">
+            <summary>
+            高亮显示选中的行
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.EnableSimulateTree(System.Boolean)">
             <summary>
             是否启用模拟树显示
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ArrowKeySelection(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ArrowKeySelection(System.Boolean)">
             <summary>
             箭头按键改变选中行和单元格
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.MouseWheelSelection(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.MouseWheelSelection(System.Boolean)">
             <summary>
             鼠标滚轮改变选中行
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.QuickPaging(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.QuickPaging(System.Boolean)">
             <summary>
             是否启用快速翻页功能（上下按键或者鼠标滚轮改变选中行）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.QuickPagingThenSelect(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.QuickPagingThenSelect(System.Boolean)">
             <summary>
             快速翻页后自动选中第一行或者最后一行
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AllowCellEditing(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.AllowCellEditing(System.Boolean)">
             <summary>
             允许单元格编辑
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ClicksToEdit(System.Int32)">
+        <member name="M:FineUICore.GridExtension`1.ClicksToEdit(System.Int32)">
             <summary>
             编辑单元格时点击单元格的次数（默认为2次）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AllowColumnLocking(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.AllowColumnLocking(System.Boolean)">
             <summary>
             允许列锁定
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AllowFilters(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.AllowFilters(System.Boolean)">
             <summary>
             允许过滤
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SeparateFilterMenu(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.SeparateFilterMenu(System.Boolean)">
             <summary>
             是否启用单独的过滤菜单
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.FilteredData(Newtonsoft.Json.Linq.JArray)">
+        <member name="M:FineUICore.GridExtension`1.InlineFilters(System.Boolean)">
+            <summary>
+            是否内联过滤
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.FilteredData(Newtonsoft.Json.Linq.JArray)">
             <summary>
             过滤数据
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AutoSelectEditor(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.AutoSelectEditor(System.Boolean)">
             <summary>
             单元格编辑时自动选中编辑框内的文本（默认为false）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AllowPaging(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.AllowPaging(System.Boolean)">
             <summary>
             允许服务器端分页
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.IsDatabasePaging(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.IsDatabasePaging(System.Boolean)">
             <summary>
             是否数据库分页
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ClearSelectionBeforePaging(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ClearSelectionBeforePaging(System.Boolean)">
             <summary>
             分页前清空选中项
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ClearSelectionBeforeSorting(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ClearSelectionBeforeSorting(System.Boolean)">
             <summary>
             排序前清空选中项
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.PageSize(System.Int32)">
+        <member name="M:FineUICore.GridExtension`1.PageSize(System.Int32)">
             <summary>
             每页显示项数
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.PageIndex(System.Int32)">
+        <member name="M:FineUICore.GridExtension`1.PageIndex(System.Int32)">
             <summary>
             当前显示页索引
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.RecordCount(System.Int32)">
+        <member name="M:FineUICore.GridExtension`1.RecordCount(System.Int32)">
             <summary>
             记录的总个数
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AllowSorting(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.SortFieldArray(System.String[])">
+            <summary>
+            排序字段列表（每个排序字段后面紧跟着排序方向，例如：["Name","ASC","EntranceYear","DESC"]）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.SortingMulti(System.Boolean)">
+            <summary>
+            支持多列排序
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.SortingToolTip(System.Boolean)">
+            <summary>
+            显示列头的排序提示信息
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.SortingCancel(System.Boolean)">
+            <summary>
+            允许点击列头来取消排序
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.AllowSorting(System.Boolean)">
             <summary>
             允许服务器端排序
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.IsDatabaseSorting(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.IsDatabaseSorting(System.Boolean)">
             <summary>
             是否数据库排序（仅在启用网址数据源时有效）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SortField(System.String)">
+        <member name="M:FineUICore.GridExtension`1.SortField(System.String)">
             <summary>
             排序字段
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SortDirection(System.String)">
+        <member name="M:FineUICore.GridExtension`1.SortDirection(System.String)">
             <summary>
             排序方向("ASC", "DESC")
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableSummary(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableSummary(System.Boolean)">
             <summary>
             启用合计行
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SummaryData(Newtonsoft.Json.Linq.JObject)">
+        <member name="M:FineUICore.GridExtension`1.SummaryData(Newtonsoft.Json.Linq.JObject)">
             <summary>
             合计行数据
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SummaryDataArray(Newtonsoft.Json.Linq.JArray)">
+        <member name="M:FineUICore.GridExtension`1.SummaryDataArray(Newtonsoft.Json.Linq.JArray)">
             <summary>
             合计行数据
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SummaryPosition(FineUICore.SummaryPosition)">
+        <member name="M:FineUICore.GridExtension`1.SummaryPosition(FineUICore.SummaryPosition)">
             <summary>
             合计行的位置
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataUrl(System.String)">
+        <member name="M:FineUICore.GridExtension`1.SummaryRowCount(System.Int32)">
+            <summary>
+            合计行的行数
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.DataUrl(System.String)">
             <summary>
             网址数据源
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataMethod(System.String)">
+        <member name="M:FineUICore.GridExtension`1.DataMethod(System.String)">
             <summary>
             请求网址数据源的方法（GET或者POST）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.RowRendererFunction(System.String)">
+        <member name="M:FineUICore.GridExtension`1.RowRendererFunction(System.String)">
             <summary>
             自定义行渲染器函数（JavaScript函数）（推荐使用RowDataBoundFunction属性）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.RowDataBoundFunction(System.String)">
+        <member name="M:FineUICore.GridExtension`1.RowDataBoundFunction(System.String)">
             <summary>
             自定义行数据绑定函数（JavaScript函数）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableBigData(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableBigData(System.Boolean)">
             <summary>
             启用大数据模式
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableBigDataRowTip(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableBigDataRowTip(System.Boolean)">
             <summary>
             启用大数据模式下的行数提示
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.MinColumnWidth(System.Nullable{System.Int32})">
+        <member name="M:FineUICore.GridExtension`1.MinColumnWidth(System.Nullable{System.Int32})">
             <summary>
             最小列宽度
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DisableUnselectableRows(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.DisableUnselectableRows(System.Boolean)">
             <summary>
             为不可选择的行应用禁用样式
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.TabVerticalNavigate(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.TabVerticalNavigate(System.Boolean)">
             <summary>
             Tab键纵向导航单元格（仅用于单元格编辑）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.TabEditableCell(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.TabEditableCell(System.Boolean)">
             <summary>
             Tab键只在可编辑单元格之间导航（仅用于单元格编辑）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnterSameAsTab(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnterSameAsTab(System.Boolean)">
             <summary>
             Enter键Tab键行为相同（仅用于单元格编辑）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnterNavigate(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnterNavigate(System.Boolean)">
             <summary>
             Enter键导航单元格（仅用于单元格编辑）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnterVerticalNavigate(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnterVerticalNavigate(System.Boolean)">
             <summary>
             Enter键纵向导航单元格（仅用于单元格编辑）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnterEditableCell(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnterEditableCell(System.Boolean)">
             <summary>
             Enter键只在可编辑单元格之间导航（仅用于单元格编辑）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.Fields(System.String[])">
+        <member name="M:FineUICore.GridExtension`1.Fields(System.String[])">
             <summary>
             数据字段
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataAttributeFields(System.String[])">
+        <member name="M:FineUICore.GridExtension`1.DataAttributeFields(System.String[])">
             <summary>
             行属性字段
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataIDField(System.String)">
+        <member name="M:FineUICore.GridExtension`1.DataIDField(System.String)">
             <summary>
             行数据标识字段名
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataTextField(System.String)">
+        <member name="M:FineUICore.GridExtension`1.DataTextField(System.String)">
             <summary>
             行数据文本字段名
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EmptyText(System.String)">
+        <member name="M:FineUICore.GridExtension`1.EmptyText(System.String)">
             <summary>
             数据为空时显示在内容区域的文本，可以是HTML标签
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.RowVerticalAlign(FineUICore.VerticalAlign)">
+        <member name="M:FineUICore.GridExtension`1.RowVerticalAlign(FineUICore.VerticalAlign)">
             <summary>
             行中文字的垂直排列位置（默认为Middle）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ExpandAllRowExpanders(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ExpandAllRowExpanders(System.Boolean)">
             <summary>
             展开所有的行扩展列
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableTextSelection(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableTextSelection(System.Boolean)">
             <summary>
             启用表格中的文字选择
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ShowGridHeader(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ShowGridHeader(System.Boolean)">
             <summary>
             显示表格表头
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableHeaderMenu(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableHeaderMenu(System.Boolean)">
             <summary>
             启用表头菜单
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableHeaderMenuSort(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableHeaderMenuSort(System.Boolean)">
             <summary>
             启用排序菜单项
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableHeaderMenuColumns(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableHeaderMenuColumns(System.Boolean)">
             <summary>
             启用隐藏列菜单项
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableColumnLines(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableColumnLines(System.Boolean)">
             <summary>
             启用表格列分隔线（默认为false）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableColumnResize(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableColumnResize(System.Boolean)">
             <summary>
             是否启用列宽度调整
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableColumnMove(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableColumnMove(System.Boolean)">
             <summary>
             是否启用列移动
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableSameGroupColumnMove(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableSameGroupColumnMove(System.Boolean)">
             <summary>
             是否启用同一分组内移动
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableRowLines(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableRowLines(System.Boolean)">
             <summary>
             启用表格行分隔线（默认为true）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableAlternateRowColor(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableAlternateRowColor(System.Boolean)">
             <summary>
             启用交替行显示不同的颜色
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.AutoExpandColumn(System.String)">
+        <member name="M:FineUICore.GridExtension`1.AutoExpandColumn(System.String)">
             <summary>
             自动扩展宽度以填充剩余空间的列（ColumnID）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ForceFit(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ForceFit(System.Boolean)">
             <summary>
             成比例改变表格各列的宽度，以防止出现水平滚动条（第一次加载和之后改变表格宽度时都有效）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.CheckBoxSelectWidth(System.Nullable{System.Int32})">
+        <member name="M:FineUICore.GridExtension`1.CheckBoxSelectDisplayType(FineUICore.CheckBoxDisplayType)">
+            <summary>
+            多选框列的显示类型
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.CheckBoxSelectWidth(System.Nullable{System.Int32})">
             <summary>
             多选框列的宽度
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.CheckBoxSelectHeaderText(System.String)">
+        <member name="M:FineUICore.GridExtension`1.CheckBoxSelectHeaderText(System.String)">
             <summary>
             多选框列的标题栏文字
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableCheckBoxSelect(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableCheckBoxSelect(System.Boolean)">
             <summary>
             启用多选框
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.CheckBoxSelectOnly(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.CheckBoxSelectOnly(System.Boolean)">
             <summary>
             只能通过多选框选中行（仅在启用EnableCheckBoxSelect属性时有效）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableMultiSelect(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableMultiSelect(System.Boolean)">
             <summary>
             启用多行选择
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.KeepCurrentSelection(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.KeepCurrentSelection(System.Boolean)">
             <summary>
             多选时保持当前已选中行
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.KeepPagedSelection(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.KeepPagedSelection(System.Boolean)">
             <summary>
             多选时保持分页中已选中行
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ShowPagingMessage(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ShowPagingMessage(System.Boolean)">
             <summary>
             显示分页工具条右侧的分页信息
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SelectedRowIndex(System.Int32)">
+        <member name="M:FineUICore.GridExtension`1.SelectedRowIndex(System.Int32)">
             <summary>
             选中行的索引（列表中的第一项）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SelectedRowIDArray(System.String[])">
+        <member name="M:FineUICore.GridExtension`1.SelectedRowIDArray(System.String[])">
             <summary>
             选中的行ID列表
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SelectedRowIndexArray(System.Int32[])">
+        <member name="M:FineUICore.GridExtension`1.SelectedRowIndexArray(System.Int32[])">
             <summary>
             选中的行ID列表
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.SelectedRowID(System.String)">
+        <member name="M:FineUICore.GridExtension`1.SelectedRowID(System.String)">
             <summary>
             选中的行ID
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataSource(System.Object)">
+        <member name="M:FineUICore.GridExtension`1.DataSource(System.Object)">
             <summary>
             数据源
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.PageItems(FineUICore.IControlBaseExtension[])">
+        <member name="M:FineUICore.GridExtension`1.PageItems(FineUICore.IControlBaseExtension[])">
             <summary>
             分页工具条项集合
             </summary>
             <param name="extensions"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.PageItems(FineUICore.ControlBase[])">
+        <member name="M:FineUICore.GridExtension`1.PageItems(FineUICore.ControlBase[])">
             <summary>
             分页工具条项集合
             </summary>
             <param name="items"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.Columns(FineUICore.IGridColumnExtension[])">
+        <member name="M:FineUICore.GridExtension`1.Columns(FineUICore.IGridColumnExtension[])">
             <summary>
             列集合
             </summary>
             <param name="extensions"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.Columns(FineUICore.GridColumn[])">
+        <member name="M:FineUICore.GridExtension`1.Columns(FineUICore.GridColumn[])">
             <summary>
             列集合
             </summary>
             <param name="items"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableTree(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableTree(System.Boolean)">
             <summary>
             启用树表格
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.ExpandAllTreeNodes(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.ExpandAllTreeNodes(System.Boolean)">
             <summary>
             默认展开全部树节点（仅用于树表格）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.DataParentIDField(System.String)">
+        <member name="M:FineUICore.GridExtension`1.DataParentIDField(System.String)">
             <summary>
             行数据父节点标识字段名
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.TreeColumn(System.String)">
+        <member name="M:FineUICore.GridExtension`1.TreeColumn(System.String)">
             <summary>
             显示树状层级的列（ColumnID）
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.TreeExpandOnDblClick(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.TreeExpandOnDblClick(System.Boolean)">
             <summary>
             双击展开树节点
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.EnableTreeIcons(System.Boolean)">
+        <member name="M:FineUICore.GridExtension`1.EnableTreeIcons(System.Boolean)">
             <summary>
             启用树节点图标
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnSort(System.String)">
+        <member name="M:FineUICore.GridExtension`1.TreeCheckBox(System.Boolean)">
+            <summary>
+            是否启用节点复选框（仅适用于树表格）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.TreeOnlyLeafCheck(System.Boolean)">
+            <summary>
+            是否只显示叶子节点复选框（仅适用于树表格）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.TreeOnlyFolderCheck(System.Boolean)">
+            <summary>
+            是否只显示目录节点复选框（仅适用于树表格）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.TreeCascadeCheck(System.Boolean)">
+            <summary>
+            是否启用级联选择（仅适用于树表格）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.GridExtension`1.OnSort(System.String)">
             <summary>
             排序事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnSort(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnSort(System.String,System.String)">
             <summary>
             排序事件
             </summary>
@@ -41676,7 +43558,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnSort(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnSort(System.String,FineUICore.Parameter[])">
             <summary>
             排序事件
             </summary>
@@ -41684,7 +43566,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnSort(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnSort(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             排序事件
             </summary>
@@ -41693,21 +43575,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnSort(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnSort(System.Action{FineUICore.Event})">
             <summary>
             排序事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnPageIndexChanged(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnPageIndexChanged(System.String)">
             <summary>
             分页改变事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnPageIndexChanged(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnPageIndexChanged(System.String,System.String)">
             <summary>
             分页改变事件
             </summary>
@@ -41715,7 +43597,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnPageIndexChanged(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnPageIndexChanged(System.String,FineUICore.Parameter[])">
             <summary>
             分页改变事件
             </summary>
@@ -41723,7 +43605,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnPageIndexChanged(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnPageIndexChanged(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             分页改变事件
             </summary>
@@ -41732,21 +43614,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnPageIndexChanged(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnPageIndexChanged(System.Action{FineUICore.Event})">
             <summary>
             分页改变事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowClick(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowClick(System.String)">
             <summary>
             行单击事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowClick(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowClick(System.String,System.String)">
             <summary>
             行单击事件
             </summary>
@@ -41754,7 +43636,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowClick(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowClick(System.String,FineUICore.Parameter[])">
             <summary>
             行单击事件
             </summary>
@@ -41762,7 +43644,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowClick(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowClick(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             行单击事件
             </summary>
@@ -41771,21 +43653,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowClick(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnRowClick(System.Action{FineUICore.Event})">
             <summary>
             行单击事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDoubleClick(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowDoubleClick(System.String)">
             <summary>
             行双击事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDoubleClick(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowDoubleClick(System.String,System.String)">
             <summary>
             行双击事件
             </summary>
@@ -41793,7 +43675,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDoubleClick(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowDoubleClick(System.String,FineUICore.Parameter[])">
             <summary>
             行双击事件
             </summary>
@@ -41801,7 +43683,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDoubleClick(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowDoubleClick(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             行双击事件
             </summary>
@@ -41810,21 +43692,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDoubleClick(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnRowDoubleClick(System.Action{FineUICore.Event})">
             <summary>
             行双击事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowSelect(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowSelect(System.String)">
             <summary>
             行选中事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowSelect(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowSelect(System.String,System.String)">
             <summary>
             行选中事件
             </summary>
@@ -41832,7 +43714,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowSelect(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowSelect(System.String,FineUICore.Parameter[])">
             <summary>
             行选中事件
             </summary>
@@ -41840,7 +43722,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowSelect(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowSelect(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             行选中事件
             </summary>
@@ -41849,21 +43731,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowSelect(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnRowSelect(System.Action{FineUICore.Event})">
             <summary>
             行选中事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDeselect(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowDeselect(System.String)">
             <summary>
             行取消选中事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDeselect(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowDeselect(System.String,System.String)">
             <summary>
             行取消选中事件
             </summary>
@@ -41871,7 +43753,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDeselect(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowDeselect(System.String,FineUICore.Parameter[])">
             <summary>
             行取消选中事件
             </summary>
@@ -41879,7 +43761,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDeselect(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowDeselect(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             行取消选中事件
             </summary>
@@ -41888,21 +43770,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowDeselect(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnRowDeselect(System.Action{FineUICore.Event})">
             <summary>
             行取消选中事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnFilterChanged(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnFilterChanged(System.String)">
             <summary>
             过滤条件改变事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnFilterChanged(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnFilterChanged(System.String,System.String)">
             <summary>
             过滤条件改变事件
             </summary>
@@ -41910,7 +43792,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnFilterChanged(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnFilterChanged(System.String,FineUICore.Parameter[])">
             <summary>
             过滤条件改变事件
             </summary>
@@ -41918,7 +43800,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnFilterChanged(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnFilterChanged(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             过滤条件改变事件
             </summary>
@@ -41927,21 +43809,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnFilterChanged(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnFilterChanged(System.Action{FineUICore.Event})">
             <summary>
             过滤条件改变事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowLazyLoad(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowLazyLoad(System.String)">
             <summary>
             行延迟加载事件（仅适用于树表格）事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowLazyLoad(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnRowLazyLoad(System.String,System.String)">
             <summary>
             行延迟加载事件（仅适用于树表格）事件
             </summary>
@@ -41949,7 +43831,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowLazyLoad(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowLazyLoad(System.String,FineUICore.Parameter[])">
             <summary>
             行延迟加载事件（仅适用于树表格）事件
             </summary>
@@ -41957,7 +43839,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowLazyLoad(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnRowLazyLoad(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             行延迟加载事件（仅适用于树表格）事件
             </summary>
@@ -41966,21 +43848,21 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnRowLazyLoad(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnRowLazyLoad(System.Action{FineUICore.Event})">
             <summary>
             行延迟加载事件（仅适用于树表格）事件
             </summary>
             <param name="eventAction">事件代理函数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnAfterEdit(System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnAfterEdit(System.String)">
             <summary>
             单元格编辑结束事件
             </summary>
             <param name="action">动作地址</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnAfterEdit(System.String,System.String)">
+        <member name="M:FineUICore.GridExtension`1.OnAfterEdit(System.String,System.String)">
             <summary>
             单元格编辑结束事件
             </summary>
@@ -41988,7 +43870,7 @@
             <param name="fields">请求参数（字段或容器名称列表，以逗号分隔）</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnAfterEdit(System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnAfterEdit(System.String,FineUICore.Parameter[])">
             <summary>
             单元格编辑结束事件
             </summary>
@@ -41996,7 +43878,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnAfterEdit(System.String,System.String,FineUICore.Parameter[])">
+        <member name="M:FineUICore.GridExtension`1.OnAfterEdit(System.String,System.String,FineUICore.Parameter[])">
             <summary>
             单元格编辑结束事件
             </summary>
@@ -42005,7 +43887,7 @@
             <param name="parameters">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:FineUICore.GridExtension.OnAfterEdit(System.Action{FineUICore.Event})">
+        <member name="M:FineUICore.GridExtension`1.OnAfterEdit(System.Action{FineUICore.Event})">
             <summary>
             单元格编辑结束事件
             </summary>
@@ -42048,6 +43930,16 @@
         <member name="P:FineUICore.GridRow.Values">
             <summary>
             此行的状态信息
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridRow.TreeNodeCheckBox">
+            <summary>
+            此行是否显示复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridRow.TreeNodeChecked">
+            <summary>
+            此行是否选中（仅适用于树表格）
             </summary>
         </member>
         <member name="P:FineUICore.GridRow.TreeNodeExpanded">
@@ -42110,6 +44002,101 @@
             不支持此属性
             </summary>
         </member>
+        <member name="P:FineUICore.GridTagHelper.DisplayType">
+            <summary>
+            表格的显示类型
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.CardRendererFunction">
+            <summary>
+            自定义卡片渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.FixedRowHeight">
+            <summary>
+            行高度固定
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowHeight">
+            <summary>
+            行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowHeightCompact">
+            <summary>
+            紧凑模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowHeightSmall">
+            <summary>
+            小字体模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowHeightLarge">
+            <summary>
+            大字体模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowHeightLargeSpace">
+            <summary>
+            大间距模式下的行高度
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.EnableRowGroup">
+            <summary>
+            启用行分组
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.DataRowGroupField">
+            <summary>
+            行数据分组字段名
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowGroupCollapsible">
+            <summary>
+            是否显示行分组折叠图标
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowGroupExpandOnDblClick">
+            <summary>
+            双击展开行分组节点
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.ExpandAllRowGroups">
+            <summary>
+            展开所有的行分组
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowGroupRendererFunction">
+            <summary>
+            自定义行分组渲染器函数（JavaScript函数）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowGroupSummary">
+            <summary>
+            启用行分组合计行
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.RowGroupSummaryRowCount">
+            <summary>
+            行分组的合计行行数
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.CheckBoxSelectAutoHide">
+            <summary>
+            是否自动隐藏多选框（仅在启用EnableCheckBoxSelect属性时有效）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.EnableDelayRender">
+            <summary>
+            是否延迟渲染
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.EnableRowHoverState">
+            <summary>
+            是否启用表格行的鼠标悬停样式
+            </summary>
+        </member>
         <member name="P:FineUICore.GridTagHelper.ScrollTopAfterPaging">
             <summary>
             翻页后滚动到顶部（默认为false）
@@ -42138,6 +44125,11 @@
         <member name="P:FineUICore.GridTagHelper.ShowSelectedCell">
             <summary>
             高亮显示选中的单元格
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.ShowSelectedRow">
+            <summary>
+            高亮显示选中的行
             </summary>
         </member>
         <member name="P:FineUICore.GridTagHelper.EnableSimulateTree">
@@ -42190,6 +44182,11 @@
             是否启用单独的过滤菜单
             </summary>
         </member>
+        <member name="P:FineUICore.GridTagHelper.InlineFilters">
+            <summary>
+            是否内联过滤
+            </summary>
+        </member>
         <member name="P:FineUICore.GridTagHelper.FilteredData">
             <summary>
             过滤数据
@@ -42235,6 +44232,26 @@
             记录的总个数
             </summary>
         </member>
+        <member name="P:FineUICore.GridTagHelper.SortingMulti">
+            <summary>
+            支持多列排序
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.SortFieldArray">
+            <summary>
+            排序字段列表（每个排序字段后面紧跟着排序方向，例如：["Name","ASC","EntranceYear","DESC"]）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.SortingToolTip">
+            <summary>
+            显示列头的排序提示信息
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.SortingCancel">
+            <summary>
+            允许点击列头来取消排序
+            </summary>
+        </member>
         <member name="P:FineUICore.GridTagHelper.AllowSorting">
             <summary>
             允许服务器端排序
@@ -42273,6 +44290,11 @@
         <member name="P:FineUICore.GridTagHelper.SummaryPosition">
             <summary>
             合计行的位置
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.SummaryRowCount">
+            <summary>
+            合计行的行数
             </summary>
         </member>
         <member name="P:FineUICore.GridTagHelper.DataUrl">
@@ -42445,6 +44467,11 @@
             成比例改变表格各列的宽度，以防止出现水平滚动条（第一次加载和之后改变表格宽度时都有效）
             </summary>
         </member>
+        <member name="P:FineUICore.GridTagHelper.CheckBoxSelectDisplayType">
+            <summary>
+            多选框列的显示类型
+            </summary>
+        </member>
         <member name="P:FineUICore.GridTagHelper.CheckBoxSelectWidth">
             <summary>
             多选框列的宽度
@@ -42548,6 +44575,26 @@
         <member name="P:FineUICore.GridTagHelper.EnableTreeIcons">
             <summary>
             启用树节点图标
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.TreeCheckBox">
+            <summary>
+            是否启用节点复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.TreeOnlyLeafCheck">
+            <summary>
+            是否只显示叶子节点复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.TreeOnlyFolderCheck">
+            <summary>
+            是否只显示目录节点复选框（仅适用于树表格）
+            </summary>
+        </member>
+        <member name="P:FineUICore.GridTagHelper.TreeCascadeCheck">
+            <summary>
+            是否启用级联选择（仅适用于树表格）
             </summary>
         </member>
         <member name="P:FineUICore.GridTagHelper.OnSort">
@@ -43255,6 +45302,11 @@
             选项卡显示的位置
             </summary>
         </member>
+        <member name="P:FineUICore.TabStrip.TabTitleVertical">
+            <summary>
+            标题栏文字垂直显示（仅当 TabPosition 等于 Left 或者 Right 时有效）
+            </summary>
+        </member>
         <member name="P:FineUICore.TabStrip.TabAlign">
             <summary>
             选项卡的对齐方式
@@ -43278,6 +45330,11 @@
         <member name="P:FineUICore.TabStrip.TabPlain">
             <summary>
             是否隐藏选项卡标题栏的背景色
+            </summary>
+        </member>
+        <member name="P:FineUICore.TabStrip.TabSeparated">
+            <summary>
+            是否将激活的选项卡标题和正文隔开
             </summary>
         </member>
         <member name="P:FineUICore.TabStrip.ActiveTabIndex">
@@ -43555,6 +45612,20 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:FineUICore.TabStripExtension.TabSeparated(System.Boolean)">
+            <summary>
+            是否将激活的选项卡标题和正文隔开
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FineUICore.TabStripExtension.TabTitleVertical(System.Boolean)">
+            <summary>
+            标题栏文字垂直显示（仅当 TabPosition 等于 Left 或者 Right 时有效）
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:FineUICore.TabStripExtension.InkBarPosition(FineUICore.InkBarPosition)">
             <summary>
             标题栏墨水条的位置
@@ -43731,6 +45802,16 @@
         <member name="P:FineUICore.TabStripTagHelper.AutoScroll">
             <summary>
             不支持此属性
+            </summary>
+        </member>
+        <member name="P:FineUICore.TabStripTagHelper.TabSeparated">
+            <summary>
+            是否将激活的选项卡标题和正文隔开
+            </summary>
+        </member>
+        <member name="P:FineUICore.TabStripTagHelper.TabTitleVertical">
+            <summary>
+            标题栏文字垂直显示（仅当 TabPosition 等于 Left 或者 Right 时有效）
             </summary>
         </member>
         <member name="P:FineUICore.TabStripTagHelper.InkBarPosition">

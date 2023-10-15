@@ -18,17 +18,8 @@
                 <Toolbars>
                     <f:Toolbar ID="Toolbar1" Position="Top">
                         <Items>
-                            <f:Button ID="btnNew" Icon="Add" Text="新增" Enabled="@Model.PowerCoreUserNew">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
-                            <f:Button ID="btnDeletedSelected" Icon="Delete" Text="删除" Enabled="@Model.PowerCoreUserDelete">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
-                            <f:ToolbarSeparator></f:ToolbarSeparator>
+                            <f:Button ID="btnNew" Icon="Add" Text="新增" Enabled="@Model.PowerCoreUserNew" OnClientClick="onNewClick();" />
+                            <f:Button ID="btnDeletedSelected" Icon="Delete" Text="删除" Enabled="@Model.PowerCoreUserDelete" OnClientClick="onDeleteSelectedClick();" />
                             <f:Button ID="btnChangeEnableUsers" Icon="GroupEdit" Text="状态" Enabled="@Model.PowerCoreUserEdit">
                                 <Menu>
                                     <f:MenuButton ID="btnEnableUsers" Text="启用">
@@ -36,7 +27,8 @@
                                             <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
                                         </Listeners>
                                     </f:MenuButton>
-                                    <f:MenuButton ID="btnDisableUsers" Text="禁用">
+
+                                    <f:MenuButton ID="btnDisableUsers" Text="禁用" >
                                         <Listeners>
                                             <f:Listener Event="click" Handler="onDisableUsersClick"></f:Listener>
                                         </Listeners>
@@ -52,9 +44,9 @@
                                 </Items>
                             </f:RadioButtonList>
                             <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                              ShowTrigger1="false" OnTrigger2Click="@Url.Handler("UserList_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
-                                              OnTrigger1Click="@Url.Handler("UserList_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1">
-                            </f:TwinTriggerBox>
+                                ShowTrigger1="false" OnTrigger2Click="@Url.Handler("UserList_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
+                                OnTrigger1Click="@Url.Handler("UserList_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1"
+                                />
 
                         </Items>
                     </f:Toolbar>
@@ -91,9 +83,9 @@
     </f:Panel>
 
     <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
-              EnableMaximize="true" EnableIFrame="true" Width="900" Height="600"
-              OnClose="@Url.Handler("UserList_DoPostBack")" OnCloseFields="Panel1">
-    </f:Window>
+        EnableMaximize="true" EnableIFrame="true" Width="900" Height="600"
+        OnClose="@Url.Handler("UserList_DoPostBack")" OnCloseFields="Panel1"
+        />
 }
 
 

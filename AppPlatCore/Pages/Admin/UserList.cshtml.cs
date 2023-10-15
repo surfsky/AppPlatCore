@@ -25,11 +25,6 @@ namespace App.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            await UserList_LoadDataAsync();
-        }
-
-        private async Task UserList_LoadDataAsync()
-        {
             PowerCoreUserNew = CheckPower("CoreUserNew");
             PowerCoreUserEdit = CheckPower("CoreUserEdit");
             PowerCoreUserDelete = CheckPower("CoreUserDelete");
@@ -42,11 +37,10 @@ namespace App.Pages.Admin
                 PageIndex = 0,
                 PageSize = ConfigHelper.PageSize
             };
-
             PagingInfo = pagingInfo;
-
             Users = await UserList_GetDataAsync(pagingInfo, String.Empty, "all");
         }
+
 
         private async Task<IEnumerable<User>> UserList_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage, string rblEnableStatus)
         {
@@ -54,26 +48,18 @@ namespace App.Pages.Admin
 
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(u => u.Name.Contains(searchText) || u.ChineseName.Contains(searchText) || u.EnglishName.Contains(searchText));
-            }
 
             if (GetIdentityName() != "admin")
-            {
                 q = q.Where(u => u.Name != "admin");
-            }
 
             // 过滤启用状态
             if (rblEnableStatus != "all")
-            {
                 q = q.Where(u => u.Enabled == (rblEnableStatus == "enabled" ? true : false));
-            }
 
 
-            // 获取总记录数（在添加条件之后，排序和分页之前）
+            // 分页和排序
             pagingInfo.RecordCount = await q.CountAsync();
-
-            // 排列和数据库分页
             q = SortAndPage<User>(q, pagingInfo);
             return await q.ToListAsync();
         }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
+using App.Components;
 using App.Models;
 
 using FineUICore;
@@ -41,14 +43,9 @@ namespace App.Pages.Admin
                 .ThenInclude(tu => tu.Title)
                 .Where(m => m.ID == id).AsNoTracking().FirstOrDefaultAsync();
             if (CurrentUser == null)
-            {
                 return Content("无效参数！");
-            }
-
             if (CurrentUser.Name == "admin" && GetIdentityName() != "admin")
-            {
                 return Content("你无权编辑超级管理员！");
-            }
 
             // 用户所属角色
             SelectedRoleNames = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.Role.Name).ToArray());
@@ -69,50 +66,87 @@ namespace App.Pages.Admin
             return Page();
         }
 
-        public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle)
+        /// <summary>头像图片上传处理</summary>
+        public IActionResult OnPostFilePhoto_FileSelected(IFormFile filePhoto, IFormCollection values)
+        {
+            if (filePhoto != null)
+            {
+                string fileName = filePhoto.FileName;
+                if (!UI.ValidateFileType(fileName))
+                {
+                    UIHelper.FileUpload("filePhoto").Reset();
+                    UI.ShowNotify("无效的文件类型！");
+                }
+                else
+                {
+                    fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
+                    fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
+                    var folder = "~/upload/";
+                    var folder2 = FineUICore.PageContext.MapWebPath(folder);
+                    App.Utils.IO.PrepareDirectory(folder2);
+                    using (var stream = new FileStream(folder2 + fileName, FileMode.Create))
+                    {
+                        filePhoto.CopyTo(stream);
+                    }
+
+                    UIHelper.Image("imgPhoto").ImageUrl(folder + fileName);
+                    UIHelper.FileUpload("filePhoto").Reset();
+                }
+            }
+
+            return UIHelper.Result();
+        }
+
+
+
+        //public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle)
+        public IActionResult OnPostBtnSubmit_Click(IFormCollection values)
         {
             // 不对 Name 和 Password 进行模型验证
             ModelState.Remove("Name");
             ModelState.Remove("Password");
 
+            string hfSelectedDept  = values["hfSelectedDept"].ToString();
+            string hfSelectedRole  = values["hfSelectedRole"].ToString();
+            string hfSelectedTitle = values["hfSelectedTitle"].ToString();
+            string imgPhotoUrl     = values["imgPhotoUrl"].ToString();
+
+
             if (ModelState.IsValid)
             {
                 // 更新部分字段（先从数据库检索用户，再覆盖用户输入值，注意没有更新Name，Password，CreateTime等字段）
-                var _user = await DB.Users
+                var item = DB.Users
                     .Include(u => u.Dept)
                     .Include(u => u.RoleUsers)
                     .Include(u => u.TitleUsers)
-                    .Where(m => m.ID == CurrentUser.ID).FirstOrDefaultAsync();
+                    .Where(m => m.ID == CurrentUser.ID).FirstOrDefault();
 
 
-                _user.ChineseName = CurrentUser.ChineseName;
-                _user.Gender = CurrentUser.Gender;
-                _user.Enabled = CurrentUser.Enabled;
-                _user.Email = CurrentUser.Email;
-                _user.CompanyEmail = CurrentUser.CompanyEmail;
-                _user.OfficePhone = CurrentUser.OfficePhone;
-                _user.OfficePhoneExt = CurrentUser.OfficePhoneExt;
-                _user.HomePhone = CurrentUser.HomePhone;
-                _user.CellPhone = CurrentUser.CellPhone;
-                _user.Remark = CurrentUser.Remark;
+                item.ChineseName = CurrentUser.ChineseName;
+                item.Gender = CurrentUser.Gender;
+                item.Enabled = CurrentUser.Enabled;
+                item.Email = CurrentUser.Email;
+                item.CompanyEmail = CurrentUser.CompanyEmail;
+                item.OfficePhone = CurrentUser.OfficePhone;
+                item.OfficePhoneExt = CurrentUser.OfficePhoneExt;
+                item.HomePhone = CurrentUser.HomePhone;
+                item.CellPhone = CurrentUser.CellPhone;
+                item.Remark = CurrentUser.Remark;
+                item.Photo = imgPhotoUrl;
 
 
                 int[] roleIDs = StringUtil.GetIntArrayFromString(hfSelectedRole);
-                ReplaceEntities2<RoleUser>(_user.RoleUsers, roleIDs, _user.ID);
+                ReplaceEntities2<RoleUser>(item.RoleUsers, roleIDs, item.ID);
 
                 int[] titleIDs = StringUtil.GetIntArrayFromString(hfSelectedTitle);
-                ReplaceEntities2<TitleUser>(_user.TitleUsers, titleIDs, _user.ID);
+                ReplaceEntities2<TitleUser>(item.TitleUsers, titleIDs, item.ID);
 
                 if (String.IsNullOrEmpty(hfSelectedDept))
-                {
-                    _user.DeptID = null;
-                }
+                    item.DeptID = null;
                 else
-                {
-                    _user.DeptID = Convert.ToInt32(hfSelectedDept);
-                }
+                    item.DeptID = Convert.ToInt32(hfSelectedDept);
 
-                await DB.SaveChangesAsync();
+                DB.SaveChangesAsync();
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();

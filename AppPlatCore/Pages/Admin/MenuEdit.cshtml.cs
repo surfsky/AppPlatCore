@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.Models;
 
 using FineUICore;
@@ -29,12 +30,9 @@ namespace App.Pages.Admin
                 .Where(m => m.ID == id).FirstOrDefaultAsync();
 
             if (Menu == null)
-            {
                 return Content("无效参数！");
-            }
 
             MenuEdit_LoadData(id);
-
             return Page();
         }
 
@@ -42,24 +40,19 @@ namespace App.Pages.Admin
         private void MenuEdit_LoadData(int id)
         {
             IconItems = MenuEdit_GetIconItems().ToArray();
-
-            Menus = ResolveDDL<Models.Menu>(MenuHelper.Menus, id).ToArray();
-
+            Menus = UI.ResolveDDL<Models.Menu>(MenuHelper.Menus, id).ToArray();
         }
 
         public List<RadioItem> MenuEdit_GetIconItems()
         {
             List<RadioItem> items = new List<RadioItem>();
-
             string[] icons = new string[] { "tag_yellow", "tag_red", "tag_purple", "tag_pink", "tag_orange", "tag_green", "tag_blue" };
             foreach (string icon in icons)
             {
                 string value = String.Format("~/res/icon/{0}.png", icon);
                 string text = String.Format("<img style=\"vertical-align:bottom;\" src=\"{0}\" />&nbsp;{1}", Url.Content(value), icon);
-
                 items.Add(new RadioItem(text, value));
             }
-
             return items;
         }
 
@@ -69,14 +62,10 @@ namespace App.Pages.Admin
             {
                 // 下拉列表的顶级节点值为-1
                 if (Menu.ParentID == -1)
-                {
                     Menu.ParentID = null;
-                }
 
                 if (String.IsNullOrEmpty(ViewPowerName))
-                {
                     Menu.ViewPowerID = null;
-                }
                 else
                 {
                     var viewPower = await DB.Powers
@@ -84,9 +73,7 @@ namespace App.Pages.Admin
                         .FirstOrDefaultAsync();
 
                     if (viewPower != null)
-                    {
                         Menu.ViewPowerID = viewPower.ID;
-                    }
                     else
                     {
                         Alert.Show("浏览权限 " + ViewPowerName + " 不存在！");

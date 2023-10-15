@@ -1,0 +1,5 @@
+\\Mac\Home\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-newest\App.BLL\obj\Debug\netstandard2.1\App.BLL.csproj.AssemblyReference.cache
+\\Mac\Home\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-newest\App.BLL\obj\Debug\netstandard2.1\App.BLL.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Home\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-newest\App.BLL\obj\Debug\netstandard2.1\App.BLL.AssemblyInfoInputs.cache
+\\Mac\Home\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-newest\App.BLL\obj\Debug\netstandard2.1\App.BLL.AssemblyInfo.cs
+\\Mac\Home\Downloads\Dev\180701-AppPlat\AppPlatCore\AppPlatCore-newest\App.BLL\obj\Debug\netstandard2.1\App.BLL.csproj.CoreCompileInputs.cache

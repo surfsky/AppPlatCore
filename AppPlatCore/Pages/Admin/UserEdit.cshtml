@@ -7,29 +7,22 @@
 @section body {
 
     <f:Panel ID="Panel1" ShowBorder="false" ShowHeader="false" AutoScroll="true" IsViewPort="true" Layout="VBox">
-        <Toolbars>
-            <f:Toolbar ID="Toolbar1">
-                <Items>
-                    <f:Button ID="btnClose" Icon="SystemClose" Text="关闭">
-                        <Listeners>
-                            <f:Listener Event="click" Handler="F.activeWindow.hide();"></f:Listener>
-                        </Listeners>
-                    </f:Button>
-                    <f:ToolbarSeparator></f:ToolbarSeparator>
-                    <f:Button ID="btnSaveClose" ValidateForms="SimpleForm1" Icon="SystemSaveClose" OnClick="@Url.Handler("UserEdit_btnSaveClose_Click")" OnClickFields="SimpleForm1" Text="保存后关闭"></f:Button>
-                </Items>
-            </f:Toolbar>
-        </Toolbars>
         <Items>
             <f:Form ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10">
+                <Toolbars>
+                    <f:Toolbar ID="Toolbar1">
+                        <Items>
+                            <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" OnClientClick="F.activeWindow.hide();" />
+                            <f:Button ID="btnSaveClose" ValidateForms="SimpleForm1" Icon="SystemSaveClose" OnClick="@Url.Handler("UserEdit_btnSaveClose_Click")" OnClickFields="SimpleForm1" Text="保存后关闭"></f:Button>
+                        </Items>
+                    </f:Toolbar>
+                </Toolbars>
                 <Rows>
                     <f:FormRow>
                         <Items>
-                            <f:HiddenField For="CurrentUser.ID"></f:HiddenField>
-                            <f:TextBox For="CurrentUser.Name">
-                            </f:TextBox>
-                            <f:TextBox For="CurrentUser.ChineseName">
-                            </f:TextBox>
+                            <f:HiddenField For="CurrentUser.ID" />
+                            <f:TextBox For="CurrentUser.Name" />
+                            <f:TextBox For="CurrentUser.ChineseName" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
@@ -38,78 +31,73 @@
                                 <f:RadioItem Text="男" Value="男" />
                                 <f:RadioItem Text="女" Value="女" />
                             </f:RadioButtonList>
-                            <f:CheckBox For="CurrentUser.Enabled">
-                            </f:CheckBox>
+                            <f:CheckBox For="CurrentUser.Enabled" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
-                            <f:TextBox For="CurrentUser.Password" TextMode="Password">
-                            </f:TextBox>
-                            <f:Label></f:Label>
+                            <f:TextBox For="CurrentUser.Password" TextMode="Password" />
+                            <f:Label />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
-                            <f:TextBox For="CurrentUser.Email" RegexPattern="EMAIL">
-                            </f:TextBox>
-                            <f:TextBox For="CurrentUser.CompanyEmail" RegexPattern="EMAIL">
-                            </f:TextBox>
+                            <f:TextBox For="CurrentUser.Email" RegexPattern="EMAIL" />
+                            <f:TextBox For="CurrentUser.CompanyEmail" RegexPattern="EMAIL" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
-                            <f:TextBox For="CurrentUser.OfficePhone">
-                            </f:TextBox>
-                            <f:TextBox For="CurrentUser.OfficePhoneExt">
-                            </f:TextBox>
+                            <f:TextBox For="CurrentUser.OfficePhone" />
+                            <f:TextBox For="CurrentUser.OfficePhoneExt" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
-                            <f:TextBox For="CurrentUser.HomePhone">
-                            </f:TextBox>
-                            <f:TextBox For="CurrentUser.CellPhone">
-                            </f:TextBox>
+                            <f:TextBox For="CurrentUser.HomePhone" />
+                            <f:TextBox For="CurrentUser.CellPhone" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
                             <f:TwinTriggerBox ID="tbSelectedRole" EnableEdit="false" Text="@Model.SelectedRoleNames"
-                                              Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="所属角色"
-                                              OnClientTrigger1Click="onSelectedRoleTrigger1Click();"
-                                              OnClientTrigger2Click="onSelectedRoleTrigger2Click();">
-                            </f:TwinTriggerBox>
-                            <f:HiddenField ID="hfSelectedRole" Text="@Model.SelectedRoleIDs">
-                            </f:HiddenField>
+                                Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="所属角色"
+                                OnClientTrigger1Click="onSelectedRoleTrigger1Click();"
+                                OnClientTrigger2Click="onSelectedRoleTrigger2Click();"
+                                />
+                            <f:HiddenField ID="hfSelectedRole" Text="@Model.SelectedRoleIDs" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
                             <f:TwinTriggerBox ID="tbSelectedDept" EnableEdit="false" Text="@Model.SelectedDeptName"
-                                              Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="所属部门"
-                                              OnClientTrigger1Click="onSelectedDeptTrigger1Click();"
-                                              OnClientTrigger2Click="onSelectedDeptTrigger2Click();">
-                            </f:TwinTriggerBox>
-                            <f:HiddenField ID="hfSelectedDept" Text="@Model.SelectedDeptID">
-                            </f:HiddenField>
+                                Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="所属部门"
+                                OnClientTrigger1Click="onSelectedDeptTrigger1Click();"
+                                OnClientTrigger2Click="onSelectedDeptTrigger2Click();"
+                                />
+                            <f:HiddenField ID="hfSelectedDept" Text="@Model.SelectedDeptID" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
                             <f:TwinTriggerBox ID="tbSelectedTitle" EnableEdit="false" Text="@Model.SelectedTitleNames"
-                                              Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="拥有职称"
-                                              OnClientTrigger1Click="onSelectedTitleTrigger1Click();"
-                                              OnClientTrigger2Click="onSelectedTitleTrigger2Click();">
-                            </f:TwinTriggerBox>
-                            <f:HiddenField ID="hfSelectedTitle" Text="@Model.SelectedTitleIDs">
-                            </f:HiddenField>
+                                Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="拥有职称"
+                                OnClientTrigger1Click="onSelectedTitleTrigger1Click();"
+                                OnClientTrigger2Click="onSelectedTitleTrigger2Click();" 
+                                />
+                            <f:HiddenField ID="hfSelectedTitle" Text="@Model.SelectedTitleIDs" />
                         </Items>
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
-                            <f:TextArea For="CurrentUser.Remark">
-                            </f:TextArea>
+                            <f:TextArea For="CurrentUser.Remark" />
+                            <f:Label />
+                        </Items>
+                    </f:FormRow>
+                    <f:FormRow>
+                        <Items>
+                            <f:Image ID="imgPhoto" CssClass="photo" ImageUrl="~/res/images/blank.png" ShowEmptyLabel="true" Label="头像" />
+                            <f:FileUpload ID="filePhoto" ShowRedStar="false" ShowEmptyLabel="true" ButtonText="上传个人头像" ButtonOnly="true" Required="false" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto" />
                         </Items>
                     </f:FormRow>
                 </Rows>
@@ -118,9 +106,9 @@
     </f:Panel>
 
     <f:Window ID="Window1" Title="编辑" Hidden="true" EnableIFrame="true"
-              EnableMaximize="true" EnableResize="true" Target="Top" IsModal="true" Width="550"
-              Height="350">
-    </f:Window>
+        EnableMaximize="true" EnableResize="true" Target="Top" IsModal="true" Width="550"
+        Height="350"
+        />
 
 }
 

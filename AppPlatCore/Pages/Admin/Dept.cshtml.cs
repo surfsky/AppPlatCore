@@ -22,16 +22,10 @@ namespace App.Pages.Admin
 
         public void OnGet()
         {
-            Depts = Dept_LoadData();
-        }
-
-        private IEnumerable<Dept> Dept_LoadData()
-        {
             PowerCoreDeptNew = CheckPower("CoreDeptNew");
             PowerCoreDeptEdit = CheckPower("CoreDeptEdit");
             PowerCoreDeptDelete = CheckPower("CoreDeptDelete");
-
-            return DeptHelper.Depts;
+            Depts = DeptHelper.Depts;
         }
 
         public async Task<IActionResult> OnPostDept_DoPostBackAsync(string[] Grid1_fields, string actionType, int? deletedRowID)
@@ -62,11 +56,11 @@ namespace App.Pages.Admin
                 var dept = await DB.Depts.Where(d => d.ID == deletedRowID.Value).FirstOrDefaultAsync();
                 DB.Depts.Remove(dept);
                 await DB.SaveChangesAsync();
+                DeptHelper.Reload();
             }
 
 
-            DeptHelper.Reload();
-            UIHelper.Grid("Grid1").DataSource(DeptHelper.Depts, Grid1_fields);
+            UIHelper.Grid("Grid1").DataSource(DeptHelper.Depts, Grid1_fields);  // F.ui.Grid1.loadData([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]);F.ui.Grid1.clearSelection();
 
             return UIHelper.Result();
         }

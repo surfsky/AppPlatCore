@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,24 +13,23 @@ namespace App.Models
         public static void Initialize(AppPlatContext context)
         {
             context.Database.EnsureCreated();
+            //context.Database.Migrate(); // 若实体类变更，会自动修改数据库
 
             // 已经初始化
             if (context.Users.Any())
-            {
                 return;
+            else
+            {
+                GetConfigs().ForEach(c => context.Configs.Add(c));
+                GetDepts().ForEach(d => context.Depts.Add(d));
+                GetUsers().ForEach(u => context.Users.Add(u));
+                GetRoles().ForEach(r => context.Roles.Add(r));
+                GetPowers().ForEach(p => context.Powers.Add(p));
+                GetTitles().ForEach(t => context.Titles.Add(t));
+                context.SaveChanges();
+                GetMenus(context).ForEach(m => context.Menus.Add(m));  // 添加菜单时需要指定ViewPower，所以上面需要先保存到数据库
+                context.SaveChanges();
             }
-
-            GetConfigs().ForEach(c => context.Configs.Add(c));
-            GetDepts().ForEach(d => context.Depts.Add(d));
-            GetUsers().ForEach(u => context.Users.Add(u));
-            GetRoles().ForEach(r => context.Roles.Add(r));
-            GetPowers().ForEach(p => context.Powers.Add(p));
-            GetTitles().ForEach(t => context.Titles.Add(t));
-            context.SaveChanges();
-
-            // 添加菜单时需要指定ViewPower，所以上面需要先保存到数据库
-            GetMenus(context).ForEach(m => context.Menus.Add(m));
-            context.SaveChanges();
         }
 
         private static List<Menu> GetMenus(AppPlatContext context)
