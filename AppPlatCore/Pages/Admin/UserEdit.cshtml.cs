@@ -99,8 +99,8 @@ namespace App.Pages.Admin
 
 
 
-        //public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle)
-        public IActionResult OnPostBtnSubmit_Click(IFormCollection values)
+        //public async Task<IActionResult> OnPostbtnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle, IFormCollection values)
+        public async Task<IActionResult> OnPostbtnSaveClose_ClickAsync(IFormCollection values)
         {
             // 不对 Name 和 Password 进行模型验证
             ModelState.Remove("Name");
@@ -146,7 +146,7 @@ namespace App.Pages.Admin
                 else
                     item.DeptID = Convert.ToInt32(hfSelectedDept);
 
-                DB.SaveChangesAsync();
+                DB.SaveChanges();
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();

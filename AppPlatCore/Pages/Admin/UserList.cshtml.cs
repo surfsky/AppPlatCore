@@ -45,18 +45,13 @@ namespace App.Pages.Admin
         private async Task<IEnumerable<User>> UserList_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage, string rblEnableStatus)
         {
             IQueryable<User> q = DB.Users;
-
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
                 q = q.Where(u => u.Name.Contains(searchText) || u.ChineseName.Contains(searchText) || u.EnglishName.Contains(searchText));
-
             if (GetIdentityName() != "admin")
                 q = q.Where(u => u.Name != "admin");
-
-            // 过滤启用状态
             if (rblEnableStatus != "all")
                 q = q.Where(u => u.Enabled == (rblEnableStatus == "enabled" ? true : false));
-
 
             // 分页和排序
             pagingInfo.RecordCount = await q.CountAsync();
@@ -64,7 +59,8 @@ namespace App.Pages.Admin
             return await q.ToListAsync();
         }
 
-        public async Task<IActionResult> OnPostUserList_DoPostBackAsync(string[] Grid1_fields, int Grid1_pageIndex, string Grid1_sortField, string Grid1_sortDirection,
+        public async Task<IActionResult> OnPostUserList_DoPostBackAsync(
+            string[] Grid1_fields, int Grid1_pageIndex, string Grid1_sortField, string Grid1_sortDirection,
             string ttbSearchMessage, string rblEnableStatus, int ddlGridPageSize, string actionType, int[] deletedRowIDs)
         {
             List<int> ids = new List<int>();
@@ -133,17 +129,12 @@ namespace App.Pages.Admin
                 PageSize = ddlGridPageSize
             };
 
+            // 获取分页数据
             var users = await UserList_GetDataAsync(pagingInfo, ttbSearchMessage, rblEnableStatus);
-            // 1. 设置总项数
             grid1UI.RecordCount(pagingInfo.RecordCount);
-            // 2. 设置每页显示项数
             if (actionType == "changeGridPageSize")
-            {
                 grid1UI.PageSize(ddlGridPageSize);
-            }
-            // 3.设置分页数据
             grid1UI.DataSource(users, Grid1_fields);
-
             return UIHelper.Result();
         }
     }

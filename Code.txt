@@ -141,3 +141,15 @@
                                             <f:Listener Event="click" Handler="onDisableUsersClick"></f:Listener>
                                         </Listeners>
                                     </f:MenuButton>
+
+
+                                                                <f:Tool IconFont="_Refresh" CssClass="tabtool" ToolTip="刷新" ID="toolRefresh" OnClientClick="onToolRefreshClick();">
+                                <Listeners>
+                                    <f:Listener Event="click" Handler="onToolRefreshClick"></f:Listener>
+                                </Listeners>
+                            </f:Tool>
+                            <f:Tool IconFont="_Maximize" CssClass="tabtool" ToolTip="最大化" ID="toolMaximize">
+                                <Listeners>
+                                    <f:Listener Event="click" Handler="onToolMaximizeClick"></f:Listener>
+                                </Listeners>
+                            </f:Tool>

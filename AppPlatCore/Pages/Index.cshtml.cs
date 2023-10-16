@@ -24,14 +24,6 @@ namespace App.Pages
 
         public async Task OnGetAsync()
         {
-            await LoadDataAsync();
-        }
-
-
-        #region LoadDataAsync
-
-        private async Task LoadDataAsync()
-        {
             // 用户菜单
             List<Models.Menu> menus = ResolveUserMenuList();
             if (menus.Count == 0)
@@ -48,6 +40,7 @@ namespace App.Pages
             ConfigTitle = ConfigHelper.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();
         }
+
 
         // 帮助菜单
         private FineUICore.Menu GetSystemHelpMenu()
@@ -73,7 +66,6 @@ namespace App.Pages
             return menu;
         }
 
-        #endregion
 
         #region GetTreeNodes
 

@@ -13,7 +13,7 @@
                     <f:Toolbar ID="Toolbar1">
                         <Items>
                             <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" OnClientClick="F.activeWindow.hide();" />
-                            <f:Button ID="btnSaveClose" ValidateForms="SimpleForm1" Icon="SystemSaveClose" OnClick="@Url.Handler("UserEdit_btnSaveClose_Click")" OnClickFields="SimpleForm1" Text="保存后关闭"></f:Button>
+                            <f:Button ID="btnSaveClose" ValidateForms="SimpleForm1" Icon="SystemSaveClose" OnClick="@Url.Handler("btnSaveClose_Click")" OnClickFields="SimpleForm1" Text="保存后关闭" />
                         </Items>
                     </f:Toolbar>
                 </Toolbars>
@@ -96,7 +96,7 @@
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
-                            <f:Image ID="imgPhoto" CssClass="photo" ImageUrl="~/res/images/blank.png" ShowEmptyLabel="true" Label="头像" />
+                            <f:Image For="CurrentUser.Photo" ID="imgPhoto" CssClass="photo" ImageUrl="~/res/images/blank.png" ShowEmptyLabel="true" Label="头像"  />
                             <f:FileUpload ID="filePhoto" ShowRedStar="false" ShowEmptyLabel="true" ButtonText="上传个人头像" ButtonOnly="true" Required="false" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto" />
                         </Items>
                     </f:FormRow>

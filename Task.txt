@@ -1,16 +1,27 @@
 --------------------------------------------------------
+BUG
+--------------------------------------------------------
+    <f:Image For=?? 没有For属性
+
+
+--------------------------------------------------------
 Task
 --------------------------------------------------------
 给用户加头像，
-    实现图片上传
-    实现缩略图
+    /实现图片上传
+    保存用户数据
+    实现缩略图（用 ImageMiddleware ）
 
-数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
-/更新到 net 6.0
-sqlserver 20028 
-生成AI识别框架
-实现AI识别分类页面
-权限用枚举改造
+
+业务
+    生成AI识别框架
+    实现AI识别分类页面
+
+
+数据库
+    数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+    sqlserver 2012 
+    权限用枚举改造
 
 
 修改页面
@@ -18,8 +29,8 @@ sqlserver 20028
         /Logo跳转链接
         /修改顶部栏
         /修改底部栏版本号链接：<a target="_blank" href="http://fineui.com/mvc">
-        去除圆弧样式
-        增加全部关闭按钮
+        /优化首页：关闭所有窗口；
+        /缩减button listener代码
     /user, userview（改为用textbox更美观）, usernew
     /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
     将修改密码、安全退出放到一起去
@@ -62,7 +73,8 @@ sqlserver 20028
 --------------------------------------------------------
 Done
 --------------------------------------------------------
-/更新到最新 fineui
+/更新到 net 6.0
+/更新到最新 fineui core raver page
 /bug
     //部门页面修改后页面空白
     //角色新增后页面也报错，分页出问题

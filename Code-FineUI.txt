@@ -78,6 +78,49 @@ post
 
 
 
+Url
+    Url.Handler("btnSaveClose_Click")
+    http://localhost:52221/Admin/UserEdit?handler=btnSaveClose_Click
+
+
+PageModel
+    Result
+        success
+            ContentResult
+            FileStreamResult
+            FileContentResult
+            PageResult
+            PartialViewResult
+            PhysicalFileResult
+        fail
+            BadRequestObjectResult
+            BadRequestResult
+            ForbidResult
+            ChallengeResult
+            VirtualFileResult
+            NotFoundResult
+            NotFoundObjectResult
+        route
+            RedirectResult
+            RedirectToActionResult
+            RedirectToPageResult
+            RedirectToRouteResult
+            LocalRedirectResult
+        auth
+            SignInResult
+            SignOutResult
+            UnauthorizedResult
+        other
+            StatusCodeResult
+            ObjectResult
+            ViewComponentResult
+
+
+
+
+
+
+
 #--------------------------------------------
 # ???
 #--------------------------------------------
