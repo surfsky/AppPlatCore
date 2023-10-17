@@ -28,7 +28,7 @@
 
 @section body {
     <f:Window ID="Window1" IsModal="true" Hidden="false" EnableClose="false" EnableMaximize="false" WindowPosition="GoldenSection" Icon="Key"
-              Title="@Model.Window1Title" Layout="HBox" BoxConfigAlign="Stretch" BoxConfigPosition="Start" Width="500">
+              Title="@Model.WinTitle" Layout="HBox" BoxConfigAlign="Stretch" BoxConfigPosition="Start" Width="500">
         <Items>
             <f:Image ID="imageLogin" ImageUrl="~/res/images/login/login_2.png" CssClass="login-image"/>
             <f:SimpleForm ID="SimpleForm1" LabelAlign="Top" BoxFlex="1" BodyPadding="30 20" ShowBorder="false" ShowHeader="false">
@@ -41,7 +41,7 @@
         <Toolbars>
             <f:Toolbar Position="Bottom">
                 <Items>
-                    <f:ToolbarText Text="管理员账号: admin/admin"/>
+                    <f:ToolbarText Text=""/>
                     <f:ToolbarFill/>
                     <f:Button ID="btnSubmit" Icon="LockOpen" Type="Submit" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnSubmit_Click")" Text="登陆"></f:Button>
                 </Items>

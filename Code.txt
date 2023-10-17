@@ -153,3 +153,41 @@
                                     <f:Listener Event="click" Handler="onToolMaximizeClick"></f:Listener>
                                 </Listeners>
                             </f:Tool>
+
+
+                            ID="b
+                            
+                                                <f:Button CssClass="userpicaction" Text="@Model.UserName" IconFont="UserCircle"  IconAlign="Top" ShowMenuIcon="true" EnableDefaultState="false" EnableDefaultCorner="false">
+tnUserName" 
+
+
+public void OnGetAsync()
+        {
+            // 注销退出
+            var action = Asp.GetQueryString("action");
+            if (action == "SignOut")
+            {
+                HttpContext.SignOut();
+                HttpContext.Session.Clear();
+                Response.Redirect("/Login");
+                //await OnPostBtnSignOut_ClickAsync();
+                return;
+            }
+
+
+            // 用户菜单
+            List<Models.Menu> menus = ResolveUserMenuList();
+            if (menus.Count == 0)
+            {
+                UI.ShowNotify("系统管理员尚未给你配置菜单！");
+                return;
+            }
+            MenuTreeNodes = GetTreeNodes(menus).ToArray();
+
+            //
+            UserName = GetIdentityName();
+            OnlineUserCount = (await GetOnlineCountAsync()).ToString();
+            ProductVersion = Common.GetProductVersion();
+            ConfigTitle = ConfigHelper.Title;   //"AppPlat";
+            SystemHelpMenu = GetSystemHelpMenu();
+        }

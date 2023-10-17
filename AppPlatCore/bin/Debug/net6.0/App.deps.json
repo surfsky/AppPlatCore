@@ -32,7 +32,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "App/6.0.1": {
+      "App/6.0.2": {
         "dependencies": {
           "App.BLL": "1.0.0",
           "App.Utils": "3.0.2",
@@ -5968,7 +5968,7 @@
     }
   },
   "libraries": {
-    "App/6.0.1": {
+    "App/6.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

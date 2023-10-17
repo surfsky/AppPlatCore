@@ -16,7 +16,7 @@ namespace App.Pages
 {
     public class LoginModel : BaseModel
     {
-        public string Window1Title { get; set; }
+        public string WinTitle { get; set; }
         public void OnGet()
         {
             LoadData();
@@ -24,7 +24,7 @@ namespace App.Pages
 
         private void LoadData()
         {
-            Window1Title = String.Format("AppPlat v{0}", Common.GetProductVersion());
+            WinTitle = String.Format("{0} v{1}", ConfigHelper.Title, Common.GetProductVersion());
         }
         public async Task<IActionResult> OnPostBtnSubmit_ClickAsync(string tbxUserName, string tbxPassword)
         {

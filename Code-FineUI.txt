@@ -188,8 +188,17 @@ ViewBag
 Button
     触发及事件
         <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnLogin_Click")" />
+        <f:Button ID="btnSubmit" ValidateForms="SimpleForm1" Text="提交" OnClickDelegate="@(e =>
+            {
+                e.Action = Url.Handler("btnSubmit_Click");
+                e.Fields = "SimpleForm1";
+                e.AjaxLoadingType = AjaxLoadingType.Mask;
+                e.ShowAjaxLoadingMaskText = true;
+                e.AjaxLoadingMaskText = "正在导入数据，请稍后...";
+            })" 
+            />
+     js事件
         <f:Button ID="btnHomePage" EnableDefaultCorner="false" EnableDefaultState="false" IconFont="_Home" IconAlign="Top" ToolTip="官网首页" CssClass="icononlyaction" OnClientClick="window.open('http://pages.fineui.com/','_blank');"></f:Button>
-    js事件
         <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" OnClientClick="F.activeWindow.hide();" />
         <f:Button ID="btnDeleteSelected" Icon="Delete" Text="移除" Enabled="@Model.PowerCoreTitleUserDelete" OnClientClick="onDeleteSelectedClick" />
         <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew" OnClientClick="onNewClick()" />
@@ -218,7 +227,7 @@ TwinTriggerBox
 
 
 
-window
+Window
     <f:Window Width="350" WindowPosition="GoldenSection" EnableClose="false" IsModal="false" Title="登录表单" ID="Window1">
         <Items>
             <f:SimpleForm ShowHeader="false" BodyPadding="10" ShowBorder="false" ID="SimpleForm1">
@@ -245,6 +254,64 @@ window
     </f:Window>
 
 
+FileUpload
+    单文件
+        <f:FileUpload ID="filePhoto" ShowRedStar="false" ShowEmptyLabel="true" ButtonText="上传个人头像" ButtonOnly="true" Required="false" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto" />
+        public IActionResult OnPostFilePhoto_FileSelected(IFormFile filePhoto, IFormCollection values)
+        {
+            if (filePhoto != null)
+            {
+                string fileName = filePhoto.FileName;
+                if (!ValidateFileType(fileName))
+                {
+                    UIHelper.FileUpload("filePhoto").Reset();
+                    ShowNotify("无效的文件类型！");
+                }
+                else
+                {
+                    fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
+                    fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
+                    using (var stream = new FileStream(FineUICore.PageContext.MapWebPath("~/upload/" + fileName), FileMode.Create))
+                    {
+                        filePhoto.CopyTo(stream);
+                    }
+
+                    UIHelper.Image("imgPhoto").ImageUrl("~/upload/" + fileName);
+                    UIHelper.FileUpload("filePhoto").Reset();
+                }
+            }
+
+            return UIHelper.Result();
+        }
+    多文件
+        <f:FileUpload ID="filePhotos" EmptyText="请选择多张照片" Label="个人照片" Required="true" ButtonIcon="Add" ShowRedStar="true" Multiple="true" />
+        <f:Button ID="btnSubmit" ValidateForms="SimpleForm1" Text="提交" OnClick="@Url.Handler("btnSubmit_Click")" OnClickFields="SimpleForm1" />
+        public IActionResult OnPostBtnSubmit_Click(List<IFormFile> filePhotos, IFormCollection values)
+        {
+            var msg = new List<string>();
+            foreach (IFormFile filePhoto in filePhotos)
+            {
+                string fileName = filePhoto.FileName;
+                if (ValidateFileType(fileName))
+                {
+                    fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
+                    fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
+                    using (var stream = new FileStream(FineUICore.PageContext.MapWebPath("~/upload/" + fileName), FileMode.Create))
+                    {
+                        filePhoto.CopyTo(stream);
+                    }
+
+                    msg.Add("<div>路径：" + filePhoto.FileName + "</div>" +
+                        "<div>照片：<br /><img src=\"" + Url.Content("~/upload/" + fileName) + "\" /></div>");
+                }
+            }
+
+            UIHelper.Label("labResult").Text("<ol><li>" + string.Join("</li><li>", msg) + "</li></ol>", encodeText: false);
+            UIHelper.SimpleForm("SimpleForm1").Reset();
+            return UIHelper.Result();
+        }
+
+
 提交表单
     public IActionResult OnPostBtnLogin_Click(IFormCollection values)
     {
@@ -256,7 +323,7 @@ window
     }
 
 
-# 动态创建
+动态创建
     <f:Form BodyPadding="10" ID="Form2" IsFluid="true" CssClass="blockpanel" EnableCollapse="false" Title="表单" LabelWidth="120" LabelAlign="Top" >
         <Rows>
             <f:FormRow Items="@ViewBag.DynamicItems" />
@@ -307,7 +374,7 @@ window
     }
 
 
-# 回传表单
+回传表单
     指明了回传的控件为Form2，服务器端就可以获取该控件的子属性
         <f:Button ID="Button1"  ValidateForms="Form2" ValidateTarget="Top" Text="验证表单并提交" 
             OnClick="@Url.Handler("Button1_Click")" OnClickFields="Form2"
@@ -329,7 +396,7 @@ window
             return UIHelper.Result();
         }
 
-# 数据绑定
+数据绑定
     <f:DropDownList ID="DropDownList1" DataSource="@ViewBag.DropDownList1DataSource" />
     private void LoadData()
     {
@@ -395,6 +462,8 @@ Grid.Paging
         }
     }
 
+Image
+    <f:Image For="CurrentUser.Photo" ID="imgPhoto" CssClass="photo" ImageUrl="~/res/images/blank.png" ShowEmptyLabel="true" Label="头像"  />
 
 
 

@@ -1,7 +1,29 @@
 --------------------------------------------------------
+Codes
+--------------------------------------------------------
+Url.Handler("SignOutClick")
+    http://localhost:52221/Test/Buttons?handler=SignOutClick
+
+Url.Action("SignOut")
+    http://localhost:52221/Test/Buttons?action=SignOut
+
+
+IconUrl="@Url.Content("~/res/images/my_face_80.jpg")"
+
+        public IActionResult OnGet()
+        {
+            ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
+            var action = Asp.GetQueryString("action");
+            if (action == "SignOut")
+                return RedirectToPage("/Login");
+            return UIHelper.Result();
+        }
+
+--------------------------------------------------------
 BUG
 --------------------------------------------------------
     <f:Image For=?? 没有For属性
+
 
 
 --------------------------------------------------------
@@ -9,8 +31,9 @@ Task
 --------------------------------------------------------
 给用户加头像，
     /实现图片上传
-    保存用户数据
+    /保存用户数据
     实现缩略图（用 ImageMiddleware ）
+    点击图片上传
 
 
 业务
@@ -18,29 +41,19 @@ Task
     实现AI识别分类页面
 
 
+
 数据库
     数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
     sqlserver 2012 
     权限用枚举改造
-
-
-修改页面
-    /index
-        /Logo跳转链接
-        /修改顶部栏
-        /修改底部栏版本号链接：<a target="_blank" href="http://fineui.com/mvc">
-        /优化首页：关闭所有窗口；
-        /缩减button listener代码
-    /user, userview（改为用textbox更美观）, usernew
-    /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
-    将修改密码、安全退出放到一起去
+    Menu.Target
     实现配置页面
         用SiteConfig替代Config， 其实 Config 过度设计了，直接用类字段就行了
         /Title
         SiteLoginImage
         SiteBeiAn
-    实现用户图标
-    修正在线用户网页
+
+修改页面
     login: 用一个背景图、登录框、底部声明
 
 
@@ -73,6 +86,9 @@ Task
 --------------------------------------------------------
 Done
 --------------------------------------------------------
+/集成Responsive page
+/集成signalR
+/集成blazor
 /更新到 net 6.0
 /更新到最新 fineui core raver page
 /bug
@@ -84,3 +100,15 @@ Done
 /cshtml 页面修改后可直接运行，添加nuget包：Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
 /修正菜单重复bug: 调试时重入会出现
 /修正 SqlServer 数据库访问异常，启用Rownum
+修改页面
+    /index
+        /Logo跳转链接
+        /修改顶部栏
+        /修改底部栏版本号链接：<a target="_blank" href="http://fineui.com/mvc">
+        /优化首页：关闭所有窗口；
+        /缩减button listener代码
+    /user, userview（改为用textbox更美观）, usernew
+    /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
+    /将修改密码、安全退出放到一起去
+    /实现用户图标
+    /修正在线用户网页

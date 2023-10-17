@@ -1,5 +1,6 @@
 ﻿using App.Components;
 using App.Models;
+using App.Web;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -35,10 +36,21 @@ namespace App.Pages
 
             //
             UserName = GetIdentityName();
-            OnlineUserCount = (await GetOnlineCountAsync()).ToString();
+            OnlineUserCount =  (await GetOnlineCountAsync()).ToString();
             ProductVersion = Common.GetProductVersion();
             ConfigTitle = ConfigHelper.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();
+
+            // 注销退出
+            var action = Asp.GetQueryString("action");
+            if (action == "SignOut")
+            {
+                await HttpContext.SignOutAsync();
+                HttpContext.Session.Clear();
+                Response.Redirect("/Login");
+                //await OnPostBtnSignOut_ClickAsync();
+                return;
+            }
         }
 
 

@@ -7,8 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "AppPlatCore\App.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5CB61B00-6080-485E-824E-D2E6BDB2D5C1}"
 	ProjectSection(SolutionItems) = preProject
-		Code.txt = Code.txt
 		Code-FineUI.txt = Code-FineUI.txt
+		Code.txt = Code.txt
 		README.MD = README.MD
 		Task.txt = Task.txt
 	EndProjectSection

@@ -21,14 +21,14 @@ namespace App.Pages.Admin
         [BindProperty]
         public User CurrentUser { get; set; }
 
+        // 部门、角色、职务
+        public string SelectedDeptName { get; set; }
+        public string SelectedDeptID { get; set; }
         public string SelectedRoleNames { get; set; }
         public string SelectedRoleIDs { get; set; }
-
         public string SelectedTitleNames { get; set; }
         public string SelectedTitleIDs { get; set; }
 
-        public string SelectedDeptName { get; set; }
-        public string SelectedDeptID { get; set; }
 
 
 
@@ -100,15 +100,15 @@ namespace App.Pages.Admin
 
 
         //public async Task<IActionResult> OnPostbtnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle, IFormCollection values)
-        public async Task<IActionResult> OnPostbtnSaveClose_ClickAsync(IFormCollection values)
+        public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle, IFormCollection values)
         {
-            // 不对 Name 和 Password 进行模型验证
+            // 不对 Name 和 Password 进行模型验证???
             ModelState.Remove("Name");
             ModelState.Remove("Password");
 
-            string hfSelectedDept  = values["hfSelectedDept"].ToString();
-            string hfSelectedRole  = values["hfSelectedRole"].ToString();
-            string hfSelectedTitle = values["hfSelectedTitle"].ToString();
+            //string hfSelectedDept  = values["hfSelectedDept"].ToString();
+            //string hfSelectedRole  = values["hfSelectedRole"].ToString();
+            //string hfSelectedTitle = values["hfSelectedTitle"].ToString();
             string imgPhotoUrl     = values["imgPhotoUrl"].ToString();
 
 
@@ -146,7 +146,7 @@ namespace App.Pages.Admin
                 else
                     item.DeptID = Convert.ToInt32(hfSelectedDept);
 
-                DB.SaveChanges();
+                await DB.SaveChangesAsync();
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();

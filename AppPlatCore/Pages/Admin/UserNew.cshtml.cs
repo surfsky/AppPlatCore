@@ -38,20 +38,15 @@ namespace App.Pages.Admin
                 CurrentUser.Password = PasswordUtil.CreateDbPassword(CurrentUser.Password.Trim());
                 CurrentUser.CreateTime = DateTime.Now;
 
-                // 添加所有部门
                 if (!String.IsNullOrEmpty(hfSelectedDept))
                 {
                     CurrentUser.DeptID = Convert.ToInt32(hfSelectedDept);
                 }
-
-                // 添加所有角色
                 if (!String.IsNullOrEmpty(hfSelectedRole))
                 {
                     int[] roleIDs = StringUtil.GetIntArrayFromString(hfSelectedRole);
                     AddEntities2<RoleUser>(roleIDs, CurrentUser.ID);
                 }
-
-                // 添加所有职称
                 if (!String.IsNullOrEmpty(hfSelectedTitle))
                 {
                     int[] titleIDs = StringUtil.GetIntArrayFromString(hfSelectedTitle);

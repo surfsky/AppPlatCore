@@ -118,8 +118,8 @@ namespace App
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();              // 启用 RazorPage 解析引擎
-                endpoints.MapHub<ChatHub>("/ChatHub");  // 启用 ChatHub，路径为 /Chat
-                endpoints.MapBlazorHub();                 // 启用 Blazor
+                endpoints.MapHub<ChatHub>("/ChatHub");  // 启用 ChatHub
+                endpoints.MapBlazorHub();               // 启用 Blazor
                 //endpoints.MapFallbackToPage("/Blazor");  // 
             });
         }
