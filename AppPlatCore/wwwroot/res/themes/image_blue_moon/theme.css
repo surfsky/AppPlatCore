@@ -495,3 +495,42 @@
 .f-grid-show-selected-cell .f-grid-cell-selected .f-icon {
 	color: #00599F;
 }
+
+
+
+/*
+2023-10 surfsky 美化主工作区标签栏
+*/
+/*标签栏*/
+div#mainTabStrip {
+    background-color: transparent;
+}
+
+/*标签栏*/
+.f-panel-header.f-widget-header.f-noselect.f-tabstrip-header {
+    background-color: transparent;
+}
+
+
+/*标签文本悬浮*/
+.f-panel-header a:hover {
+    color: white;
+}
+
+/*非选中标签*/
+.f-panel-header .f-noselect {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/*选中的标签文本*/
+a.f-panel-header.f-noselect.f-tab-header.f-tab-header-closable.f-panel-header-icon.f-state-active {
+    color: white;
+}
+
+/*选中标签底部的指示横线*/
+/*
+.f-panel-header .f-tabstrip-header-inkbar {
+    background-color: white!important;
+}
+*/

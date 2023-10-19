@@ -1,0 +1,60 @@
+--------------------------------------------------------
+Codes
+--------------------------------------------------------
+Url.Handler("SignOutClick")
+    http://localhost:52221/Test/Buttons?handler=SignOutClick
+
+Url.Action("SignOut")
+    http://localhost:52221/Test/Buttons?action=SignOut
+
+
+IconUrl="@Url.Content("~/res/images/my_face_80.jpg")"
+
+        public IActionResult OnGet()
+        {
+            ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
+            var action = Asp.GetQueryString("action");
+            if (action == "SignOut")
+                return RedirectToPage("/Login");
+            return UIHelper.Result();
+        }
+
+
+--------------------------------------------------------
+EF
+--------------------------------------------------------
+实体类变更迁移
+    https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+    services.AddDbContext<AppPlatContext>(options => {
+        options.UseSqlite(sqlite, builder => builder.MigrationsAssembly("App"));
+    });
+    dotnet ef migrations add InitialCreate
+    dotnet ef migrations add UseEntityBase
+    dotnet ef database update
+    dotnet ef migrations remove
+
+
+
+
+
+AppPlat
+Cupertino
+
+    [{
+    "Text": "万年历",
+    "Icon": "Calendar",
+    "ID": "wannianli",
+    "URL": "~/Admin/HelpWanNianLi"
+},
+{
+    "Text": "科学计算器",
+    "Icon": "Calculator",
+    "ID": "jisuanqi",
+    "URL": "~/Admin/HelpJiSuanQi"
+},
+{
+    "Text": "系统帮助",
+    "Icon": "Help",
+    "ID": "help",
+    "URL": "~/Admin/Help"
+}]

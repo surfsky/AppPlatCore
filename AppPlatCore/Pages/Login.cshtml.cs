@@ -24,7 +24,7 @@ namespace App.Pages
 
         private void LoadData()
         {
-            WinTitle = String.Format("{0} v{1}", ConfigHelper.Title, Common.GetProductVersion());
+            WinTitle = String.Format("{0} v{1}", SiteConfig.Instance.Title, Common.GetProductVersion());
         }
         public async Task<IActionResult> OnPostBtnSubmit_ClickAsync(string tbxUserName, string tbxPassword)
         {

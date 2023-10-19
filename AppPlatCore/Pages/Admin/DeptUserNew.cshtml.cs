@@ -43,7 +43,7 @@ namespace App.Pages.Admin
                 SortField = "Name",
                 SortDirection = "DESC",
                 PageIndex = 0,
-                PageSize = ConfigHelper.PageSize
+                PageSize = SiteConfig.Instance.PageSize
             };
             PagingInfo = pagingInfo;
 

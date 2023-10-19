@@ -38,7 +38,7 @@ namespace App.Pages
             UserName = GetIdentityName();
             OnlineUserCount =  (await GetOnlineCountAsync()).ToString();
             ProductVersion = Common.GetProductVersion();
-            ConfigTitle = ConfigHelper.Title;   //"AppPlat";
+            ConfigTitle = SiteConfig.Instance.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();
 
             // 注销退出
@@ -58,7 +58,7 @@ namespace App.Pages
         private FineUICore.Menu GetSystemHelpMenu()
         {
             FineUICore.Menu menu = new FineUICore.Menu();
-            JArray ja = JArray.Parse(ConfigHelper.HelpList);
+            JArray ja = JArray.Parse(SiteConfig.Instance.HelpList);
             foreach (JObject jo in ja)
             {
                 string text = jo.Value<string>("Text");

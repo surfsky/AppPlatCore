@@ -191,3 +191,105 @@ public void OnGetAsync()
             ConfigTitle = ConfigHelper.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();
         }
+
+
+            主区域圆角（theme.css）
+        .mainpanel .centerregion {
+            border-width: 0;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            margin-right: 16px;
+            background-color: transparent;
+	        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 6px 0px;
+        }
+    主区域标题栏半透明
+        .mainpanel .centerregion > .f-tabstrip-header {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+
+        #mainTabStrip 主页面区
+            background-color:transparent
+
+        f-panel-header f-widget-header f-noselect f-tabstrip-header
+            border-top-radius:20px
+
+        f-panel-tools  右侧的关闭刷新按钮
+            border-top-right-radius: 20px;
+
+/*
+2023-10 surfsky 美化主工作区标签栏
+*/
+/*标签栏*/
+div#mainTabStrip {
+    background-color: transparent;
+}
+
+/*标签栏*/
+.f-panel-header.f-widget-header.f-noselect.f-tabstrip-header {
+    background-color: transparent;
+}
+
+
+/*标签文本悬浮*/
+.f-panel-header a:hover {
+    color: white;
+}
+
+/*非选中标签*/
+.f-panel-header .f-noselect  {
+    color: rgba(255, 255, 255, 0.6);    
+}
+
+
+/*选中的标签文本*/
+a.f-panel-header.f-noselect.f-tab-header.f-tab-header-closable.f-panel-header-icon.f-state-active {
+    color: white;
+}
+
+/*选中标签底部的指示横线*/
+/*
+.f-panel-header .f-tabstrip-header-inkbar {
+    background-color: white!important;
+}
+*/
+
+            //string title = tbxTitle.Trim();
+            //if (title.Length > 100)
+            //{
+            //    title = title.Substring(0, 100);
+            //}
+
+            //ConfigHelper.Title = title;
+
+                        /*
+            var configs = new List<Config> {
+                new Config
+                {
+                    ConfigKey = "Title",
+                    ConfigValue = "AppBoxCore",
+                    Remark = "网站的标题"
+                },
+                new Config
+                {
+                    ConfigKey = "PageSize",
+                    ConfigValue = "20",
+                    Remark = "表格每页显示的个数"
+                },
+                new Config
+                {
+                    ConfigKey = "Theme",
+                    ConfigValue = "Cupertino",
+                    Remark = "网站主题"
+                },
+                new Config
+                {
+                    ConfigKey = "HelpList",
+                    ConfigValue = "[{\"Text\":\"万年历\",\"Icon\":\"Calendar\",\"ID\":\"wannianli\",\"URL\":\"~/Admin/HelpWanNianLi\"},{\"Text\":\"科学计算器\",\"Icon\":\"Calculator\",\"ID\":\"jisuanqi\",\"URL\":\"~/Admin/HelpJiSuanQi\"},{\"Text\":\"系统帮助\",\"Icon\":\"Help\",\"ID\":\"help\",\"URL\":\"~/Admin/Help\"}]",
+                    Remark = "帮助下拉列表的JSON字符串"
+                }
+            };
+
+            return configs;
+            */

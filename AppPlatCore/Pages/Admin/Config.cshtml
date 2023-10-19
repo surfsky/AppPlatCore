@@ -15,7 +15,10 @@
         </Toolbars>
         <Items>
             <f:TextBox ID="tbTitle" Label="网站标题" Required="true" ShowRedStar="true" Text="@Model.SiteTitle"></f:TextBox>
-            <f:DropDownList ID="ddlPageSize" Label="表格默认记录数" Required="true" ShowRedStar="true" SelectedValue="@ConfigHelper.PageSize.ToString()">
+            <f:TextBox ID="tbIcon" Label="网站图标" Required="false" ShowRedStar="false" Text="@Model.Config.Icon"></f:TextBox>
+            <f:TextBox ID="tbLoginBg" Label="登录背景" Required="false" ShowRedStar="false" Text="@Model.Config.LoginBg"></f:TextBox>
+            <f:TextBox ID="tbBeiAnNo" Label="备案号" Required="false" ShowRedStar="false" Text="@Model.Config.BeiAnNo"></f:TextBox>
+            <f:DropDownList ID="ddlPageSize" Label="表格默认记录数" Required="true" ShowRedStar="true" SelectedValue="@SiteConfig.Instance.PageSize.ToString()">
                 <Items>
                     <f:ListItem Text="10" Value="10"></f:ListItem>
                     <f:ListItem Text="20" Value="20"></f:ListItem>

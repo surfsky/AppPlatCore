@@ -1,8 +1,9 @@
 ﻿# AppPlat
 
-Aspnetcore 应用快速开发平台，基于 AppBoxCore 6.0 改造。
+Aspnetcore 应用快速开发平台，基于 AppBoxCore 8.x 改造。
 
 功能
+
 - [x] 集成框架
     - [x] 集成 HttpApi 数据接口辅助类库
     - [x] 集成 Utils 辅助类库
@@ -11,7 +12,7 @@ Aspnetcore 应用快速开发平台，基于 AppBoxCore 6.0 改造。
     - [x] 集成 SignalR IM 框架
     - [x] 集成 Blazor 应用开发框架
     - [x] 集成 Blazor Radzen 控件库
-    - [x] 集成 Serilog 日志框架
+    - [x] 集成 Serilog 日志框架 <https://github.com/serilog/serilog-aspnetcore>
     - [ ] 集成 MQ 消息队列
     - [ ] 集成 OAuth 授权框架
 - [x] 新建中间件
@@ -35,6 +36,7 @@ Aspnetcore 应用快速开发平台，基于 AppBoxCore 6.0 改造。
     - [ ] UIAuto
 
 TIP
+
 - 默认管理员账号登陆（用户名：admin 密码：admin）
 - 本项目采用Entity Framework Core 的Code First开发模式，数据库会在网站第一次运行时自动创建。
 - 如果尚未安装 .Net Core 3.1，请先安装 SDK：<https://dotnet.microsoft.com/download/dotnet-core/3.1>
@@ -43,7 +45,7 @@ TIP
 
 - https://surfsky.github.com
 - https://surfsky.cnblogs.com
-- LastUpdate: 2020-05
+- LastUpdate: 2023-10
 
 
 
@@ -66,6 +68,3 @@ dameng                 | fail        | 只支持netcore 2.2（测试失败），
 **如果使用sqlserver 2008r2，只能用 efcore 2.2**
 
 
-
-# Remarks
-- Sirilog 日志框架扩展 <https://github.com/serilog/serilog-aspnetcore>

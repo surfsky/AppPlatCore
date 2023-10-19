@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using App.Utils;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,15 @@ namespace App.Models
         public static void Initialize(AppPlatContext context)
         {
             context.Database.EnsureCreated();
-            //context.Database.Migrate(); // 若实体类变更，会自动修改数据库
+            context.Database.Migrate(); // 若实体类变更，会自动修改数据库。先运行命令行 dotnet ef migrations add XXX。经测试sqllite怎么都会出错。
 
             // 已经初始化
             if (context.Users.Any())
                 return;
             else
             {
-                GetConfigs().ForEach(c => context.Configs.Add(c));
+
+                GetSiteConfigs().ForEach(c => context.SiteConfigs.Add(c));
                 GetDepts().ForEach(d => context.Depts.Add(d));
                 GetUsers().ForEach(u => context.Users.Add(u));
                 GetRoles().ForEach(r => context.Roles.Add(r));
@@ -32,6 +34,22 @@ namespace App.Models
             }
         }
 
+        private static List<SiteConfig> GetSiteConfigs()
+        {
+            return new List<SiteConfig>() {
+                new SiteConfig
+                {
+                    Icon = "",
+                    LoginBg = "/res/themes/image_blue_moon/moon.jpg",
+                    BeiAnNo = "浙ICP备案XXXXX",
+                    Title = "AppPlat",
+                    PageSize = 20,
+                    Theme = "Cupertino",
+                    HelpList = "[{\"Text\":\"万年历\",\"Icon\":\"Calendar\",\"ID\":\"wannianli\",\"URL\":\"~/Admin/HelpWanNianLi\"},{\"Text\":\"科学计算器\",\"Icon\":\"Calculator\",\"ID\":\"jisuanqi\",\"URL\":\"~/Admin/HelpJiSuanQi\"},{\"Text\":\"系统帮助\",\"Icon\":\"Help\",\"ID\":\"help\",\"URL\":\"~/Admin/Help\"}]"
+                }
+            };
+
+        }
         private static List<Menu> GetMenus(AppPlatContext context)
         {
             var menus = new List<Menu> {
@@ -44,7 +62,7 @@ namespace App.Models
                     Children = new List<Menu> {
                         new Menu
                         {
-                            Name = "用户管理",
+                            Name = "用户",
                             SortIndex = 10,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/UserList",
@@ -53,34 +71,7 @@ namespace App.Models
                         },
                         new Menu
                         {
-                            Name = "职称管理",
-                            SortIndex = 20,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Title",
-                            ImageUrl = "~/res/icon/tag_blue.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreTitleView").FirstOrDefault<Power>()
-                        },
-                        new Menu
-                        {
-                            Name = "职称用户管理",
-                            SortIndex = 30,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/TitleUser",
-                            ImageUrl = "~/res/icon/tag_blue.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreTitleUserView").FirstOrDefault<Power>()
-                        },
-                        new Menu
-                        {
-                            Name = "部门管理",
-                            SortIndex = 40,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Dept",
-                            ImageUrl = "~/res/icon/tag_blue.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreDeptView").FirstOrDefault<Power>()
-                        },
-                        new Menu
-                        {
-                            Name = "部门用户管理",
+                            Name = "部门",
                             SortIndex = 50,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/DeptUser",
@@ -89,16 +80,16 @@ namespace App.Models
                         },
                         new Menu
                         {
-                            Name = "角色管理",
-                            SortIndex = 60,
+                            Name = "职称",
+                            SortIndex = 30,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Role",
+                            NavigateUrl = "~/Admin/TitleUser",
                             ImageUrl = "~/res/icon/tag_blue.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreRoleView").FirstOrDefault<Power>()
+                            ViewPower = context.Powers.Where(p => p.Name == "CoreTitleUserView").FirstOrDefault<Power>()
                         },
                         new Menu
                         {
-                            Name = "角色用户管理",
+                            Name = "角色用户",
                             SortIndex = 70,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/RoleUser",
@@ -107,16 +98,7 @@ namespace App.Models
                         },
                         new Menu
                         {
-                            Name = "权限管理",
-                            SortIndex = 80,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Power",
-                            ImageUrl = "~/res/icon/tag_blue.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CorePowerView").FirstOrDefault<Power>()
-                        },
-                        new Menu
-                        {
-                            Name = "角色权限管理",
+                            Name = "角色权限",
                             SortIndex = 90,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/RolePower",
@@ -125,7 +107,7 @@ namespace App.Models
                         },
                         new Menu
                         {
-                            Name = "菜单管理",
+                            Name = "菜单",
                             SortIndex = 100,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Menu",
@@ -134,7 +116,7 @@ namespace App.Models
                         },
                         new Menu
                         {
-                            Name = "在线统计",
+                            Name = "在线",
                             SortIndex = 110,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Online",
@@ -143,58 +125,75 @@ namespace App.Models
                         },
                         new Menu
                         {
-                            Name = "系统配置",
+                            Name = "配置",
                             SortIndex = 120,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Config",
                             ImageUrl = "~/res/icon/tag_blue.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreConfigView").FirstOrDefault<Power>()
                         },
-                        new Menu
-                        {
-                            Name = "修改密码",
-                            SortIndex = 130,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/ChangePassword",
-                            ImageUrl = "~/res/icon/tag_blue.png"
-                        }
                     }
                 },
                 new Menu
                 {
-                    Name = "测试菜单",
+                    Name = "测试",
                     SortIndex = 20,
                     Remark = "顶级菜单",
                     ImageUrl = "~/res/icon/folder.png",
                     Children = new List<Menu> {
-                        new Menu {
-                            Name="测试目录1",
-                            SortIndex=10,
-                            Remark = "二级菜单",
-                            ImageUrl = "~/res/icon/folder.png",
-                            Children = new List<Menu> {
-                                new Menu
-                                {
-                                    Name = "测试页面1",
-                                    SortIndex = 10,
-                                    Remark = "三级菜单",
-                                    NavigateUrl = "~/Test/Test1",
-                                    ImageUrl = "~/res/icon/page.png",
-                                    ViewPower = context.Powers.Where(p => p.Name == "TestPage1View").FirstOrDefault<Power>()
-                                }
-                            }
+                        new Menu
+                        {
+                            Name = "Button",
+                            NavigateUrl = "~/Test/Buttons",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 20,
                         },
                         new Menu
                         {
-                            Name = "测试页面2",
-                            SortIndex = 20,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Test/Test2",
+                            Name = "Chat",
+                            NavigateUrl = "~/Test/Chat",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "TestPage2View").FirstOrDefault<Power>()
-                        }
+                            SortIndex = 30,
+                        },
+                        new Menu
+                        {
+                            Name = "Responsive",
+                            NavigateUrl = "~/Test/Responsive",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 40,
+                        },
+                        new Menu
+                        {
+                            Name = "Grid",
+                            NavigateUrl = "~/Test/Grid",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 50,
+                        },
+                        new Menu
+                        {
+                            Name = "Blazor",
+                            NavigateUrl = "~/Blazors/Index",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 60,
+                        },
                     }
-                }
+                },
+                new Menu
+                {
+                    Name = "修改密码",
+                    SortIndex = 130,
+                    Remark = "二级菜单",
+                    NavigateUrl = "~/Admin/ChangePassword",
+                    ImageUrl = "~/res/icon/tag_blue.png"
+                },
+                new Menu
+                {
+                    Name = "安全退出",
+                    SortIndex = 140,
+                    Remark = "二级菜单",
+                    NavigateUrl = "~/Index?action=SignOut",
+                    ImageUrl = "~/res/icon/tag_blue.png"
+                },
             };
 
             return menus;
@@ -702,37 +701,7 @@ namespace App.Models
             return depts;
         }
 
-        private static List<Config> GetConfigs()
-        {
-            var configs = new List<Config> {
-                new Config
-                {
-                    ConfigKey = "Title",
-                    ConfigValue = "AppBoxCore",
-                    Remark = "网站的标题"
-                },
-                new Config
-                {
-                    ConfigKey = "PageSize",
-                    ConfigValue = "20",
-                    Remark = "表格每页显示的个数"
-                },
-                new Config
-                {
-                    ConfigKey = "Theme",
-                    ConfigValue = "Cupertino",
-                    Remark = "网站主题"
-                },
-                new Config
-                {
-                    ConfigKey = "HelpList",
-                    ConfigValue = "[{\"Text\":\"万年历\",\"Icon\":\"Calendar\",\"ID\":\"wannianli\",\"URL\":\"~/Admin/HelpWanNianLi\"},{\"Text\":\"科学计算器\",\"Icon\":\"Calculator\",\"ID\":\"jisuanqi\",\"URL\":\"~/Admin/HelpJiSuanQi\"},{\"Text\":\"系统帮助\",\"Icon\":\"Help\",\"ID\":\"help\",\"URL\":\"~/Admin/Help\"}]",
-                    Remark = "帮助下拉列表的JSON字符串"
-                }
-            };
 
-            return configs;
-        }
 
     }
 }

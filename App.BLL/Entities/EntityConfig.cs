@@ -10,6 +10,7 @@ namespace App.Entities
 {
     /// <summary>
     /// 类库配置信息
+    /// EntityConfig.Instance.OnGetDb = () => ....;
     /// </summary>
     public class EntityConfig
     {

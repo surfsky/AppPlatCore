@@ -17,25 +17,25 @@ namespace App.Pages.Admin
         public bool PowerCoreConfigEdit { get; set; }
         public string HelpListText { get; set; }
         public string SiteTitle { get; set; }
+        public string SiteIcon { get; set; }
+
+        public SiteConfig Config { get; set; }
 
         public async Task OnGetAsync()
         {
-            await Config_LoadDataAsync();
-        }
-
-        private async Task Config_LoadDataAsync()
-        {
             PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
-
+            Config = SiteConfig.Instance;
+            SiteTitle = SiteConfig.Instance.Title;
+            SiteIcon = SiteConfig.Instance.Icon;
             await Task.Run(() =>
             {
-                JSBeautifyLib.JSBeautify jsb = new JSBeautifyLib.JSBeautify(ConfigHelper.HelpList, new JSBeautifyLib.JSBeautifyOptions());
+                JSBeautifyLib.JSBeautify jsb = new JSBeautifyLib.JSBeautify(SiteConfig.Instance.HelpList, new JSBeautifyLib.JSBeautifyOptions());
                 HelpListText = jsb.GetResult();
-                SiteTitle = ConfigHelper.Title;
             });
         }
 
-        public IActionResult OnPostConfig_btnSave_OnClick(int ddlPageSize, string tbxHelpList, string tbTitle)
+
+        public IActionResult OnPostConfig_btnSave_OnClick(int ddlPageSize, string tbxHelpList, string tbTitle, string tbIcon, string tbLoginBg, string tbBeiAnNo)
         {
             // 在操作之前进行权限检查
             if (!CheckPower("CoreConfigEdit"))
@@ -54,17 +54,13 @@ namespace App.Pages.Admin
                 return UIHelper.Result();
             }
 
-            //string title = tbxTitle.Trim();
-            //if (title.Length > 100)
-            //{
-            //    title = title.Substring(0, 100);
-            //}
-
-            //ConfigHelper.Title = title;
-            ConfigHelper.PageSize = ddlPageSize;
-            ConfigHelper.HelpList = tbxHelpList.Trim();
-            ConfigHelper.Title = tbTitle.Trim();
-            ConfigHelper.SaveAll();
+            SiteConfig.Instance.PageSize = ddlPageSize;
+            SiteConfig.Instance.HelpList = tbxHelpList;
+            SiteConfig.Instance.Title = tbTitle;
+            SiteConfig.Instance.LoginBg = tbLoginBg;
+            SiteConfig.Instance.Icon = tbIcon;
+            SiteConfig.Instance.BeiAnNo = tbBeiAnNo;
+            SiteConfig.Instance.Save();
 
             FineUICore.PageContext.RegisterStartupScript("top.window.location.reload(false);");
 

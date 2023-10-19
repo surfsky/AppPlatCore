@@ -19,6 +19,7 @@ using App.Web;
 using App.Models;
 using App.Hubs;
 using App.Components;
+using App.Entities;
 
 namespace App
 {
@@ -74,11 +75,16 @@ namespace App
             //        builder.UseRowNumberForPaging(); //Use a ROW_NUMBER() in queries instead of OFFSET/FETCH. This method is backwards-compatible to SQL Server 2005. 避免错误：'OFFSET' 附近有语法错误。 在 FETCH 语句中选项 NEXT 的用法无效 'OFFSET' 附近有语法错误。 在 FETCH 语句中选项 NEXT 的用法无效
             //        //builder.MigrationsAssembly("App.BLL.dll");
             //    });
-            //});  // SqlServer linux. EFCore 2.2 ok
-            services.AddDbContext<AppPlatContext>(options => options.UseSqlite(sqlite));       // EFCore 2.2 ok
-            //services.AddDbContext<AppPlatContext>(options => options.UseMySql(mysql));         // MySql(MariDB) linux. EFCore 2.2 ok
+            //});  // SqlServer linux. ok
+            services.AddDbContext<AppPlatContext>(options => {
+                options.UseSqlite(sqlite, builder => builder.MigrationsAssembly("App"));
+            });       // ok
+            //services.AddDbContext<AppPlatContext>(options => options.UseMySql(mysql));         // MySql(MariDB) linux. ok
             //services.AddDbContext<AppPlatContext>(options => options.UseSqlServer(sqlserver, options=> options.UseRowNumberForPaging()));  // SqlServer 2008. EFCore 2.2 ok, EFCore 3.1 fail. see https://aka.ms/AA6h122
             //services.AddDbContext<AppPlatContext>(options => options.UseDm(dm));               // fail
+
+
+            EntityConfig.Instance.OnGetDb += () => BaseModel.GetDbConnection();
         }
 
 

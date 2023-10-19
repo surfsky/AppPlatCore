@@ -1,57 +1,34 @@
 --------------------------------------------------------
-Codes
---------------------------------------------------------
-Url.Handler("SignOutClick")
-    http://localhost:52221/Test/Buttons?handler=SignOutClick
-
-Url.Action("SignOut")
-    http://localhost:52221/Test/Buttons?action=SignOut
-
-
-IconUrl="@Url.Content("~/res/images/my_face_80.jpg")"
-
-        public IActionResult OnGet()
-        {
-            ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
-            var action = Asp.GetQueryString("action");
-            if (action == "SignOut")
-                return RedirectToPage("/Login");
-            return UIHelper.Result();
-        }
-
---------------------------------------------------------
 BUG
 --------------------------------------------------------
     <f:Image For=?? 没有For属性
-
-
+    MenuCheckBox 没有OnClientClick 属性
+    看能不能用扩展方法实现
+    第一次启动的时候老是报错
 
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-给用户加头像，
-    /实现图片上传
-    /保存用户数据
-    实现缩略图（用 ImageMiddleware ）
-    点击图片上传
-
-
 业务
     生成AI识别框架
     实现AI识别分类页面
 
 
-
 数据库
-    数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+    /数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
     sqlserver 2012 
     权限用枚举改造
-    Menu.Target
-    实现配置页面
-        用SiteConfig替代Config， 其实 Config 过度设计了，直接用类字段就行了
-        /Title
-        SiteLoginImage
-        SiteBeiAn
+    Menu 增加 Target 属性
+
+修改DAL
+    权限用枚举
+    排序用linq语法，强名称
+
+给用户加头像，
+    /实现图片上传
+    /保存用户数据
+    实现缩略图（用 ImageMiddleware ）
+    点击图片上传
 
 修改页面
     login: 用一个背景图、登录框、底部声明
@@ -69,46 +46,53 @@ Task
         实现自动编辑页面
 
 
-修改DAL
-    权限用枚举
-    继承自 ModelBase
-    简化保存代码： User.Save();
-    实现ID自增加能力
-    实现雪花ID
-    实现数据变更日志
-    实现附件附表
-    实现父子表结构，实现树结构逻辑
-    实现属性：All
-    排序用linq语法，强名称
-
 
 
 --------------------------------------------------------
 Done
 --------------------------------------------------------
-/集成Responsive page
-/集成signalR
-/集成blazor
-/更新到 net 6.0
-/更新到最新 fineui core raver page
+/集成
+    /集成Responsive page
+    /集成signalR
+    /集成blazor
+    /更新到 net 6.0
+    /更新到最新 fineui core raver page
+    /cshtml 页面修改后可直接运行，添加nuget包：Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+
 /bug
     //部门页面修改后页面空白
     //角色新增后页面也报错，分页出问题
     //菜单没问题，用的是window close post 事件处理，会带上grid fields？
     //设置 fields=“grid1”就可以了
-/更新到 github
-/cshtml 页面修改后可直接运行，添加nuget包：Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
-/修正菜单重复bug: 调试时重入会出现
-/修正 SqlServer 数据库访问异常，启用Rownum
-修改页面
+    /修正菜单重复bug: 调试时重入会出现
+
+/修改页面
     /index
         /Logo跳转链接
         /修改顶部栏
         /修改底部栏版本号链接：<a target="_blank" href="http://fineui.com/mvc">
         /优化首页：关闭所有窗口；
         /缩减button listener代码
+        /优化 theme：主区域标题栏透明，已写入 wwwroot/res/themes/image_blue_moon/thrme.css
     /user, userview（改为用textbox更美观）, usernew
     /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
     /将修改密码、安全退出放到一起去
     /实现用户图标
     /修正在线用户网页
+
+/数据库
+    /修正 SqlServer 数据库访问异常，启用Rownum
+    /修改配置页面
+        /用SiteConfig替代Config， 其实 Config 过度设计了，直接用类字段就行了
+        /SiteConfig增加字段：Icon、LoginBg、BeiAnNo
+    /继承自 EntityBase
+        /简化保存代码： User.Save();
+        /实现ID自增加能力
+        /实现雪花ID
+        /实现数据变更日志
+        /实现附件附表
+        /实现父子表结构，实现树结构逻辑
+        /实现属性：All，Entity等
+
+/其它
+    /更新到 github

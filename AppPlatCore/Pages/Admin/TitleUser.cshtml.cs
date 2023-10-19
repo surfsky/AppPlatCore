@@ -51,7 +51,7 @@ namespace App.Pages.Admin
                 SortField = "Name",
                 SortDirection = "DESC",
                 PageIndex = 0,
-                PageSize = ConfigHelper.PageSize
+                PageSize = SiteConfig.Instance.PageSize
             };
             this.Grid2PagingInfo = grid2PagingInfo;
             this.Users = await GetTitleUsersAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);

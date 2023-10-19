@@ -1,4 +1,6 @@
-﻿using App.Models;
+﻿using App.Entities;
+using App.Models;
+using Jint.Parser.Ast;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,30 +13,23 @@ namespace App
     public partial class BaseModel
     {
         private Models.AppPlatContext _db;
-        /// <summary>
-        /// 每个请求共享一个数据库连接实例
-        /// </summary>
+
+        /// <summary>每个请求共享一个数据库连接实例</summary>
         protected Models.AppPlatContext DB
         {
             get
             {
                 if (_db == null)
-                {
                     _db = GetDbConnection();
-                }
                 return _db;
             }
         }
 
-        /// <summary>
-        /// 获取数据库连接实例（静态方法）
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>获取数据库连接实例（静态方法）</summary>
         public static Models.AppPlatContext GetDbConnection()
         {
             return FineUICore.PageContext.GetRequestService<Models.AppPlatContext>();
         }
-
 
         protected IQueryable<T> Sort<T>(IQueryable<T> q, PagingInfoViewModel pagingInfo)
         {

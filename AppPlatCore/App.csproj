@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <Version>6.0.2</Version>
-    <AssemblyVersion>6.0.2</AssemblyVersion>
+    <Version>6.0.3</Version>
+    <AssemblyVersion>6.0.3</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\Helper\ConfigHelper.cs" />
     <Compile Remove="Middlewares\ContentModule.cs" />
     <Compile Remove="Middlewares\DefenceModule.cs" />
     <Compile Remove="Middlewares\FriendlyUrlModule.cs" />

@@ -36,15 +36,15 @@
                     <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionView" />
                 </Columns>
                 <PageItems>
-                    <f:ToolbarSeparator></f:ToolbarSeparator>
-                    <f:ToolbarText Text="每页记录数："></f:ToolbarText>
+                    <f:ToolbarSeparator/>
+                    <f:ToolbarText Text="每页记录数：" />
                     <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@PagingInfo.PageSize.ToString()"
                                     OnSelectedIndexChanged="@Url.Handler("Online_DoPostBack")" OnSelectedIndexChangedParameter1="@(new Parameter("actionType","changeGridPageSize",ParameterMode.String))" OnSelectedIndexChangedFields="Panel1">
                         <Items>
-                            <f:ListItem Text="10" Value="10"></f:ListItem>
-                            <f:ListItem Text="20" Value="20"></f:ListItem>
-                            <f:ListItem Text="50" Value="50"></f:ListItem>
-                            <f:ListItem Text="100" Value="100"></f:ListItem>
+                            <f:ListItem Text="10" Value="10" />
+                            <f:ListItem Text="20" Value="20" />
+                            <f:ListItem Text="50" Value="50" />
+                            <f:ListItem Text="100" Value="100"/>
                         </Items>
                     </f:DropDownList>
                 </PageItems>

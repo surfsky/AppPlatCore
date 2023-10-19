@@ -35,7 +35,7 @@ namespace App.Pages.Admin
                 SortField = "Name",
                 SortDirection = "DESC",
                 PageIndex = 0,
-                PageSize = ConfigHelper.PageSize
+                PageSize = SiteConfig.Instance.PageSize
             };
             PagingInfo = pagingInfo;
             Users = await UserList_GetDataAsync(pagingInfo, String.Empty, "all");

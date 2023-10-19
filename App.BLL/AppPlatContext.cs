@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using App.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Models
@@ -15,7 +16,11 @@ namespace App.Models
         {
         }
 
-        public DbSet<Config> Configs { get; set; }
+        public DbSet<SiteConfig> SiteConfigs { get; set; }
+        public DbSet<History> Histories { get; set; }
+        public DbSet<Res> Reses { get; set; }
+
+        //public DbSet<Config> Configs { get; set; }
         public DbSet<Dept> Depts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
