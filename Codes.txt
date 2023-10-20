@@ -293,3 +293,9 @@ a.f-panel-header.f-noselect.f-tab-header.f-tab-header-closable.f-panel-header-ic
 
             return configs;
             */
+
+                        SiteTitle = SiteConfig.Instance.Title;
+            SiteIcon = SiteConfig.Instance.Icon;
+
+                    public string SiteTitle { get; set; }
+        public string SiteIcon { get; set; }

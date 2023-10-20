@@ -45,7 +45,7 @@ namespace App.Api
         [HttpApi("User login", AuthTraffic=1)]
         public string Login(string name, string password)
         {
-            AuthHelper.Login("1", "Admin", "Admins", DateTime.Now.AddDays(1));
+            App.Web.AuthHelper.Login("1", "Admin", "Admins", DateTime.Now.AddDays(1));
             System.Threading.Thread.Sleep(200);
             return "Login success";
         }
@@ -53,7 +53,7 @@ namespace App.Api
         [HttpApi("注销")]
         public string Logout()
         {
-            AuthHelper.Logout();
+            App.Web.AuthHelper.Logout();
             System.Threading.Thread.Sleep(200);
             return "注销成功";
         }

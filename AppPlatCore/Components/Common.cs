@@ -16,6 +16,13 @@ namespace App.Components
             return String.Format("{0}.{1}.{2}", v.Major, v.Minor, v.Build);
         }
 
+        /// <summary>获取数据库连接实例（静态方法）</summary>
+        public static Models.AppPlatContext GetDbConnection()
+        {
+            return FineUICore.PageContext.GetRequestService<Models.AppPlatContext>();
+        }
+
+
 
         /// <summary>
         /// 获取实例的属性名称列表

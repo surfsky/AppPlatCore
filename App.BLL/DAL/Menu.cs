@@ -8,7 +8,7 @@ using App.Utils;
 
 namespace App.Models
 {
-    public class Menu : ICustomTree, IKeyID, ICloneable
+    public class Menu : ITreeNode, IKeyID, ICloneable
     {
         [Key]
         public int ID { get; set; }

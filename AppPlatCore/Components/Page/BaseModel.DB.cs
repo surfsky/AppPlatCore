@@ -1,4 +1,5 @@
-﻿using App.Entities;
+﻿using App.Components;
+using App.Entities;
 using App.Models;
 using Jint.Parser.Ast;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.Linq;
 namespace App
 {
     /// <summary>
-    /// 数据库相关
+    /// 数据库相关（后面的Linq 方法可用 App.Entities.EFHelper 替代，有空做）
     /// </summary>
     public partial class BaseModel
     {
@@ -20,16 +21,11 @@ namespace App
             get
             {
                 if (_db == null)
-                    _db = GetDbConnection();
+                    _db = Common.GetDbConnection();
                 return _db;
             }
         }
 
-        /// <summary>获取数据库连接实例（静态方法）</summary>
-        public static Models.AppPlatContext GetDbConnection()
-        {
-            return FineUICore.PageContext.GetRequestService<Models.AppPlatContext>();
-        }
 
         protected IQueryable<T> Sort<T>(IQueryable<T> q, PagingInfoViewModel pagingInfo)
         {

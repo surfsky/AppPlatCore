@@ -8,7 +8,7 @@ using App.Utils;
 
 namespace App.Models
 {
-    public class Dept : ICustomTree, IKeyID, ICloneable
+    public class Dept : ITreeNode, IKeyID, ICloneable
     {
         [Key]
         public int ID { get; set; }

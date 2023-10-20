@@ -160,10 +160,13 @@ namespace App.Entities
         // CRUD
         //--------------------------------------
         /// <summary>保存修改</summary>
-        public T Save(bool log = false)
+        public T Save(EntityOp? op=null, bool log = false)
         {
             // 新增或修改预处理
-            var op = (Db.Entry(this).State == EntityState.Detached) ? EntityOp.New : EntityOp.Edit;
+            if (op == null) 
+                op = (Db.Entry(this).State == EntityState.Detached) ? EntityOp.New : EntityOp.Edit;
+
+            //
             if (op == EntityOp.New)
             {
                 if (this.ID == 0)
@@ -178,10 +181,10 @@ namespace App.Entities
                 this.UpdateDt = DateTime.Now;
 
             // 保存
-            BeforeSave(op);
+            BeforeSave(op.Value);
             Db.SaveChanges();
             Log(log, op == EntityOp.New ? "新增" : "更新", this.ID, this);
-            AfterChange(op);
+            AfterChange(op.Value);
             return this as T;
         }
 

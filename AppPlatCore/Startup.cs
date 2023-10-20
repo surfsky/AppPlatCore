@@ -35,7 +35,7 @@ namespace App
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            Logs.Info("server start");
+            Logger.Info("server start");
             services.AddHttpContextAccessor();                  // 注册 HttpContext 服务
             services.AddDistributedMemoryCache();               // 注册内存缓存服务（session用得到）
             services.AddSession();                              // 注册 Session 服务
@@ -84,7 +84,8 @@ namespace App
             //services.AddDbContext<AppPlatContext>(options => options.UseDm(dm));               // fail
 
 
-            EntityConfig.Instance.OnGetDb += () => BaseModel.GetDbConnection();
+            // 配置 EntityBase 数据库上下文
+            EntityConfig.Instance.OnGetDb += () => Common.GetDbConnection();
         }
 
 

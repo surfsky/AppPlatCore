@@ -1,148 +1,44 @@
 #--------------------------------------------
-# FineUICore RazorPage Resource
+# FineUICore Resource
 #--------------------------------------------
-查看官网示例（部分示例尚未更新到最新版本）：
 FineUIPro：https://pro.fineui.com/
 FineUIMvc：https://mvc.fineui.com/
 FineUICore：https://core.fineui.com/
 FineUICore （Razor Pages & Tag Helpers）：https://pages.fineui.com/
 F.js：https://js.fineui.com/
+Icon: https://pages.fineui.com/#/Config/Icons
 
 
 #--------------------------------------------
-# Icon
-# https://pages.fineui.com/#/Config/Icons
+# FineUI 配置
 #--------------------------------------------
-Disk
-Accept
+service.AddFineUI(Configuration);
+app.UseFineUI();
+
+public static class FineUIServiceExtensions
+{
+    public static IServiceCollection AddFineUI(this IServiceCollection services, IConfiguration config)
+    {
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        ConfigSection section = config.GetSection("FineUI").Get<ConfigSection>();
+        GlobalConfig.Configure(section);
+        return services.AddSingleton((IFineUIService)new FineUIService());
+    }
+}
+public static class FineUIMiddlewareExtensions
+{
+    public static IApplicationBuilder UseFineUI(this IApplicationBuilder builder)
+    {
+        PageContext.Configure(builder.ApplicationServices);
+        builder.MapWhen((Func<HttpContext, bool>)((HttpContext P_0) => P_0.Request.Path.ToString().EndsWith("res.axd")), (Action<IApplicationBuilder>)delegate(IApplicationBuilder P_0)
+        {
+            P_0.UseFineUIHandler();
+        });
+        return builder.UseMiddleware<FineUIMiddleware>(Array.Empty<object>());
+    }
+}
 
 
-
-#--------------------------------------------
-# FineUI.js
-#--------------------------------------------
-F
-    F.activeWindow.hideRefresh();
-    F.activeWindow.close();
-    F.activeWindow.hideExecuteScript('parent.removeActiveTab();');
-
-
-button
-    F.create({
-        type: 'button', id: 'btn2', renderTo: '#wrap1', text: '禁用的按钮', disabled: true,
-        handler: function (event) {
-            showNotify('你点击了刚刚启用的按钮');
-        }
-    });
-
-
-confirm
-    F.confirm({
-        message: '确定删除此记录？',
-        target: '_top',
-        ok: function () {
-            // 触发后台事件
-            F.doPostBack('@Url.Action("Dept_DoPostBack")', 'Panel1', {
-                actionType: 'delete',
-                deletedRowID: rowData.id
-            });
-        }
-    });
-
-
-grid
-    F.ui.Grid1.loadData([
-        [1,"系统管理",0,"","","~/res/icon/cog.png","顶级菜单",10],
-        [3,"用户",1,"~/Admin/UserList","CoreUserView","~/res/icon/tag_blue.png","二级菜单",10],
-        [5,"职称用户",1,"~/Admin/TitleUser","CoreTitleUserView","~/res/icon/tag_blue.png","二级菜单",30],
-        [7,"部门用户",1,"~/Admin/DeptUser","CoreDeptUserView","~/res/icon/tag_blue.png","二级菜单",50],
-        [9,"角色用户",1,"~/Admin/RoleUser","CoreRoleUserView","~/res/icon/tag_blue.png","二级菜单",70],
-        [11,"角色权限",1,"~/Admin/RolePower","CoreRolePowerView","~/res/icon/tag_blue.png","二级菜单",90],
-        [12,"菜单",1,"~/Admin/Menu","CoreMenuView","~/res/icon/tag_blue.png","二级菜单",100],
-        [13,"在线统计",1,"~/Admin/Online","CoreOnlineView","~/res/icon/tag_blue.png","二级菜单",110],
-        [14,"系统配置",1,"~/Admin/Config","CoreConfigView","~/res/icon/tag_blue.png","二级菜单",120],
-        [15,"修改密码",1,"~/Admin/ChangePassword","","~/res/icon/tag_blue.png","二级菜单",130],
-        [2,"测试菜单",0,"","","~/res/icon/folder.png","顶级菜单",20],
-        [19,"按钮5",1,"~/Test/ButtonClick","","~/res/icon/tag_yellow.png","",3],
-        [18,"测试页面1",1,"~/Test/FormDynamic","","~/res/icon/tag_yellow.png","三级菜单",10],
-        [17,"测试页面2",1,"~/Test/GridPaging","","~/res/icon/page.png","二级菜单",20]
-    ]);
-    F.ui.Grid1.clearSelection();
-
-
-post
-    F.doPostBack('@Url.Handler("Title_DoPostBack")', 'Panel1', {
-        actionType: 'delete',
-        deletedRowID: rowData.id
-    });
-
-
-
-Url
-    Url.Handler("btnSaveClose_Click")
-    http://localhost:52221/Admin/UserEdit?handler=btnSaveClose_Click
-
-
-PageModel
-    Result
-        success
-            ContentResult
-            FileStreamResult
-            FileContentResult
-            PageResult
-            PartialViewResult
-            PhysicalFileResult
-        fail
-            BadRequestObjectResult
-            BadRequestResult
-            ForbidResult
-            ChallengeResult
-            VirtualFileResult
-            NotFoundResult
-            NotFoundObjectResult
-        route
-            RedirectResult
-            RedirectToActionResult
-            RedirectToPageResult
-            RedirectToRouteResult
-            LocalRedirectResult
-        auth
-            SignInResult
-            SignOutResult
-            UnauthorizedResult
-        other
-            StatusCodeResult
-            ObjectResult
-            ViewComponentResult
-
-
-
-
-
-
-
-#--------------------------------------------
-# ???
-#--------------------------------------------
-MenuButton.onclientclick
-    // userlist.cshtml
-    <f:MenuButton ID="btnEnableUsers" Text="启用">
-        <Listeners>
-            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
-        </Listeners>
-    </f:MenuButton>
-
-Grid.sorting, paging
-    <Listeners>
-        <f:Listener Event="sorting" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
-        <f:Listener Event="paging" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
-    </Listeners>
-
-DropDownList.onchange
-    <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@Grid2PagingInfo.PageSize.ToString()" >
-        <Listeners>
-            <f:Listener Event="change" Handler="TitleUser_Grid2_DoPostBack('changeGridPageSize');"></f:Listener>
-        </Listeners>
 
 
 #--------------------------------------------
@@ -151,6 +47,7 @@ DropDownList.onchange
 PageContext
     PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
     PageContext.RegisterStartupScript(String.Format("$('#mylabel').html('{0}')", "这是修改后的值！" + DateTime.Now.ToLongTimeString()));
+    PageContext.RegisterStartupScript("top.window.location.reload(false);");
 
 ActiveWindow
     ActiveWindow.HidePostBack();
@@ -160,6 +57,12 @@ UIHelper
     UIHelper.Window("Window1").Hidden(true);
     UIHelper.Button("btnClientClick2").ClientClick(Alert.GetShowInTopReference("客户端事件已改变！"));
 
+Url
+    Url.Handler("btnSaveClose_Click")
+    http://localhost:52221/Admin/UserEdit?handler=btnSaveClose_Click
+    public IActionResult OnPostbtnSaveClose_Click(){...}
+    public Task<IActionResult> OnPostbtnSaveClose_ClickAsync(){...}
+
 Alert
     Alert.ShowInTop("删除失败！需要先清空属于此部门的用户！");
     var js = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
@@ -168,23 +71,105 @@ Alert
 ViewBag
     ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
 
-前后交互
+回传事件处理
     <f:Button ID="btnClose" OnClick="@Url.Handler("btnClose_Click")" Text="关闭窗体"></f:Button>
     public IActionResult OnPostBtnClose_Click()
     {
         UIHelper.Window("Window1").Hidden(true);
         return UIHelper.Result();
     }
-    <div id=\"mylabel\">这是初始值！</div>
-    <f:Button ID="btnChangeText" OnClick="@Url.Handler("btnChangeText_Click")" Text="修改窗体内的文本值"></f:Button>
-    public IActionResult OnPostBtnChangeText_Click()
+
+回传整个表单
+    public IActionResult OnPostBtnLogin_Click(IFormCollection values)
     {
-        FineUICore.PageContext.RegisterStartupScript(String.Format("$('#mylabel').html('{0}')", "这是修改后的值！" + DateTime.Now.ToLongTimeString()));
+        if (values["tbxUserName"] == "admin" && values["tbxPassword"] == "admin")
+            ShowNotify("成功登录！", MessageBoxIcon.Success);
+        else
+            ShowNotify("用户名或密码错误！", MessageBoxIcon.Error);
         return UIHelper.Result();
     }
 
+回传表单控件值
+    指明了回传的控件为Form2，服务器端就可以获取该控件的子属性
+        <f:Button ID="Button1"  ValidateForms="Form2" ValidateTarget="Top" Text="验证表单并提交" OnClick="@Url.Handler("Button1_Click")" OnClickFields="Form2"/>
+        public IActionResult OnPostButton1_Click(string tbxUserName, string ddlGender_text)
+        {
+            ShowNotify("用户名：" + tbxUserName + "  性别：" + ddlGender_text);
+            return UIHelper.Result();
+        }
+    指明回传控件为DropDownList1
+        <f:DropDownList ID="DropDownList1" ..../>
+        <f:Button ID="btnGetSelection" Text="获取下拉选中项" OnClick="@Url.Handler("btnGetSelection_Click")" OnClickFields="DropDownList1" />
+        public IActionResult OnPostBtnGetSelection_Click(string DropDownList1, string DropDownList1_text)
+        {
+            UIHelper.Label("labResult").Text(String.Format("选中项：{0}（值：{1}）", DropDownList1_text, DropDownList1));
+            return UIHelper.Result();
+        }
 
+数据绑定
+    <f:DropDownList ID="DropDownList1" DataSource="@ViewBag.DropDownList1DataSource" />
+    private void LoadData()
+    {
+        List<string> strList = new List<string>();
+        strList.Add("可选项1");
+        strList.Add("可选项2");
+        strList.Add("可选项3");
+        ViewBag.DropDownList1DataSource = strList;
+    }
 
+动态创建
+    <f:Form BodyPadding="10" ID="Form2" IsFluid="true" CssClass="blockpanel" EnableCollapse="false" Title="表单" LabelWidth="120" LabelAlign="Top" >
+        <Rows>
+            <f:FormRow Items="@ViewBag.DynamicItems" />
+        </Rows>
+    </f:Form>
+    public class FormDynamicModel : BaseModel
+    {
+        public void OnGet()
+        {
+            InitFormRows();
+        }
+
+        private void InitFormRows()
+        {
+            List<Field> fields = new List<Field>();
+            var tbxUser = new TextBox();
+            tbxUser.ID = "tbxUserName";
+            tbxUser.Text = "";
+            tbxUser.Label = "用户名";
+            tbxUser.ShowLabel = true;
+            tbxUser.ShowRedStar = true;
+            tbxUser.Required = true;
+            tbxUser.EmptyText = "请输入用户名";
+            fields.Add(tbxUser);
+
+            var ddlGender = new FineUICore.DropDownList();
+            ddlGender.ID = "ddlGender";
+            ddlGender.Label = "性别（回发事件）";
+            ddlGender.Items.Add("男", "0");
+            ddlGender.Items.Add("女", "1");
+            ddlGender.AutoSelectFirstItem = false;
+            // 添加后台事件处理函数
+            ddlGender.Events.Add(new Event("change", Url.Handler("ddlGender_SelectedIndexChanged"), "ddlGender"));
+            fields.Add(ddlGender);
+
+            ViewBag.DynamicItems = fields.ToArray();
+        }
+        public IActionResult OnPostDdlGender_SelectedIndexChanged(string ddlGender_text)
+        {
+            ShowNotify("选择的性别：" + ddlGender_text);
+            return UIHelper.Result();
+        }
+        public IActionResult OnPostButton1_Click(string tbxUserName, string ddlGender_text)
+        {
+            ShowNotify("用户名：" + tbxUserName + "  性别：" + ddlGender_text);
+            return UIHelper.Result();
+        }
+    }
+
+#--------------------------------------------
+# Controls
+#--------------------------------------------
 Button
     触发及事件
         <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnLogin_Click")" />
@@ -312,100 +297,6 @@ FileUpload
         }
 
 
-提交表单
-    public IActionResult OnPostBtnLogin_Click(IFormCollection values)
-    {
-        if (values["tbxUserName"] == "admin" && values["tbxPassword"] == "admin")
-            ShowNotify("成功登录！", MessageBoxIcon.Success);
-        else
-            ShowNotify("用户名或密码错误！", MessageBoxIcon.Error);
-        return UIHelper.Result();
-    }
-
-
-动态创建
-    <f:Form BodyPadding="10" ID="Form2" IsFluid="true" CssClass="blockpanel" EnableCollapse="false" Title="表单" LabelWidth="120" LabelAlign="Top" >
-        <Rows>
-            <f:FormRow Items="@ViewBag.DynamicItems" />
-        </Rows>
-    </f:Form>
-    public class FormDynamicModel : BaseModel
-    {
-        public void OnGet()
-        {
-            InitFormRows();
-        }
-
-        private void InitFormRows()
-        {
-            List<Field> fields = new List<Field>();
-            var tbxUser = new TextBox();
-            tbxUser.ID = "tbxUserName";
-            tbxUser.Text = "";
-            tbxUser.Label = "用户名";
-            tbxUser.ShowLabel = true;
-            tbxUser.ShowRedStar = true;
-            tbxUser.Required = true;
-            tbxUser.EmptyText = "请输入用户名";
-            fields.Add(tbxUser);
-
-            var ddlGender = new FineUICore.DropDownList();
-            ddlGender.ID = "ddlGender";
-            ddlGender.Label = "性别（回发事件）";
-            ddlGender.Items.Add("男", "0");
-            ddlGender.Items.Add("女", "1");
-            ddlGender.AutoSelectFirstItem = false;
-            // 添加后台事件处理函数
-            ddlGender.Events.Add(new Event("change", Url.Handler("ddlGender_SelectedIndexChanged"), "ddlGender"));
-            fields.Add(ddlGender);
-
-            ViewBag.DynamicItems = fields.ToArray();
-        }
-        public IActionResult OnPostDdlGender_SelectedIndexChanged(string ddlGender_text)
-        {
-            ShowNotify("选择的性别：" + ddlGender_text);
-            return UIHelper.Result();
-        }
-        public IActionResult OnPostButton1_Click(string tbxUserName, string ddlGender_text)
-        {
-            ShowNotify("用户名：" + tbxUserName + "  性别：" + ddlGender_text);
-            return UIHelper.Result();
-        }
-    }
-
-
-回传表单
-    指明了回传的控件为Form2，服务器端就可以获取该控件的子属性
-        <f:Button ID="Button1"  ValidateForms="Form2" ValidateTarget="Top" Text="验证表单并提交" 
-            OnClick="@Url.Handler("Button1_Click")" OnClickFields="Form2"
-            />
-        public IActionResult OnPostButton1_Click(string tbxUserName, string ddlGender_text)
-        {
-            ShowNotify("用户名：" + tbxUserName + "  性别：" + ddlGender_text);
-            return UIHelper.Result();
-        }
-    指明回传控件为DropDownList1
-        <f:DropDownList ID="DropDownList1" ..../>
-        <f:Button ID="btnGetSelection" Text="获取下拉选中项" 
-            OnClick="@Url.Handler("btnGetSelection_Click")" 
-            OnClickFields="DropDownList1"
-            />
-        public IActionResult OnPostBtnGetSelection_Click(string DropDownList1, string DropDownList1_text)
-        {
-            UIHelper.Label("labResult").Text(String.Format("选中项：{0}（值：{1}）", DropDownList1_text, DropDownList1));
-            return UIHelper.Result();
-        }
-
-数据绑定
-    <f:DropDownList ID="DropDownList1" DataSource="@ViewBag.DropDownList1DataSource" />
-    private void LoadData()
-    {
-        List<string> strList = new List<string>();
-        strList.Add("可选项1");
-        strList.Add("可选项2");
-        strList.Add("可选项3");
-        ViewBag.DropDownList1DataSource = strList;
-    }
 
 Grid
     <f:Grid ID="Grid1" IsFluid="true" CssClass="blockpanel" ShowBorder="true" ShowHeader="true" Title="表格" DataIDField="Id" DataTextField="Name" DataSource="@DataSourceUtil.GetDataTable()">
@@ -467,161 +358,100 @@ Image
 
 
 
+
+
+
+
+
+
 #--------------------------------------------
-# Aspnetcore site 演变
+# Client listener 客户端脚本
 #--------------------------------------------
-最简示例，开启网站，显示 hello world
-    Host.CreateDefaultBuilder()
-        .ConfigureWebHost(webHostBuilder => webHostBuilder
-            .UseKestrel()
-            .UseUrls("http://0.0.0.0:3721;https://0.0.0.0:9527")
-            .Configure(app => app.Run(context => context.Response.WriteAsync("Hello World."))))
-        .Build()
-        .Run()
-        ;
+MenuButton.onclientclick
+    <f:MenuButton ID="btnEnableUsers" Text="启用">
+        <Listeners>
+            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
+        </Listeners>
+    </f:MenuButton>
 
-配置服务、中间件、MVC
-    Host.CreateDefaultBuilder()
-        .ConfigureWebHostDefaults(webHostBuilder => webHostBuilder
-            .ConfigureServices(servicecs => servicecs
-                .AddRouting()
-                .AddControllersWithViews())
-            .Configure(app => app
-                .UseRouting()
-                .UseEndpoints(endpoints => endpoints.MapControllers())))
-        .Build()
-        .Run()
-        ;
-    public class HelloController
-    {
-        [HttpGet("/hello")]
-        public string SayHello() => "Hello World";
-    }
+Grid.sorting/paging
+    <Listeners>
+        <f:Listener Event="sorting" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
+        <f:Listener Event="paging" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
+    </Listeners>
 
-将配置写到单独的类
-    Host.CreateDefaultBuilder()
-        .ConfigureWebHostDefaults(webHostBuilder => webHostBuilder.UseStartup<Startup>())
-        .Build()
-        .Run()
-        ;
-    public class Startup
-    {
-        public void ConfigureServices(IServiceCollection services) => services
-            .AddRouting()
-            .AddControllersWithViews()
-        ;
-        public void Configure(IApplicationBuilder app) => app
-            .UseRouting()
-            .UseEndpoints(endpoints => endpoints.MapControllers())
-        ;
-    }
+DropDownList.onchange
+    <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@Grid2PagingInfo.PageSize.ToString()" >
+        <Listeners>
+            <f:Listener Event="change" Handler="TitleUser_Grid2_DoPostBack('changeGridPageSize');" />
+        </Listeners>
+    </f:DropDownList>
 
 
-拆分控制器和视图
-    ``` 
-    public class HelloController : Controller
-    {
-        [HttpGet("/hello/{name}")]
-        public IActionResult SayHello(string name)
-        {
-            ViewBag.Name = name;
-            return View();  // 会去找 /views/hello/SayHello.cshtml
+
+
+
+
+
+#--------------------------------------------
+# FineUI.js
+#--------------------------------------------
+F
+    F.activeWindow.hideRefresh();
+    F.activeWindow.close();
+    F.activeWindow.hideExecuteScript('parent.removeActiveTab();');
+
+
+button
+    F.create({
+        type: 'button', id: 'btn2', renderTo: '#wrap1', text: '禁用的按钮', disabled: true,
+        handler: function (event) {
+            showNotify('你点击了刚刚启用的按钮');
         }
-    }
-    /views/hello/SayHello.cshtml
-    <html>
-    <head>
-        <title>Hello World</title>
-    </head>
-    <body>
-        <p>Hello, @ViewBag.Name</p>
-    </body>
-    </html>
-    ```
+    });
 
 
-
-
-
-
-
-
-# FineUI 配置代码
-
-```
-public static class FineUIServiceExtensions
-{
-    public static IServiceCollection AddFineUI(this IServiceCollection services, IConfiguration config)
-    {
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        ConfigSection section = config.GetSection("FineUI").Get<ConfigSection>();
-        GlobalConfig.Configure(section);
-        return services.AddSingleton((IFineUIService)new FineUIService());
-    }
-}
-
-public static class FineUIMiddlewareExtensions
-{
-    public static IApplicationBuilder UseFineUI(this IApplicationBuilder builder)
-    {
-        PageContext.Configure(builder.ApplicationServices);
-        builder.MapWhen((Func<HttpContext, bool>)((HttpContext P_0) => P_0.Request.Path.ToString().EndsWith("res.axd")), (Action<IApplicationBuilder>)delegate(IApplicationBuilder P_0)
-        {
-            P_0.UseFineUIHandler();
-        });
-        return builder.UseMiddleware<FineUIMiddleware>(Array.Empty<object>());
-    }
-}
-
-service.AddFineUI(Configuration);
-app.UseFileUI();
-```
-
-
-
-        /// <summary>
-        /// 注册 HttpContextAccessor 单例服务。
-        /// 可用 var accessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>() 获取上下文对象
-        /// </summary>
-        //public static void AddHttpContextAccessor(this IServiceCollection services)
-        //{
-        //    services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        //}
-
-
-        //---------------------------------------------
-        private static EntityConfig _cfg;
-        public static EntityConfig Instance
-        {
-            get
-            {
-                if (_cfg == null)
-                    _cfg = new EntityConfig();
-                return _cfg;
-            }
+confirm
+    F.confirm({
+        message: '确定删除此记录？',
+        target: '_top',
+        ok: function () {
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Dept_DoPostBack")', 'Panel1', {
+                actionType: 'delete',
+                deletedRowID: rowData.id
+            });
         }
+    });
 
 
-未识别 TargetFramework 值“”。可能是因为拼写错误。
-如果拼写正确，必须显式指定 TargetFrameworkIdentifier 和/或 TargetFrameworkVersion 属性。
+grid
+    F.ui.Grid1.loadData([
+        [1,"系统管理",0,"","","~/res/icon/cog.png","顶级菜单",10],
+        [3,"用户",1,"~/Admin/UserList","CoreUserView","~/res/icon/tag_blue.png","二级菜单",10],
+        [5,"职称用户",1,"~/Admin/TitleUser","CoreTitleUserView","~/res/icon/tag_blue.png","二级菜单",30],
+        [7,"部门用户",1,"~/Admin/DeptUser","CoreDeptUserView","~/res/icon/tag_blue.png","二级菜单",50],
+        [9,"角色用户",1,"~/Admin/RoleUser","CoreRoleUserView","~/res/icon/tag_blue.png","二级菜单",70],
+        [11,"角色权限",1,"~/Admin/RolePower","CoreRolePowerView","~/res/icon/tag_blue.png","二级菜单",90],
+        [12,"菜单",1,"~/Admin/Menu","CoreMenuView","~/res/icon/tag_blue.png","二级菜单",100],
+        [13,"在线统计",1,"~/Admin/Online","CoreOnlineView","~/res/icon/tag_blue.png","二级菜单",110],
+        [14,"系统配置",1,"~/Admin/Config","CoreConfigView","~/res/icon/tag_blue.png","二级菜单",120],
+        [15,"修改密码",1,"~/Admin/ChangePassword","","~/res/icon/tag_blue.png","二级菜单",130],
+        [2,"测试菜单",0,"","","~/res/icon/folder.png","顶级菜单",20],
+        [19,"按钮5",1,"~/Test/ButtonClick","","~/res/icon/tag_yellow.png","",3],
+        [18,"测试页面1",1,"~/Test/FormDynamic","","~/res/icon/tag_yellow.png","三级菜单",10],
+        [17,"测试页面2",1,"~/Test/GridPaging","","~/res/icon/page.png","二级菜单",20]
+    ]);
+    F.ui.Grid1.clearSelection();
+
+
+post
+    F.doPostBack('@Url.Handler("Title_DoPostBack")', 'Panel1', {
+        actionType: 'delete',
+        deletedRowID: rowData.id
+    });
 
 
 
 
-# Codes
 
-```
-    public class MyDbContext : DbContext
-    {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var sqliteConn = new SqliteConnection(@"DataSource = Chinook.db");
-            optionsBuilder.UseSqlite(sqliteConn);
-        }
-    }
-
-    using (var context = new MyDbContext())
-    {
-        context.Database.EnsureCreated();
-    }
-```

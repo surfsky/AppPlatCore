@@ -17,34 +17,21 @@ namespace App
     /// </summary>
     public class DynamicViewData : DynamicObject
     {
-        /// <summary>
-        /// 数据字段
-        /// </summary>
+        /// <summary>数据字段</summary>
         private ViewDataDictionary ViewData;
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="ViewData"></param>
+        /// <summary>构造函数</summary>
         public DynamicViewData(ViewDataDictionary viewData)
         {
             ViewData = viewData;
         }
 
 
-        /// <summary>
-        /// 调用 ViewBag["key"]; 时执行
-        /// </summary>
-        /// <param name="binder"></param>
-        /// <param name="indexes"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <summary>调用 ViewBag["key"]; 时执行</summary>
         public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
         {
             if (indexes == null || indexes.Length != 1)
-            {
                 throw new ArgumentException("indexes");
-            }
 
             string key = indexes[0] as string;
             if (key != null)
@@ -58,19 +45,11 @@ namespace App
             }
         }
 
-        /// <summary>
-        /// 调用 ViewBag["key"] = "value"; 时执行
-        /// </summary>
-        /// <param name="binder"></param>
-        /// <param name="indexes"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <summary>调用 ViewBag["key"] = "value"; 时执行</summary>
         public override bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
         {
             if (indexes == null || indexes.Length != 1)
-            {
                 throw new ArgumentException("indexes");
-            }
 
             string key = indexes[0] as string;
             if (key != null)
@@ -84,33 +63,20 @@ namespace App
             }
         }
 
-        /// <summary>
-        /// 获取所有key
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>获取所有key</summary>
         public override IEnumerable<string> GetDynamicMemberNames()
         {
             return ViewData.Keys;
         }
 
-        /// <summary>
-        /// 调用 ViewBag.key; 时执行
-        /// </summary>
-        /// <param name="binder"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <summary>调用 ViewBag.key; 时执行</summary>
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
             result = ViewData[binder.Name];
             return true;
         }
 
-        /// <summary>
-        /// 调用 ViewBag.key = "value"; 时执行
-        /// </summary>
-        /// <param name="binder"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <summary>调用 ViewBag.key = "value"; 时执行</summary>
         public override bool TrySetMember(SetMemberBinder binder, object value)
         {
             ViewData[binder.Name] = value;

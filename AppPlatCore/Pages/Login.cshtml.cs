@@ -19,13 +19,9 @@ namespace App.Pages
         public string WinTitle { get; set; }
         public void OnGet()
         {
-            LoadData();
-        }
-
-        private void LoadData()
-        {
             WinTitle = String.Format("{0} v{1}", SiteConfig.Instance.Title, Common.GetProductVersion());
         }
+
         public async Task<IActionResult> OnPostBtnSubmit_ClickAsync(string tbxUserName, string tbxPassword)
         {
             string userName = tbxUserName.Trim();
@@ -34,7 +30,9 @@ namespace App.Pages
                 .Include(u => u.RoleUsers)
                 .Where(u => u.Name == userName).AsNoTracking().FirstOrDefaultAsync();
 
-            if (user != null)
+            if (user == null)
+                Alert.Show("用户名或密码错误！");
+            else
             {
                 if (PasswordUtil.ComparePasswords(user.Password, password))
                 {
@@ -51,10 +49,6 @@ namespace App.Pages
                 {
                     Alert.Show("用户名或密码错误！");
                 }
-            }
-            else
-            {
-                Alert.Show("用户名或密码错误！");
             }
 
             return UIHelper.Result();

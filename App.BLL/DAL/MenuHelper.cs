@@ -4,9 +4,13 @@ using System.Web;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using App;
+using App.Entities;
 
 namespace App.Models
 {
+    /// <summary>
+    /// 菜单树辅助处理
+    /// </summary>
     public class MenuHelper
     {
         private static List<Menu> _menus;
@@ -19,7 +23,9 @@ namespace App.Models
                 if (_menus == null)
                 {
                     _menus = new List<Menu>();
-                    var db = BaseModel.GetDbConnection();
+                    //var db = BaseModel.GetDbConnection();
+                    //List<Menu> dbMenus = db.Menus.Include(m => m.ViewPower).OrderBy(m => m.SortIndex).ToList();
+                    var db = EntityConfig.Db as AppPlatContext;
                     List<Menu> dbMenus = db.Menus.Include(m => m.ViewPower).OrderBy(m => m.SortIndex).ToList();
                     ResolveMenuCollection(dbMenus, null, 0);
                 }

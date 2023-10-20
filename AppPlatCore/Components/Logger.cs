@@ -7,7 +7,10 @@ using Serilog.Core;
 
 namespace App.Components
 {
-    public class Logs
+    /// <summary>
+    /// 日志器
+    /// </summary>
+    public class Logger
     {
         static Serilog.Core.Logger _log = new Lazy<Serilog.Core.Logger>(() => CreateLogger()).Value;
 

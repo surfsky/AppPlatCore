@@ -9,20 +9,11 @@ BUG
 --------------------------------------------------------
 Task
 --------------------------------------------------------
+SiteConfig.Instance.Save() 无法保存？？？
+
 业务
     生成AI识别框架
     实现AI识别分类页面
-
-
-数据库
-    /数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
-    sqlserver 2012 
-    权限用枚举改造
-    Menu 增加 Target 属性
-
-修改DAL
-    权限用枚举
-    排序用linq语法，强名称
 
 给用户加头像，
     /实现图片上传
@@ -30,15 +21,20 @@ Task
     实现缩略图（用 ImageMiddleware ）
     点击图片上传
 
+
+数据库及DAL
+    权限用枚举
+    Menu 增加 Target 属性
+    实体类全部改为继承自 EntityBase
+    测试 sqlserver 2012 
+    排序用linq语法，强名称
+
+
 修改页面
     login: 用一个背景图、登录框、底部声明
 
 
 修改页面模型
-    /将所有列表页面的操作按钮放到左侧，且设置宽度为38
-    用PageBase/BaseModel
-        /BaseModel代码过重，考虑把UI相关的抽出来，数据库相关的用 partial class
-        用Attribute的方式自动检测权限
     简化列表页面（PageListor）
         集成绑定、排序、分页等逻辑
     简化编辑页面（PageEditor）
@@ -51,6 +47,10 @@ Task
 --------------------------------------------------------
 Done
 --------------------------------------------------------
+/优化BaseModel
+    /BaseModel代码过重，考虑把UI相关的抽出来，数据库相关的用 partial class
+    /用Attribute的方式自动检测权限 CheckPowerAttribute
+
 /集成
     /集成Responsive page
     /集成signalR
@@ -79,8 +79,9 @@ Done
     /将修改密码、安全退出放到一起去
     /实现用户图标
     /修正在线用户网页
+    /将所有列表页面的操作按钮放到左侧，且设置宽度为38
 
-/数据库
+/数据库及DAL
     /修正 SqlServer 数据库访问异常，启用Rownum
     /修改配置页面
         /用SiteConfig替代Config， 其实 Config 过度设计了，直接用类字段就行了
@@ -93,6 +94,7 @@ Done
         /实现附件附表
         /实现父子表结构，实现树结构逻辑
         /实现属性：All，Entity等
+    /实现实体类变更数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
 
 /其它
     /更新到 github

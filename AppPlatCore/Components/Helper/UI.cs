@@ -6,7 +6,7 @@ using System;
 namespace App.Components
 {
     /// <summary>
-    /// UI 相关的控制方法
+    /// UI 相关的辅助方法
     /// </summary>
     public class UI
     {
@@ -71,19 +71,19 @@ namespace App.Components
         //-----------------------------------------------------------------
         // 模拟树的下拉列表
         //-----------------------------------------------------------------
-        public static List<T> ResolveDDL<T>(List<T> mys) where T : ICustomTree, ICloneable, IKeyID, new()
+        public static List<T> ResolveDDL<T>(List<T> mys) where T : ITreeNode, ICloneable, IKeyID, new()
         {
             return ResolveDDL<T>(mys, -1, true);
         }
 
-        public static List<T> ResolveDDL<T>(List<T> mys, int currentId) where T : ICustomTree, ICloneable, IKeyID, new()
+        public static List<T> ResolveDDL<T>(List<T> mys, int currentId) where T : ITreeNode, ICloneable, IKeyID, new()
         {
             return ResolveDDL<T>(mys, currentId, true);
         }
 
 
         // 将一个树型结构放在一个下列列表中可供选择
-        public static List<T> ResolveDDL<T>(List<T> source, int currentID, bool addRootNode) where T : ICustomTree, ICloneable, IKeyID, new()
+        public static List<T> ResolveDDL<T>(List<T> source, int currentID, bool addRootNode) where T : ITreeNode, ICloneable, IKeyID, new()
         {
             List<T> result = new List<T>();
 

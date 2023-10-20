@@ -15,21 +15,17 @@ namespace App.Pages.Admin
     public class ConfigModel : BaseAdminModel
     {
         public bool PowerCoreConfigEdit { get; set; }
-        public string HelpListText { get; set; }
-        public string SiteTitle { get; set; }
-        public string SiteIcon { get; set; }
 
         public SiteConfig Config { get; set; }
+        public string HelpListText { get; set; }
 
         public async Task OnGetAsync()
         {
             PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
             Config = SiteConfig.Instance;
-            SiteTitle = SiteConfig.Instance.Title;
-            SiteIcon = SiteConfig.Instance.Icon;
             await Task.Run(() =>
             {
-                JSBeautifyLib.JSBeautify jsb = new JSBeautifyLib.JSBeautify(SiteConfig.Instance.HelpList, new JSBeautifyLib.JSBeautifyOptions());
+                JSBeautifyLib.JSBeautify jsb = new JSBeautifyLib.JSBeautify(Config.HelpList, new JSBeautifyLib.JSBeautifyOptions());
                 HelpListText = jsb.GetResult();
             });
         }
@@ -40,7 +36,7 @@ namespace App.Pages.Admin
             // 在操作之前进行权限检查
             if (!CheckPower("CoreConfigEdit"))
             {
-                CheckPowerFailWithAlert();
+                Auth.CheckPowerFailWithAlert();
                 return UIHelper.Result();
             }
 
@@ -54,16 +50,17 @@ namespace App.Pages.Admin
                 return UIHelper.Result();
             }
 
+            // 保存配置
             SiteConfig.Instance.PageSize = ddlPageSize;
             SiteConfig.Instance.HelpList = tbxHelpList;
             SiteConfig.Instance.Title = tbTitle;
             SiteConfig.Instance.LoginBg = tbLoginBg;
             SiteConfig.Instance.Icon = tbIcon;
             SiteConfig.Instance.BeiAnNo = tbBeiAnNo;
-            SiteConfig.Instance.Save();
+            SiteConfig.Instance.Save(Entities.EntityOp.Edit);
 
+            // 刷新页面
             FineUICore.PageContext.RegisterStartupScript("top.window.location.reload(false);");
-
             return UIHelper.Result();
         }
     }

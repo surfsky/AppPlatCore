@@ -87,7 +87,7 @@ namespace App.Pages.Admin
                 // 在操作之前进行权限检查
                 if (!CheckPower("CoreUserDelete"))
                 {
-                    CheckPowerFailWithAlert();
+                    Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();
                 }
 
@@ -99,7 +99,7 @@ namespace App.Pages.Admin
                 // 在操作之前进行权限检查
                 if (!CheckPower("CoreUserEdit"))
                 {
-                    CheckPowerFailWithAlert();
+                    Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();
                 }
 
@@ -111,7 +111,7 @@ namespace App.Pages.Admin
                 // 在操作之前进行权限检查
                 if (!CheckPower("CoreUserEdit"))
                 {
-                    CheckPowerFailWithAlert();
+                    Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();
                 }
 
