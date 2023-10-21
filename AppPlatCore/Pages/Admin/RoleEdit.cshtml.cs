@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreRoleEdit")]
+    [CheckPower("CoreRoleEdit")]
     public class RoleEditModel : BaseAdminModel
     {
         [BindProperty]

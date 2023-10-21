@@ -9,8 +9,6 @@ BUG
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-SiteConfig.Instance.Save() 无法保存？？？
-
 业务
     生成AI识别框架
     实现AI识别分类页面
@@ -50,6 +48,7 @@ Done
 /优化BaseModel
     /BaseModel代码过重，考虑把UI相关的抽出来，数据库相关的用 partial class
     /用Attribute的方式自动检测权限 CheckPowerAttribute
+    /简化CheckPowerAttribute构造函数
 
 /集成
     /集成Responsive page
@@ -80,6 +79,16 @@ Done
     /实现用户图标
     /修正在线用户网页
     /将所有列表页面的操作按钮放到左侧，且设置宽度为38
+    /修改首页样式 index.css
+        .mainpanel {
+            background-image: none; /*url(./moon.jpg);*/
+            background-size: cover;
+            background-position: center 0;
+            background-repeat: no-repeat;
+            background-color: #052767;
+        }
+    /简化CheckPowerAttribute，增加构造函数。
+
 
 /数据库及DAL
     /修正 SqlServer 数据库访问异常，启用Rownum
@@ -95,6 +104,7 @@ Done
         /实现父子表结构，实现树结构逻辑
         /实现属性：All，Entity等
     /实现实体类变更数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+    /EntityBase.Instance 用了缓存有点问题，无法保存，要用普通方法。
 
 /其它
     /更新到 github

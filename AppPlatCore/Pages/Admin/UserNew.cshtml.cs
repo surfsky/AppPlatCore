@@ -13,7 +13,7 @@ using System.Transactions;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreUserNew")]
+    [CheckPower("CoreUserNew")]
     public class UserNewModel : BaseAdminModel
     {
         [BindProperty]

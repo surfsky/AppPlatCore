@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreConfigView")]
+    [CheckPower("CoreConfigView")]
     public class ConfigModel : BaseAdminModel
     {
         public bool PowerCoreConfigEdit { get; set; }
@@ -22,7 +22,7 @@ namespace App.Pages.Admin
         public async Task OnGetAsync()
         {
             PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
-            Config = SiteConfig.Instance;
+            Config = SiteConfig.Instance; //.Set.FirstOrDefault(); //.Instance;
             await Task.Run(() =>
             {
                 JSBeautifyLib.JSBeautify jsb = new JSBeautifyLib.JSBeautify(Config.HelpList, new JSBeautifyLib.JSBeautifyOptions());
@@ -51,13 +51,14 @@ namespace App.Pages.Admin
             }
 
             // 保存配置
-            SiteConfig.Instance.PageSize = ddlPageSize;
-            SiteConfig.Instance.HelpList = tbxHelpList;
-            SiteConfig.Instance.Title = tbTitle;
-            SiteConfig.Instance.LoginBg = tbLoginBg;
-            SiteConfig.Instance.Icon = tbIcon;
-            SiteConfig.Instance.BeiAnNo = tbBeiAnNo;
-            SiteConfig.Instance.Save(Entities.EntityOp.Edit);
+            var cfg = SiteConfig.Set.FirstOrDefault();
+            cfg.PageSize = ddlPageSize;
+            cfg.HelpList = tbxHelpList;
+            cfg.Title = tbTitle;
+            cfg.LoginBg = tbLoginBg;
+            cfg.Icon = tbIcon;
+            cfg.BeiAnNo = tbBeiAnNo;
+            cfg.Save();
 
             // 刷新页面
             FineUICore.PageContext.RegisterStartupScript("top.window.location.reload(false);");

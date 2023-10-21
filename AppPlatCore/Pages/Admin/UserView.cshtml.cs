@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreUserView")]
+    [CheckPower("CoreUserView")]
     public class UserViewModel : BaseAdminModel
     {
         public User CurrentUser { get; set; }

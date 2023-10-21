@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreOnlineView")]
+    [CheckPower("CoreOnlineView")]
     public class OnlineModel : BaseAdminModel
     {
         public IEnumerable<Online> Onlines { get; set; }

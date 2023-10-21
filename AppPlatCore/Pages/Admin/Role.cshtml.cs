@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreRoleView")]
+    [CheckPower("CoreRoleView")]
     public class RoleModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }

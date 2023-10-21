@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreTitleUserView")]
+    [CheckPower("CoreTitleUserView")]
     public class TitleUserModel : BaseAdminModel
     {
         // 模型数据

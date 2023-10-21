@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreDeptUserView")]
+    [CheckPower("CoreDeptUserView")]
     public class DeptUserModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }

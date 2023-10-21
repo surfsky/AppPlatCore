@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreDeptView")]
+    [CheckPower("CoreDeptView")]
     public class UserSelectDeptModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }

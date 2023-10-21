@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreUserView")]
+    [CheckPower("CoreUserView")]
     public class UserListModel : BaseAdminModel
     {
         public IEnumerable<User> Users { get; set; }

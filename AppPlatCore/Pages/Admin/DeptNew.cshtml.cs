@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreDeptNew")]
+    [CheckPower("CoreDeptNew")]
     public class DeptNewModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }

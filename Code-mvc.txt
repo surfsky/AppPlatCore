@@ -337,6 +337,53 @@ EF
         if (!ModelState.IsValid)
             return Page();
  
+#--------------------------------------------
+# Page Filter
+#--------------------------------------------
+Razor 页面筛选器：
+    类似 HttpModule 的东东
+    https://learn.microsoft.com/zh-cn/aspnet/core/razor-pages/filter?view=aspnetcore-7.0
+    - 在选择处理程序方法后但在模型绑定发生前运行代码。
+    - 在模型绑定完成后，执行处理程序方法前运行代码。
+    - 在执行处理程序方法后运行代码。
+    - 可在页面或全局范围内实现。
+    - 可以用依赖项注入 (DI) 填充构造函数依赖项。 有关详细信息，请参阅 ServiceFilterAttribute 和 TypeFilterAttribute。
+同步方法：
+    OnPageHandlerSelected：在选择处理程序方法后，但在模型绑定发生之前调用。
+    OnPageHandlerExecuting：在模型绑定完成后，执行处理程序方法之前调用。
+    OnPageHandlerExecuted：在执行处理器方法后，生成操作结果前调用。
+异步方法：
+    OnPageHandlerSelectionAsync：在选择处理程序方法后，但在模型绑定发生前，进行异步调用。
+    OnPageHandlerExecutionAsync：在调用处理程序方法前，但在模型绑定结束后，进行异步调用。
+
+
+ResultFilterAttribute
+    简化Filter，用Attribute提供服务
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    namespace PageFilter.Filters
+    {
+        public class AddHeaderAttribute  : ResultFilterAttribute
+        {
+            private readonly string _name;
+            private readonly string _value;
+
+            public AddHeaderAttribute (string name, string value)
+            {
+                _name = name;
+                _value = value;
+            }
+
+            public override void OnResultExecuting(ResultExecutingContext context)
+            {
+                context.HttpContext.Response.Headers.Add(_name, new string[] { _value });
+            }
+        }
+    }
+    [AddHeader("Author", "Rick")]
+    public class TestModel : PageModel
+    [Authorize]
+    public class ModelWithAuthFilterModel : PageModel
 
 #--------------------------------------------
 # Aspnetcore mvc 演变

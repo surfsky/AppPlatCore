@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreTitleView")]
+    [CheckPower("CoreTitleView")]
     public class UserSelectTitleModel : BaseAdminModel
     {
         public IEnumerable<Title> Titles { get; set; }

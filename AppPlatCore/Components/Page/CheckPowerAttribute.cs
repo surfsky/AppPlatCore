@@ -18,6 +18,11 @@ namespace App
         /// <summary>权限名称</summary>
         public string Name { get; set; }
 
+        public CheckPowerAttribute(string name="")
+        {
+            this.Name = name;
+        }
+
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             HttpContext context = filterContext.HttpContext;

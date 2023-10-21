@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreTitleNew")]
+    [CheckPower("CoreTitleNew")]
     public class TitleNewModel : BaseAdminModel
     {
         [BindProperty]

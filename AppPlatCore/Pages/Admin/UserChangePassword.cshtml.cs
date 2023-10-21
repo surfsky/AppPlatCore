@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreUserChangePassword")]
+    [CheckPower("CoreUserChangePassword")]
     public class UserChangePasswordModel : BaseAdminModel
     {
         public User CurrentUser { get; set; }

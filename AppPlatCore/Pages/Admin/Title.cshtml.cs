@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreTitleView")]
+    [CheckPower("CoreTitleView")]
     public class TitleModel : BaseAdminModel
     {
         public IEnumerable<Title> Titles { get; set; }

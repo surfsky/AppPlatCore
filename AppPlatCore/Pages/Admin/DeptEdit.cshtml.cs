@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreDeptEdit")]
+    [CheckPower("CoreDeptEdit")]
     public class DeptEditModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }

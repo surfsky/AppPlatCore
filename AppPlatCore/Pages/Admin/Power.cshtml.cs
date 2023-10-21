@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CorePowerView")]
+    [CheckPower("CorePowerView")]
     public class PowerModel : BaseAdminModel
     {
         public IEnumerable<Power> Powers { get; set; }

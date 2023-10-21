@@ -338,12 +338,23 @@
     }
 
 /* Special - Background color for bgpanel */
+/*
 .mainpanel {
     background-image: url(./moon.jpg);
     background-size: cover;
     background-position: center 0;
     background-repeat: no-repeat;
 }
+*/
+
+.mainpanel {
+    background-image: none; /*url(./moon.jpg);*/
+    background-size: cover;
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-color: #052767;
+}
+
 
 .f-ie8 .mainpanel {
     background-image: none;

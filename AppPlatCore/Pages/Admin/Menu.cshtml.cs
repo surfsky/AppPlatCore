@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreMenuView")]
+    [CheckPower("CoreMenuView")]
     public class MenuModel : BaseAdminModel
     {
         public IEnumerable<Models.Menu> Menus { get; set; }

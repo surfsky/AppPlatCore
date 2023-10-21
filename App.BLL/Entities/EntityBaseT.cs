@@ -162,13 +162,14 @@ namespace App.Entities
         /// <summary>保存修改</summary>
         public T Save(EntityOp? op=null, bool log = false)
         {
-            // 新增或修改预处理
+            // 新增或修改判定
             if (op == null) 
                 op = (Db.Entry(this).State == EntityState.Detached) ? EntityOp.New : EntityOp.Edit;
 
             //
             if (op == EntityOp.New)
             {
+                Db.Entry(this).State = EntityState.Added;
                 if (this.ID == 0)
                 {
                     if (SnowflakeAttribute != null)
@@ -178,7 +179,10 @@ namespace App.Entities
                 Set.Add(this as T);
             }
             else
+            {
+                Db.Entry(this).State = EntityState.Modified;
                 this.UpdateDt = DateTime.Now;
+            }
 
             // 保存
             BeforeSave(op.Value);

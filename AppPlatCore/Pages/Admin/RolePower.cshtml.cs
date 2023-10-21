@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreRolePowerView")]
+    [CheckPower("CoreRolePowerView")]
     public class RolePowerModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }

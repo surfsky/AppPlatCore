@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreRoleView")]
+    [CheckPower("CoreRoleView")]
     public class UserSelectRoleModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }

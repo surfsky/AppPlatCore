@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower(Name = "CoreUserEdit")]
+    [CheckPower("CoreUserEdit")]
     public class UserEditModel : BaseAdminModel
     {
         [BindProperty]
