@@ -1,3 +1,5 @@
+
+
                     <f:Form ID="Form3" ShowBorder="false" ShowHeader="false" LabelAlign="Right">
                         <Rows>
                             <f:FormRow>
@@ -299,3 +301,13 @@ a.f-panel-header.f-noselect.f-tab-header.f-tab-header-closable.f-panel-header-ic
 
                     public string SiteTitle { get; set; }
         public string SiteIcon { get; set; }
+
+        
+                //fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
+                //fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
+                //var folder = "~/Files/";
+                //var folder2 = FineUICore.PageContext.MapPath(folder);
+                //physicalPath = folder2 + fileName;
+                //virtualPath = folder + fileName;
+
+                            var modelPath = Asp.MapPath(JewelsAI.ModelPath);

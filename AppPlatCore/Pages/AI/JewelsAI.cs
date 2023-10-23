@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using App.Utils;
+using App.Web;
 
 namespace App.Pages.AI
 {
@@ -65,8 +66,10 @@ namespace App.Pages.AI
     /// </summary>
     public class JewelsAI
     {
+        /// <summary>训练目录</summary>
+        public static string TrainPath = "/Pages/AI/JewelsImages/";
         /// <summary>模型文件路径</summary>
-        public static string MLNetModelPath = Path.GetFullPath("JewelsImages/model.zip");
+        public static string ModelPath = "/Pages/AI/JewelsImages/model.zip";
 
         //---------------------------------------------------------
         // 引擎
@@ -90,9 +93,10 @@ namespace App.Pages.AI
 
         private static PredictionEngine<ModelInput, ModelOutput> CreatePredictEngine()
         {
-            var mlContext = new MLContext();
-            ITransformer mlModel = mlContext.Model.Load(MLNetModelPath, out var _);
-            return mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+            var physicalPath = Asp.MapPath(ModelPath);
+            var context = new MLContext();
+            ITransformer transformer = context.Model.Load(physicalPath, out var _);
+            return context.Model.CreatePredictionEngine<ModelInput, ModelOutput>(transformer);
         }
 
         //---------------------------------------------------------
@@ -146,6 +150,18 @@ namespace App.Pages.AI
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName: @"PredictedLabel", inputColumnName: @"PredictedLabel"));
 
             return pipeline;
+        }
+
+        /// <summary>build model.</summary>
+        public static void BuildModel()
+        {
+            var trainPath = Asp.MapPath(TrainPath);
+            var modelPath = Asp.MapPath(ModelPath);
+            var context = new MLContext();
+            var trainData = LoadImageFromFolder(context, trainPath);
+            var pipeline = BuildPipeline(context);
+            var transformer = pipeline.Fit(trainData);
+            context.Model.Save(transformer, trainData.Schema, modelPath);
         }
 
 

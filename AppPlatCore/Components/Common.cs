@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using App.Utils;
 
 namespace App.Components
 {
@@ -22,7 +23,22 @@ namespace App.Components
             return FineUICore.PageContext.GetRequestService<Models.AppPlatContext>();
         }
 
+        /// <summary>获取上传文件要保存的虚拟路径</summary>
+        public static string GetUploadPath(string folderName, string fileName = ".png")
+        {
+            // 默认保存在 /Files/ 目录下
+            string folder = string.Format("~/Files/{0}", folderName);
 
+            // 如果 folderName 以/开头，则保存在 folderName 目录下
+            if (folderName != null && folderName.StartsWith("/"))
+                folder = folderName;
+
+            // 合并目录和文件名
+            string extension = fileName.GetFileExtension();
+            string path = string.Format("{0}/{1}{2}", folder, new SnowflakeID().NewID(), extension);
+            return path.TrimStart("~");
+            //return Asp.ResolveUrl(path);
+        }
 
         /// <summary>
         /// 获取实例的属性名称列表

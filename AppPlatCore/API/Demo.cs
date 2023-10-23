@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using App.Components;
 using App.HttpApi;
 using App.Utils;
 using App.Web;
@@ -80,7 +81,7 @@ namespace App.Api
                 return new APIResult(false, "File deny", 13);
 
             // 构造存储路径
-            var url = GetUploadPath(folder, fileName);
+            var url = Common.GetUploadPath(folder, fileName);
             var path = Asp.MapPath(url);
             var fi = new FileInfo(path);
             if (!fi.Directory.Exists)
@@ -95,21 +96,6 @@ namespace App.Api
             return new APIResult(true, url);
         }
 
-        /// <summary>获取上传文件要保存的虚拟路径</summary>
-        public static string GetUploadPath(string folderName, string fileName = ".png")
-        {
-            // 默认保存在 /Files/ 目录下
-            string folder = string.Format("~/Files/{0}", folderName);
 
-            // 如果 folderName 以/开头，则保存在 folderName 目录下
-            if (folderName != null && folderName.StartsWith("/"))
-                folder = folderName;
-
-            // 合并目录和文件名
-            string extension = fileName.GetFileExtension();
-            string path = string.Format("{0}/{1}{2}", folder, new SnowflakeID().NewID(), extension);
-            return path.TrimStart("~");
-            //return Asp.ResolveUrl(path);
-        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using App.Components;
 using App.Models;
-
+using App.Web;
 using FineUICore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -72,6 +72,8 @@ namespace App.Pages.Admin
             if (filePhoto != null)
             {
                 string fileName = filePhoto.FileName;
+                string physicalPath = "";
+                string virtualPath = "";
                 if (!UI.ValidateFileType(fileName))
                 {
                     UIHelper.FileUpload("filePhoto").Reset();
@@ -79,17 +81,13 @@ namespace App.Pages.Admin
                 }
                 else
                 {
-                    fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
-                    fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
-                    var folder = "~/upload/";
-                    var folder2 = FineUICore.PageContext.MapWebPath(folder);
-                    App.Utils.IO.PrepareDirectory(folder2);
-                    using (var stream = new FileStream(folder2 + fileName, FileMode.Create))
-                    {
+                    virtualPath = Common.GetUploadPath("Images");
+                    physicalPath = Asp.MapPath(virtualPath);
+                    Utils.IO.PrepareDirectory(physicalPath);
+                    using (var stream = new FileStream(physicalPath, FileMode.Create))
                         filePhoto.CopyTo(stream);
-                    }
 
-                    UIHelper.Image("imgPhoto").ImageUrl(folder + fileName);
+                    UIHelper.Image("imgPhoto").ImageUrl(virtualPath + "?w=100");
                     UIHelper.FileUpload("filePhoto").Reset();
                 }
             }

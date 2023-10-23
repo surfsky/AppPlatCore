@@ -39,7 +39,7 @@ namespace App.Pages
             OnlineUserCount =  (await GetOnlineCountAsync()).ToString();
             ProductVersion = Common.GetProductVersion();
             ConfigTitle = SiteConfig.Instance.Title;   //"AppPlat";
-            SystemHelpMenu = GetSystemHelpMenu();
+            SystemHelpMenu = GetSystemHelpMenu();  // 动态组织客户端菜单
 
             // 注销退出
             var action = Asp.GetQueryString("action");

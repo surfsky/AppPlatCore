@@ -1,0 +1,26 @@
+﻿@page
+@model App.Pages.AI.ConfigModel
+@{
+    ViewData["Title"] = "Config";
+}
+
+@section body {
+    <f:SimpleForm ID="SimpleForm1" BodyPadding="10" LabelAlign="Top" ShowBorder="false" ShowHeader="false" AutoScroll="true">
+        <Toolbars>
+            <f:Toolbar ID="Toolbar1">
+                <Items>
+                    <f:Button ID="btnBuild" Icon="ApplicationGo" OnClick="@Url.Handler("Config_btnBuild_OnClick")"  ValidateTarget="Top" Text="编译模型" />
+                </Items>
+            </f:Toolbar>
+        </Toolbars>
+        <Items>
+            <f:TextBox ID="tbFolder" Label="图片目录"  Text="@Model.TrainPath" Enabled="false" />
+            <f:TextBox ID="tbModel" Label="模型文件" Text="@Model.ModelPath" Enabled="false" />
+            <f:TextArea ID="tbLog" Label="说明" Height="320" Enabled="false" />
+        </Items>
+    </f:SimpleForm>
+
+}
+
+
+
