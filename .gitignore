@@ -12,3 +12,5 @@ App.BLL/obj/App.BLL.csproj.nuget.dgspec.json
 App.BLL/obj/App.BLL.csproj.nuget.dgspec.json
 App.BLL/obj/App.BLL.csproj.nuget.g.props
 App.BLL/obj/App.BLL.csproj.nuget.g.targets
+/AppPlatCore/Files
+/AppPlatCore/Pages/AI/JewelsImages

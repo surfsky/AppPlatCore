@@ -1,0 +1,33 @@
+﻿@page
+@model App.Pages.AI.JewelsModel
+@{
+    ViewData["Title"] = "Jewels Classfier";
+}
+
+@section body {
+
+    <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10" IsViewPort="true">
+        <Items>
+            <f:Image ID="imgPhoto" CssClass="photo" ImageUrl="~/res/images/blank.png" ShowEmptyLabel="true" Label="图片"  Width="200" />
+            <f:FileUpload ID="filePhoto" ShowEmptyLabel="true" ButtonText="上传图片" ButtonOnly="true" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto" />
+
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="true"
+                    DataIDField="ID" DataTextField="Name"
+                    AllowSorting="false" AllowPaging="false"
+                    DataSource="@Model.Results">
+                <Columns>
+                    <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
+                    <f:RenderField For="Results.First().Label" />
+                    <f:RenderField For="Results.First().Score" />
+                </Columns>
+            </f:Grid>
+        </Items>
+    </f:SimpleForm>
+
+
+    <f:Window ID="Window1" Title="查看" Hidden="true" EnableIFrame="true"
+        EnableMaximize="true" EnableResize="true" Target="Top" IsModal="true" Width="550"
+        Height="350"
+        />
+
+}

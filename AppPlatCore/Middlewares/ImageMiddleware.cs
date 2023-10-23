@@ -36,7 +36,7 @@ namespace App.Middlewares
 
             // 原图路径校验
             var rawPath = Asp.MapPath(path);
-            if (!File.Exists(rawPath))
+            if (!File.Exists(rawPath) && Asp.QueryString.IsEmpty())
             {
                 //Asp.Error(404, "Not found");  // 因为 wwwroot 的原因，MapPath 出来的路径可能不对，就不做处理了
                 await _next.Invoke(context);
