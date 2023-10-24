@@ -17,9 +17,10 @@ using App.HttpApi;
 using App.Middlewares;
 using App.Web;
 using App.Models;
-using App.Hubs;
 using App.Components;
 using App.Entities;
+using App.Pages.AI;
+using App.Pages.Chats;
 
 namespace App
 {
@@ -58,7 +59,11 @@ namespace App
                 .AddNewtonsoftJson()                            // 用 NewtonsoftJson 来序列化json（而非自带的）
                 ;
             services.AddServerSideBlazor();                     // 启用 Blazor
-            services.AddSignalR();                              // 使用 SignalR
+            services.AddSignalR(op =>
+            {
+                //op.KeepAliveInterval = new TimeSpan(0, 1, 0);
+                op.ClientTimeoutInterval = new TimeSpan(0, 0, 20);
+            });
 
 
             // 注册数据库连接服务（每次请求时创建）
@@ -113,21 +118,22 @@ namespace App
             });
 
             // 标准中间件
-            app.UseStaticFiles();                       // 启用静态文件输出
-            app.UseSession();                           // 启用Session
-            app.UseRouting();                           // 启用路由
-            app.UseAuthentication();                    // 启用鉴权（是否登录）
-            app.UseAuthorization();                     // 启用授权（有什么权限属性）
-
-            // 其它中间件
-            app.UseFineUI();                            // 启用 FineUI 控件库
-            app.UseWebSockets();                        // 启用 WebSocket 以支持SignalR
+            app.UseStaticFiles();                           // 启用静态文件输出
+            app.UseSession();                               // 启用Session
+            app.UseRouting();                               // 启用路由
+            app.UseAuthentication();                        // 启用鉴权（是否登录）
+            app.UseAuthorization();                         // 启用授权（有什么权限属性）
+                                                            
+            // 其它中间件                                   
+            app.UseFineUI();                                // 启用 FineUI 控件库
+            app.UseWebSockets();                            // 启用 WebSocket 以支持SignalR
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();              // 启用 RazorPage 解析引擎
-                endpoints.MapHub<ChatHub>("/ChatHub");  // 启用 ChatHub
-                endpoints.MapBlazorHub();               // 启用 Blazor
-                //endpoints.MapFallbackToPage("/Blazor");  // 
+                endpoints.MapRazorPages();                  // 启用 RazorPage 解析引擎
+                endpoints.MapHub<ChatHub>("/ChatHub");      // 启用 ChatHub
+                endpoints.MapHub<JewelsHub>("/JewelsHub");  // 启用 JewelsHub
+                endpoints.MapBlazorHub();                   // 启用 Blazor
+                //endpoints.MapFallbackToPage("/Blazor");   // 
             });
         }
     }

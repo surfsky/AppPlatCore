@@ -16,9 +16,7 @@ namespace App.Pages.Admin
     public class TitleModel : BaseAdminModel
     {
         public IEnumerable<Title> Titles { get; set; }
-
         public PagingInfoViewModel PagingInfo { get; set; }
-
         public bool PowerCoreTitleNew { get; set; }
         public bool PowerCoreTitleEdit { get; set; }
         public bool PowerCoreTitleDelete { get; set; }

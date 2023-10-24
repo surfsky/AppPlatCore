@@ -66,7 +66,7 @@ namespace App.Models
                             SortIndex = 10,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/UserList",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreUserView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -75,7 +75,7 @@ namespace App.Models
                             SortIndex = 50,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/DeptUser",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreDeptUserView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -84,7 +84,7 @@ namespace App.Models
                             SortIndex = 30,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/TitleUser",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreTitleUserView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -93,7 +93,7 @@ namespace App.Models
                             SortIndex = 70,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/RoleUser",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreRoleUserView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -102,7 +102,7 @@ namespace App.Models
                             SortIndex = 90,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/RolePower",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreRolePowerView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -111,7 +111,7 @@ namespace App.Models
                             SortIndex = 100,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Menu",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreMenuView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -120,7 +120,7 @@ namespace App.Models
                             SortIndex = 110,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Online",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreOnlineView").FirstOrDefault<Power>()
                         },
                         new Menu
@@ -129,7 +129,7 @@ namespace App.Models
                             SortIndex = 120,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Config",
-                            ImageUrl = "~/res/icon/tag_blue.png",
+                            ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreConfigView").FirstOrDefault<Power>()
                         },
                     }
@@ -151,7 +151,7 @@ namespace App.Models
                         new Menu
                         {
                             Name = "Chat",
-                            NavigateUrl = "~/Test/Chat",
+                            NavigateUrl = "~/Chats/Chat",
                             ImageUrl = "~/res/icon/page.png",
                             SortIndex = 30,
                         },

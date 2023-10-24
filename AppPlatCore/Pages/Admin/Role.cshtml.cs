@@ -16,9 +16,7 @@ namespace App.Pages.Admin
     public class RoleModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }
-
         public PagingInfoViewModel PagingInfo { get; set; }
-
         public bool PowerCoreRoleNew { get; set; }
         public bool PowerCoreRoleEdit { get; set; }
         public bool PowerCoreRoleDelete { get; set; }
@@ -54,9 +52,8 @@ namespace App.Pages.Admin
                 q = q.Where(p => p.Name.Contains(searchText));
 
             // 获取总记录数（在添加条件之后，排序和分页之前）
-            pagingInfo.RecordCount = await q.CountAsync();
-
             // 排列和数据库分页
+            pagingInfo.RecordCount = await q.CountAsync();
             q = SortAndPage<Role>(q, pagingInfo);
             return await q.ToListAsync();
         }

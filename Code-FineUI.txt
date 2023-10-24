@@ -400,6 +400,20 @@ F
     F.activeWindow.hideRefresh();
     F.activeWindow.close();
     F.activeWindow.hideExecuteScript('parent.removeActiveTab();');
+    F.ready(function () {
+        var iconList = F.ui.rblIconList;
+        var tbxIcon = F.ui.Menu_ImageUrl;
+        iconList.on('change', function () {
+            tbxIcon.setValue(iconList.getValue());
+        });
+        tbxIcon.on('change', function () {
+            iconList.setValue(tbxIcon.getValue());
+        });
+    });
+
+loading
+    F.ui.SimpleForm1.showLoading();
+    F.ui.SimpleForm1.hodeLoading();
 
 
 button
@@ -422,6 +436,13 @@ confirm
                 deletedRowID: rowData.id
             });
         }
+    });
+
+notify 
+    F.notify({  
+        message: "xxxx",
+        target: "_top",
+        messageIcon: "information"
     });
 
 
@@ -452,6 +473,8 @@ post
     });
 
 
+window
+    F.ui.Window1.show('@Url.Content("~/Admin/DeptNew")', 'ÐÂÔö');
 
 
 

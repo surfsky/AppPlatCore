@@ -9,7 +9,9 @@
         <Toolbars>
             <f:Toolbar ID="Toolbar1">
                 <Items>
-                    <f:Button ID="btnBuild" Icon="ApplicationGo" OnClick="@Url.Handler("Config_btnBuild_OnClick")"  ValidateTarget="Top" Text="编译模型" />
+                    <f:Button ID="btnBuild" Icon="ApplicationGo" OnClick="@Url.Handler("Config_btnBuild_OnClick")"  ValidateTarget="Top" Text="编译模型" Hidden="true" />
+                    <f:Button ID="btnBuild2" Icon="ApplicationGo" OnClientClick="build();" ValidateTarget="Top" Text="编译模型"  />
+                    <f:Label ID="lblInfo" CssStyle="color:red" Text="模型编译需要的时间较久（预计10分钟），请耐心等待" color="yellow" />
                 </Items>
             </f:Toolbar>
         </Toolbars>
@@ -19,8 +21,91 @@
             <f:TextArea ID="tbLog" Label="说明" Height="320" Enabled="false" />
         </Items>
     </f:SimpleForm>
+    <f:Window ID="Window1" Title="处理中" Hidden="true" EnableIFrame="false" EnableClose="false" EnableMaximize="true" EnableResize="false" Target="Top" 
+        IsModal="true" Width="550" Height="200" BodyPadding="20" >
+        <Content>
+            <div id="clock" style="color:red; display:inline-block; font-size: 20px;"></div>
+        </Content>
+    </f:Window>
 
 }
 
+@section script{
+    <script src="~/res/js/signalr.js"></script>
+    <script>
+        "use strict";
+        var connection = new signalR.HubConnectionBuilder().withUrl("/JewelsHub").build();
+        connection.start();
+
+        // 接收到服务器端发来的消息
+        connection.on("AIMessage", function (text) {
+            stopLoading();
+            var msg = eval(text);
+            if (msg.code == 0){
+                F.ui.lblInfo.setText(msg.message);
+                F.notify({
+                    message: msg.message,
+                    target: "_top",
+                    messageIcon: "success",
+                    positionX: 'center',
+                    positionY: 'center',
+                    modal: true
+                });
+            }
+            else{
+                F.notify({
+                    message: "配置失败: " + msg.message,
+                    target: "_top",
+                    messageIcon: "error",
+                    positionX: 'center',
+                    positionY: 'center',
+                    modal: true
+                });
+            }
+        });
+
+        // 发送编译命令到服务器端
+        function build() {
+            showLoading();
+            connection.invoke("BuildModel");
+            event.preventDefault();
+        }
+
+        // 显示加载状态
+        var timerId;
+        function showLoading() {
+            F.ui.Window1.show();
+            var startDt = new Date();
+            timerId = setInterval(() => {
+                var dateDiff = new Date() - startDt;
+                var txt = formatTimespan(dateDiff);
+                var el = document.getElementById("clock");
+                el.innerText = txt;
+            })
+        }
+
+        // 格式化时间差为字符串
+        function formatTimespan(dateDiff){
+            // 计算出相差天数
+            var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));
+            var leave1 = dateDiff % (24 * 3600 * 1000)    //计算天数后剩余的毫秒数
+            var hours = Math.floor(leave1 / (3600 * 1000))//计算出小时数
+            // 计算相差分钟数
+            var leave2 = leave1 % (3600 * 1000)    //计算小时数后剩余的毫秒数
+            var minutes = Math.floor(leave2 / (60 * 1000))//计算相差分钟数
+            // 计算相差秒数
+            var leave3 = leave2 % (60 * 1000)      //计算分钟数后剩余的毫秒数
+            var seconds = Math.round(leave3 / 1000)
+            return "" + dayDiff + "天 " + hours + "小时 " + minutes + " 分钟" + seconds + " 秒";
+        }
+
+        // 停止加载状态
+        function stopLoading() {
+            clearInterval(timerId);
+            F.ui.Window1.hide();
+        }
+
+    </script>
+}
 
 

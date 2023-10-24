@@ -9,6 +9,7 @@ using App.Models;
 using FineUICore;
 using Newtonsoft.Json.Linq;
 using App.Components;
+using App.Web;
 
 namespace App.Pages.AI
 {
@@ -22,11 +23,11 @@ namespace App.Pages.AI
         public void OnGet()
         {
             PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
-            TrainPath = JewelsAI.TrainPath;
-            ModelPath = JewelsAI.ModelPath;
+            TrainPath = Asp.MapPath(JewelsAI.TrainPath);
+            ModelPath = Asp.MapPath(JewelsAI.ModelPath);
         }
 
-
+        /// <summary>页面方法进行重新模型。该方法较为耗时，已改为用 signalR 来实现</summary>
         public IActionResult OnPostConfig_btnBuild_OnClick()
         {
             JewelsAI.BuildModel();

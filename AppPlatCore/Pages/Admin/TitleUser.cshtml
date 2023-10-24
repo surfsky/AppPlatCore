@@ -22,11 +22,7 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar9">
                                 <Items>
-                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreTitleEdit">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
+                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreTitleEdit" OnClientClick="onEditClick();" />
                                 </Items>
                             </f:Toolbar>
                         </Toolbars>
@@ -91,7 +87,7 @@
     </f:RegionPanel>
 
     <f:Window ID="Window0" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550" IFrameUrl="~/Admin/Title" CloseAction="HideRefresh" />
-    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550">
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true" EnableMaximize="true" EnableIFrame="true" Width="900" Height="550" >
         <Listeners>
             <f:Listener Event="close" Handler="TitleUser_Grid2_DoPostBack();"></f:Listener>
         </Listeners>

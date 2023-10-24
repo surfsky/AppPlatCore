@@ -38,8 +38,7 @@ namespace App.Pages.Admin
         public List<RadioItem> MenuEdit_GetIconItems()
         {
             List<RadioItem> items = new List<RadioItem>();
-
-            string[] icons = new string[] { "tag_yellow", "tag_red", "tag_purple", "tag_pink", "tag_orange", "tag_green", "tag_blue", "folder" };
+            string[] icons = new string[] { "page", "application", "tag_blue", "folder", "door_out", "outline", "cog", "user", "chart_bar", "chart_organisation", "clipboard", "map"};
             foreach (string icon in icons)
             {
                 string value = String.Format("~/res/icon/{0}.png", icon);

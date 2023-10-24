@@ -42,9 +42,9 @@
     var connection = new signalR.HubConnectionBuilder().withUrl("/ChatHub").build();
 
     // 接收到服务器端发来的消息
-    connection.on("ChatMessage", function (user, message) {
+    connection.on("ChatMessage", function (user, message, dt) {
         var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        var encodedMsg = user + " says " + msg;
+        var encodedMsg = user + " says " + msg + " [" + dt + "]";
         var li = document.createElement("li");
         li.textContent = encodedMsg;
         document.getElementById("messagesList").appendChild(li);
@@ -61,8 +61,8 @@
     document.getElementById("sendButton").addEventListener("click", function (event) {
         var user = document.getElementById("userInput").value;
         var message = document.getElementById("messageInput").value;
-        // 调用服务器端方法 SendMessage
-        connection.invoke("SendMessage", user, message).catch(function (err) {
+        // 调用服务器端方法
+        connection.invoke("HiServer", user, message).catch(function (err) {
             return console.error(err.toString());
         });
         event.preventDefault();

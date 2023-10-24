@@ -74,7 +74,6 @@
             grid1.el.on('click', 'a.action-btn.viewonline', function (event) {
                 var cnode = $(this);
                 var rowData = grid1.getRowData(cnode.closest('.f-grid-row'));
-
                 F.ui.Window1.show('@Url.Content("~/Admin/UserView?id=")' + rowData.id, "查看用户信息");
             });
 

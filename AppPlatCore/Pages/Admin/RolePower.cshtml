@@ -75,8 +75,8 @@
                         <Toolbars>
                             <f:Toolbar ID="Toolbar1">
                                 <Items>
-                                    <f:Button ID="btnSelectAll" Text="全选" Icon="Accept" OnClientClick="selectPowerCheckboxs(true);" />
-                                    <f:Button ID="btnSelectAll" Text="反选" Icon="ArrowRefresh" OnClientClick="selectPowerCheckboxs(false);" />
+                                    <f:Button ID="btnSelectAll" Text="全选" Icon="Accept" OnClientClick="selectAllCheckboxs();" />
+                                    <f:Button ID="btnSelectAll" Text="反选" Icon="ArrowRefresh" OnClientClick="reverseSelectAllCheckboxs();" />
                                     <f:Button ID="btnGroupUpdate" Icon="Disk" Text="保存" Enabled="@Model.PowerCoreRolePowerEdit" OnClientClick="RolePower_Grid2_DoPostBack('saveall');" />
                                 </Items>
                             </f:Toolbar>
@@ -96,12 +96,12 @@
         <Items>
             <f:MenuButton ID="menuSelectRows" Text="全选行" >
                 <Listeners>
-                    <f:Listener Event="click" Handler="selectPowerCheckboxs(true);"></f:Listener>
+                    <f:Listener Event="click" Handler="selectRowCheckboxs(true);"></f:Listener>
                 </Listeners>
             </f:MenuButton>
             <f:MenuButton ID="menuUnSelectRows" Text="取消行">
                 <Listeners>
-                    <f:Listener Event="click" Handler="selectPowerCheckboxs(false);"></f:Listener>
+                    <f:Listener Event="click" Handler="selectRowCheckboxs(false);"></f:Listener>
                 </Listeners>
             </f:MenuButton>
         </Items>
@@ -116,9 +116,9 @@
 
     <script>
 
-        var checkboxSelector = '.powers input[type=checkbox]',
-            selectedRowSelector = '.f-grid-row-selected',
-            selectedRowCheckboxSelector = selectedRowSelector + ' ' + checkboxSelector;
+        var checkboxSelector = '.powers input[type=checkbox]';
+        var selectedRowSelector = '.f-grid-row-selected';
+        var selectedRowCheckboxSelector = selectedRowSelector + ' ' + checkboxSelector;
 
         function onEditClick(event) {
             var url = '@Url.Content("~/Admin/Role")';
@@ -148,7 +148,25 @@
             return F.ui.Grid2.el.find(checkboxSelector);
         }
 
-        function selectPowerCheckboxs(checked) {
+        // 全选
+        function selectAllCheckboxs(){
+            var checkers = F.ui.Grid2.el.find(checkboxSelector);
+            $.each(checkers, function (index, item) {
+                item.checked = true;
+            });
+        }
+
+        // 反选
+        function reverseSelectAllCheckboxs() {
+            var checkers = F.ui.Grid2.el.find(checkboxSelector);
+            $.each(checkers, function (index, item) {
+                var value = item.checked;
+                item.checked = !value;
+            });
+        }
+
+        // 按行选择
+        function selectRowCheckboxs(checked) {
             var selectedRows = F.ui.Grid2.el.find(selectedRowSelector);
             if (selectedRows.length) {
                 F.ui.Grid2.el.find(selectedRowCheckboxSelector).prop('checked', checked);
@@ -158,9 +176,11 @@
         }
 
 
+        // 根据权限列表，将对应的checkbox打勾
         function updateRolePowers(powerIds) {
             getAllCheckboxEls().each(function () {
-                var checkboxEl = $(this), checkboxValue = parseInt(checkboxEl.val(), 10);
+                var checkboxEl = $(this);
+                var checkboxValue = parseInt(checkboxEl.val(), 10);
                 if ($.inArray(checkboxValue, powerIds) >= 0) {
                     checkboxEl.prop('checked', true);
                 } else {
