@@ -84,6 +84,14 @@
             })
         }
 
+        // 停止加载状态
+        function stopLoading() {
+            clearInterval(timerId);
+            F.ui.Window1.hide();
+        }
+
+
+
         // 格式化时间差为字符串
         function formatTimespan(dateDiff){
             // 计算出相差天数
@@ -97,12 +105,6 @@
             var leave3 = leave2 % (60 * 1000)      //计算分钟数后剩余的毫秒数
             var seconds = Math.round(leave3 / 1000)
             return "" + dayDiff + "天 " + hours + "小时 " + minutes + " 分钟" + seconds + " 秒";
-        }
-
-        // 停止加载状态
-        function stopLoading() {
-            clearInterval(timerId);
-            F.ui.Window1.hide();
         }
 
     </script>

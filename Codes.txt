@@ -1,313 +1,98 @@
+@page
+@using System.Text;
+@model App.Pages.AI.JewelsModel
+@{
+    ViewData["Title"] = "Jewels Classfier";
+}
 
-
-                    <f:Form ID="Form3" ShowBorder="false" ShowHeader="false" LabelAlign="Right">
-                        <Rows>
-                            <f:FormRow>
-                                <Items>
-                                    <f:label></f:label>
-                                </Items>
-                            </f:FormRow>
-                        </Rows>
-                    </f:Form>
-
-                                            <Toolbars>
-                            <f:Toolbar ID="Toolbar1">
-                                <Items>
-                                    <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreTitleUserNew">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-                                </Items>
-                            </f:Toolbar>
-                        </Toolbars>
-
-
-                                                                <Listeners>
-                                            <f:Listener Event="click" Handler="onDeleteSelectedClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-
-                                                                            <Listeners>
-                                            <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-
-
-                                            private async Task<IEnumerable<User>> GetTitleUsersAsync(int grid1SelectedRowID)
-        {
-            var grid2PagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = ConfigHelper.PageSize
-            };
-            Grid2PagingInfo = grid2PagingInfo;
-            return await GetTitleUsersAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);
+@section head {
+    <style type="text/css">
+        ul.icons {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
+            ul.icons li {
+                display: inline-block;
+                margin: 0 10px 10px 0;
+                text-align: center;
+                border-style: solid;
+                border-width: 1px;
+                padding: 10px 5px;
+                width: 150px;
+            }
+                ul.icons li img {
+                    width: 64px;
+                    height: 64px;
+                }
+                ul.icons li .title {
+                    margin-top: 10px;
+                }
+    </style>
+}
 
+@section body {
 
-            <f:Panel ID="Panel1" BodyPadding="5" ShowBorder="false" ShowHeader="false" Layout="VBox" Title="部门管理" IsViewPort="true">
+    <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10" IsViewPort="true" AutoScroll="true">
         <Items>
-            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="false" DataIDField="ID" DataTextField="Name"
-                    EnableSimulateTree="true" DataSource="@Model.Depts">
-                <Toolbars>
-                    <f:Toolbar ID="Toolbar1" Position="Top">
-                        <Items>
-                            <f:Button ID="btnNew" Icon="Add" Text="新增部门" Enabled="@Model.PowerCoreDeptNew">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onNewClick"></f:Listener>
-                                </Listeners>
-                            </f:Button>
-                        </Items>
-                    </f:Toolbar>
-                </Toolbars>
+            <f:Image ID="imgPhoto" CssClass="photo" ImageUrl="~/res/images/blank.png" ShowEmptyLabel="true" Label="图片"  Width="200" />
+            <f:FileUpload ID="filePhoto" ShowEmptyLabel="true" ButtonText="上传图片" ButtonOnly="true" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto,grid" />
+
+            <f:Grid ID="grid" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="true"
+                    DataIDField="ID" DataTextField="Name"
+                    AllowSorting="false" AllowPaging="false"
+                    DataSource="@Model.Results">
                 <Columns>
                     <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionEdit"></f:RenderField>
-                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionDelete"></f:RenderField>
-                    <f:RenderField For="Depts.First().Name" SortField="Name" DataSimulateTreeLevelField="TreeLevel" Width="180"></f:RenderField>
-                    <f:RenderField For="Depts.First().Remark" SortField="Remark" ExpandUnusedSpace="true"></f:RenderField>
-                    <f:RenderField For="Depts.First().SortIndex" Width="80"></f:RenderField>
+                    <f:RenderField For="Results.First().Label" Width="300" />
+                    <f:RenderField For="Results.First().Score" ExpandUnusedSpace="true" />
                 </Columns>
             </f:Grid>
-        </Items>
-    </f:Panel>
+            <f:ContentPanel ID="ContentPanel1" BodyPadding="10" ShowBorder="false" ShowHeader="false">
+                @{
+                    var sb = new StringBuilder();
+                    var iconUrl = Url.Content("~/res/images/empty.png");
+                    sb.Append("<ul class=\"icons\">");
+                    foreach (string icon in Enum.GetNames(typeof(Icon)))
+                    {
+                        Icon iconType = (Icon)Enum.Parse(typeof(Icon), icon);
+                        if (iconType != Icon.None)
+                            iconUrl = Url.Content(IconHelper.GetIconUrl(iconType));
 
-
-                <f:Form ID="Form2" ShowBorder="false" ShowHeader="false">
-                <Rows>
-                    <f:FormRow ID="FormRow1">
-                        <Items>
-                            <f:RadioButtonList ID="rblEnableStatus" OnSelectedIndexChanged="@Url.Handler("UserList_DoPostBack")" OnSelectedIndexChangedFields="Panel1" Label="启用状态" ColumnNumber="3">
-                                <Items>
-                                    <f:RadioItem Text="全部" Selected="true" Value="all"></f:RadioItem>
-                                    <f:RadioItem Text="启用" Value="enabled"></f:RadioItem>
-                                    <f:RadioItem Text="禁用" Value="disabled"></f:RadioItem>
-                                </Items>
-                            </f:RadioButtonList>
-                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名称中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
-                                              ShowTrigger1="false" OnTrigger2Click="@Url.Handler("UserList_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
-                                              OnTrigger1Click="@Url.Handler("UserList_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1">
-                            </f:TwinTriggerBox>
-                        </Items>
-                    </f:FormRow>
-                </Rows>
-            </f:Form>
-
-
-                                                <f:Button ID="btnEdit" Icon="Pencil" Text="编辑" Enabled="@Model.PowerCoreDeptView" OnClientClick="onEditClick">
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEditClick"></f:Listener>
-                                        </Listeners>
-                                    </f:Button>
-
-
-                                                            <Listeners>
-                            <f:Listener Event="click" Handler="F.activeWindow.hide();"></f:Listener>
-                        </Listeners>
-                    </f:Button>
-
-
-        public IActionResult OnPostMenu_Window1_Close(string[] Grid1_fields)
-        {
-            MenuHelper.Reload();
-            UIHelper.Grid("Grid1").DataSource(MenuHelper.Menus, Grid1_fields);
-
-            return UIHelper.Result();
-        }
-
-
-
-
-                                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="搜索" Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false"
-                                        OnClientTrigger1Click="RoleUser_Grid2_DoPostBack('trigger1');"
-                                        OnClientTrigger2Click="RoleUser_Grid2_DoPostBack('trigger2');" 
-                                        />
-                                        <Listeners>
-                                            <f:Listener Event="trigger1click" Handler="RoleUser_Grid2_DoPostBack('trigger1');"></f:Listener>
-                                            <f:Listener Event="trigger2click" Handler="RoleUser_Grid2_DoPostBack('trigger2');"></f:Listener>
-                                        </Listeners>
-                                    </f:TwinTriggerBox>
-
-
-                                                                        <f:MenuButton ID="btnEnableUsers" Text="启用" onclick="onEnableUsersClick();" />
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onEnableUsersClick"></f:Listener>
-                                        </Listeners>
-                                    </f:MenuButton>
-
-                                                                        <f:MenuButton ID="btnDisableUsers" Text="禁用" onclick="onDisableUsersClick(); " />
-                                        <Listeners>
-                                            <f:Listener Event="click" Handler="onDisableUsersClick"></f:Listener>
-                                        </Listeners>
-                                    </f:MenuButton>
-
-
-                                                                <f:Tool IconFont="_Refresh" CssClass="tabtool" ToolTip="刷新" ID="toolRefresh" OnClientClick="onToolRefreshClick();">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onToolRefreshClick"></f:Listener>
-                                </Listeners>
-                            </f:Tool>
-                            <f:Tool IconFont="_Maximize" CssClass="tabtool" ToolTip="最大化" ID="toolMaximize">
-                                <Listeners>
-                                    <f:Listener Event="click" Handler="onToolMaximizeClick"></f:Listener>
-                                </Listeners>
-                            </f:Tool>
-
-
-                            ID="b
-                            
-                                                <f:Button CssClass="userpicaction" Text="@Model.UserName" IconFont="UserCircle"  IconAlign="Top" ShowMenuIcon="true" EnableDefaultState="false" EnableDefaultCorner="false">
-tnUserName" 
-
-
-public void OnGetAsync()
-        {
-            // 注销退出
-            var action = Asp.GetQueryString("action");
-            if (action == "SignOut")
-            {
-                HttpContext.SignOut();
-                HttpContext.Session.Clear();
-                Response.Redirect("/Login");
-                //await OnPostBtnSignOut_ClickAsync();
-                return;
-            }
-
-
-            // 用户菜单
-            List<Models.Menu> menus = ResolveUserMenuList();
-            if (menus.Count == 0)
-            {
-                UI.ShowNotify("系统管理员尚未给你配置菜单！");
-                return;
-            }
-            MenuTreeNodes = GetTreeNodes(menus).ToArray();
-
-            //
-            UserName = GetIdentityName();
-            OnlineUserCount = (await GetOnlineCountAsync()).ToString();
-            ProductVersion = Common.GetProductVersion();
-            ConfigTitle = ConfigHelper.Title;   //"AppPlat";
-            SystemHelpMenu = GetSystemHelpMenu();
-        }
-
-
-            主区域圆角（theme.css）
-        .mainpanel .centerregion {
-            border-width: 0;
-            border-radius: 16px;
-            margin-bottom: 16px;
-            margin-right: 16px;
-            background-color: transparent;
-	        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 6px 0px;
-        }
-    主区域标题栏半透明
-        .mainpanel .centerregion > .f-tabstrip-header {
-            background-color: rgba(255, 255, 255, 0.2);
-            box-shadow: none;
-        }
-
-
-        #mainTabStrip 主页面区
-            background-color:transparent
-
-        f-panel-header f-widget-header f-noselect f-tabstrip-header
-            border-top-radius:20px
-
-        f-panel-tools  右侧的关闭刷新按钮
-            border-top-right-radius: 20px;
-
-/*
-2023-10 surfsky 美化主工作区标签栏
-*/
-/*标签栏*/
-div#mainTabStrip {
-    background-color: transparent;
-}
-
-/*标签栏*/
-.f-panel-header.f-widget-header.f-noselect.f-tabstrip-header {
-    background-color: transparent;
-}
-
-
-/*标签文本悬浮*/
-.f-panel-header a:hover {
-    color: white;
-}
-
-/*非选中标签*/
-.f-panel-header .f-noselect  {
-    color: rgba(255, 255, 255, 0.6);    
-}
-
-
-/*选中的标签文本*/
-a.f-panel-header.f-noselect.f-tab-header.f-tab-header-closable.f-panel-header-icon.f-state-active {
-    color: white;
-}
-
-/*选中标签底部的指示横线*/
-/*
-.f-panel-header .f-tabstrip-header-inkbar {
-    background-color: white!important;
-}
-*/
-
-            //string title = tbxTitle.Trim();
-            //if (title.Length > 100)
-            //{
-            //    title = title.Substring(0, 100);
-            //}
-
-            //ConfigHelper.Title = title;
-
-                        /*
-            var configs = new List<Config> {
-                new Config
-                {
-                    ConfigKey = "Title",
-                    ConfigValue = "AppBoxCore",
-                    Remark = "网站的标题"
-                },
-                new Config
-                {
-                    ConfigKey = "PageSize",
-                    ConfigValue = "20",
-                    Remark = "表格每页显示的个数"
-                },
-                new Config
-                {
-                    ConfigKey = "Theme",
-                    ConfigValue = "Cupertino",
-                    Remark = "网站主题"
-                },
-                new Config
-                {
-                    ConfigKey = "HelpList",
-                    ConfigValue = "[{\"Text\":\"万年历\",\"Icon\":\"Calendar\",\"ID\":\"wannianli\",\"URL\":\"~/Admin/HelpWanNianLi\"},{\"Text\":\"科学计算器\",\"Icon\":\"Calculator\",\"ID\":\"jisuanqi\",\"URL\":\"~/Admin/HelpJiSuanQi\"},{\"Text\":\"系统帮助\",\"Icon\":\"Help\",\"ID\":\"help\",\"URL\":\"~/Admin/Help\"}]",
-                    Remark = "帮助下拉列表的JSON字符串"
+                        sb.AppendFormat("<li class=\"f-state-default\"><img src=\"{0}\"/><div class=\"title\">{1}?w=64</div></li>", iconUrl, icon);
+                    }
+                    sb.Append("</ul>");
                 }
-            };
+                @Html.Raw(sb.ToString());
 
-            return configs;
-            */
+            </f:ContentPanel>
+        </Items>
+    </f:SimpleForm>
+}
 
-                        SiteTitle = SiteConfig.Instance.Title;
-            SiteIcon = SiteConfig.Instance.Icon;
 
-                    public string SiteTitle { get; set; }
-        public string SiteIcon { get; set; }
+            <f:ContentPanel ID="ContentPanel1" BodyPadding="10" ShowBorder="false" ShowHeader="false">
+                @{
+                }
+                @Html.Raw(sb.ToString());
 
-        
-                //fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
-                //fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
-                //var folder = "~/Files/";
-                //var folder2 = FineUICore.PageContext.MapPath(folder);
-                //physicalPath = folder2 + fileName;
-                //virtualPath = folder + fileName;
+            </f:ContentPanel>
 
-                            var modelPath = Asp.MapPath(JewelsAI.ModelPath);
+
+            
+            <f:Grid ID="grid" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="true"
+                    DataIDField="ID" DataTextField="Name"
+                    AllowSorting="false" AllowPaging="false"
+                    DataSource="@Model.Results">
+                <Columns>
+                    <f:RowNumberField EnablePagingNumber="true"></f:RowNumberField>
+                    <f:RenderField For="Results.First().Label" Width="300" />
+                    <f:RenderField For="Results.First().Score" ExpandUnusedSpace="true" />
+                </Columns>
+            </f:Grid>
+            <f:HyperLink NavigateUrl="" Text="<img src='/res/images/empty.png' />" EncodeText="false" />
+            //
+            //UIHelper.Grid("grid").DataSource(this.Results, grid_fields);
+        public List<PredicateResult> Results{ get; set; }
+
+

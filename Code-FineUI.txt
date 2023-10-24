@@ -44,18 +44,29 @@ public static class FineUIMiddlewareExtensions
 #--------------------------------------------
 # FineUICore RazorPage
 #--------------------------------------------
-PageContext
+PageContext (ajax交互方法1，手工写脚本传递到客户端执行）
     PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
     PageContext.RegisterStartupScript(String.Format("$('#mylabel').html('{0}')", "这是修改后的值！" + DateTime.Now.ToLongTimeString()));
     PageContext.RegisterStartupScript("top.window.location.reload(false);");
+    PageContext.RegisterStartupScript("F.ui.Label1.el.attr('style','');");
+
+UIHelper（ajax交互方法2，已经写好的脚本辅助方法）
+    FineUI通过UIHelper，将服务器端的变更传递给客户端， 进行页面元素的动态变更
+    UIHelper.Label("Label1").CssStyle(style);
+    UIHelper.Window("Window1").Hidden(true);
+    UIHelper.Button("btnClientClick2").ClientClick(Alert.GetShowInTopReference("客户端事件已改变！"));
+    UIHelper.TabStrip("TabStrip1").ActiveTabIndex(nextIndex);
+    UIHelper.GroupPanel("GroupPanel2").Collapsed(!collapsed);
+    UIHelper.ToolbarText("ToolbarText1").Text(String.Format("工具条文本一（{0}）", DateTime.Now.ToLongTimeString()));
+    UIHelper.ToolbarText("ToolbarText1").Hidden(!textHidden);
+    UIHelper.ToolbarSeparator("ToolbarSeparator1").Hidden(!separatorHidden);
+    UIHelper.Panel("Panel1").IconFont(IconFont.None);
+    UIHelper.TextBox("TextBox2").Text(text1).Focus(true);
+    UIHelper.Grid("Grid1").Title(title).ConfigColumns(columns, configOptions).DataSource(dataSource);
+
 
 ActiveWindow
     ActiveWindow.HidePostBack();
-
-
-UIHelper
-    UIHelper.Window("Window1").Hidden(true);
-    UIHelper.Button("btnClientClick2").ClientClick(Alert.GetShowInTopReference("客户端事件已改变！"));
 
 Url
     Url.Handler("btnSaveClose_Click")
@@ -170,6 +181,16 @@ ViewBag
 #--------------------------------------------
 # Controls
 #--------------------------------------------
+HyperLink
+    <f:HyperLink NavigateUrl="" Text="<img src='/res/images/empty.png' />" EncodeText="false" />
+
+参数
+    <f:FileUpload ID="filePhoto" ShowEmptyLabel="true" ButtonText="上传图片" ButtonOnly="true" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto,grid" />
+    public IActionResult OnPostFilePhoto_FileSelected(IFormFile filePhoto, string[] grid_fields)
+    {
+        UIHelper.Grid("grid").DataSource(this.Results, grid_fields);
+    }
+
 Button
     触发及事件
         <f:Button Type="Submit" ID="btnLogin" Text="登录" ValidateTarget="Top" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnLogin_Click")" />
@@ -475,6 +496,7 @@ post
 
 window
     F.ui.Window1.show('@Url.Content("~/Admin/DeptNew")', '新增');
-
-
+    F.ui.Window1.bodyEl.html($('#source' + nextSourceNumber).html());
+    F.ui.Window1.showLoading(0.8);
+    F.ui.Window1.hideLoading();
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Code
+namespace App.Components
 {
     public static class DataSources
     {
