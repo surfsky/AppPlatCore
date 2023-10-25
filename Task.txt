@@ -8,24 +8,35 @@ FineUI 控件优化
     Window 没有 OnClientClick 属性
     FineUICore.LabelTagHelper
 
-第一次启动的时候老是报错：ButtonMenu
+云主机部署
+    封装为 docker
+    window 环境部署
+    linux 环境部署
+    tensionflow 库文件的部署
 
+研究
+    /删除所有 ViewBag，用属性方式替代。(RazorPageBase.ViewBag/ModelBase.ViewBag 感觉有重叠，算了不用就是了，不动了)
+    研究 razorpage 的生命周期
+        异步同步方法的执行顺序的异同
+        修改 OnPost 方法的命名方式，以进行强类型绑定客户端方法
+        使用什么策略，让Url.Handler()的方法不用 OnPost 开头，这样可以用强命名方式，避免错误
+            @Url.Handler("btnGo_Click")  -> OnPostbtnGo_Click
+            @Url.Handler(nameof(xxx).TrimStart("OnPost"));
+            ->
+            @Url.Handler(nameof(xxx))
+            @Handler(nameof(xxx))
 
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-/优化菜单图标列表
-/修正角色全选“全选反选”逻辑
-/优化ChatHub
-
 业务
     /生成AI识别框架
     /实现AI识别分类页面
     /实现上传缩略图（用 ImageMiddleware ）
     /展示分类结果
     /异步编译“AI模型”
-    展示子目录图像：用图片列表展示
-
+    /展示子目录图像：用图片列表展示
+    /显示 FTP 地址，供管理员上传图片
 
 
 /给用户加头像，
@@ -46,6 +57,7 @@ Task
 
 修改页面
     login: 用一个背景图、登录框、底部声明
+    将SignOut页面独立出来，或调用HttpApi
 
 
 修改页面模型
@@ -61,6 +73,8 @@ Task
 --------------------------------------------------------
 Done
 --------------------------------------------------------
+
+
 /优化BaseModel
     /BaseModel代码过重，考虑把UI相关的抽出来，数据库相关的用 partial class
     /用Attribute的方式自动检测权限 CheckPowerAttribute
@@ -73,13 +87,17 @@ Done
     /更新到 net 6.0
     /更新到最新 fineui core raver page
     /cshtml 页面修改后可直接运行，添加nuget包：Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+    /优化ChatHub
 
 /bug
     //部门页面修改后页面空白
-    //角色新增后页面也报错，分页出问题
-    //菜单没问题，用的是window close post 事件处理，会带上grid fields？
-    //设置 fields=“grid1”就可以了
+        //角色新增后页面也报错，分页出问题
+        //菜单没问题，用的是window close post 事件处理，会带上grid fields？
+        //设置 fields=“grid1”就可以了，会将参数带到服务器端
     /修正菜单重复bug: 调试时重入会出现
+    /处理BUG：第一次启动的时候老是报错：
+        /ButtonMenu\MenuTreeNodes要初始化不能为空
+        /是不是 Task OnGet() 的原因，好像跑了2次
 
 /修改页面
     /index
@@ -89,7 +107,7 @@ Done
         /优化首页：关闭所有窗口；
         /缩减button listener代码
         /优化 theme：主区域标题栏透明，已写入 wwwroot/res/themes/image_blue_moon/thrme.css
-    /user, userview（改为用textbox更美观）, usernew
+    /优化用户相关页面：user, userview（改为用textbox更美观）, usernew
     /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
     /将修改密码、安全退出放到一起去
     /实现用户图标
@@ -104,9 +122,11 @@ Done
             background-color: #052767;
         }
     /简化CheckPowerAttribute，增加构造函数。
+    /优化角色权限页面：修正角色全选“全选反选”逻辑
 
 /优化菜单管理
     /菜单加上 folder: ~/res/icon/folder.png
+    /优化菜单图标列表
 
 
 

@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace App
 {
     /// <summary>
-    /// 为了和之前代码兼容，手工创建 DynamicViewData 类，实际项目中，推荐使用 ViewData 属性！!
-    /// .Net Core 3.1 删除了 Microsoft.AspNetCore.Mvc.ViewFeatures.Internal 命名空间，所以 DynamicViewData 也就不存在了
+    /// 为了和之前代码兼容，创建 DynamicViewData 类，实际项目中，推荐使用视图模型的属性
+    /// .Net Core 3.1 删除了 Microsoft.AspNetCore.Mvc.ViewFeatures.Internal 命名空间，所以 DynamicViewData 也就不存在了。
+    /// 其实已经有 RazorPageBase.ViewBag
     /// https://docs.microsoft.com/en-us/dotnet/core/compatibility/2.2-3.1
     /// https://www.cnblogs.com/soneltd/p/4756695.html
     /// https://forums.asp.net/t/2128012.aspx?Razor+Pages+ViewBag+has+gone+

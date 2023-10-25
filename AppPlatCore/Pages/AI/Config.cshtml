@@ -9,8 +9,9 @@
         <Toolbars>
             <f:Toolbar ID="Toolbar1">
                 <Items>
-                    <f:Button ID="btnBuild" Icon="ApplicationGo" OnClick="@Url.Handler("Config_btnBuild_OnClick")"  ValidateTarget="Top" Text="编译模型" Hidden="true" />
-                    <f:Button ID="btnBuild2" Icon="ApplicationGo" OnClientClick="build();" ValidateTarget="Top" Text="编译模型"  />
+                    <f:Button ID="btnFtp" Icon="ApplicationGo" OnClientClick="window.open('@Model.FtpPath', '_blank');" Text="Ftp" />
+                    <f:Button ID="btnBuild" Icon="ApplicationGo" OnClick="@Url.Handler("Config_btnBuild_OnClick")" ValidateTarget="Top" Text="编译模型" Hidden="true" />
+                    <f:Button ID="btnBuild2" Icon="ApplicationGo" OnClientClick="build();" ValidateTarget="Top" Text="编译模型" />
                     <f:Label ID="lblInfo" CssStyle="color:red" Text="模型编译需要的时间较久（预计10分钟），请耐心等待" color="yellow" />
                 </Items>
             </f:Toolbar>
@@ -18,6 +19,7 @@
         <Items>
             <f:TextBox ID="tbFolder" Label="图片目录"  Text="@Model.TrainPath" Enabled="false" />
             <f:TextBox ID="tbModel" Label="模型文件" Text="@Model.ModelPath" Enabled="false" />
+            <f:TextBox ID="tbFTP" Label="FTP" Text="@Model.FtpPath" Enabled="false" />
             <f:TextArea ID="tbLog" Label="说明" Height="320" Enabled="false" />
         </Items>
     </f:SimpleForm>

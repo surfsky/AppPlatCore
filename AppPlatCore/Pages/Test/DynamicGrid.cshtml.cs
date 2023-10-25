@@ -1,3 +1,5 @@
+using App.Components;
+using App.Models;
 using FineUICore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,8 +9,10 @@ namespace App.Pages.Test
 {
     public class DynamicGridModel : BaseModel
     {
+        public List<User> Users;
         public void OnGet()
         {
+            Users = DataSources.GetUsers();
             InitGridColumns();
         }
 

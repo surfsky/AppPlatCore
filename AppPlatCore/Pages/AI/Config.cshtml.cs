@@ -19,6 +19,7 @@ namespace App.Pages.AI
         public bool PowerCoreConfigEdit { get; set; }
         public string TrainPath { get; set; }
         public string ModelPath { get; set; }
+        public string FtpPath { get; set; } = "ftp://test.com/";
 
         public void OnGet()
         {

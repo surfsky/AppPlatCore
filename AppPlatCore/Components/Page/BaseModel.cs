@@ -27,17 +27,14 @@ namespace App
 {
     public partial class BaseModel : PageModel
     {
-        // 只读静态变量
+        // private
         private static readonly string MSG_ONLINE_UPDATE_TIME = "OnlineUpdateTime";
-
-
-
-        #region ViewBag
-
         private DynamicViewData _viewBag;
 
         /// <summary>
-        /// Add ViewBag to PageModel（动态类型，无法编译时检查，不推荐使用。此处只是提供兼容延续）
+        /// 为 PageModel 提供 ViewBag 属性（动态类型，无法编译时检查，不推荐使用。此处只是提供兼容延续）
+        /// RazorPageBase 提供了 ViewBag，是否重复？
+        /// PageModel 提供了 ViewData
         /// https://forums.asp.net/t/2128012.aspx?Razor+Pages+ViewBag+has+gone+
         /// https://github.com/aspnet/Mvc/issues/6754
         /// </summary>
@@ -50,11 +47,11 @@ namespace App
                 return _viewBag;
             }
         }
-        #endregion
 
 
-        #region OnActionExecuting
-
+        //-------------------------------------------------
+        // 页面处理事件
+        //-------------------------------------------------
         /// <summary>页面处理器调用之前执行（加了在线逻辑）</summary>
         public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
@@ -70,7 +67,6 @@ namespace App
             base.OnPageHandlerExecuted(context);
         }
 
-        #endregion
 
 
 

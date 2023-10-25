@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AppPlat - 快速应用开发平台</title>
+    <title>AppPlat</title>
     @F.RenderCss()
     <link href="~/res/css/common.css" rel="stylesheet" type="text/css" />
     @RenderSection("head", false)
@@ -14,7 +14,6 @@
 </head>
 <body>
     @Html.AntiForgeryToken()
-
     @{
         // 主题
         var pm = F.PageManager;

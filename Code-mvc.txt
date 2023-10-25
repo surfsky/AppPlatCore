@@ -2,6 +2,20 @@
 RazorPage
 https://learn.microsoft.com/zh-cn/aspnet/core/razor-pages/?view=aspnetcore-7.0&tabs=visual-studio
 --------------------------------------------------------
+几个易错点先记下（供回顾）
+    model中的属性只在第一次绑定时有效，Post回来后再次对属性赋值是不会影响到客户端的。
+    post 处理要想影响到客户端，可以使用以下方法将脚本传递到客户端去执行：
+        FineUICore.PageContext.RegistStartupScript();
+        UIHelper.Grid("xxx").SomeAction();
+        其实方法二就是对方法一的封装，FineUI对控件的Ajax支持并不全面，可考虑用方法一或自行封装Helper。
+    尽量别用ViewData，而是用模型的属性。
+        ViewData 是老的 mvc 方式传递参数的方法，是弱类型的，编译不报错。
+        AppBoxCore RazorPage 引入 ViewData 只是为了兼容老的 mvc 代码，可以考虑删除。
+    如何将客户端参数带到服务器端
+        根本上都是构造请求字符串
+        FineUI的话，设置 fields=“grid1”就可以了，会将参数带到服务器端
+
+
 初始化
     builder.Services.AddRazorPages();
     builder.Services.AddRazorPages(options =>
@@ -125,9 +139,11 @@ Layout
         @RenderSection("script", false)
     Page
         @{Layout = "_Layout";}
+        @{Layout = null;}
         @section head {...}
         @section body {...}
         @section script {...}
+
 
 
 页面跳转
@@ -135,7 +151,7 @@ Layout
 
 
 ViewData
-    ViewData 是一个对象数组
+    ViewData 是一个对象数组，对应的有 RazorPageBase.ViewBag，感觉是过度设计了
     [ViewData]
     public string Title { get; } = "About";
     <h1>@Model.Title</h1>

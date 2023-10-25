@@ -32,6 +32,7 @@ namespace App
             Configuration = configuration;
         }
 
+        // 注册一些上下文服务对象（可在页面中查询并使用这些对象）
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -93,25 +94,25 @@ namespace App
             EntityConfig.Instance.OnGetDb += () => Common.GetDbConnection();
         }
 
-
+        // 配置 Http 请求处理管道
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // 开发时支持
+            // 开发及部署环境设置
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
             {
                 app.UseExceptionHandler("/Error");
                 //app.UseHsts();
+                //app.UseHttpsRedirection();                    // 自动将 http 转化为 https
             }
-            //app.UseHttpsRedirection();                // 自动将 http 转化为 https
 
             // 自定义中间件
-            app.UserAppWeb(env.ContentRootPath);       // 配置 App.Web 
+            app.UserAppWeb(env.ContentRootPath);            // 配置 App.Web 
             app.UseMonitor(o => Console.WriteLine("{0} {1} {2}", o.Url, o.Seconds, o.ClientIP));  // 启用监控模块
-            app.UseImage();                            // 启用缩略图及水印
-            app.UseHttpApi(o =>                        // 启用 HttpApi
+            app.UseImager();                                // 启用缩略图及水印
+            app.UseHttpApi(o =>                             // 启用 HttpApi
             {
                 o.TypePrefix = "App.API.";
                 o.FormatEnum = EnumFomatting.Int;

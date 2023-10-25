@@ -96,3 +96,5 @@
         public List<PredicateResult> Results{ get; set; }
 
 
+
+        ViewBag.btnClientClick2Script

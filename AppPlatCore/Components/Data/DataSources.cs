@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using App.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,6 +11,18 @@ namespace App.Components
 {
     public static class DataSources
     {
+        public static List<User> GetUsers()
+        {
+            var users = new List<User>();
+            users.Add(new User() { ID = 1, Name = "Kevin1", Birthday = new DateTime(1997, 1, 1)});
+            users.Add(new User() { ID = 2, Name = "Kevin2", Birthday = new DateTime(1997, 2, 1) });
+            users.Add(new User() { ID = 3, Name = "Kevin3", Birthday = new DateTime(1997, 3, 1) });
+            users.Add(new User() { ID = 4, Name = "Kevin4", Birthday = new DateTime(1997, 4, 1) });
+            users.Add(new User() { ID = 5, Name = "Kevin5", Birthday = new DateTime(1997, 5, 1) });
+            users.Add(new User() { ID = 6, Name = "Kevin6", Birthday = new DateTime(1997, 6, 1) });
+            return users;
+        }
+
         #region 省市县
 
         public readonly static JArray SHENG_JSON = JArray.Parse("[\"北京\",\"天津\",\"上海\",\"重庆\",\"河北\",\"山西\",\"辽宁\",\"吉林\",\"黑龙江\",\"江苏\",\"浙江\",\"安徽\",\"福建\",\"江西\",\"山东\",\"河南\",\"湖北\",\"湖南\",\"广东\",\"海南\",\"四川\",\"贵州\",\"云南\",\"陕西\",\"甘肃\",\"青海\",\"内蒙古\",\"广西\",\"西藏\",\"宁夏\",\"新疆\",\"香港\",\"澳门\",\"台湾\"]");

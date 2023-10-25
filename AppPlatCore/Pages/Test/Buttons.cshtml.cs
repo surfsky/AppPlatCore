@@ -13,9 +13,13 @@ namespace FineUICore.Examples.RazorPages.Pages.Button
 {
     public class ButtonsModel : BaseModel
     {
+
+        //public string BtnSignOutHandler = Url.Action("SignOut");
+        public string Script = Alert.GetShowInTopReference("客户端事件");
+
         public void OnGet()
         {
-            ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
+            //ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
             var action = Asp.GetQueryString("action");
             if (action == "SignOut")
                 Response.Redirect("/Login");

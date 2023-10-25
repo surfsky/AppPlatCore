@@ -72,12 +72,11 @@ namespace App.Middlewares
         }
     }
 
-    /// <summary>
-    /// 使用中间件
-    /// </summary>
+    /// <summary>封装成扩展方法</summary>
     public static class ImageMiddlewareExtension
     {
-        public static IApplicationBuilder UseImage(this IApplicationBuilder app, Action<List<string>> options=null)
+        /// <summary>使用图片处理中间件（支持图片放缩、缓存逻辑）</summary>
+        public static IApplicationBuilder UseImager(this IApplicationBuilder app, Action<List<string>> options=null)
         {
             options?.Invoke(ImageMiddleware.Extensions);
             return app.UseMiddleware<ImageMiddleware>();

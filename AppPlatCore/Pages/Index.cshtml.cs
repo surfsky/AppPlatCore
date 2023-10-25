@@ -16,12 +16,12 @@ namespace App.Pages
     [Authorize]
     public class IndexModel : BaseModel
     {
-        public TreeNode[] MenuTreeNodes { get; set; }
+        public TreeNode[] MenuTreeNodes { get; set; } = new TreeNode[0];
         public string UserName { get; set; }
         public string OnlineUserCount { get; set; }
         public string ProductVersion { get; set; }
         public string ConfigTitle { get; set; }
-        public FineUICore.Menu SystemHelpMenu { get; set; }
+        public FineUICore.Menu SystemHelpMenu { get; set; } = new FineUICore.Menu();
 
         public async Task OnGetAsync()
         {

@@ -1,27 +1,24 @@
 ﻿@page
 @model FineUICore.Examples.RazorPages.Pages.Button.ButtonsModel
+@using App.Utils
 @{
-    // 两种视图编码方式混用试试
-    //ViewBag.Title = "Button/ButtonClick";
+    // 两种视图编码方式等效、混用
     var F = Html.F();
 }
 
 @section body {
 
-    @(
-    F.SimpleForm().BodyPadding(5).Layout(LayoutType.VBox).Items(
+    @F.SimpleForm().BodyPadding(5).Layout(LayoutType.VBox).Items(
         F.Button().EnableDefaultCorner(false).EnableDefaultState(false).IconFont(IconFont._Home).IconAlign(IconAlign.Top).OnClientClick("window.open('http://fineui.com/mvc/','_blank');"),
-        F.Button().Text("SignOut").OnClick(Url.Handler("btnServerClick_Click"))
-    )
-
-    )
+        F.Button().Text("SignOut").OnClick(Url.Handler(nameof(Model.OnPostBtnServerClick_Click).TrimStart("OnPost")))
+    );
 
     <f:SimpleForm BodyPadding="5px" Layout="VBox"   >
         <Items>
             <f:Button ID="btnSignOut" Text="注销" OnClick="@Url.Action("SignOut")"></f:Button>
             <f:Button ID="btnServerClick" Text="服务器端事件" OnClick="@Url.Handler("btnServerClick_Click")"></f:Button>
             <f:Button ID="btnClientClick" Text="客户端事件" OnClientClick="alert('这是客户端事件');" CssClass="marginr"></f:Button>
-            <f:Button ID="btnClientClick2" Text="客户端事件（通过ViewBag传递）" OnClientClick="@ViewBag.btnClientClick2Script"></f:Button>
+            <f:Button ID="btnClientClick2" Text="客户端事件（通过模型初始化传递）" OnClientClick="@Model.Script"></f:Button>
             <f:Button ID="btnChangeClientClick2" Text="改变上个按钮的客户端事件" OnClick="@Url.Handler("btnChangeClientClick2_Click")"></f:Button>
         </Items>
     </f:SimpleForm>
