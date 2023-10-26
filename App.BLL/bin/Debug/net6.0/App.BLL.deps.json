@@ -12,10 +12,31 @@
           "Microsoft.EntityFrameworkCore": "6.0.23",
           "Microsoft.EntityFrameworkCore.Design": "6.0.23",
           "Z.EntityFramework.Extensions.EFCore": "6.100.0.3",
-          "Z.EntityFramework.Plus.EFCore": "6.100.0.3"
+          "Z.EntityFramework.Plus.EFCore": "6.100.0.3",
+          "aliyun-net-sdk-core": "1.5.11",
+          "aliyun-net-sdk-dysmsapi": "1.0.0"
         },
         "runtime": {
           "App.BLL.dll": {}
+        }
+      },
+      "aliyun-net-sdk-core/1.5.11": {
+        "runtime": {
+          "lib/netstandard2.0/aliyun-net-sdk-core.dll": {
+            "assemblyVersion": "1.5.11.0",
+            "fileVersion": "1.5.11.0"
+          }
+        }
+      },
+      "aliyun-net-sdk-dysmsapi/1.0.0": {
+        "dependencies": {
+          "aliyun-net-sdk-core": "1.5.11"
+        },
+        "runtime": {
+          "lib/netstandard2.0/aliyun-net-sdk-dysmsapi.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -1329,6 +1350,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "aliyun-net-sdk-core/1.5.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RoirVlkArmE6dEqOZO+Uv5MhwKYZss5f6N/auRUT1dg0yR0mj6A8DWJzFKVy8W+sox19BWH1uZg+3dc6o9cFXg==",
+      "path": "aliyun-net-sdk-core/1.5.11",
+      "hashPath": "aliyun-net-sdk-core.1.5.11.nupkg.sha512"
+    },
+    "aliyun-net-sdk-dysmsapi/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DfFoe7hG8uzVPZXv0mbSVeXfPktYEcUFLk9SHIm2bhaO1125mkv7VvjEp92bn4b11ivJ14z7HxLetOToXL/bGQ==",
+      "path": "aliyun-net-sdk-dysmsapi/1.0.0",
+      "hashPath": "aliyun-net-sdk-dysmsapi.1.0.0.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

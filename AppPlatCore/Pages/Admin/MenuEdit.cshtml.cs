@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using App.Components;
-using App.Models;
+using App.DAL;
 
 using FineUICore;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +16,9 @@ namespace App.Pages.Admin
     public class MenuEditModel : BaseAdminModel
     {
         [BindProperty]
-        public Models.Menu Menu { get; set; }
+        public DAL.Menu Menu { get; set; }
 
-        public IEnumerable<Models.Menu> Menus { get; set; }
+        public IEnumerable<DAL.Menu> Menus { get; set; }
 
         public RadioItem[] IconItems { get; set; }
 
@@ -40,7 +40,7 @@ namespace App.Pages.Admin
         private void MenuEdit_LoadData(int id)
         {
             IconItems = MenuEdit_GetIconItems().ToArray();
-            Menus = UI.ResolveDDL<Models.Menu>(MenuHelper.Menus, id).ToArray();
+            Menus = UI.ResolveDDL<DAL.Menu>(MenuHelper.Menus, id).ToArray();
         }
 
         public List<RadioItem> MenuEdit_GetIconItems()

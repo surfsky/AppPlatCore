@@ -16,7 +16,18 @@ https://learn.microsoft.com/zh-cn/aspnet/core/razor-pages/?view=aspnetcore-7.0&t
         FineUI的话，设置 fields=“grid1”就可以了，会将参数带到服务器端
 
 
+MVC、RazorPage、WebForm的区别
+    https://www.cnblogs.com/tdfblog/p/asp-net-razor-pages-vs-mvc.html
+    Razor页面与ASP.NET MVC开发使用的视图组件非常相似，它们具有所有相同的语法和功能。
+    RazorPage 最关键的区别是模型和控制器代码也包含在Razor页面中。它是一个MVVM（Model-View-ViewModel）框架，它支持双向数据绑定，更简单的开发体验。
+    RazorPage 可以看作是 WebForm 的演变，把前后端要交互的数据交给开发者，而不是一股脑子把整个页面的数据都放到ViewState中进行传递。
+
+
+    
+--------------------------------------------------------
 初始化
+--------------------------------------------------------
+Startup.cs
     builder.Services.AddRazorPages();
     builder.Services.AddRazorPages(options =>
     {
@@ -24,28 +35,30 @@ https://learn.microsoft.com/zh-cn/aspnet/core/razor-pages/?view=aspnetcore-7.0&t
         options.Conventions.AuthorizeFolder("/MyPages/Admin");
     });
 
-指令
+    
+--------------------------------------------------------
+RazorPage
+--------------------------------------------------------
+示例1
     @page
-    @namespace RazorPagesIntro.Pages.Customers
-    @model NameSpaceModel
-    @namespace RazorPagesContacts.Pages
-    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+    @model IndexModel
+    @using Microsoft.AspNetCore.Mvc.RazorPages
+    @functions {
+        public class IndexModel : PageModel
+        {
+            public string Message { get; private set; } = "In page model: ";
+            public void OnGet()
+            {
+                Message += $" Server seconds  { DateTime.Now.Second.ToString() }";
+            }
+        }
+    }
+    <p>@Model.Message</p>
 
 
-Helper
-    @Url.Handler("SignOutClick")
-        http://localhost:52221/Test/Buttons?handler=SignOutClick
-    @Url.Action("SignOut")
-        http://localhost:52221/Test/Buttons?action=SignOut
-    @Url.Content
-        IconUrl="@Url.Content("~/res/images/my_face_80.jpg")"
-    @Html.DisplayNameFor
-        @Html.DisplayNameFor(model => model.Student.LastName)
-
-Page demo
+示例2
     @page
     @model ContosoUniversity.Pages.Students.DeleteModel
-    @{ViewData["Title"] = "Delete";}
     <h1>Delete</h1>
     <p class="text-danger">@Model.ErrorMessage</p>
     <h3>Are you sure you want to delete this?</h3>
@@ -62,11 +75,44 @@ Page demo
         <form method="post">
             <input type="hidden" asp-for="Student.ID" />
             <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <input type="submit" value="Save" asp-page-handler="First" class="btn btn-primary btn-xs" />
             <a asp-page="./Index">Back to List</a>
         </form>
     </div>
 
-Page dbcontext
+
+RazorPage 中用到的特殊代码
+    采用 @Html.DisaplayFor(), @Html.DisplayNameFor() 等方法显示模型数据
+    采用 @Url.Handler() 方法生成回调链接
+    采用 asp-for 显示绑定数据
+    采用 asp-page-handler, asp-page 定义razorpage 及处理方法
+    采用 asp-action, asp-controller 定义mvc处理的控制器和方法
+
+
+
+页面指令
+    @page
+    @namespace RazorPagesIntro.Pages.Customers
+    @model NameSpaceModel
+    @namespace RazorPagesContacts.Pages
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+    @tagHelperPrefix taghelper:
+        <taghelper:form asp-action="Process" asp-controller="Home" />
+
+
+Helper
+    @Url.Handler("SignOutClick")
+        http://localhost:52221/Test/Buttons?handler=SignOutClick
+    @Url.Action("SignOut")
+        http://localhost:52221/Test/Buttons?action=SignOut
+    @Url.Content
+        IconUrl="@Url.Content("~/res/images/my_face_80.jpg")"
+    @Html.DisplayNameFor
+        @Html.DisplayNameFor(model => model.Student.LastName)
+
+
+Page dbcontext 数据库上下文
+    AppDbContext是用依赖注入的方式赋值的，在 Startup.cs 中进行注册
     public class EditModel : PageModel
     {
         private readonly AppDbContext _db;
@@ -78,6 +124,7 @@ Page dbcontext
 
 
 OnGet/OnGetAsync
+    Get方法在首次展示页面时进行调用，此时可以对模型进行赋值，并传递给 RazorPage 进行处理
     public IActionResult OnGet()
     {
         ViewBag.btnClientClick2Script = Alert.GetShowInTopReference("通过ViewBag传递的客户端事件");
@@ -97,6 +144,7 @@ OnGet/OnGetAsync
     }
 
 OnPost/OnPostAsync
+    Post 相关方法在页面回发时调用，此时可以对数据进行校验、数据库、页面跳转等操作。此时若对模型进行赋值并不会传递给 RazorPage 进行处理
     默认
         // Student/Edit/98
         public async Task<IActionResult> OnPostAsync()
@@ -117,6 +165,18 @@ OnPost/OnPostAsync
         <input type="submit" asp-page-handler="JoinListUC" value="JOIN UC" />
         public async Task<IActionResult> OnPostJoinListAsync()
         public async Task<IActionResult> OnPostJoinListUCAsync()
+    参数
+        <form method="post" asp-page-handler="search" asp-route-query="Core">    
+            <button>Search "Core"</button>
+        </form>
+        <form method="post" asp-page-handler="delete" asp-route-id="1">
+            <button>Delete ID 1</button>
+        </form>
+        第一个是以前看到的search处理方法，它发送“Core”作为查询参数。
+        第二个是针对delete处理方法，并发送id为1，这表示它会删除第一条数据。
+        public async Task OnPostSearchAsync(string query)
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+
 
 
 Web资源隔离
@@ -130,7 +190,7 @@ Web资源隔离
     }
 
 CSS 预处理
-    AspNetCore.SassCompiler）可以在生成过程开始时编译 SASS/SCSS 文件
+    AspNetCore.SassCompiler 可以在生成过程开始时编译 SASS/SCSS 文件
 
 Layout
     Shared/_Layout.cshtml
@@ -145,13 +205,9 @@ Layout
         @section script {...}
 
 
-
-页面跳转
-    RedirectToPage
-
-
 ViewData
-    ViewData 是一个对象数组，对应的有 RazorPageBase.ViewBag，感觉是过度设计了
+    ViewData 是一个PageModal的成员，是一个对象数组，非强类型不建议使用
+    对应的有 RazorPageBase.ViewBag
     [ViewData]
     public string Title { get; } = "About";
     <h1>@Model.Title</h1>
@@ -159,7 +215,7 @@ ViewData
 
 
 RazorPageFilter
-    Razor 页面筛选器提供的以下方法可在全局或页面级应用。类似以前的HttpModule。
+    Razor 页面筛选器提供的以下方法可在全局或页面级应用。类似以前的HttpModule。详见微软官方帮助网页。
     同步方法：
         OnPageHandlerSelected：在选择处理程序方法后，但在模型绑定发生之前调用。
         OnPageHandlerExecuting：在模型绑定完成后，执行处理程序方法之前调用。
@@ -167,45 +223,48 @@ RazorPageFilter
     异步方法：
         OnPageHandlerSelectionAsync：在选择处理程序方法后，但在模型绑定发生前，进行异步调用。
         OnPageHandlerExecutionAsync：在调用处理程序方法前，但在模型绑定结束后，进行异步调用。
+    配置
+        services.AddRazorPages(options =>
+        {
+            options.Conventions.AddFolderApplicationModelConvention(
+                "/Movies",
+                model => model.Filters.Add(new SampleAsyncPageFilter(Configuration)));
+        });
 
-    services.AddRazorPages(options =>
-    {
-        options.Conventions.AddFolderApplicationModelConvention(
-            "/Movies",
-            model => model.Filters.Add(new SampleAsyncPageFilter(Configuration)));
-    });
 
-
-PageModel.Result
+PageModel.Result 返回
     success
-        ContentResult
-        FileStreamResult
-        FileContentResult
-        PageResult
-        PartialViewResult
-        PhysicalFileResult
-    fail
-        BadRequestObjectResult
-        BadRequestResult
-        ForbidResult
-        ChallengeResult
-        VirtualFileResult
-        NotFoundResult
-        NotFoundObjectResult
-    route
-        RedirectResult
-        RedirectToActionResult
-        RedirectToPageResult
-        RedirectToRouteResult
-        LocalRedirectResult
-    auth
-        SignInResult
-        SignOutResult
-        UnauthorizedResult
-    other
-        StatusCodeResult
-        ObjectResult
-        ViewComponentResult
+        ContentResult               : 静态文本
+        PageResult                  : 页面
+        FileStreamResult            : 文件流
+        FileContentResult           : 
+        PartialViewResult           : 
+        PhysicalFileResult          : 
+    fail                            
+        BadRequestObjectResult      : 
+        BadRequestResult            : 
+        ForbidResult                : 禁止访问
+        ChallengeResult             : 
+        VirtualFileResult           : 
+        NotFoundResult              : 文件未找到
+        NotFoundObjectResult        : 
+        UnauthorizedResult          : 非授权
+    route                           
+        RedirectResult              : 跳转
+        RedirectToActionResult      : 
+        RedirectToPageResult        : 
+        RedirectToRouteResult       : 
+        LocalRedirectResult         : 
+    auth                            
+        SignInResult                : 登录
+        SignOutResult               : 注销
+    other                           
+        StatusCodeResult            : 
+        ObjectResult                : 
+        ViewComponentResult         : 
+    页面跳转                        
+        RedirectToPage              : 
+
 
 --------------------------------------------------------
 Razor page data binding

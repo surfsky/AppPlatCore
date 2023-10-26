@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using App.Models;
+using App.DAL;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +34,7 @@ namespace App
 
                 try
                 {
-                    var context = services.GetRequiredService<Models.AppPlatContext>();
+                    var context = services.GetRequiredService<DAL.AppPlatContext>();
                     AppPlatContextInitializer.Initialize(context);
                 }
                 catch (Exception ex)

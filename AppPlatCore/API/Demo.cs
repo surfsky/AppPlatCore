@@ -2,13 +2,47 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Xml.Serialization;
 using App.Components;
 using App.HttpApi;
 using App.Utils;
 using App.Web;
+using Newtonsoft.Json;
 
 namespace App.Api
 {
+    //--------------------------------------------------
+    // 类型定义
+    //--------------------------------------------------
+    /// <summary>Person sex</summary>
+    public enum Sex
+    {
+        [UI("男")] Male = 0,
+        [UI("女")] Female = 1,
+        [Description("不详")] Unknown = 2,
+    }
+
+    /// <summary>Person</summary>
+    public class Person
+    {
+        public string Name { get; set; }
+        public DateTime? Birth { get; set; }
+        public Sex? Sex { get; set; }
+        public Person Father { get; set; }
+        public List<Person> Children { get; set; } = new List<Person>();
+
+        [JsonIgnore]
+        [XmlIgnore]
+        //[ScriptIgnore]
+        //[NonSerialized]
+        public Person Mather { get; set; }
+    }
+
+
+
+    //--------------------------------------------------
+    // 演示
+    //--------------------------------------------------
     [Description("HttpApi Demo")]
     [HttpApi.Script(CacheDuration =0, ClassName ="Demo", NameSpace ="App")]
     [HttpApi.History("2016-11-01", "SURFSKY", "History log1")]
@@ -70,31 +104,7 @@ namespace App.Api
             return sex;
         }
 
-        [HttpApi("Upload file", PostFile=true)]
-        [HttpParam("folder", "file folder, eg. Articles")]
-        [HttpParam("fileName", "file name, eg. a.png")]
-        public APIResult Up(string folder, string fileName)
-        {
-            var exts = new List<string> { ".jpg", ".png", ".gif", ".mp3", ".mp4", ".txt", ".md" };
-            var ext = fileName.GetFileExtension();
-            if (!exts.Contains(ext))
-                return new APIResult(false, "File deny", 13);
 
-            // 构造存储路径
-            var url = Common.GetUploadPath(folder, fileName);
-            var path = Asp.MapPath(url);
-            var fi = new FileInfo(path);
-            if (!fi.Directory.Exists)
-                Directory.CreateDirectory(fi.Directory.FullName);
-
-            // 存储第一个文件
-            var files = Asp.Request.Form.Files;
-            if (files.Count == 0)
-                return new APIResult(false, "File doesn't exist", 11);
-            using (var stream = File.Create(path))
-                files[0].CopyToAsync(stream);
-            return new APIResult(true, url);
-        }
 
 
     }

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using App.DAL;
 using App.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace App.Models
+namespace App.DAL
 {
     /// <summary>
     /// 数据库上下文
@@ -16,11 +17,13 @@ namespace App.Models
         {
         }
 
+        //---------------------------------------------------
+        // basic
+        //---------------------------------------------------
+        // basic
         public DbSet<SiteConfig> SiteConfigs { get; set; }
         public DbSet<History> Histories { get; set; }
         public DbSet<Res> Reses { get; set; }
-
-        //public DbSet<Config> Configs { get; set; }
         public DbSet<Dept> Depts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -33,6 +36,18 @@ namespace App.Models
         public DbSet<TitleUser> TitleUsers { get; set; }
         public DbSet<RolePower> RolePowers { get; set; }
 
+        // extension
+        public DbSet<LogConfig> LogConfigs { get; set; }
+        public DbSet<VerifyCode> VerifyCodes { get; set; }
+        public DbSet<AliSmsConfig> AliSmsConfigs { get; set; }
+
+
+        // bussiness
+
+
+
+        //---------------------------------------------------
+        //---------------------------------------------------
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

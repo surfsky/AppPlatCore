@@ -20,6 +20,7 @@
             background-color: #efefef;
             border-right: solid 1px #ddd;
             margin-bottom: 0 !important;
+            height: 250;
         }
         .login-image img {
             width: 160px;
@@ -37,18 +38,23 @@
     <f:Window ID="Window1" IsModal="true" Hidden="false" EnableClose="false" EnableMaximize="false" WindowPosition="GoldenSection" Icon="Key"
               Title="@Model.WinTitle" Layout="HBox" BoxConfigAlign="Stretch" BoxConfigPosition="Start" Width="500">
         <Items>
-            <f:Image ID="imageLogin" ImageUrl="~/res/images/login/login_2.png" CssClass="login-image"/>
+            <f:Image ID="imageLogin" ImageUrl="~/res/images/login/login_2.png" CssClass="login-image" ImageHeight="250"/>
             <f:SimpleForm ID="SimpleForm1" LabelAlign="Top" BoxFlex="1" BodyPadding="30 20" ShowBorder="false" ShowHeader="false">
                 <Items>
-                    <f:TextBox ID="tbxUserName" FocusOnPageLoad="true" Label="帐号" Required="true" ShowRedStar="true" Text="" />
-                    <f:TextBox ID="tbxPassword" TextMode="Password" Required="true" ShowRedStar="true" Label="密码" Text="" />
+                    <f:TextBox ID="userName" FocusOnPageLoad="true" Label="帐号" Required="true" ShowRedStar="true" Text="" />
+                    <f:TextBox ID="password" TextMode="Password" Required="true" ShowRedStar="true" Label="密码" Text="" />
+                    <f:TextBox ID="verifyCode" Required="true" ShowRedStar="true" Label="验证码" Text="" />
                 </Items>
             </f:SimpleForm>
         </Items>
         <Toolbars>
             <f:Toolbar Position="Bottom">
                 <Items>
-                    <f:ToolbarText Text=""/>
+                    <f:Image ID="imgVerify" ImageUrl="/HttpApi/Common/VerifyImage" ImageWidth="100" ImageHeight="39" ToolTip="点击切换" CssStyle="cursor: point;" >
+                        <Listeners>
+                            <f:Listener Event="click" Handler="resetVerifyImg();" ></f:Listener>
+                        </Listeners>
+                    </f:Image>
                     <f:ToolbarFill/>
                     <f:Button ID="btnSubmit" Icon="LockOpen" Type="Submit" ValidateForms="SimpleForm1" OnClickFields="SimpleForm1" OnClick="@Url.Handler("btnSubmit_Click")" Text="登陆"></f:Button>
                 </Items>
@@ -58,3 +64,29 @@
 
 }
 
+@section script{
+    <!--script src="res/js/jquery-3.4.1.js"></!script-->
+    <script>
+        F.ready(function () {
+            // 点击图片刷新，摆不平
+            var el1 = document.getElementById("imgVerify-inputEl");
+            var el2 = F.ui.imgVerify.getAttrEl();
+            el1.addEventListener('click', resetVerifyImg());
+            el1.style.cursor = "point";
+            //$("#imgVerify-inputEl").on('click', resetVerifyImg());
+        });
+
+
+        // 重置验证码
+        function resetVerifyImg() {
+            var url = "/HttpApi/Common/VerifyImage?" + Math.random();  // 避免某些浏览器会缓存图片
+            //var el1 = document.getElementById("imgVerify-inputEl");
+            var el2 = F.ui.imgVerify.getAttrEl();
+            el2.attr('src', url);
+            //F.ui.imgVerify.getAttrEl().attr('src', url);
+            //$("#imgVerify").attr('src', url);
+            //$("#imgVerify-inputEl").attr('src', url);
+        }
+
+    </script>
+}

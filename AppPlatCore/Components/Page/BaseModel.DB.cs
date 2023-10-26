@@ -1,6 +1,6 @@
 ﻿using App.Components;
 using App.Entities;
-using App.Models;
+using App.DAL;
 using Jint.Parser.Ast;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -13,10 +13,10 @@ namespace App
     /// </summary>
     public partial class BaseModel
     {
-        private Models.AppPlatContext _db;
+        private DAL.AppPlatContext _db;
 
         /// <summary>每个请求共享一个数据库连接实例</summary>
-        protected Models.AppPlatContext DB
+        protected DAL.AppPlatContext DB
         {
             get
             {

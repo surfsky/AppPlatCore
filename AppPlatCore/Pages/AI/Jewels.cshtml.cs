@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using App.Components;
-using App.Models;
+using App.DAL;
 using App.Web;
 using App.Utils;
 using FineUICore;
@@ -39,40 +39,48 @@ namespace App.Pages.AI
         /// <summary>头像图片上传处理</summary>
         public IActionResult OnPostFilePhoto_FileSelected(IFormFile filePhoto, string[] grid_fields)
         {
-            Logger.Info("START Predicate: {0}", DateTime.Now);
             if (filePhoto == null)
                 return UIHelper.Result();
 
-            // 保存上传的图片
             string fileName = filePhoto.FileName;
-            string physicalPath = "";
-            string virtualPath = "";
             if (!UI.ValidateFileType(fileName))
             {
+                // 图片无效
                 UIHelper.FileUpload("filePhoto").Reset();
                 UI.ShowNotify("无效的文件类型！");
+                return UIHelper.Result();
             }
             else
             {
-                virtualPath = Common.GetUploadPath("Images");
-                physicalPath = Asp.MapPath(virtualPath);
-                Utils.IO.PrepareDirectory(physicalPath);
+                // 上传图片
+                var virtualPath = Uploader.GetUploadPath("Images");
+                var physicalPath = Asp.MapPath(virtualPath);
+                IO.PrepareDirectory(physicalPath);
                 using (var stream = new FileStream(physicalPath, FileMode.Create))
                     filePhoto.CopyTo(stream);
 
+                // 显示图片
                 UIHelper.Image("imgPhoto").ImageUrl(virtualPath + "?w=200");
                 UIHelper.FileUpload("filePhoto").Reset();
+
+                // 图片 AI 识别归类
+                Logger.Info("START Predicate: {0}", DateTime.Now);
+                var imgBytes = System.IO.File.ReadAllBytes(physicalPath);
+                ModelInput data = new ModelInput() { ImageSource = imgBytes };
+                var results = JewelsAI.PredictAllLabels(data).Take(10).ToList();
+                Logger.Info("STOP Predicate:  {0}", DateTime.Now);
+
+                // 将结果显示到客户端
+                string script = BuildImagesRenderScript(results);
+                FineUICore.PageContext.RegisterStartupScript(script);
+                return UIHelper.Result();
             }
+        }
 
-
-            // 图片 AI 识别归类
-            var imgBytes = System.IO.File.ReadAllBytes(physicalPath);
-            ModelInput data = new ModelInput() { ImageSource = imgBytes };
-            var results = JewelsAI.PredictAllLabels(data).Take(10).ToList();
-            Logger.Info("STOP Predicate:  {0}", DateTime.Now);
-
-
-            // 将前几名所有的图片都展示出来
+        /// <summary>构造客户端显示查询结果图片的脚本</summary>
+        private static string BuildImagesRenderScript(List<PredicateResult> results)
+        {
+            // 获取排名前几名所有的图片
             var pattern = new string[] { ".jpg", ".jpeg", ".png", ".tif" };
             List<ImageMath> images = new List<ImageMath>();
             foreach (var result in results)
@@ -90,21 +98,17 @@ namespace App.Pages.AI
                 }
             }
 
-            // 转化为客户端执行的脚本
+            // 构造客户端脚本，显示查询结果
             var sb = new StringBuilder();
             sb.Append("<ul class=\"icons\">");
             foreach (var item in images)
             {
-                sb.AppendFormat("<li class=\"f-state-default\"><a href=\"{0}\" target=\"_blank\"><img src=\"{0}?w=200\"/><div class=\"title\">{1}</div></a></li>", item.Path, item.Name);
+                sb.AppendFormat("<li class=\"f-state-default\"><a href=\"{0}\" target=\"_blank\"><img src=\"{0}?w=200\"/></a><div class=\"title\">{1}</div></li>", item.Path, item.Name);
             }
             sb.Append("</ul>");
             var html = sb.ToString();
-
-            //
-            //var panel = UIHelper.Panel("Panel1");  // panelhelper 没有更新内容的方法
-            var script = string.Format("F.ui.Panel1.el.html('{0}');", html);
-            FineUICore.PageContext.RegisterStartupScript(script);
-            return UIHelper.Result();
+            var script = string.Format("F.ui.Panel1.el.html('{0}');", html);  // PanelHelper 没有更新内容的方法，只能用这种方法更新
+            return script;
         }
     }
 }

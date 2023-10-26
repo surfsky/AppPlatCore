@@ -98,3 +98,79 @@
 
 
         ViewBag.btnClientClick2Script
+
+
+                /// <summary>获取实例的属性名称列表</summary>
+        public static string[] GetProperties(object instance)
+        {
+            var result = new List<string>();
+            foreach (PropertyInfo property in instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            {
+                var propertyName = property.Name;
+                // NotMapped特性
+                var notMappedAttr = property.GetCustomAttribute<NotMappedAttribute>(false);
+                if (notMappedAttr == null && propertyName != "ID")
+                {
+                    result.Add(propertyName);
+                }
+            }
+            return result.ToArray();
+        }
+
+        
+        //protected void InvalidModelState(ModelStateDictionary state)
+        //{
+        //    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        //    sb.Append("<ul>");
+        //    foreach (var key in state.Keys)
+        //    {
+        //        //将错误描述添加到sb中
+        //        foreach (var error in state[key].Errors)
+        //        {
+        //            sb.AppendFormat("<li>{0}</li>", error.ErrorMessage);
+        //        }
+        //    }
+        //    sb.Append("</ul>");
+
+        //    Alert.Show(sb.ToString());
+        //}
+
+
+
+                    User user = await DB.Users
+                .Include(u => u.RoleUsers)
+                .Where(u => u.Name == userName).AsNoTracking().FirstOrDefaultAsync();
+
+            if (user == null)
+                Alert.Show("用户名或密码错误！");
+            else
+            {
+                if (PasswordUtil.ComparePasswords(user.Password, password))
+                {
+                    if (!user.Enabled)
+                        Alert.Show("用户未启用，请联系管理员！");
+                    else
+                    {
+                        await Auth.LoginSuccessAsync(user);
+                        return RedirectToPage("/Index");
+                    }
+                }
+                else
+                {
+                    Alert.Show("用户名或密码错误！");
+                }
+            }
+
+            return UIHelper.Result();
+
+
+                <script src="~/res/js/jquery-3.4.1.js"></script>
+
+
+                                    <f:ContentPanel Height="50">
+                        <img name="imgVerify" id="imgVerify"
+                             width="100" height="39" alt="点击切换" title="点击切换"
+                             style="cursor: grab;"
+                             src="/HttpApi/Common/VerifyImage"
+                             onclick="resetVerifyImg(); return false;" />
+                    </f:ContentPanel>

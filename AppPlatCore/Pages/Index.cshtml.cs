@@ -1,5 +1,5 @@
 ﻿using App.Components;
-using App.Models;
+using App.DAL;
 using App.Web;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
@@ -26,7 +26,7 @@ namespace App.Pages
         public async Task OnGetAsync()
         {
             // 用户菜单
-            List<Models.Menu> menus = ResolveUserMenuList();
+            List<DAL.Menu> menus = ResolveUserMenuList();
             if (menus.Count == 0)
             {
                 UI.ShowNotify("系统管理员尚未给你配置菜单！");
@@ -36,8 +36,8 @@ namespace App.Pages
 
             //
             UserName = GetIdentityName();
-            OnlineUserCount =  (await GetOnlineCountAsync()).ToString();
-            ProductVersion = Common.GetProductVersion();
+            OnlineUserCount =  (await Auth.GetOnlineCountAsync()).ToString();
+            ProductVersion = Common.GetVersion();
             ConfigTitle = SiteConfig.Instance.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();  // 动态组织客户端菜单
 
@@ -45,12 +45,17 @@ namespace App.Pages
             var action = Asp.GetQueryString("action");
             if (action == "SignOut")
             {
-                await HttpContext.SignOutAsync();
-                HttpContext.Session.Clear();
-                Response.Redirect("/Login");
+                await LogoutAsync();
                 //await OnPostBtnSignOut_ClickAsync();
                 return;
             }
+        }
+
+        public async Task LogoutAsync()
+        {
+            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            Response.Redirect("/Login");
         }
 
 
@@ -86,7 +91,7 @@ namespace App.Pages
         /// </summary>
         /// <param name="menus"></param>
         /// <returns></returns>
-        private IList<TreeNode> GetTreeNodes(List<Models.Menu> menus)
+        private IList<TreeNode> GetTreeNodes(List<DAL.Menu> menus)
         {
             IList<TreeNode> nodes = new List<TreeNode>();
 
@@ -105,7 +110,7 @@ namespace App.Pages
         /// <param name="menus"></param>
         /// <param name="parentMenuId"></param>
         /// <param name="nodes"></param>
-        private int ResolveMenuTree(List<Models.Menu> menus, int? parentMenuID, IList<TreeNode> nodes)
+        private int ResolveMenuTree(List<DAL.Menu> menus, int? parentMenuID, IList<TreeNode> nodes)
         {
             int count = 0;
             foreach (var menu in menus.Where(m => m.ParentID == parentMenuID))
@@ -154,13 +159,13 @@ namespace App.Pages
         #region ResolveUserMenuList
 
         // 获取用户可用的菜单列表
-        private List<Models.Menu> ResolveUserMenuList()
+        private List<DAL.Menu> ResolveUserMenuList()
         {
             // 当前登陆用户的权限列表
             List<string> rolePowerNames = GetRolePowerNames();
 
             // 当前用户所属角色可用的菜单列表
-            List<Models.Menu> menus = new List<Models.Menu>();
+            List<DAL.Menu> menus = new List<DAL.Menu>();
 
             foreach (var menu in MenuHelper.Menus)
             {

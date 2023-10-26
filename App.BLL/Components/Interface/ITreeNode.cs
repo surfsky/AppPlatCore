@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace App.Models
+namespace App.DAL
 {
     /// <summary>
     /// 树节点处理

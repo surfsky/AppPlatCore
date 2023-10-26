@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using App.Components;
-using App.Models;
+using App.DAL;
 using App.Web;
 using FineUICore;
 using Microsoft.AspNetCore.Http;
@@ -81,7 +81,7 @@ namespace App.Pages.Admin
                 }
                 else
                 {
-                    virtualPath = Common.GetUploadPath("Images");
+                    virtualPath = Uploader.GetUploadPath("Images");
                     physicalPath = Asp.MapPath(virtualPath);
                     Utils.IO.PrepareDirectory(physicalPath);
                     using (var stream = new FileStream(physicalPath, FileMode.Create))

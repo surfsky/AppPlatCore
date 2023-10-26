@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Linq;
-using App.Models;
+using App.DAL;
 using App;
 using App.Entities;
 
-namespace App.Models
+namespace App.DAL
 {
     /// <summary>
     /// 部门树辅助处理

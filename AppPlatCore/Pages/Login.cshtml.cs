@@ -1,5 +1,5 @@
 ﻿using App.Components;
-using App.Models;
+using App.DAL;
 
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
@@ -19,60 +19,23 @@ namespace App.Pages
         public string WinTitle { get; set; }
         public void OnGet()
         {
-            WinTitle = String.Format("{0} v{1}", SiteConfig.Instance.Title, Common.GetProductVersion());
+            WinTitle = String.Format("{0} v{1}", SiteConfig.Instance.Title, Common.GetVersion());
         }
 
-        public async Task<IActionResult> OnPostBtnSubmit_ClickAsync(string tbxUserName, string tbxPassword)
+        public  IActionResult OnPostBtnSubmit_Click(string userName, string password, string verifyCode)
         {
-            string userName = tbxUserName.Trim();
-            string password = tbxPassword.Trim();
-            User user = await DB.Users
-                .Include(u => u.RoleUsers)
-                .Where(u => u.Name == userName).AsNoTracking().FirstOrDefaultAsync();
-
-            if (user == null)
-                Alert.Show("用户名或密码错误！");
-            else
+            var n = Auth.Login(userName, password, verifyCode);
+            switch (n)
             {
-                if (PasswordUtil.ComparePasswords(user.Password, password))
-                {
-                    if (!user.Enabled)
-                        Alert.Show("用户未启用，请联系管理员！");
-                    else
-                    {
-                        // 登录成功, 重定向到登陆后首页
-                        await LoginSuccess(user);
-                        return RedirectToPage("/Index");
-                    }
-                }
-                else
-                {
-                    Alert.Show("用户名或密码错误！");
-                }
+                case 0:  { return RedirectToPage("/Index"); }
+                case -1: { Alert.Show("用户名或密码错");           break;}
+                case -2: { Alert.Show("用户未启用，请联系管理员"); break;}
+                case -3: { Alert.Show("用户名或密码错");           break;}
+                case -4: { Alert.Show("验证码错误");               break;}
             }
-
+            UIHelper.Image("imgVerify").ImageUrl("/HttpApi/Common/VerifyImage?" + new Random().Next().ToString());
             return UIHelper.Result();
         }
 
-        private async Task LoginSuccess(User user)
-        {
-            await RegisterOnlineUserAsync(user.ID);
-
-            // 用户所属的角色字符串，以逗号分隔
-            string roleIDs = String.Empty;
-            if (user.RoleUsers != null)
-                roleIDs = String.Join(",", user.RoleUsers.Select(r => r.RoleID).ToArray());
-
-            // Aspnetcore 标准登录代码（Claim-Identity-Principal-Ticket, 属性-身份-主角-验票）
-            var claims = new[] { new Claim("UserID", user.ID.ToString()), new Claim("UserName", user.Name), new Claim("RoleIDs", roleIDs) }; // 属性
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);  // 用户身份
-            var principal = new ClaimsPrincipal(identity); // 主角
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                principal,
-                new AuthenticationProperties() { IsPersistent = false }
-                );
-
-        }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 
-namespace App.Models
+namespace App.DAL
 {
     // https://docs.microsoft.com/zh-cn/aspnet/core/data/ef-rp/intro
     public static class AppPlatContextInitializer
@@ -55,10 +55,33 @@ namespace App.Models
             var menus = new List<Menu> {
                 new Menu
                 {
-                    Name = "系统管理",
+                    Name = "首饰识别",
                     SortIndex = 10,
                     Remark = "顶级菜单",
-                    ImageUrl = "~/res/icon/cog.png",
+                    ImageUrl = "~/res/icon/folder.png",
+                    Children = new List<Menu> {
+                        new Menu
+                        {
+                            Name = "首饰识别",
+                            NavigateUrl = "~/AI/Jewels",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 20,
+                        },
+                        new Menu
+                        {
+                            Name = "Grid",
+                            NavigateUrl = "~/AI/Config",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 50,
+                        }
+                    }
+                },
+                new Menu
+                {
+                    Name = "系统管理",
+                    SortIndex = 20,
+                    Remark = "顶级菜单",
+                    ImageUrl = "~/res/icon/folder.png",
                     Children = new List<Menu> {
                         new Menu
                         {
@@ -129,7 +152,7 @@ namespace App.Models
                             SortIndex = 120,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/Config",
-                            ImageUrl = "~/res/icon/page.png",
+                            ImageUrl = "~/res/icon/cog.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreConfigView").FirstOrDefault<Power>()
                         },
                     }
@@ -137,16 +160,44 @@ namespace App.Models
                 new Menu
                 {
                     Name = "测试",
-                    SortIndex = 20,
-                    Remark = "顶级菜单",
+                    SortIndex = 30,
                     ImageUrl = "~/res/icon/folder.png",
                     Children = new List<Menu> {
                         new Menu
                         {
-                            Name = "Button",
-                            NavigateUrl = "~/Test/Buttons",
-                            ImageUrl = "~/res/icon/page.png",
+                            Name = "FineUI",
                             SortIndex = 20,
+                            ImageUrl = "~/res/icon/folder.png",
+                            Children = new List<Menu> {
+                                new Menu
+                                {
+                                    Name = "Button",
+                                    NavigateUrl = "~/Tests/Buttons",
+                                    ImageUrl = "~/res/icon/page.png",
+                                    SortIndex = 20,
+                                },
+                                new Menu
+                                {
+                                    Name = "Grid",
+                                    NavigateUrl = "~/Tests/Grid",
+                                    ImageUrl = "~/res/icon/page.png",
+                                    SortIndex = 50,
+                                },
+                                new Menu
+                                {
+                                    Name = "Grid2",
+                                    NavigateUrl = "~/Tests/DynamicGrid",
+                                    ImageUrl = "~/res/icon/page.png",
+                                    SortIndex = 50,
+                                },
+                                new Menu
+                                {
+                                    Name = "Responsive",
+                                    NavigateUrl = "~/Tests/Responsive",
+                                    ImageUrl = "~/res/icon/page.png",
+                                    SortIndex = 40,
+                                },
+                            }
                         },
                         new Menu
                         {
@@ -154,20 +205,6 @@ namespace App.Models
                             NavigateUrl = "~/Chats/Chat",
                             ImageUrl = "~/res/icon/page.png",
                             SortIndex = 30,
-                        },
-                        new Menu
-                        {
-                            Name = "Responsive",
-                            NavigateUrl = "~/Test/Responsive",
-                            ImageUrl = "~/res/icon/page.png",
-                            SortIndex = 40,
-                        },
-                        new Menu
-                        {
-                            Name = "Grid",
-                            NavigateUrl = "~/Test/Grid",
-                            ImageUrl = "~/res/icon/page.png",
-                            SortIndex = 50,
                         },
                         new Menu
                         {

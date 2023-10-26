@@ -2,17 +2,14 @@
 BUG
 --------------------------------------------------------
 FineUI 控件优化
-    Image 没有For属性
-    MenuCheckBox 没有OnClientClick 属性
-    看能不能用扩展方法实现
-    Window 没有 OnClientClick 属性
-    FineUICore.LabelTagHelper
-
-云主机部署
-    封装为 docker
-    window 环境部署
-    linux 环境部署
-    tensionflow 库文件的部署
+    默认的控件Helper没有完全覆盖到所有控件的属性
+        Image 没有For属性
+        MenuCheckBox 没有OnClientClick 属性
+        Window 没有 OnClientClose 属性
+    看能不能用扩展方法实现，参考
+        UIHelper.Label("xxx")
+        FineUICore.LabelTagHelper
+    研究 Grid 的强类型列绑定
 
 研究
     /删除所有 ViewBag，用属性方式替代。(RazorPageBase.ViewBag/ModelBase.ViewBag 感觉有重叠，算了不用就是了，不动了)
@@ -29,6 +26,13 @@ FineUI 控件优化
 --------------------------------------------------------
 Task
 --------------------------------------------------------
+login: 点击验证码图片刷新
+
+云主机部署
+    封装为 docker
+    linux 环境部署: Imaging
+    tensionflow 库文件的部署
+
 业务
     /生成AI识别框架
     /实现AI识别分类页面
@@ -73,8 +77,6 @@ Task
 --------------------------------------------------------
 Done
 --------------------------------------------------------
-
-
 /优化BaseModel
     /BaseModel代码过重，考虑把UI相关的抽出来，数据库相关的用 partial class
     /用Attribute的方式自动检测权限 CheckPowerAttribute
@@ -100,6 +102,7 @@ Done
         /是不是 Task OnGet() 的原因，好像跑了2次
 
 /修改页面
+    /login: 实现验证码图片
     /index
         /Logo跳转链接
         /修改顶部栏
@@ -107,26 +110,25 @@ Done
         /优化首页：关闭所有窗口；
         /缩减button listener代码
         /优化 theme：主区域标题栏透明，已写入 wwwroot/res/themes/image_blue_moon/thrme.css
+        /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
+        /将修改密码、安全退出放到一起去
+        /修改首页样式 index.css
+            .mainpanel {
+                background-image: none; /*url(./moon.jpg);*/
+                background-size: cover;
+                background-position: center 0;
+                background-repeat: no-repeat;
+                background-color: #052767;
+            }
     /优化用户相关页面：user, userview（改为用textbox更美观）, usernew
-    /合并菜单及相关页面: deptuser, roleuser, rolepower, titleuser
-    /将修改密码、安全退出放到一起去
     /实现用户图标
     /修正在线用户网页
     /将所有列表页面的操作按钮放到左侧，且设置宽度为38
-    /修改首页样式 index.css
-        .mainpanel {
-            background-image: none; /*url(./moon.jpg);*/
-            background-size: cover;
-            background-position: center 0;
-            background-repeat: no-repeat;
-            background-color: #052767;
-        }
     /简化CheckPowerAttribute，增加构造函数。
     /优化角色权限页面：修正角色全选“全选反选”逻辑
-
-/优化菜单管理
-    /菜单加上 folder: ~/res/icon/folder.png
-    /优化菜单图标列表
+    /menu：优化菜单管理
+        /菜单加上 folder: ~/res/icon/folder.png
+        /优化菜单图标列表
 
 
 

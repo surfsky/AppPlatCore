@@ -171,6 +171,14 @@
             "Z.EntityFramework.Plus.EFCore": {
               "target": "Package",
               "version": "[6.100.0.3, )"
+            },
+            "aliyun-net-sdk-core": {
+              "target": "Package",
+              "version": "[1.5.11, )"
+            },
+            "aliyun-net-sdk-dysmsapi": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [

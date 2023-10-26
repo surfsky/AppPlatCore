@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using App.HttpApi;
 using App.Middlewares;
 using App.Web;
-using App.Models;
+using App.DAL;
 using App.Components;
 using App.Entities;
 using App.Pages.AI;
@@ -108,22 +108,23 @@ namespace App
                 //app.UseHttpsRedirection();                    // 自动将 http 转化为 https
             }
 
+            // 标准中间件
+            app.UseSession();                               // 启用Session
+            app.UseImager();                                // 启用缩略图及水印
+            app.UseStaticFiles();                           // 启用静态文件输出
+            app.UseRouting();                               // 启用路由
+            app.UseAuthentication();                        // 启用鉴权（是否登录）
+            app.UseAuthorization();                         // 启用授权（有什么权限属性）
+
             // 自定义中间件
             app.UserAppWeb(env.ContentRootPath);            // 配置 App.Web 
             app.UseMonitor(o => Console.WriteLine("{0} {1} {2}", o.Url, o.Seconds, o.ClientIP));  // 启用监控模块
-            app.UseImager();                                // 启用缩略图及水印
             app.UseHttpApi(o =>                             // 启用 HttpApi
             {
                 o.TypePrefix = "App.API.";
                 o.FormatEnum = EnumFomatting.Int;
             });
 
-            // 标准中间件
-            app.UseStaticFiles();                           // 启用静态文件输出
-            app.UseSession();                               // 启用Session
-            app.UseRouting();                               // 启用路由
-            app.UseAuthentication();                        // 启用鉴权（是否登录）
-            app.UseAuthorization();                         // 启用授权（有什么权限属性）
                                                             
             // 其它中间件                                   
             app.UseFineUI();                                // 启用 FineUI 控件库

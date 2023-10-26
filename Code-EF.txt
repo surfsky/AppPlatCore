@@ -1,0 +1,6 @@
+数据库自动更新
+    https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+    dotnet ef migrations add InitialCreate
+    dotnet ef migrations add 231026
+    dotnet ef database update
+    dotnet ef migrations remove

@@ -15,20 +15,20 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.Filters;
-using App.Models;
+using App.DAL;
 using System.Reflection;
 using System.Data;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using App.Components;
 
 namespace App
 {
     public partial class BaseModel : PageModel
     {
         // private
-        private static readonly string MSG_ONLINE_UPDATE_TIME = "OnlineUpdateTime";
         private DynamicViewData _viewBag;
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace App
 
             // 如果用户已经登录，更新在线记录
             if (User.Identity.IsAuthenticated)
-                UpdateOnlineUser(GetIdentityID());
+                Auth.UpdateOnlineUser(GetIdentityID());
         }
 
         public override void OnPageHandlerExecuted(PageHandlerExecutedContext context)
@@ -70,58 +70,7 @@ namespace App
 
 
 
-        #region 在线用户
 
-        protected void UpdateOnlineUser(int? userID)
-        {
-            if (userID == null)
-                return;
-
-            DateTime now = DateTime.Now;
-            object lastUpdateTime = HttpContext.Session.GetObject<DateTime>(MSG_ONLINE_UPDATE_TIME);
-            if (lastUpdateTime == null || (Convert.ToDateTime(lastUpdateTime).Subtract(now).TotalMinutes > 5))
-            {
-                // 记录本次更新时间
-                HttpContext.Session.SetObject<DateTime>(MSG_ONLINE_UPDATE_TIME, now);
-                Online online = DB.Onlines.Where(o => o.User.ID == userID).FirstOrDefault();
-                if (online != null)
-                {
-                    online.UpdateTime = now;
-                    DB.SaveChanges();
-                }
-
-            }
-        }
-
-        protected async Task RegisterOnlineUserAsync(int userID)
-        {
-            DateTime now = DateTime.Now;
-            Online online = await DB.Onlines.Where(o => o.User.ID == userID).FirstOrDefaultAsync();
-
-            // 如果不存在，就创建一条新的记录
-            if (online == null)
-            {
-                online = new Online();
-                DB.Onlines.Add(online);
-            }
-            online.UserID = userID;
-            online.IPAdddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-            online.LoginTime = now;
-            online.UpdateTime = now;
-            await DB.SaveChangesAsync();
-
-            // 记录本次更新时间
-            HttpContext.Session.SetObject<DateTime>(MSG_ONLINE_UPDATE_TIME, now);
-        }
-
-        /// <summary>在线人数</summary>
-        protected async Task<int> GetOnlineCountAsync()
-        {
-            DateTime lastM = DateTime.Now.AddMinutes(-15);
-            return await DB.Onlines.Where(o => o.UpdateTime > lastM).CountAsync();
-        }
-
-        #endregion
 
 
         #region 用户与权限检查

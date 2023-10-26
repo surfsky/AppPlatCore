@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using App;
 using App.Entities;
 
-namespace App.Models
+namespace App.DAL
 {
     /// <summary>
     /// 菜单树辅助处理
