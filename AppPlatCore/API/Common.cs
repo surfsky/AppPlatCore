@@ -59,7 +59,7 @@ namespace App.API
         [HttpApi("生成验证码图片")]
         public static Image VerifyImage()
         {
-            var o = VerifyPainter.Draw(100, 40);
+            var o = VerifyPainter.Draw(150, 40);
             Auth.SetVerifyCode(o.Code);
             return o.Image;
         }

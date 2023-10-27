@@ -30,7 +30,9 @@ login: 点击验证码图片刷新
 
 云主机部署
     封装为 docker
-    linux 环境部署: Imaging
+    linux 环境部署: 
+        需要安装 libgdiplus 并开启 System.Drawing 支持
+        https://blog.51cto.com/u_15765017/5620121
     tensionflow 库文件的部署
 
 业务
