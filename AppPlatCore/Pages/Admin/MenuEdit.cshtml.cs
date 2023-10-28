@@ -17,9 +17,7 @@ namespace App.Pages.Admin
     {
         [BindProperty]
         public DAL.Menu Menu { get; set; }
-
         public IEnumerable<DAL.Menu> Menus { get; set; }
-
         public RadioItem[] IconItems { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)

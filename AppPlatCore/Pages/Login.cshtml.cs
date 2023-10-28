@@ -17,8 +17,10 @@ namespace App.Pages
     public class LoginModel : BaseModel
     {
         public string WinTitle { get; set; }
+        public SiteConfig Site { get; set; }
         public void OnGet()
         {
+            Site = SiteConfig.Instance;
             WinTitle = String.Format("{0} v{1}", SiteConfig.Instance.Title, Common.GetVersion());
         }
 

@@ -35,6 +35,11 @@ namespace App.DAL
         public int SortIndex { get; set; }
 
 
+        [Display(Name = "目标页面")]
+        public string Target { get; set; }
+
+        [Display(Name = "是否展开")]
+        public bool Expanded { get; set; } = false;
 
 
 
@@ -69,7 +74,6 @@ namespace App.DAL
         [NotMapped]
         public bool IsTreeLeaf { get; set; }
 
-
         public object Clone()
         {
             Menu menu = new Menu
@@ -79,6 +83,8 @@ namespace App.DAL
                 ImageUrl = ImageUrl,
                 NavigateUrl = NavigateUrl,
                 Remark = Remark,
+                Target = Target,
+                Expanded = Expanded,
                 SortIndex = SortIndex,
                 TreeLevel = TreeLevel,
                 Enabled = Enabled,

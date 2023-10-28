@@ -1,5 +1,6 @@
 ﻿using App.Components;
 using App.DAL;
+using App.Utils;
 using App.Web;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
@@ -40,24 +41,7 @@ namespace App.Pages
             ProductVersion = Common.GetVersion();
             ConfigTitle = SiteConfig.Instance.Title;   //"AppPlat";
             SystemHelpMenu = GetSystemHelpMenu();  // 动态组织客户端菜单
-
-            // 注销退出
-            var action = Asp.GetQueryString("action");
-            if (action == "SignOut")
-            {
-                await LogoutAsync();
-                //await OnPostBtnSignOut_ClickAsync();
-                return;
-            }
         }
-
-        public async Task LogoutAsync()
-        {
-            await HttpContext.SignOutAsync();
-            HttpContext.Session.Clear();
-            Response.Redirect("/Login");
-        }
-
 
         // 帮助菜单
         private FineUICore.Menu GetSystemHelpMenu()
@@ -86,30 +70,16 @@ namespace App.Pages
 
         #region GetTreeNodes
 
-        /// <summary>
-        /// 创建树菜单
-        /// </summary>
-        /// <param name="menus"></param>
-        /// <returns></returns>
+        /// <summary>创建树菜单</summary>
         private IList<TreeNode> GetTreeNodes(List<DAL.Menu> menus)
         {
             IList<TreeNode> nodes = new List<TreeNode>();
-
-            // 生成树
             ResolveMenuTree(menus, null, nodes);
-
-            // 展开第一个树节点
-            nodes[0].Expanded = true;
-
+            nodes[0].Expanded = true; // 展开第一个树节点
             return nodes;
         }
 
-        /// <summary>
-        /// 生成菜单树
-        /// </summary>
-        /// <param name="menus"></param>
-        /// <param name="parentMenuId"></param>
-        /// <param name="nodes"></param>
+        /// <summary>生成菜单树</summary>
         private int ResolveMenuTree(List<DAL.Menu> menus, int? parentMenuID, IList<TreeNode> nodes)
         {
             int count = 0;
@@ -121,16 +91,16 @@ namespace App.Pages
 
                 node.Text = menu.Name;
                 node.IconUrl = menu.ImageUrl;
-                if (!String.IsNullOrEmpty(menu.NavigateUrl))
-                {
+                if (menu.Target.IsNotEmpty())
+                    node.Target = menu.Target;
+                if (menu.NavigateUrl.IsNotEmpty())
                     node.NavigateUrl = Url.Content(menu.NavigateUrl);
-                }
+                node.Expanded = menu.Expanded;
 
                 if (menu.IsTreeLeaf)
                 {
-                    node.Leaf = true;
-
                     // 如果是叶子节点，但不是超链接，则是空目录，删除
+                    node.Leaf = true;
                     if (String.IsNullOrEmpty(menu.NavigateUrl))
                     {
                         nodes.Remove(node);
@@ -139,9 +109,8 @@ namespace App.Pages
                 }
                 else
                 {
-                    int childCount = ResolveMenuTree(menus, menu.ID, node.Nodes);
-
                     // 如果是目录，但是计算的子节点数为0，可能目录里面的都是空目录，则要删除此父目录
+                    int childCount = ResolveMenuTree(menus, menu.ID, node.Nodes);
                     if (childCount == 0 && String.IsNullOrEmpty(menu.NavigateUrl))
                     {
                         nodes.Remove(node);

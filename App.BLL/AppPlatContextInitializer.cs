@@ -59,6 +59,7 @@ namespace App.DAL
                     SortIndex = 10,
                     Remark = "顶级菜单",
                     ImageUrl = "~/res/icon/folder.png",
+                    Expanded = true,
                     Children = new List<Menu> {
                         new Menu
                         {
@@ -228,8 +229,9 @@ namespace App.DAL
                     Name = "安全退出",
                     SortIndex = 140,
                     Remark = "二级菜单",
-                    NavigateUrl = "~/Index?action=SignOut",
-                    ImageUrl = "~/res/icon/tag_blue.png"
+                    NavigateUrl = "~/Logout",
+                    ImageUrl = "~/res/icon/door_out.png",
+                    Target="_top"
                 },
             };
 

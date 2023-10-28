@@ -30,9 +30,7 @@ namespace App.Pages.Admin
         private void MenuNew_LoadData()
         {
             IconItems = MenuEdit_GetIconItems().ToArray();
-
             Menus = UI.ResolveDDL<DAL.Menu>(MenuHelper.Menus).ToArray();
-
         }
 
         public List<RadioItem> MenuEdit_GetIconItems()
@@ -43,10 +41,8 @@ namespace App.Pages.Admin
             {
                 string value = String.Format("~/res/icon/{0}.png", icon);
                 string text = String.Format("<img style=\"vertical-align:bottom;\" src=\"{0}\" />&nbsp;{1}", Url.Content(value), icon);
-
                 items.Add(new RadioItem(text, value));
             }
-
             return items;
         }
 
@@ -56,14 +52,10 @@ namespace App.Pages.Admin
             {
                 // 下拉列表的顶级节点值为-1
                 if (Menu.ParentID == -1)
-                {
                     Menu.ParentID = null;
-                }
 
                 if (String.IsNullOrEmpty(ViewPowerName))
-                {
                     Menu.ViewPowerID = null;
-                }
                 else
                 {
                     var viewPower = await DB.Powers
@@ -71,9 +63,7 @@ namespace App.Pages.Admin
                         .FirstOrDefaultAsync();
 
                     if (viewPower != null)
-                    {
                         Menu.ViewPowerID = viewPower.ID;
-                    }
                     else
                     {
                         Alert.Show("浏览权限 " + ViewPowerName + " 不存在！");

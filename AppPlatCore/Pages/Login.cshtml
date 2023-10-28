@@ -8,6 +8,7 @@
         }
     </script>
 
+    <link rel="stylesheet" type="text/css" href="/css/position.css">
     <style>
         body {
             background-image: url(./res/themes/image_blue_moon/moon.jpg);
@@ -44,7 +45,7 @@
                     <f:TextBox ID="userName" FocusOnPageLoad="true" Label="帐号" Required="true" ShowRedStar="true" Text="" />
                     <f:TextBox ID="password" TextMode="Password" Required="true" ShowRedStar="true" Label="密码" Text="" />
                     <f:TextBox ID="verifyCode" Required="true" ShowRedStar="true" Label="验证码" Text="" />
-                    <f:Image ID="imgVerify" ImageUrl="/HttpApi/Common/VerifyImage" ImageWidth="150" ImageHeight="39" ToolTip="" CssStyle="cursor: point;">
+                    <f:Image ID="imgVerify" ImageUrl="/HttpApi/Common/VerifyImage" ImageWidth="150" ImageHeight="39" ToolTip="点击刷新" CssStyle="cursor: pointer;">
                         <Listeners>
                             <f:Listener Event="click" Handler="resetVerifyImg();"></f:Listener>
                         </Listeners>
@@ -61,6 +62,11 @@
             </f:Toolbar>
         </Toolbars>
     </f:Window>
+    <div class="fixBottom" style="font-size:12px; color:white; margin-bottom:20px; display:flex; flex-direction: column; align-items: center;">
+        <div id="owner"></div>
+        <div id="copyright">Copyright 2023&copy;</div>
+        <f:Label Text="@Model.Site.BeiAnNo" CssStyle="" />
+    </div>
 
 }
 
@@ -68,24 +74,17 @@
     <!--script src="res/js/jquery-3.4.1.js"></!script-->
     <script>
         F.ready(function () {
-            // 点击图片刷新，摆不平
-            var el1 = document.getElementById("imgVerify-inputEl");
-            var el2 = F.ui.imgVerify.getAttrEl();
-            el1.addEventListener('click', resetVerifyImg(), true);
-            el1.style.cursor = "point";
-            //$("#imgVerify-inputEl").on('click', resetVerifyImg());
+            // 点击图片刷新
+            var el4 = document.querySelector("#imgVerify-inputEl > img");
+            el4.addEventListener('click', function () { resetVerifyImg(); });
         });
 
 
         // 重置验证码
         function resetVerifyImg() {
             var url = "/HttpApi/Common/VerifyImage?" + Math.random();  // 避免某些浏览器会缓存图片
-            //var el1 = document.getElementById("imgVerify-inputEl");
-            var el2 = F.ui.imgVerify.getAttrEl();
-            el2.attr('src', url);
-            //F.ui.imgVerify.getAttrEl().attr('src', url);
-            //$("#imgVerify").attr('src', url);
-            //$("#imgVerify-inputEl").attr('src', url);
+            var el4 = document.querySelector("#imgVerify-inputEl > img");
+            el4.src = url;
         }
 
     </script>

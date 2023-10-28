@@ -174,3 +174,22 @@
                              src="/HttpApi/Common/VerifyImage"
                              onclick="resetVerifyImg(); return false;" />
                     </f:ContentPanel>
+
+            //var el1 = document.getElementById("imgVerify-inputEl");
+            //var el2 = F.ui.imgVerify.getAttrEl();
+            //var el3 = F.ui.imgVerify.el;
+            //el4.style.cursor = "pointer";
+            //el1.addEventListener('click', function () { alert('hello'); });   //resetVerifyImg()
+            //el2.addEventListener('click', resetVerifyImg(), true);  // fail
+            //el3.addEventListener('click', resetVerifyImg(), true);  // fail
+            //$("#imgVerify-inputEl").on('click', resetVerifyImg());
+
+                        //var el1 = document.getElementById("imgVerify-inputEl");
+            //var el2 = F.ui.imgVerify.getAttrEl();
+            //el2.attr('src', url);
+            //el4.attr('src', url);
+            //F.ui.imgVerify.getAttrEl().attr('src', url);
+            //$("#imgVerify").attr('src', url);
+            //$("#imgVerify-inputEl").attr('src', url);
+
+

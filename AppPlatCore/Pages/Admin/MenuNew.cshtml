@@ -19,15 +19,16 @@
     <Items>
         <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10">
             <Items>
-                <f:TextBox For="Menu.Name" Required="true" ShowRedStar="true"></f:TextBox>
-                <f:DropDownList For="Menu.ParentID" EnableSimulateTree="true" DataTextField="Name" DataValueField="ID" DataSimulateTreeLevelField="TreeLevel"
-                                DataEnableSelectField="Enabled" DataSource="@Model.Menus"></f:DropDownList>
-                <f:TextBox For="Menu.SortIndex"></f:TextBox>
-                <f:TextBox For="Menu.ViewPowerID" Name="ViewPowerName"></f:TextBox>
-                <f:TextBox For="Menu.NavigateUrl"></f:TextBox>
-                <f:TextBox For="Menu.ImageUrl"></f:TextBox>
-                <f:RadioButtonList ID="rblIconList" ColumnNumber="4" ShowEmptyLabel="true" Items="@Model.IconItems"></f:RadioButtonList>
-                <f:TextBox For="Menu.Remark"></f:TextBox>
+                <f:TextBox For="Menu.Name" Required="true" ShowRedStar="true" />
+                <f:DropDownList For="Menu.ParentID" EnableSimulateTree="true" DataTextField="Name" DataValueField="ID" DataSimulateTreeLevelField="TreeLevel" DataEnableSelectField="Enabled" DataSource="@Model.Menus" />
+                <f:TextBox For="Menu.SortIndex" />
+                <f:TextBox For="Menu.ViewPowerID" Name="ViewPowerName" />
+                <f:TextBox For="Menu.NavigateUrl" />
+                <f:TextBox For="Menu.ImageUrl" />
+                <f:RadioButtonList ID="rblIconList" ColumnNumber="4" ShowEmptyLabel="true" Items="@Model.IconItems" />
+                <f:TextBox For="Menu.Target" />
+                <f:CheckBox For="Menu.Expanded" />
+                <f:TextBox For="Menu.Remark" />
             </Items>
         </f:SimpleForm>
     </Items>

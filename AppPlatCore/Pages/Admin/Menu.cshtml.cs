@@ -52,7 +52,6 @@ namespace App.Pages.Admin
 
             MenuHelper.Reload();
             UIHelper.Grid("Grid1").DataSource(MenuHelper.Menus, Grid1_fields);
-
             return UIHelper.Result();
         }
 
@@ -60,7 +59,6 @@ namespace App.Pages.Admin
         {
             MenuHelper.Reload();
             UIHelper.Grid("Grid1").DataSource(MenuHelper.Menus, Grid1_fields);
-
             return UIHelper.Result();
         }
     }
