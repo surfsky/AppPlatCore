@@ -63,14 +63,14 @@ namespace App.DAL
                     Children = new List<Menu> {
                         new Menu
                         {
-                            Name = "首饰识别",
+                            Name = "识别",
                             NavigateUrl = "~/AI/Jewels",
                             ImageUrl = "~/res/icon/page.png",
                             SortIndex = 20,
                         },
                         new Menu
                         {
-                            Name = "Grid",
+                            Name = "配置",
                             NavigateUrl = "~/AI/Config",
                             ImageUrl = "~/res/icon/page.png",
                             SortIndex = 50,
@@ -113,7 +113,7 @@ namespace App.DAL
                         },
                         new Menu
                         {
-                            Name = "角色用户",
+                            Name = "角色",
                             SortIndex = 70,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/RoleUser",
@@ -122,7 +122,7 @@ namespace App.DAL
                         },
                         new Menu
                         {
-                            Name = "角色权限",
+                            Name = "权限",
                             SortIndex = 90,
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admin/RolePower",
@@ -179,7 +179,7 @@ namespace App.DAL
                                 },
                                 new Menu
                                 {
-                                    Name = "Grid",
+                                    Name = "Grid1",
                                     NavigateUrl = "~/Tests/Grid",
                                     ImageUrl = "~/res/icon/page.png",
                                     SortIndex = 50,
@@ -209,11 +209,26 @@ namespace App.DAL
                         },
                         new Menu
                         {
-                            Name = "Blazor",
-                            NavigateUrl = "~/Blazors/Index",
-                            ImageUrl = "~/res/icon/page.png",
+                            Name = "Blazors",
                             SortIndex = 60,
-                        },
+                            ImageUrl = "~/res/icon/folder.png",
+                            Children = new List<Menu> {
+                               new Menu
+                                {
+                                    Name = "Blazor",
+                                    NavigateUrl = "~/Blazors/Index",
+                                    ImageUrl = "~/res/icon/page.png",
+                                    SortIndex = 60,
+                                },
+                               new Menu
+                                {
+                                    Name = "Blazor",
+                                    NavigateUrl = "~/Blazors/Index",
+                                    ImageUrl = "~/res/icon/page.png",
+                                    SortIndex = 60,
+                                },
+                            }
+                       },
                     }
                 },
                 new Menu

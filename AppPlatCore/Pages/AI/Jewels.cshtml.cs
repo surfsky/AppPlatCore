@@ -67,7 +67,7 @@ namespace App.Pages.AI
                 Logger.Info("START Predicate: {0}", DateTime.Now);
                 var imgBytes = System.IO.File.ReadAllBytes(physicalPath);
                 ModelInput data = new ModelInput() { ImageSource = imgBytes };
-                var results = JewelsAI.PredictAllLabels(data).Take(10).ToList();
+                var results = JewelsAI.PredictAllLabels(data).Take(5).ToList();
                 Logger.Info("STOP Predicate:  {0}", DateTime.Now);
 
                 // 将结果显示到客户端

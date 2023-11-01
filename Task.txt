@@ -2,6 +2,19 @@
 TIP
 --------------------------------------------------------
 使用Panel，再套form，可以让页面卷动时工具栏始终置顶
+部署(写个工具)：
+    拷贝AppPlatCore项目
+    CopyFolder("AppPlatCore", "AppPlatCore-Deploy");
+    Cd("AppPlatCore-Deploy");
+    DeleteFiles("*.cs"); 
+    DeleteFolder("/Caches");
+    DeleteFolder("/Files");
+    DeleteFolder("/Logs");
+    DeleteFolder("/objs");
+    DeleteFolder("/Bin/Debug/net6.0/*.pdb");
+    DeleteFolders("/Bin/Debug/net6.0/", "zh-CN", false);    // 除了zh-CN目录其它同级别目录统统删除
+    
+
 
 
 --------------------------------------------------------
