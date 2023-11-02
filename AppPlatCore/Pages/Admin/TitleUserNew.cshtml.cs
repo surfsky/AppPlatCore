@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.DAL;
 
 
@@ -17,8 +18,7 @@ namespace App.Pages.Admin
     {
         public Title Title { get; set; }
         public IEnumerable<User> Users { get; set; }
-
-        public PagingInfoViewModel PagingInfo { get; set; }
+        public PagingInfo PagingInfo { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync(int titleID)
@@ -28,26 +28,18 @@ namespace App.Pages.Admin
                 return Content("无效参数！");
 
             //Users = await TitleUserNew_LoadDataAsync(titleID);
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
             this.Users =  await TitleUserNew_GetDataAsync(pagingInfo, titleID, String.Empty);
             return Page();
         }
 
-        private async Task<IEnumerable<User>> TitleUserNew_GetDataAsync(PagingInfoViewModel pagingInfo, int titleID, string ttbSearchMessage)
+        private async Task<IEnumerable<User>> TitleUserNew_GetDataAsync(PagingInfo pagingInfo, int titleID, string ttbSearchMessage)
         {
             IQueryable<User> q = DB.Users;
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(u => u.Name.Contains(searchText) || u.ChineseName.Contains(searchText) || u.EnglishName.Contains(searchText));
-            }
             q = q.Where(u => u.Name != "admin");
             q = q.Where(u => u.TitleUsers.All(r => r.TitleID != titleID));  // 排除已经属于本职称的用户
 
@@ -73,7 +65,7 @@ namespace App.Pages.Admin
             }
 
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid1_sortField,
                 SortDirection = Grid1_sortDirection,

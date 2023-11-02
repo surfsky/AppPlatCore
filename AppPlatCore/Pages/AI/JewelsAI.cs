@@ -67,9 +67,9 @@ namespace App.Pages.AI
     public class JewelsAI
     {
         /// <summary>训练目录</summary>
-        public static string TrainPath = "/Pages/AI/JewelsImages/";
+        public static string TrainPath = "/wwwroot/Jewels/";
         /// <summary>模型文件路径</summary>
-        public static string ModelPath = "/Pages/AI/JewelsImages/model.zip";
+        public static string ModelPath = "/wwwroot/Jewels/model.zip";
 
         //---------------------------------------------------------
         // 引擎

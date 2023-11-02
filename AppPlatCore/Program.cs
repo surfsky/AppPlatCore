@@ -31,10 +31,9 @@ namespace App
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
                 try
                 {
-                    var context = services.GetRequiredService<DAL.AppPlatContext>();
+                    var context = services.GetRequiredService<AppPlatContext>();
                     AppPlatContextInitializer.Initialize(context);
                 }
                 catch (Exception ex)

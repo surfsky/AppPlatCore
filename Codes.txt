@@ -193,3 +193,10 @@
             //$("#imgVerify-inputEl").attr('src', url);
 
 
+
+                        {
+                SortField = "UpdateTime",
+                SortDirection = "DESC",
+                PageIndex = 0,
+                PageSize = SiteConfig.Instance.PageSize
+            };

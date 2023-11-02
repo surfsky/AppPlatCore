@@ -17,8 +17,7 @@ namespace App.Pages.Admin
     public class UserListModel : BaseAdminModel
     {
         public IEnumerable<User> Users { get; set; }
-        public PagingInfoViewModel PagingInfo { get; set; }
-
+        public PagingInfo PagingInfo { get; set; }
         public bool PowerCoreUserNew { get; set; }
         public bool PowerCoreUserEdit { get; set; }
         public bool PowerCoreUserDelete { get; set; }
@@ -31,19 +30,13 @@ namespace App.Pages.Admin
             PowerCoreUserDelete = CheckPower("CoreUserDelete");
             PowerCoreUserChangePassword = CheckPower("CoreUserChangePassword");
 
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
             Users = await UserList_GetDataAsync(pagingInfo, String.Empty, "all");
         }
 
 
-        private async Task<IEnumerable<User>> UserList_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage, string rblEnableStatus)
+        private async Task<IEnumerable<User>> UserList_GetDataAsync(PagingInfo pagingInfo, string ttbSearchMessage, string rblEnableStatus)
         {
             IQueryable<User> q = DB.Users;
             string searchText = ttbSearchMessage?.Trim();
@@ -122,7 +115,7 @@ namespace App.Pages.Admin
 
 
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid1_sortField,
                 SortDirection = Grid1_sortDirection,

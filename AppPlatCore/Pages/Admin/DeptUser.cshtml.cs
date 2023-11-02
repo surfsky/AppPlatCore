@@ -18,14 +18,11 @@ namespace App.Pages.Admin
     {
         public IEnumerable<Dept> Depts { get; set; }
         public IEnumerable<User> Users { get; set; }
-
         public bool PowerCoreDeptView { get; set; }
         public bool PowerCoreDeptUserNew { get; set; }
         public bool PowerCoreDeptUserDelete { get; set; }
-
         public string Grid1SelectedRowID { get; set; }
-
-        public PagingInfoViewModel Grid2PagingInfo { get; set; }
+        public PagingInfo Grid2PagingInfo { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -36,53 +33,32 @@ namespace App.Pages.Admin
             // 表格1
             Depts = DeptHelper.Depts;
             if (DeptHelper.Depts.Count == 0)
-            {
-                // 没有部门数据
                 return Content("请先添加部门！");
-            }
+
             var grid1SelectedRowID = DeptHelper.Depts[0].ID;
             Grid1SelectedRowID = grid1SelectedRowID.ToString();
-
             Users = await DeptUser_LoadDataAsync(grid1SelectedRowID);
-
             return Page();
         }
 
         private async Task<IEnumerable<User>> DeptUser_LoadDataAsync(int grid1SelectedRowID)
         {
-            // 表格2
-            var grid2PagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var grid2PagingInfo = new PagingInfo("Name", false);
             Grid2PagingInfo = grid2PagingInfo;
             return await DeptUser_GetDataAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);
         }
 
-        private async Task<IEnumerable<User>> DeptUser_GetDataAsync(PagingInfoViewModel pagingInfo, int deptID, string ttbSearchMessage)
+        private async Task<IEnumerable<User>> DeptUser_GetDataAsync(PagingInfo pagingInfo, int deptID, string ttbSearchMessage)
         {
             IQueryable<User> q = DB.Users;
-
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(u => u.Name.Contains(searchText) || u.ChineseName.Contains(searchText) || u.EnglishName.Contains(searchText));
-            }
-
             q = q.Where(u => u.Name != "admin");
+            q = q.Where(u => u.Dept.ID == deptID);  // 过滤选中部门下的所有用户
 
-            // 过滤选中部门下的所有用户
-            q = q.Where(u => u.Dept.ID == deptID);
-
-            // 获取总记录数（在添加条件之后，排序和分页之前）
             pagingInfo.RecordCount = await q.CountAsync();
-
-            // 排列和数据库分页
             q = SortAndPage<User>(q, pagingInfo);
-
             return await q.ToListAsync();
         }
 
@@ -120,16 +96,13 @@ namespace App.Pages.Admin
                 {
                     User user = role.Users.Where(u => u.ID == userID).FirstOrDefault();
                     if (user != null)
-                    {
                         role.Users.Remove(user);
-                    }
                 }
-
                 await DB.SaveChangesAsync();
             }
 
             var grid2UI = UIHelper.Grid("Grid2");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid2_sortField,
                 SortDirection = Grid2_sortDirection,
@@ -137,17 +110,10 @@ namespace App.Pages.Admin
                 PageSize = ddlGridPageSize
             };
             var deptUsers = await DeptUser_GetDataAsync(pagingInfo, selectedDeptId, ttbSearchMessage);
-            // 1. 设置总项数
             grid2UI.RecordCount(pagingInfo.RecordCount);
-            // 2. 设置每页显示项数
             if (actionType == "changeGridPageSize")
-            {
                 grid2UI.PageSize(ddlGridPageSize);
-            }
-            // 3.设置分页数据
             grid2UI.DataSource(deptUsers, Grid2_fields);
-
-
             return UIHelper.Result();
         }
     }

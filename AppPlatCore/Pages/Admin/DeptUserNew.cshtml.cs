@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.DAL;
 
 
@@ -16,61 +17,38 @@ namespace App.Pages.Admin
     public class DeptUserNewModel : BaseAdminModel
     {
         public Dept Dept { get; set; }
-
         public IEnumerable<User> Users { get; set; }
-
-        public PagingInfoViewModel PagingInfo { get; set; }
+        public PagingInfo PagingInfo { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int deptID)
         {
             Dept = await DB.Depts
                 .Where(d => d.ID == deptID).AsNoTracking().FirstOrDefaultAsync();
-
             if (Dept == null)
-            {
                 return Content("无效参数！");
-            }
 
             Users = await DeptUserNew_LoadDataAsync(deptID);
-
             return Page();
         }
 
         private async Task<IEnumerable<User>> DeptUserNew_LoadDataAsync(int deptID)
         {
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
-
             return await DeptUserNew_GetDataAsync(pagingInfo, deptID, String.Empty);
         }
 
-        private async Task<IEnumerable<User>> DeptUserNew_GetDataAsync(PagingInfoViewModel pagingInfo, int deptID, string ttbSearchMessage)
+        private async Task<IEnumerable<User>> DeptUserNew_GetDataAsync(PagingInfo pagingInfo, int deptID, string ttbSearchMessage)
         {
             IQueryable<User> q = DB.Users;
-
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(u => u.Name.Contains(searchText) || u.ChineseName.Contains(searchText) || u.EnglishName.Contains(searchText));
-            }
-
             q = q.Where(u => u.Name != "admin");
+            q = q.Where(u => u.Dept == null);  // 排除所有已经属于某个部门的用户
 
-            // 排除所有已经属于某个部门的用户
-            q = q.Where(u => u.Dept == null);
-
-            // 获取总记录数（在添加条件之后，排序和分页之前）
             pagingInfo.RecordCount = await q.CountAsync();
-
-            // 排列和数据库分页
             q = SortAndPage<User>(q, pagingInfo);
-
             return await q.ToListAsync();
         }
 
@@ -93,7 +71,7 @@ namespace App.Pages.Admin
 
 
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid1_sortField,
                 SortDirection = Grid1_sortDirection,
@@ -104,18 +82,11 @@ namespace App.Pages.Admin
 
             //grid1UI.DataSource(await DeptUserNew_GetDataAsync(pagingInfo, deptID, ttbSearchMessage), Grid1_fields, clearSelection: false);
             //grid1UI.RecordCount(pagingInfo.RecordCount);
-
             var deptUsers = await DeptUserNew_GetDataAsync(pagingInfo, deptID, ttbSearchMessage);
-            // 1. 设置总项数
             grid1UI.RecordCount(pagingInfo.RecordCount);
-            // 2. 设置每页显示项数
             if (actionType == "changeGridPageSize")
-            {
                 grid1UI.PageSize(ddlGridPageSize);
-            }
-            // 3.设置分页数据
             grid1UI.DataSource(deptUsers, Grid1_fields, clearSelection: false);
-
             return UIHelper.Result();
         }
 

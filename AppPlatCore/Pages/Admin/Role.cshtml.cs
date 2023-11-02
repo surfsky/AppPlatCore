@@ -17,7 +17,7 @@ namespace App.Pages.Admin
     public class RoleModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }
-        public PagingInfoViewModel PagingInfo { get; set; }
+        public PagingInfo PagingInfo { get; set; }
         public bool PowerCoreRoleNew { get; set; }
         public bool PowerCoreRoleEdit { get; set; }
         public bool PowerCoreRoleDelete { get; set; }
@@ -33,27 +33,18 @@ namespace App.Pages.Admin
             PowerCoreRoleEdit = CheckPower("CoreRoleEdit");
             PowerCoreRoleDelete = CheckPower("CoreRoleDelete");
 
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
-
             return await Role_GetDataAsync(pagingInfo, String.Empty);
         }
 
-        private async Task<IEnumerable<Role>> Role_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage)
+        private async Task<IEnumerable<Role>> Role_GetDataAsync(PagingInfo pagingInfo, string ttbSearchMessage)
         {
             IQueryable<Role> q = DB.Roles;
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
                 q = q.Where(p => p.Name.Contains(searchText));
 
-            // 获取总记录数（在添加条件之后，排序和分页之前）
-            // 排列和数据库分页
             pagingInfo.RecordCount = await q.CountAsync();
             q = SortAndPage<Role>(q, pagingInfo);
             return await q.ToListAsync();
@@ -98,7 +89,7 @@ namespace App.Pages.Admin
 
 
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid1_sortField,
                 SortDirection = Grid1_sortDirection,

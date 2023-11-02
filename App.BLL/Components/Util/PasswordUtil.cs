@@ -49,18 +49,14 @@ namespace App
 			
 		}
 
-        /// <summary>
-        /// 创建用户的数据库密码
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
+        /// <summary>创建用户的数据库密码</summary>
 		public static string CreateDbPassword(string userPassword)
 		{
 			byte[] unsaltedPassword = HashString(userPassword);
 
 			//Create a salt value
 			byte[] saltValue = new byte[saltLength];
-			RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+			var rng = new RNGCryptoServiceProvider();
 			rng.GetBytes(saltValue);
 			
 			byte[] saltedPassword = CreateSaltedPassword(saltValue, unsaltedPassword);

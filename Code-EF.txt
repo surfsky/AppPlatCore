@@ -4,3 +4,12 @@
     dotnet ef migrations add 231026
     dotnet ef database update
     dotnet ef migrations remove
+
+
+  "ConnectionStrings": {
+    "SQLServer": "Data Source=(local);Integrated Security=true;Initial Catalog=AppPlatCore;Persist Security Info=True;MultipleActiveResultSets=true;",
+    "Sqlite": "Data Source=sqlite.db;",
+    "MySQL": "server=localhost; user id=root; password=wzcc.com; database=AppPlatCore; charset=utf-8 ",
+    "DM": "Server=localhost; User Id=SYSDBA; PWD=SYSDBA; SCHEMA=App; PORT=5236; CONNPOOLING=TRUE;"
+  },
+

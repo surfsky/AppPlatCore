@@ -28,7 +28,7 @@ namespace App.Pages.Chats
         /// <summary>给所有客户端广播</summary>
         public async Task Broadcast(string user, string message)
         {
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
             await Clients.All.SendAsync("ChatMessage", user, message, DateTime.Now.ToString("HH:mm:ss"));
         }
 

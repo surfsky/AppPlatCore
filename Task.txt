@@ -6,6 +6,7 @@ TIP
     拷贝AppPlatCore项目
     CopyFolder("AppPlatCore", "AppPlatCore-Deploy");
     Cd("AppPlatCore-Deploy");
+    DeleteHideFiles();     // .git,ds_store, thumbs.db
     DeleteFiles("*.cs"); 
     DeleteFolder("/Caches");
     DeleteFolder("/Files");
@@ -45,6 +46,17 @@ FineUI 控件优化
 --------------------------------------------------------
 Task
 --------------------------------------------------------
+调试部署网站
+    项目右键>部署》部署到文件夹》net6.0/publish，其实就是编译成功后复制 wwwroot 目录到 net6.0 目录下，其它一切代码文件都编译了，包括页面文件。
+    调试部署后的报错原因
+
+/移除 Humanizer 乱七八糟的语言支持目录: 
+    https://www.cnblogs.com/qinfeng888/p/12619772.html
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+/移除多余的数据库支撑能力，只保留sqlite和sqlserver
+简化 PagingInfo
+
+移除 Title 数据库表
 设置登录页背景
 设置登录对话框背景
 目录的target属性似乎没有用

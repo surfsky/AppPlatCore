@@ -22,8 +22,8 @@ namespace App.Pages.Admin
         public bool PowerCoreTitleUserDelete { get; set; }
         public bool PowerCoreTitleEdit { get; set; }
         public string Grid1SelectedRowID { get; set; }
-        public PagingInfoViewModel Grid1PagingInfo { get; set; }
-        public PagingInfoViewModel Grid2PagingInfo { get; set; }
+        public PagingInfo Grid1PagingInfo { get; set; }
+        public PagingInfo Grid2PagingInfo { get; set; }
 
         // 首次展示时触发
         public async Task<IActionResult> OnGetAsync()
@@ -33,11 +33,7 @@ namespace App.Pages.Admin
             PowerCoreTitleEdit = CheckPower("CoreTitleEdit");
 
             // 左侧职称表格
-            var grid1PagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC"
-            };
+            var grid1PagingInfo = new PagingInfo("Name", false);
             Titles = await Sort<Title>(DB.Titles, grid1PagingInfo).ToListAsync();
             if (Titles.Count() == 0)
                 return Content("请先添加职称！");
@@ -47,13 +43,7 @@ namespace App.Pages.Admin
             var grid1SelectedRowID = Titles.First().ID;
             this.Grid1SelectedRowID = grid1SelectedRowID.ToString();
             this.Grid1PagingInfo = grid1PagingInfo;
-            var grid2PagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var grid2PagingInfo = new PagingInfo("Name", false);
             this.Grid2PagingInfo = grid2PagingInfo;
             this.Users = await GetTitleUsersAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);
             return Page();
@@ -61,7 +51,7 @@ namespace App.Pages.Admin
 
 
         // 获取职称用户清单
-        private async Task<IEnumerable<User>> GetTitleUsersAsync(PagingInfoViewModel pagingInfo, int titleID, string ttbSearchMessage)
+        private async Task<IEnumerable<User>> GetTitleUsersAsync(PagingInfo pagingInfo, int titleID, string ttbSearchMessage)
         {
             IQueryable<User> q = DB.Users;
             string searchText = ttbSearchMessage?.Trim();
@@ -119,7 +109,7 @@ namespace App.Pages.Admin
             }
 
             var grid2UI = UIHelper.Grid("Grid2");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid2_sortField,
                 SortDirection = Grid2_sortDirection,
@@ -127,16 +117,10 @@ namespace App.Pages.Admin
                 PageSize = ddlGridPageSize
             };
             var titleUsers = await GetTitleUsersAsync(pagingInfo, selectedTitleId, ttbSearchMessage);
-            // 1. 设置总项数
-            // 2. 设置每页显示项数
-            // 3.设置分页数据
             grid2UI.RecordCount(pagingInfo.RecordCount);
             if (actionType == "changeGridPageSize")
-            {
                 grid2UI.PageSize(ddlGridPageSize);
-            }
             grid2UI.DataSource(titleUsers, Grid2_fields);
-
             return UIHelper.Result();
         }
 
@@ -144,11 +128,7 @@ namespace App.Pages.Admin
         public async Task<IActionResult> OnPostTitleUser_Grid1_SortAsync(string[] Grid1_fields, string Grid1_sortField, string Grid1_sortDirection)
         {
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = Grid1_sortField,
-                SortDirection = Grid1_sortDirection
-            };
+            var pagingInfo = new PagingInfo(Grid1_sortField, Grid1_sortDirection);
             grid1UI.DataSource(await Sort<Title>(DB.Titles, pagingInfo).ToListAsync(), Grid1_fields, clearSelection: false);
             return UIHelper.Result();
         }

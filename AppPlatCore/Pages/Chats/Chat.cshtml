@@ -11,7 +11,7 @@
     <div class="row">&nbsp;</div>
     <div class="row">
         <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
+        <div class="col-4"><input type="text" id="userInput" value="Bob" /></div>
     </div>
     <div class="row">
         <div class="col-2">Message</div>
@@ -44,7 +44,7 @@
     // 接收到服务器端发来的消息
     connection.on("ChatMessage", function (user, message, dt) {
         var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        var encodedMsg = user + " says " + msg + " [" + dt + "]";
+        var encodedMsg = " [" + dt + "] " + user + " : " + msg;
         var li = document.createElement("li");
         li.textContent = encodedMsg;
         document.getElementById("messagesList").appendChild(li);

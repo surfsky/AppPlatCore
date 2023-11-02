@@ -18,7 +18,7 @@ namespace App
         /// <returns>字符串MD5哈希值的十六进制字符串</returns>
         public static string StringToMD5Hash(string inputString)
         {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            var md5 = new MD5CryptoServiceProvider();
             byte[] encryptedBytes = md5.ComputeHash(Encoding.ASCII.GetBytes(inputString));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < encryptedBytes.Length; i++)

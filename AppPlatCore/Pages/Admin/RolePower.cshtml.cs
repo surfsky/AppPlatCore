@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Xml.Linq;
 using App.Components;
 using App.DAL;
 
@@ -14,65 +16,58 @@ using Newtonsoft.Json.Linq;
 
 namespace App.Pages.Admin
 {
+    /// <summary>分组权限列表</summary>
+    public class GroupPowers
+    {
+        [Display(Name = "分组名称")]
+        public string GroupName { get; set; }
+
+        [Display(Name = "权限列表")]
+        public JArray Powers { get; set; }
+
+    }
+
     [CheckPower("CoreRolePowerView")]
     public class RolePowerModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }
-        public IEnumerable<GroupPowerViewModel> GroupPowers { get; set; }
-
-        public PagingInfoViewModel Grid1PagingInfo { get; set; }
-        public PagingInfoViewModel Grid2PagingInfo { get; set; }
-
+        public IEnumerable<GroupPowers> GroupPowers { get; set; }
+        public PagingInfo Grid1PagingInfo { get; set; }
+        public PagingInfo Grid2PagingInfo { get; set; }
         public bool PowerCoreRolePowerEdit { get; set; }
-
         public string Grid1SelectedRowID { get; set; }
-
         public string RolePowerIds { get; set; }
 
+        // GET
         public async Task<IActionResult> OnGetAsync()
         {
             PowerCoreRolePowerEdit = CheckPower("CoreRolePowerEdit");
 
             // 表格1
-            var grid1PagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC"
-            };
-
+            var grid1PagingInfo = new PagingInfo("Name", false);
             Roles = await Sort<Role>(DB.Roles, grid1PagingInfo).ToListAsync();
             if (Roles.Count() == 0)
-            {
-                // 没有角色数据
-                return Content("请先添加角色！");
-            }
-            var grid1SelectedRowID = Roles.First().ID;
+                return Content("请先添加角色！"); // 没有角色数据
 
+            var grid1SelectedRowID = Roles.First().ID;
             Grid1SelectedRowID = grid1SelectedRowID.ToString();
             Grid1PagingInfo = grid1PagingInfo;
-
             GroupPowers = await RolePower_LoadDataAsync(grid1SelectedRowID);
-
             return Page();
         }
 
-        private async Task<IEnumerable<GroupPowerViewModel>> RolePower_LoadDataAsync(int grid1SelectedRowID)
+        private async Task<IEnumerable<GroupPowers>> RolePower_LoadDataAsync(int grid1SelectedRowID)
         {
             // 当前选中角色拥有的权限列表
             RolePowerIds = await RolePower_GetRolePowerIdsAsync(grid1SelectedRowID);
 
             // 表格2
-            var grid2PagingInfo = new PagingInfoViewModel
-            {
-                SortField = "GroupName",
-                SortDirection = "DESC",
-            };
+            var grid2PagingInfo = new PagingInfo("GroupName", false);
             Grid2PagingInfo = grid2PagingInfo;
-
             return await RolePower_GetDataAsync(grid2PagingInfo);
         }
 
-        private async Task<IEnumerable<GroupPowerViewModel>> RolePower_GetDataAsync(PagingInfoViewModel pagingInfo)
+        private async Task<IEnumerable<GroupPowers>> RolePower_GetDataAsync(PagingInfo pagingInfo)
         {
             // Client side GroupBy is not supported.
             // https://stackoverflow.com/questions/58138556/client-side-groupby-is-not-supported
@@ -106,10 +101,10 @@ namespace App.Pages.Admin
             }
 
 
-            List<GroupPowerViewModel> groupPowers = new List<GroupPowerViewModel>();
+            List<GroupPowers> groupPowers = new List<GroupPowers>();
             foreach (var power in powers)
             {
-                var groupPower = new GroupPowerViewModel();
+                var groupPower = new GroupPowers();
                 groupPower.GroupName = power.Key;
 
                 JArray ja = new JArray();
@@ -142,15 +137,8 @@ namespace App.Pages.Admin
         public async Task<IActionResult> OnPostRolePower_Grid1_Sort(string[] Grid1_fields, string Grid1_sortField, string Grid1_sortDirection)
         {
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = Grid1_sortField,
-                SortDirection = Grid1_sortDirection
-            };
-
-
+            var pagingInfo = new PagingInfo(Grid1_sortField, Grid1_sortDirection);
             grid1UI.DataSource(await Sort<Role>(DB.Roles, pagingInfo).ToListAsync(), Grid1_fields, clearSelection: false);
-
             return UIHelper.Result();
         }
 
@@ -180,11 +168,7 @@ namespace App.Pages.Admin
             else
             {
                 var grid2UI = UIHelper.Grid("Grid2");
-                var pagingInfo = new PagingInfoViewModel
-                {
-                    SortField = Grid2_sortField,
-                    SortDirection = Grid2_sortDirection
-                };
+                var pagingInfo = new PagingInfo(Grid2_sortField, Grid2_sortDirection);
                 grid2UI.DataSource(await RolePower_GetDataAsync(pagingInfo), Grid2_fields);
 
                 // 更新当前角色的权限

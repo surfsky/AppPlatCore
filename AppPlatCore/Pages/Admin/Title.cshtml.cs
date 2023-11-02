@@ -17,7 +17,7 @@ namespace App.Pages.Admin
     public class TitleModel : BaseAdminModel
     {
         public IEnumerable<Title> Titles { get; set; }
-        public PagingInfoViewModel PagingInfo { get; set; }
+        public PagingInfo PagingInfo { get; set; }
         public bool PowerCoreTitleNew { get; set; }
         public bool PowerCoreTitleEdit { get; set; }
         public bool PowerCoreTitleDelete { get; set; }
@@ -32,35 +32,20 @@ namespace App.Pages.Admin
             PowerCoreTitleNew = CheckPower("CoreTitleNew");
             PowerCoreTitleEdit = CheckPower("CoreTitleEdit");
             PowerCoreTitleDelete = CheckPower("CoreTitleDelete");
-
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = "Name",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
-
             return await Title_GetDataAsync(pagingInfo, String.Empty);
         }
 
-        private async Task<IEnumerable<Title>> Title_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage)
+        private async Task<IEnumerable<Title>> Title_GetDataAsync(PagingInfo pagingInfo, string ttbSearchMessage)
         {
             IQueryable<Title> q = DB.Titles;
-
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(p => p.Name.Contains(searchText));
-            }
 
-            // 获取总记录数（在添加条件之后，排序和分页之前）
             pagingInfo.RecordCount = await q.CountAsync();
-
-            // 排列和数据库分页
             q = SortAndPage<Title>(q, pagingInfo);
-
             return q.ToList();
         }
 
@@ -104,7 +89,7 @@ namespace App.Pages.Admin
 
 
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid1_sortField,
                 SortDirection = Grid1_sortDirection,
@@ -112,16 +97,10 @@ namespace App.Pages.Admin
                 PageSize = ddlGridPageSize
             };
             var titles = await Title_GetDataAsync(pagingInfo, ttbSearchMessage);
-            // 1. 设置总项数
             grid1UI.RecordCount(pagingInfo.RecordCount);
-            // 2. 设置每页显示项数
             if (actionType == "changeGridPageSize")
-            {
                 grid1UI.PageSize(ddlGridPageSize);
-            }
-            // 3.设置分页数据
             grid1UI.DataSource(titles, Grid1_fields);
-
             return UIHelper.Result();
         }
     }

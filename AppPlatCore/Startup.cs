@@ -63,15 +63,15 @@ namespace App
             services.AddSignalR(op =>
             {
                 //op.KeepAliveInterval = new TimeSpan(0, 1, 0);
-                op.ClientTimeoutInterval = new TimeSpan(0, 0, 20);
+                op.ClientTimeoutInterval = new TimeSpan(0, 0, 20);  // 20秒一次心跳
             });
 
 
             // 注册数据库连接服务（每次请求时创建）
-            var sqlserver = Configuration.GetConnectionString("SQLServer");
-            var mysql = Configuration.GetConnectionString("MySQL");
-            var dm = Configuration.GetConnectionString("DM");
             var sqlite = Configuration.GetConnectionString("Sqlite");
+            //var sqlserver = Configuration.GetConnectionString("SQLServer");
+            //var mysql = Configuration.GetConnectionString("MySQL");
+            //var dm = Configuration.GetConnectionString("DM");
             //services.AddDbContext<AppPlatContext>(options => 
             //{
             //    options.UseSqlServer(sqlserver, builder =>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.DAL;
 
 using FineUICore;
@@ -15,50 +16,32 @@ namespace App.Pages.Admin
     public class OnlineModel : BaseAdminModel
     {
         public IEnumerable<Online> Onlines { get; set; }
-
-        public PagingInfoViewModel PagingInfo { get; set; }
+        public PagingInfo PagingInfo { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
             Onlines = await Online_LoadDataAsync();
-
             return Page();
         }
 
         private async Task<IEnumerable<Online>> Online_LoadDataAsync()
         {
-            var pagingInfo = new PagingInfoViewModel
-            {
-                SortField = "UpdateTime",
-                SortDirection = "DESC",
-                PageIndex = 0,
-                PageSize = SiteConfig.Instance.PageSize
-            };
+            var pagingInfo = new PagingInfo("UpdateTime", false);
             PagingInfo = pagingInfo;
-
             return await Online_GetDataAsync(pagingInfo, String.Empty);
         }
 
-        private async Task<IEnumerable<Online>> Online_GetDataAsync(PagingInfoViewModel pagingInfo, string ttbSearchMessage)
+        private async Task<IEnumerable<Online>> Online_GetDataAsync(PagingInfo pagingInfo, string ttbSearchMessage)
         {
             IQueryable<Online> q = DB.Onlines.Include(o => o.User);
-
             string searchText = ttbSearchMessage?.Trim();
             if (!String.IsNullOrEmpty(searchText))
-            {
                 q = q.Where(o => o.User.Name.Contains(searchText));
-            }
-
-            // 2个小时内活跃的用户
             DateTime lastD = DateTime.Now.AddHours(-2);
-            q = q.Where(o => o.UpdateTime > lastD);
+            q = q.Where(o => o.UpdateTime > lastD);   // 2个小时内活跃的用户
 
-            // 获取总记录数（在添加条件之后，排序和分页之前）
             pagingInfo.RecordCount = await q.CountAsync();
-
-            // 排列和数据库分页
             q = SortAndPage<Online>(q, pagingInfo);
-
             return await q.ToListAsync();
         }
 
@@ -81,7 +64,7 @@ namespace App.Pages.Admin
 
 
             var grid1UI = UIHelper.Grid("Grid1");
-            var pagingInfo = new PagingInfoViewModel
+            var pagingInfo = new PagingInfo
             {
                 SortField = Grid1_sortField,
                 SortDirection = Grid1_sortDirection,
@@ -90,7 +73,6 @@ namespace App.Pages.Admin
             };
             grid1UI.DataSource(await Online_GetDataAsync(pagingInfo, ttbSearchMessage), Grid1_fields);
             grid1UI.RecordCount(pagingInfo.RecordCount);
-
             return UIHelper.Result();
         }
 

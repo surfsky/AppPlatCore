@@ -7308,11 +7308,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj",
+      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
       "projectName": "App.BLL",
-      "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj",
+      "projectPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
       "packagesPath": "C:\\Users\\CJH\\.nuget\\packages\\",
-      "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\obj\\",
+      "outputPath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

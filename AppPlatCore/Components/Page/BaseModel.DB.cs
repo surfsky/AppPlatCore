@@ -27,7 +27,7 @@ namespace App
         }
 
 
-        protected IQueryable<T> Sort<T>(IQueryable<T> q, PagingInfoViewModel pagingInfo)
+        protected IQueryable<T> Sort<T>(IQueryable<T> q, PagingInfo pagingInfo)
         {
             return q.SortBy(pagingInfo.SortField + " " + pagingInfo.SortDirection);
         }
@@ -39,7 +39,7 @@ namespace App
         }
 
 
-        protected IQueryable<T> SortAndPage<T>(IQueryable<T> q, PagingInfoViewModel pagingInfo)
+        protected IQueryable<T> SortAndPage<T>(IQueryable<T> q, PagingInfo pagingInfo)
         {
             return SortAndPage(q, pagingInfo.PageIndex, pagingInfo.PageSize, pagingInfo.RecordCount, pagingInfo.SortField, pagingInfo.SortDirection);
         }

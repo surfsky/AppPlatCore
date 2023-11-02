@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cUZYsiQVcMK7+uAAFjXPJ8aT2YhaVsPPkH2RLQU7REq7aAJPBrAm9t6nrrz73np/AfXnR+qFWHdGBsavhmUgMA==",
+  "dgSpecHash": "yTrnMWmGQE/MhgBiIvM/FYsWsB/29wPwS+O9Mc7SaUwM0hkWEGykRuHY75fIG5LjAjnlOSExxyP7qTQK5ZToKQ==",
   "success": true,
-  "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-newest\\App.BLL\\App.BLL.csproj",
+  "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CJH\\.nuget\\packages\\aliyun-net-sdk-core\\1.5.11\\aliyun-net-sdk-core.1.5.11.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\aliyun-net-sdk-dysmsapi\\1.0.0\\aliyun-net-sdk-dysmsapi.1.0.0.nupkg.sha512",

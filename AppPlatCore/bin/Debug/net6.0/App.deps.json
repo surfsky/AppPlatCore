@@ -54,10 +54,7 @@
           "Radzen.Blazor": "2.8.0",
           "SciSharp.TensorFlow.Redist": "2.3.1",
           "Serilog.AspNetCore": "3.2.0",
-          "DmProvider": "1.1.0.0",
-          "EFDmProvider": "1.0.0.0",
           "FineUICore": "8.2.1.0",
-          "Microsoft.EntityFrameworkCore.Dm": "2.1.1.0",
           "Microsoft.AspNetCore.Antiforgery": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies.Reference": "6.0.0.0",
@@ -477,451 +474,226 @@
       "Humanizer.Core.af/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/af/Humanizer.resources.dll": {
-            "locale": "af"
-          }
         }
       },
       "Humanizer.Core.ar/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/ar/Humanizer.resources.dll": {
-            "locale": "ar"
-          }
         }
       },
       "Humanizer.Core.az/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/az/Humanizer.resources.dll": {
-            "locale": "az"
-          }
         }
       },
       "Humanizer.Core.bg/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/bg/Humanizer.resources.dll": {
-            "locale": "bg"
-          }
         }
       },
       "Humanizer.Core.bn-BD/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/bn-BD/Humanizer.resources.dll": {
-            "locale": "bn-BD"
-          }
         }
       },
       "Humanizer.Core.cs/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/cs/Humanizer.resources.dll": {
-            "locale": "cs"
-          }
         }
       },
       "Humanizer.Core.da/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/da/Humanizer.resources.dll": {
-            "locale": "da"
-          }
         }
       },
       "Humanizer.Core.de/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/de/Humanizer.resources.dll": {
-            "locale": "de"
-          }
         }
       },
       "Humanizer.Core.el/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/el/Humanizer.resources.dll": {
-            "locale": "el"
-          }
         }
       },
       "Humanizer.Core.es/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/es/Humanizer.resources.dll": {
-            "locale": "es"
-          }
         }
       },
       "Humanizer.Core.fa/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/fa/Humanizer.resources.dll": {
-            "locale": "fa"
-          }
         }
       },
       "Humanizer.Core.fi-FI/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/fi-FI/Humanizer.resources.dll": {
-            "locale": "fi-FI"
-          }
         }
       },
       "Humanizer.Core.fr/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/fr/Humanizer.resources.dll": {
-            "locale": "fr"
-          }
         }
       },
       "Humanizer.Core.fr-BE/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/fr-BE/Humanizer.resources.dll": {
-            "locale": "fr-BE"
-          }
         }
       },
       "Humanizer.Core.he/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/he/Humanizer.resources.dll": {
-            "locale": "he"
-          }
         }
       },
       "Humanizer.Core.hr/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/hr/Humanizer.resources.dll": {
-            "locale": "hr"
-          }
         }
       },
       "Humanizer.Core.hu/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/hu/Humanizer.resources.dll": {
-            "locale": "hu"
-          }
         }
       },
       "Humanizer.Core.hy/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/hy/Humanizer.resources.dll": {
-            "locale": "hy"
-          }
         }
       },
       "Humanizer.Core.id/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/id/Humanizer.resources.dll": {
-            "locale": "id"
-          }
         }
       },
       "Humanizer.Core.is/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/is/Humanizer.resources.dll": {
-            "locale": "is"
-          }
         }
       },
       "Humanizer.Core.it/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/it/Humanizer.resources.dll": {
-            "locale": "it"
-          }
         }
       },
       "Humanizer.Core.ja/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/ja/Humanizer.resources.dll": {
-            "locale": "ja"
-          }
         }
       },
       "Humanizer.Core.ko-KR/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/netstandard2.0/ko-KR/Humanizer.resources.dll": {
-            "locale": "ko-KR"
-          }
         }
       },
       "Humanizer.Core.ku/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/ku/Humanizer.resources.dll": {
-            "locale": "ku"
-          }
         }
       },
       "Humanizer.Core.lv/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/lv/Humanizer.resources.dll": {
-            "locale": "lv"
-          }
         }
       },
       "Humanizer.Core.ms-MY/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/netstandard2.0/ms-MY/Humanizer.resources.dll": {
-            "locale": "ms-MY"
-          }
         }
       },
       "Humanizer.Core.mt/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/netstandard2.0/mt/Humanizer.resources.dll": {
-            "locale": "mt"
-          }
         }
       },
       "Humanizer.Core.nb/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/nb/Humanizer.resources.dll": {
-            "locale": "nb"
-          }
         }
       },
       "Humanizer.Core.nb-NO/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/nb-NO/Humanizer.resources.dll": {
-            "locale": "nb-NO"
-          }
         }
       },
       "Humanizer.Core.nl/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/nl/Humanizer.resources.dll": {
-            "locale": "nl"
-          }
         }
       },
       "Humanizer.Core.pl/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/pl/Humanizer.resources.dll": {
-            "locale": "pl"
-          }
         }
       },
       "Humanizer.Core.pt/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/pt/Humanizer.resources.dll": {
-            "locale": "pt"
-          }
         }
       },
       "Humanizer.Core.ro/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/ro/Humanizer.resources.dll": {
-            "locale": "ro"
-          }
         }
       },
       "Humanizer.Core.ru/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/ru/Humanizer.resources.dll": {
-            "locale": "ru"
-          }
         }
       },
       "Humanizer.Core.sk/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/sk/Humanizer.resources.dll": {
-            "locale": "sk"
-          }
         }
       },
       "Humanizer.Core.sl/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/sl/Humanizer.resources.dll": {
-            "locale": "sl"
-          }
         }
       },
       "Humanizer.Core.sr/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/sr/Humanizer.resources.dll": {
-            "locale": "sr"
-          }
         }
       },
       "Humanizer.Core.sr-Latn/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/sr-Latn/Humanizer.resources.dll": {
-            "locale": "sr-Latn"
-          }
         }
       },
       "Humanizer.Core.sv/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/sv/Humanizer.resources.dll": {
-            "locale": "sv"
-          }
         }
       },
       "Humanizer.Core.th-TH/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/netstandard2.0/th-TH/Humanizer.resources.dll": {
-            "locale": "th-TH"
-          }
         }
       },
       "Humanizer.Core.tr/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/tr/Humanizer.resources.dll": {
-            "locale": "tr"
-          }
         }
       },
       "Humanizer.Core.uk/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/uk/Humanizer.resources.dll": {
-            "locale": "uk"
-          }
         }
       },
       "Humanizer.Core.uz-Cyrl-UZ/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/uz-Cyrl-UZ/Humanizer.resources.dll": {
-            "locale": "uz-Cyrl-UZ"
-          }
         }
       },
       "Humanizer.Core.uz-Latn-UZ/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/uz-Latn-UZ/Humanizer.resources.dll": {
-            "locale": "uz-Latn-UZ"
-          }
         }
       },
       "Humanizer.Core.vi/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/vi/Humanizer.resources.dll": {
-            "locale": "vi"
-          }
         }
       },
       "Humanizer.Core.zh-CN/2.14.1": {
@@ -937,21 +709,11 @@
       "Humanizer.Core.zh-Hans/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/zh-Hans/Humanizer.resources.dll": {
-            "locale": "zh-Hans"
-          }
         }
       },
       "Humanizer.Core.zh-Hant/2.14.1": {
         "dependencies": {
           "Humanizer.Core": "2.14.1"
-        },
-        "resources": {
-          "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
-            "locale": "zh-Hant"
-          }
         }
       },
       "Jint/2.11.58": {
@@ -1387,47 +1149,6 @@
             "fileVersion": "4.0.21.51404"
           }
         },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.resources.dll": {
-            "locale": "zh-Hant"
-          }
-        },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.dll": {}
         }
@@ -1440,47 +1161,6 @@
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.0.21.51404"
-          }
-        },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll": {
-            "locale": "zh-Hant"
           }
         },
         "compile": {
@@ -1502,47 +1182,6 @@
             "fileVersion": "4.0.21.51404"
           }
         },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.CSharp.Features.resources.dll": {
-            "locale": "zh-Hant"
-          }
-        },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.Features.dll": {}
         }
@@ -1558,47 +1197,6 @@
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.0.21.51404"
-          }
-        },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll": {
-            "locale": "zh-Hant"
           }
         },
         "compile": {
@@ -1619,47 +1217,6 @@
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Features.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.0.21.51404"
-          }
-        },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Features.resources.dll": {
-            "locale": "zh-Hant"
           }
         },
         "compile": {
@@ -1692,47 +1249,6 @@
             "fileVersion": "4.0.21.51404"
           }
         },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll": {
-            "locale": "zh-Hant"
-          }
-        },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Scripting.dll": {}
         }
@@ -1749,47 +1265,6 @@
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Workspaces.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.0.21.51404"
-          }
-        },
-        "resources": {
-          "lib/netcoreapp3.1/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "cs"
-          },
-          "lib/netcoreapp3.1/de/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "de"
-          },
-          "lib/netcoreapp3.1/es/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "es"
-          },
-          "lib/netcoreapp3.1/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "fr"
-          },
-          "lib/netcoreapp3.1/it/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "it"
-          },
-          "lib/netcoreapp3.1/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "ja"
-          },
-          "lib/netcoreapp3.1/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "ko"
-          },
-          "lib/netcoreapp3.1/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "pl"
-          },
-          "lib/netcoreapp3.1/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "pt-BR"
-          },
-          "lib/netcoreapp3.1/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "ru"
-          },
-          "lib/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "tr"
-          },
-          "lib/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "zh-Hans"
-          },
-          "lib/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll": {
-            "locale": "zh-Hant"
           }
         },
         "compile": {
@@ -4517,28 +3992,6 @@
           "HttpApiCore.dll": {}
         }
       },
-      "DmProvider/1.1.0.0": {
-        "runtime": {
-          "DmProvider.dll": {
-            "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.0.41417"
-          }
-        },
-        "compile": {
-          "DmProvider.dll": {}
-        }
-      },
-      "EFDmProvider/1.0.0.0": {
-        "runtime": {
-          "EFDmProvider.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "EFDmProvider.dll": {}
-        }
-      },
       "FineUICore/8.2.1.0": {
         "runtime": {
           "FineUICore.dll": {
@@ -4548,25 +4001,6 @@
         },
         "compile": {
           "FineUICore.dll": {}
-        }
-      },
-      "Microsoft.EntityFrameworkCore.Dm/2.1.1.0": {
-        "runtime": {
-          "Microsoft.EntityFrameworkCore.Dm.dll": {
-            "assemblyVersion": "2.1.1.0",
-            "fileVersion": "2.1.1.42258"
-          }
-        },
-        "compile": {
-          "Microsoft.EntityFrameworkCore.Dm.dll": {}
-        }
-      },
-      "Remotion.Linq/2.2.0.0": {
-        "runtime": {
-          "Remotion.Linq.dll": {
-            "assemblyVersion": "2.2.0.0",
-            "fileVersion": "2.2.0.30000"
-          }
         }
       },
       "Microsoft.AspNetCore.Antiforgery/6.0.0.0": {
@@ -8670,27 +8104,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DmProvider/1.1.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "EFDmProvider/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "FineUICore/8.2.1.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.EntityFrameworkCore.Dm/2.1.1.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Remotion.Linq/2.2.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
