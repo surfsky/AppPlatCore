@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Components;
 using App.DAL;
 
 
@@ -39,14 +40,11 @@ namespace App.Pages.Admin
                 if (user != null)
                 {
                     if (!PasswordUtil.ComparePasswords(user.Password, oldPass))
-                    {
                         UIHelper.TextBox("tbxOldPassword").MarkInvalid("当前密码不正确！");
-                    }
                     else
                     {
                         user.Password = PasswordUtil.CreateDbPassword(newPass);
                         await DB.SaveChangesAsync();
-
                         Alert.ShowInTop("修改密码成功！");
                     }
                 }

@@ -88,9 +88,9 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
-            "ZKWeb.System.Drawing": {
+            "System.Drawing.Common": {
               "target": "Package",
-              "version": "[4.0.1, )"
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

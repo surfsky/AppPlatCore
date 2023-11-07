@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
 using System;
-using System.DrawingCore;
+using System.Drawing;
 using System.Collections.Generic;
 using System.IO;
 using App.Components;

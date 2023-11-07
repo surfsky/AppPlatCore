@@ -5,19 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewBag.ErrorMessage</title>
+    <title>@Model.ErrorCode</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 </head>
 <body>
 
-    <h1 class="text-danger">@ViewBag.ErrorMessage</h1>
-    <h2 class="text-danger">An error occurred while processing your request.</h2>
+    <h1 class="text-danger">@Model.ErrorCode</h1>
+    <h2 class="text-danger">@Model.ErrorMessage</h2>
 
-    @if (!String.IsNullOrEmpty(ViewBag.RequestId))
+    @if (!String.IsNullOrEmpty(Model.RequestId))
     {
         <p>
-            <span>Request ID:</span> <code>@ViewBag.RequestId</code>
+            <span>Request ID:</span> <code>@Model.RequestId</code>
         </p>
     }
 

@@ -19,19 +19,19 @@ namespace App.Pages.AI
         public bool PowerCoreConfigEdit { get; set; }
         public string TrainPath { get; set; }
         public string ModelPath { get; set; }
-        public string FtpPath { get; set; } = "ftp://test.com/";
+        public string FtpPath { get; set; } = "ftp://121.41.76.173/";
 
         public void OnGet()
         {
             PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
-            TrainPath = Asp.MapPath(JewelsAI.TrainPath);
-            ModelPath = Asp.MapPath(JewelsAI.ModelPath);
+            TrainPath = Asp.MapPath(ClassifyAI.TrainPath);
+            ModelPath = Asp.MapPath(ClassifyAI.ModelPath);
         }
 
         /// <summary>页面方法进行重新模型。该方法较为耗时，已改为用 signalR 来实现</summary>
         public IActionResult OnPostConfig_btnBuild_OnClick()
         {
-            JewelsAI.BuildModel();
+            ClassifyAI.BuildModel();
             UI.ShowNotify("模型创建成功");
             return UIHelper.Result();
         }

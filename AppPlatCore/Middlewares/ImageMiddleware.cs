@@ -65,7 +65,7 @@ namespace App.Middlewares
             {
                 IO.PrepareDirectory(cachePath);
                 var img = Painter.Thumbnail(rawPath, w.Value, h);
-                img.Save(cachePath);
+                img.Save(cachePath);  // 仅在 'windows' 上受支持
                 img.Dispose();
             }
             Asp.WriteFile(cachePath, mimeType: mimeType);

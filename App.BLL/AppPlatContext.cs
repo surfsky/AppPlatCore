@@ -27,13 +27,13 @@ namespace App.DAL
         public DbSet<Dept> Depts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Title> Titles { get; set; }
+        //public DbSet<Title> Titles { get; set; }
         public DbSet<Online> Onlines { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Power> Powers { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<RoleUser> RoleUsers { get; set; }
-        public DbSet<TitleUser> TitleUsers { get; set; }
+        //public DbSet<TitleUser> TitleUsers { get; set; }
         public DbSet<RolePower> RolePowers { get; set; }
 
         // extension
@@ -68,17 +68,17 @@ namespace App.DAL
                .HasForeignKey(u => u.RoleID);
 
 
-            modelBuilder.Entity<TitleUser>()
-                //.ToTable("TitleUsers")
-                .HasKey(t => new { t.TitleID, t.UserID });
-            modelBuilder.Entity<TitleUser>()
-                .HasOne(u => u.User)
-                .WithMany(u => u.TitleUsers)
-                .HasForeignKey(u => u.UserID);
-            modelBuilder.Entity<TitleUser>()
-               .HasOne(u => u.Title)
-               .WithMany(u => u.TitleUsers)
-               .HasForeignKey(u => u.TitleID);
+            //modelBuilder.Entity<TitleUser>()
+            //    //.ToTable("TitleUsers")
+            //    .HasKey(t => new { t.TitleID, t.UserID });
+            //modelBuilder.Entity<TitleUser>()
+            //    .HasOne(u => u.User)
+            //    .WithMany(u => u.TitleUsers)
+            //    .HasForeignKey(u => u.UserID);
+            //modelBuilder.Entity<TitleUser>()
+            //   .HasOne(u => u.Title)
+            //   .WithMany(u => u.TitleUsers)
+            //   .HasForeignKey(u => u.TitleID);
 
 
             modelBuilder.Entity<RolePower>()

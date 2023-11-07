@@ -7,22 +7,35 @@
     <AssemblyVersion>6.0.3</AssemblyVersion>
     <IsPublishable>True</IsPublishable>
     <SatelliteResourceLanguages>zh-CN</SatelliteResourceLanguages>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CA1416</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CA1416</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Caches\**" />
+    <Compile Remove="DataProtection\**" />
     <Compile Remove="Files\**" />
     <Compile Remove="Logs\**" />
     <Compile Remove="Models\**" />
     <Content Remove="Caches\**" />
+    <Content Remove="DataProtection\**" />
     <Content Remove="Files\**" />
     <Content Remove="Logs\**" />
     <Content Remove="Models\**" />
     <EmbeddedResource Remove="Caches\**" />
+    <EmbeddedResource Remove="DataProtection\**" />
     <EmbeddedResource Remove="Files\**" />
     <EmbeddedResource Remove="Logs\**" />
     <EmbeddedResource Remove="Models\**" />
     <None Remove="Caches\**" />
+    <None Remove="DataProtection\**" />
     <None Remove="Files\**" />
     <None Remove="Logs\**" />
     <None Remove="Models\**" />
@@ -35,9 +48,21 @@
     <Compile Remove="Middlewares\FriendlyUrlModule.cs" />
     <Compile Remove="Middlewares\OfficeModule.cs" />
     <Compile Remove="Middlewares\RouteModule.cs" />
+    <Compile Remove="Pages\Admin\Title.cshtml.cs" />
+    <Compile Remove="Pages\Admin\TitleEdit.cshtml.cs" />
+    <Compile Remove="Pages\Admin\TitleNew.cshtml.cs" />
+    <Compile Remove="Pages\Admin\TitleUser.cshtml.cs" />
+    <Compile Remove="Pages\Admin\TitleUserNew.cshtml.cs" />
+    <Compile Remove="Pages\Admin\UserSelectTitle.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Admin\Title.cshtml" />
+    <Content Remove="Pages\Admin\TitleEdit.cshtml" />
+    <Content Remove="Pages\Admin\TitleNew.cshtml" />
+    <Content Remove="Pages\Admin\TitleUser.cshtml" />
+    <Content Remove="Pages\Admin\TitleUserNew.cshtml" />
+    <Content Remove="Pages\Admin\UserSelectTitle.cshtml" />
     <Content Remove="wwwroot\js\js资源.txt" />
     <Content Remove="wwwroot\res\FineUI资源.txt" />
   </ItemGroup>
@@ -45,7 +70,8 @@
   <ItemGroup>
     <None Remove=".DS_Store" />
     <None Remove="Components\.DS_Store" />
-    <None Remove="sqlite.db" />
+    <None Remove="Pages\.DS_Store" />
+    <None Remove="Pages\AI\.DS_Store" />
     <None Remove="Thumbs.db" />
   </ItemGroup>
 
@@ -68,12 +94,6 @@
     <PackageReference Include="Radzen.Blazor" Version="2.8.0" />
     <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.3.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="FineUICore">
-      <HintPath>bin\FineUICore.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -842,6 +862,12 @@
     <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.Utils\App.Utils.csproj" />
     <ProjectReference Include="..\..\..\App.Utils\App.Utils-github\NetStandard\App.WebCore\App.WebCore.csproj" />
     <ProjectReference Include="..\App.BLL\App.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FineUICore">
+      <HintPath>bin\Debug\net6.0\FineUICore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -26,12 +26,6 @@ namespace App.Pages.Admin
         public string SelectedDeptID { get; set; }
         public string SelectedRoleNames { get; set; }
         public string SelectedRoleIDs { get; set; }
-        public string SelectedTitleNames { get; set; }
-        public string SelectedTitleIDs { get; set; }
-
-
-
-
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -39,8 +33,6 @@ namespace App.Pages.Admin
                 .Include(u => u.Dept)
                 .Include(u => u.RoleUsers)
                 .ThenInclude(ru => ru.Role)
-                .Include(u => u.TitleUsers)
-                .ThenInclude(tu => tu.Title)
                 .Where(m => m.ID == id).AsNoTracking().FirstOrDefaultAsync();
             if (CurrentUser == null)
                 return Content("无效参数！");
@@ -50,11 +42,6 @@ namespace App.Pages.Admin
             // 用户所属角色
             SelectedRoleNames = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.Role.Name).ToArray());
             SelectedRoleIDs = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.RoleID).ToArray());
-
-            // 用户拥有职称
-            SelectedTitleNames = String.Join(",", CurrentUser.TitleUsers.Select(tu => tu.Title.Name).ToArray());
-            SelectedTitleIDs = String.Join(",", CurrentUser.TitleUsers.Select(tu => tu.TitleID).ToArray());
-
 
             // 用户所属部门
             if (CurrentUser.Dept != null)
@@ -72,8 +59,6 @@ namespace App.Pages.Admin
             if (filePhoto != null)
             {
                 string fileName = filePhoto.FileName;
-                string physicalPath = "";
-                string virtualPath = "";
                 if (!UI.ValidateFileType(fileName))
                 {
                     UIHelper.FileUpload("filePhoto").Reset();
@@ -81,8 +66,8 @@ namespace App.Pages.Admin
                 }
                 else
                 {
-                    virtualPath = Uploader.GetUploadPath("Images");
-                    physicalPath = Asp.MapPath(virtualPath);
+                    var virtualPath = Uploader.GetUploadPath("Images");
+                    var physicalPath = Asp.MapPath(virtualPath);
                     Utils.IO.PrepareDirectory(physicalPath);
                     using (var stream = new FileStream(physicalPath, FileMode.Create))
                         filePhoto.CopyTo(stream);
@@ -98,9 +83,9 @@ namespace App.Pages.Admin
 
 
         //public async Task<IActionResult> OnPostbtnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle, IFormCollection values)
-        public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle, IFormCollection values)
+        public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, IFormCollection values)
         {
-            // 不对 Name 和 Password 进行模型验证???
+            // 不对 Name 和 Password 进行模型验证，不保存
             ModelState.Remove("Name");
             ModelState.Remove("Password");
 
@@ -112,11 +97,10 @@ namespace App.Pages.Admin
 
             if (ModelState.IsValid)
             {
-                // 更新部分字段（先从数据库检索用户，再覆盖用户输入值，注意没有更新Name，Password，CreateTime等字段）
+                // 更新部分字段（先从数据库检索用户，再覆盖用户输入值，注意不更新Name，Password，CreateTime等字段）
                 var item = DB.Users
                     .Include(u => u.Dept)
                     .Include(u => u.RoleUsers)
-                    .Include(u => u.TitleUsers)
                     .Where(m => m.ID == CurrentUser.ID).FirstOrDefault();
 
 
@@ -131,23 +115,19 @@ namespace App.Pages.Admin
                 item.CellPhone = CurrentUser.CellPhone;
                 item.Remark = CurrentUser.Remark;
                 item.Photo = imgPhotoUrl;
+                item.Title = CurrentUser.Title;
 
 
-                int[] roleIDs = StringUtil.GetIntArrayFromString(hfSelectedRole);
+                // role, dept
+                int[] roleIDs = Components.StringUtil.GetIntArrayFromString(hfSelectedRole);
                 ReplaceEntities2<RoleUser>(item.RoleUsers, roleIDs, item.ID);
-
-                int[] titleIDs = StringUtil.GetIntArrayFromString(hfSelectedTitle);
-                ReplaceEntities2<TitleUser>(item.TitleUsers, titleIDs, item.ID);
-
                 if (String.IsNullOrEmpty(hfSelectedDept))
                     item.DeptID = null;
                 else
                     item.DeptID = Convert.ToInt32(hfSelectedDept);
 
                 await DB.SaveChangesAsync();
-
-                // 关闭本窗体（触发窗体的关闭事件）
-                ActiveWindow.HidePostBack();
+                ActiveWindow.HidePostBack();  // 关闭本窗体（触发窗体的关闭事件）
             }
 
             return UIHelper.Result();

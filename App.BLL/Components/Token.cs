@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-//using App.Core;
 using App.Utils;
 
 namespace App.Components
 {
     /// <summary>
-    /// 身份验票
+    /// 三方接入应用接口身份验票
     /// </summary>
     public class Token
     {

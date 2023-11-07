@@ -58,6 +58,12 @@
                     </f:FormRow>
                     <f:FormRow>
                         <Items>
+                            <f:TextBox For="CurrentUser.Title" />
+                            <f:TextBox For="CurrentUser.Remark" />
+                        </Items>
+                    </f:FormRow>
+                    <f:FormRow>
+                        <Items>
                             <f:TwinTriggerBox ID="tbSelectedRole" EnableEdit="false"
                                               Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="所属角色"
                                               OnClientTrigger1Click="onSelectedRoleTrigger1Click();"
@@ -76,21 +82,6 @@
                             <f:HiddenField ID="hfSelectedDept" />
                         </Items>
                     </f:FormRow>
-                    <f:FormRow>
-                        <Items>
-                            <f:TwinTriggerBox ID="tbSelectedTitle" EnableEdit="false"
-                                              Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="拥有职称"
-                                              OnClientTrigger1Click="onSelectedTitleTrigger1Click();"
-                                              OnClientTrigger2Click="onSelectedTitleTrigger2Click();"
-                            />
-                            <f:HiddenField ID="hfSelectedTitle" />
-                        </Items>
-                    </f:FormRow>
-                    <f:FormRow>
-                        <Items>
-                            <f:TextArea For="CurrentUser.Remark" />
-                        </Items>
-                    </f:FormRow>
                 </Rows>
             </f:Form>
         </Items>
@@ -102,8 +93,17 @@
 @section script {
 
     <script>
+        //--------------------------------------------------
+        // Init
+        //--------------------------------------------------
+        F.ready(function () {
+            checkSelectedRoleTriggerStatus();
+            checkSelectedDeptTriggerStatus();
+        });
 
-        /////////////////////////////////////////////////////
+        //--------------------------------------------------
+        // Role
+        //--------------------------------------------------
         function checkSelectedRoleTriggerStatus() {
             if (F.ui.tbSelectedRole.getValue()) {
                 F.ui.tbSelectedRole.showTrigger1();
@@ -127,10 +127,10 @@
             F.ui.hfSelectedRole.setValue(roleIDs);
             checkSelectedRoleTriggerStatus();
         }
-        /////////////////////////////////////////////////////
 
-
-        /////////////////////////////////////////////////////
+        //--------------------------------------------------
+        // Dept
+        //--------------------------------------------------
         function checkSelectedDeptTriggerStatus() {
             if (F.ui.tbSelectedDept.getValue()) {
                 F.ui.tbSelectedDept.showTrigger1();
@@ -154,39 +154,7 @@
             F.ui.hfSelectedDept.setValue(deptID);
             checkSelectedDeptTriggerStatus();
         }
-        /////////////////////////////////////////////////////
 
-        /////////////////////////////////////////////////////
-        function checkSelectedTitleTriggerStatus() {
-            if (F.ui.tbSelectedTitle.getValue()) {
-                F.ui.tbSelectedTitle.showTrigger1();
-            } else {
-                F.ui.tbSelectedTitle.hideTrigger1();
-            }
-        }
-
-        function onSelectedTitleTrigger1Click() {
-            F.ui.tbSelectedTitle.setValue('');
-            F.ui.hfSelectedTitle.setValue('');
-            checkSelectedTitleTriggerStatus();
-        }
-
-        function onSelectedTitleTrigger2Click() {
-            F.ui.Window1.show(F.baseUrl + 'admin/UserSelectTitle?ids=' + F.ui.hfSelectedTitle.getValue(), '选择用户拥有的职称');
-        }
-
-        function updateSelectedTitle(titleNames, titleIDs) {
-            F.ui.tbSelectedTitle.setValue(titleNames);
-            F.ui.hfSelectedTitle.setValue(titleIDs);
-            checkSelectedTitleTriggerStatus();
-        }
-        /////////////////////////////////////////////////////
-
-        F.ready(function () {
-            checkSelectedRoleTriggerStatus();
-            checkSelectedDeptTriggerStatus();
-            checkSelectedTitleTriggerStatus();
-        });
 
     </script>
 

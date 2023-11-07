@@ -39,8 +39,10 @@ namespace App.DAL
         public string Target { get; set; }
 
         [Display(Name = "是否展开")]
-        public bool Expanded { get; set; } = false;
+        public bool? Expanded { get; set; } = false;
 
+        [Display(Name = "是否可见")]
+        public bool? Visible { get; set; } = true;
 
 
         [Display(Name = "上级菜单")]

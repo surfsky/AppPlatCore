@@ -1,0 +1,115 @@
+调试部署网站
+    项目右键>部署》部署到文件夹》net6.0/publish，其实就是编译成功后复制 wwwroot 目录到 net6.0 目录下，其它一切代码文件都编译了，包括页面文件。
+    调试部署后的报错原因
+
+
+
+-----------------------------------------------
+设置端口
+-----------------------------------------------
+设置 launchSettings.json
+    设置用 IIS 时配置的端口
+    设置用 APP 时启动的端口
+
+
+命令行
+    在project目录运行，会编译代码后运行
+        dotnet run --urls "http://localhost:5100;https://localhost:5101"
+    在bin目录运行，直接跑代码，并指定网站绑定的路径
+        dotnet app.dll --urls=http://localhost:8080;http://abc.org
+
+配置
+    appsettings.json
+        "urls":"htts://192.168.11.82:9001;http://192.168.11.82:9000"
+
+代码
+    TMD 都有问题
+
+
+
+
+
+
+-----------------------------------------------
+跨平台相关
+-----------------------------------------------
+云主机部署
+    封装为 docker
+    linux 环境部署: 
+        需要安装 libgdiplus 并开启 System.Drawing 支持
+        https://blog.51cto.com/u_15765017/5620121
+    tensionflow 库文件的部署?
+        windows/temp/mlnet/
+        linux?
+
+
+跨平台绘图库
+    使用 ZKWeb.System.Drawing 依赖libgdi，从mono库中剥离
+    使用 System.Drawing.Common nuget 包，替代ZKWeb.System.Drawing，后者就是mono的代码，封装了libgdi
+        http://www.manongjc.com/detail/24-bcyvnoremmwrhix.html
+        在Linxu上会抛出System.TypeInitializationException: The type initializer for 'Gdip' threw an exception -->System.DllNotFoundException:Unable to load DLL 'libgdiplus' ; The specified module could not be found. 异常。要解决这个问题就很简单了，只需要给Linux系统安装libgdiplus库就行了。
+        CentOS安装命令：
+            yum install libgdiplus-devel -y
+            ln -s /usr/lib64/libgdiplus.so /usr/lib/gdiplus.dll
+            ln -s /usr/lib64/libgdiplus.so /usr/lib64/gdiplus.dll
+        Ubuntu安装命令
+            sudo curl https://raw.githubusercontent.com/stulzq/awesome-dotnetcore-image/master/install/ubuntu.sh|sh
+        仅在 Windows 上支持 System.Drawing.Common
+            https://learn.microsoft.com/zh-cn/dotnet/core/compatibility/core-libraries/6.0/system-drawing-common-windows-only
+            在 .NET 6 之前，使用 System.Drawing.Common 包不会产生任何编译时警告，也不会引发任何运行时异常。
+            从 .NET 6 开始，当为非 Windows 操作系统编译引用代码时，平台分析器会发出编译时警告。 此外，除非设置了配置选项，否则将引发以下运行时异常：
+            libgdiplus 是本机端 System.Drawing.Common 跨平台实现的主要提供程序。 libgdiplus 实际上是对 System.Drawing.Common 所依赖的 Windows 部分的重新实现。
+    NET6使用 System.Drawing.Common 配置开关
+        runtimeconfig.template.json 模板文件：
+            {
+               "configProperties": {
+                  "System.Drawing.EnableUnixSupport": true
+               }
+            }
+        [appname].runtimeconfig.json 输出文件：
+            {
+               "runtimeOptions": {
+                  "configProperties": {
+                     "System.Drawing.EnableUnixSupport": true
+                  }
+               }
+            }
+    若要将这些 API 用于跨平台应用，请迁移到以下库之一：
+        SkiaSharp                      : 支持的图片格式有限
+        ImageSharp（分层许可证）       : 支持各种图片格式，
+        Aspose.Drawing（商业许可证）   : 
+        Microsoft.Maui.Graphics        : ...
+
+
+
+
+-----------------------------------------------
+解决各种 warn 
+-----------------------------------------------
+warn: Microsoft.AspNetCore.Session.SessionMiddleware[7]
+    Error unprotecting the session cookie.
+    System.Security.Cryptography.CryptographicException: The payload was invalid.
+    https://blog.51cto.com/u_15116285/5964906?articleABtest=0
+    https://www.cnblogs.com/focus-lei/p/7714981.html
+    https://www.coder.work/article/7543795
+    Session 的 Key 未能正确单一读写存储
+
+
+warn: Microsoft.EntityFrameworkCore.Query[10103]
+    The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+    Instance -> OrderBy(t=>t.ID).FirstOrDefault();
+
+
+warning SYSLIB0021: “MD5CryptoServiceProvider”已过时:“Derived cryptographic types are obsolete. Use the Create method on the base type instead.”
+    https://www.cnblogs.com/densen2014/p/16826092.html
+
+
+warning SYSLIB0023: “RNGCryptoServiceProvider”已过时:“RNGCryptoServiceProvider is obsolete. To generate a random number, use one of the RandomNumberGenerator static methods instead.”
+    https://www.learnfk.com/question/csharp/72418725.html
+    RandomNumberGenerator.Create()
+
+
+Microsoft.AspNetCore.Antiforgery.AntiforgeryValidationException: The antiforgery token could not be decrypted.
+    Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery: Error: An exception was thrown while deserializing the token.
+
+

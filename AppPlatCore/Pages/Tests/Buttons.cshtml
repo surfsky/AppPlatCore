@@ -20,6 +20,7 @@
             <f:Button ID="btnClientClick" Text="客户端事件" OnClientClick="alert('这是客户端事件');" CssClass="marginr"></f:Button>
             <f:Button ID="btnClientClick2" Text="客户端事件（通过模型初始化传递）" OnClientClick="@Model.Script"></f:Button>
             <f:Button ID="btnChangeClientClick2" Text="改变上个按钮的客户端事件" OnClick="@Url.Handler("btnChangeClientClick2_Click")"></f:Button>
+            <f:Button Text="触发异常" OnClick="@Url.Handler("ExceptionClick")"></f:Button>
         </Items>
     </f:SimpleForm>
 }

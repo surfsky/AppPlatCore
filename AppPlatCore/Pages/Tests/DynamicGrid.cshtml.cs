@@ -12,7 +12,7 @@ namespace App.Pages.Test
         public List<User> Users;
         public void OnGet()
         {
-            Users = DataSources.GetUsers();
+            Users = DemoData.GetUsers();
             InitGridColumns();
         }
 

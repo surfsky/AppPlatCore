@@ -1,6 +1,6 @@
-﻿using App.DAL;
-
-
+﻿using App.Components;
+using App.DAL;
+using App.Utils;
 using FineUICore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ namespace App.Pages.Admin
         {
         }
 
-        public async Task<IActionResult> OnPostUserNew_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle)
+        public async Task<IActionResult> OnPostUserNew_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -34,31 +34,20 @@ namespace App.Pages.Admin
                     return UIHelper.Result();
                 }
 
-                // 创建保存到数据库的密码
+                // user
                 CurrentUser.Password = PasswordUtil.CreateDbPassword(CurrentUser.Password.Trim());
                 CurrentUser.CreateTime = DateTime.Now;
-
-                if (!String.IsNullOrEmpty(hfSelectedDept))
-                {
+                if (hfSelectedDept.IsNotEmpty())
                     CurrentUser.DeptID = Convert.ToInt32(hfSelectedDept);
-                }
-                if (!String.IsNullOrEmpty(hfSelectedRole))
+                if (hfSelectedRole.IsNotEmpty())
                 {
-                    int[] roleIDs = StringUtil.GetIntArrayFromString(hfSelectedRole);
+                    int[] roleIDs = Components.StringUtil.GetIntArrayFromString(hfSelectedRole);
                     AddEntities2<RoleUser>(roleIDs, CurrentUser.ID);
-                }
-                if (!String.IsNullOrEmpty(hfSelectedTitle))
-                {
-                    int[] titleIDs = StringUtil.GetIntArrayFromString(hfSelectedTitle);
-                    AddEntities2<TitleUser>(titleIDs, CurrentUser.ID);
                 }
 
                 DB.Users.Add(CurrentUser);
                 await DB.SaveChangesAsync();
-
-
-                // 关闭本窗体（触发窗体的关闭事件）
-                ActiveWindow.HidePostBack();
+                ActiveWindow.HidePostBack(); // 关闭本窗体（触发窗体的关闭事件）
             }
 
             return UIHelper.Result();

@@ -35,6 +35,16 @@ Startup.cs
         options.Conventions.AuthorizeFolder("/MyPages/Admin");
     });
 
+
+
+
+≈‰÷√∂¡–¥
+    appsettings.json
+        {
+            "Urls": "http://localhost:8080"
+        }
+    IConfiguration Configuration;  // IOC ◊¢»Î
+    string urls = Configuration["Urls"];
     
 --------------------------------------------------------
 RazorPage

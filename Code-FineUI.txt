@@ -10,6 +10,14 @@ Icon: https://pages.fineui.com/#/Config/Icons
 
 
 #--------------------------------------------
+# TIP
+#--------------------------------------------
+使用Panel，再套form，可以让页面卷动时工具栏始终置顶
+
+
+
+
+#--------------------------------------------
 # FineUI 配置
 #--------------------------------------------
 service.AddFineUI(Configuration);
@@ -116,6 +124,11 @@ ViewBag
             UIHelper.Label("labResult").Text(String.Format("选中项：{0}（值：{1}）", DropDownList1_text, DropDownList1));
             return UIHelper.Result();
         }
+
+数据校验
+    //Model.Invalidate();
+    UIHelper.TextBox("tbxOldPassword").MarkInvalid("当前密码不正确！");
+
 
 数据绑定
     <f:DropDownList ID="DropDownList1" DataSource="@ViewBag.DropDownList1DataSource" />

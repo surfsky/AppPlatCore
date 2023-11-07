@@ -95,14 +95,17 @@ namespace App.DAL
         [Display(Name = "创建时间")]
         public DateTime? CreateTime { get; set; }
 
-        
 
-        
-        
+
+
+
         //[Display(Name = "所属角色")]
         //public List<Role> Roles { get; set; }
         //[Display(Name = "拥有职称")]
         //public List<Title> Titles { get; set; }
+
+        [Display(Name = "职务")]
+        public string  Title { get; set; }
 
 
         [Display(Name = "所属部门")]
@@ -113,8 +116,6 @@ namespace App.DAL
         [Display(Name = "所属角色")]
         public List<RoleUser> RoleUsers { get; set; }
 
-        [Display(Name = "拥有职称")]
-        public List<TitleUser> TitleUsers { get; set; }
 
     }
 

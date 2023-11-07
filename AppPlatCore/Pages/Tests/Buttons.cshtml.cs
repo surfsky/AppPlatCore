@@ -37,13 +37,22 @@ namespace FineUICore.Examples.RazorPages.Pages.Button
         {
             UI.ShowNotify("这是服务器端事件");
             //return UIHelper.Result();
-            return RedirectToPage("/Login");
+            //return RedirectToPage("/Login");
+            return UIHelper.Result();
         }
 
         public IActionResult OnPostBtnChangeClientClick2_Click()
         {
             UIHelper.Button("btnClientClick2").ClientClick(Alert.GetShowInTopReference("客户端事件已改变！"));
             return UIHelper.Result();
+        }
+
+        public IActionResult OnPostExceptionClick()
+        {
+            // 触发异常
+            Console.WriteLine(1 / 0.0);
+            throw new Exception("Some Exception");
+            //return UIHelper.Result();
         }
 
 

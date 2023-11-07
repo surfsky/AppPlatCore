@@ -75,7 +75,7 @@ namespace App.Pages
         {
             IList<TreeNode> nodes = new List<TreeNode>();
             ResolveMenuTree(menus, null, nodes);
-            nodes[0].Expanded = true; // 展开第一个树节点
+            //nodes[0].Expanded = true; // 展开第一个树节点
             return nodes;
         }
 
@@ -83,20 +83,23 @@ namespace App.Pages
         private int ResolveMenuTree(List<DAL.Menu> menus, int? parentMenuID, IList<TreeNode> nodes)
         {
             int count = 0;
-            foreach (var menu in menus.Where(m => m.ParentID == parentMenuID))
+            foreach (var menu in menus.Where(m => m.ParentID == parentMenuID && m.Visible != false))
             {
                 TreeNode node = new TreeNode();
                 nodes.Add(node);
                 count++;
 
+                // 拷贝基础属性
                 node.Text = menu.Name;
                 node.IconUrl = menu.ImageUrl;
                 if (menu.Target.IsNotEmpty())
                     node.Target = menu.Target;
                 if (menu.NavigateUrl.IsNotEmpty())
                     node.NavigateUrl = Url.Content(menu.NavigateUrl);
-                node.Expanded = menu.Expanded;
+                if (menu.Expanded != null)
+                    node.Expanded = menu.Expanded.Value;
 
+                // 目录或子节点处理
                 if (menu.IsTreeLeaf)
                 {
                     // 如果是叶子节点，但不是超链接，则是空目录，删除

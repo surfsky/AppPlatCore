@@ -200,3 +200,230 @@
                 PageIndex = 0,
                 PageSize = SiteConfig.Instance.PageSize
             };
+
+
+       /*
+        private static List<Title> GetTitles()
+        {
+            var titles = new List<Title>()
+            {
+                new Title()
+                {
+                    Name = "总经理"
+                },
+                new Title()
+                {
+                    Name = "部门经理"
+                },
+                new Title()
+                {
+                    Name = "高级工程师"
+                },
+                new Title()
+                {
+                    Name = "工程师"
+                }
+            };
+
+            return titles;
+        }
+
+                //[Display(Name = "拥有职称")]
+        //public List<TitleUser> TitleUsers { get; set; }
+                GetTitles().ForEach(t => context.Titles.Add(t));
+
+                            // 用户的职称列表
+            TitleText = CurrentUser.Title; // String.Join(",", CurrentUser.TitleUsers.Select(tu => tu.Title.Name).ToArray());
+
+                //if (!String.IsNullOrEmpty(hfSelectedTitle))
+                //{
+                //    int[] titleIDs = StringUtil.GetIntArrayFromString(hfSelectedTitle);
+                //    AddEntities2<TitleUser>(titleIDs, CurrentUser.ID);
+                //}
+
+                                //int[] titleIDs = StringUtil.GetIntArrayFromString(hfSelectedTitle);
+                //ReplaceEntities2<TitleUser>(item.TitleUsers, titleIDs, item.ID);
+
+                            <f:TwinTriggerBox ID="tbSelectedTitle" EnableEdit="false" Text="@Model.SelectedTitleNames"
+                                Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="拥有职称"
+                                OnClientTrigger1Click="onSelectedTitleTrigger1Click();"
+                                OnClientTrigger2Click="onSelectedTitleTrigger2Click();" 
+                                />
+                            <f:HiddenField ID="hfSelectedTitle" Text="@Model.SelectedTitleIDs" />
+
+                                    public string SelectedTitleNames { get; set; }
+        public string SelectedTitleIDs { get; set; }
+
+
+
+
+                //.Include(u => u.TitleUsers)
+                //.ThenInclude(tu => tu.Title)
+
+            // 用户拥有职称
+            //SelectedTitleNames = String.Join(",", CurrentUser.TitleUsers.Select(tu => tu.Title.Name).ToArray());
+            //SelectedTitleIDs = String.Join(",", CurrentUser.TitleUsers.Select(tu => tu.TitleID).ToArray());
+
+
+                string physicalPath = "";
+                string virtualPath = "";
+                            <f:TwinTriggerBox ID="tbSelectedTitle" EnableEdit="false"
+                                              Trigger1Icon="Clear" Trigger2Icon="Search" ShowTrigger1="false" ShowTrigger2="true" Label="拥有职称"
+                                              OnClientTrigger1Click="onSelectedTitleTrigger1Click();"
+                                              OnClientTrigger2Click="onSelectedTitleTrigger2Click();"
+                            />
+                            <f:HiddenField ID="hfSelectedTitle" />
+string hfSelectedTitle, 
+
+
+        /////////////////////////////////////////////////////
+
+        /////////////////////////////////////////////////////
+        function checkSelectedTitleTriggerStatus() {
+            if (F.ui.tbSelectedTitle.getValue()) {
+                F.ui.tbSelectedTitle.showTrigger1();
+            } else {
+                F.ui.tbSelectedTitle.hideTrigger1();
+            }
+        }
+
+        function onSelectedTitleTrigger1Click() {
+            F.ui.tbSelectedTitle.setValue('');
+            F.ui.hfSelectedTitle.setValue('');
+            checkSelectedTitleTriggerStatus();
+        }
+
+        function onSelectedTitleTrigger2Click() {
+            F.ui.Window1.show(F.baseUrl + 'admin/UserSelectTitle?ids=' + F.ui.hfSelectedTitle.getValue(), '选择用户拥有的职称');
+        }
+
+        function updateSelectedTitle(titleNames, titleIDs) {
+            F.ui.tbSelectedTitle.setValue(titleNames);
+            F.ui.hfSelectedTitle.setValue(titleIDs);
+            checkSelectedTitleTriggerStatus();
+        }
+                    checkSelectedTitleTriggerStatus();
+
+                            //--------------------------------------------------
+        // Init
+        //--------------------------------------------------
+        function checkSelectedTitleTriggerStatus() {
+            if (F.ui.tbSelectedTitle.getValue()) {
+                F.ui.tbSelectedTitle.showTrigger1();
+            } else {
+                F.ui.tbSelectedTitle.hideTrigger1();
+            }
+        }
+
+        function onSelectedTitleTrigger1Click() {
+            F.ui.tbSelectedTitle.setValue('');
+            F.ui.hfSelectedTitle.setValue('');
+            checkSelectedTitleTriggerStatus();
+        }
+
+        function onSelectedTitleTrigger2Click() {
+            F.ui.Window1.show(F.baseUrl + 'admin/UserSelectTitle?ids=' + F.ui.hfSelectedTitle.getValue(), '选择用户拥有的职称');
+        }
+
+        function updateSelectedTitle(titleNames, titleIDs) {
+            F.ui.tbSelectedTitle.setValue(titleNames);
+            F.ui.hfSelectedTitle.setValue(titleIDs);
+            checkSelectedTitleTriggerStatus();
+        }
+
+                        new Menu
+                        {
+                            Name = "职称",
+                            SortIndex = 30,
+                            Remark = "二级菜单",
+                            NavigateUrl = "~/Admin/TitleUser",
+                            ImageUrl = "~/res/icon/page.png",
+                            ViewPower = context.Powers.Where(p => p.Name == "CoreTitleUserView").FirstOrDefault<Power>()
+                        },
+
+
+                        
+<div class="row g-3">
+    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Primary">主要按钮</Button></div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Secondary">次要按钮</Button></div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Success">成功按钮</Button></div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Danger">危险按钮</Button></div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Warning">警告按钮</Button></div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Circle" Icon="fa-fw fa-solid fa-cubes"></Button></div>
+</div>
+
+<Button Text="异步请求" IsAsync="true" Icon="fa-solid fa-fw fa-font-awesome" OnClick="@ButtonClickAsync" />
+
+<div class="btn-group" role="group">
+    <Button Color="Color.Primary">按钮一</Button>
+    <Button Color="Color.Success">按钮二</Button>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <Button Text="全屏" OnClick="() => FullScreenService.Toggle()"></Button>
+        <FullScreenButton Title="点击进行全屏操作" FullScreenIcon="fa-solid fa-font-awesome" />
+    </div>
+</div>
+
+<button class="btn btn-primary" @onclick="@ShowMessage">打开消息提示</button>
+<Message @ref="Message" Placement="Placement.Bottom" />
+    void ButtonClickAsync()
+    {
+        Task.Delay(5000);
+    }
+
+    private async Task ShowMessage()
+    {
+        Message.SetPlacement(Placement.Top);
+        await MessageService.Show(new MessageOption()
+            {
+                Content = "This is a reminder message"
+            });
+    }
+        private Message？ Message { get; set; }
+
+
+
+
+
+            "Urls": "http://*:8080",
+    "Kestrel": {
+        "Endpoints": {
+            "Http": { "Url": "http://*:81" },
+            "Https": { "Url": "https://*:82" }
+        }
+    }
+
+
+                //string url = Configuration["Url"];
+            //app.Urls.Add(url);
+            //app.UseKestrel();
+
+
+
+        /// <summary>创建字符串的MD5哈希值</summary>
+        /// <param name="inputString"></param>
+        /// <returns>字符串MD5哈希值的十六进制字符串</returns>
+        public static string StringToMD5Hash(string inputString)
+        {
+            var md5 = MD5.Create(); // new MD5CryptoServiceProvider();
+            byte[] encryptedBytes = md5.ComputeHash(Encoding.ASCII.GetBytes(inputString));
+            var sb = new StringBuilder();
+            for (int i = 0; i < encryptedBytes.Length; i++)
+            {
+                sb.AppendFormat("{0:x2}", encryptedBytes[i]);
+            }
+            return sb.ToString();
+        }
+
+
+        //using App.Core;
+                    //.Include(u => u.TitleUsers)
+
+
+
+                    using System.Drawing.Imaging;
+using System.Drawing;
+//using AppPlat.Core;
+using System.Drawing;

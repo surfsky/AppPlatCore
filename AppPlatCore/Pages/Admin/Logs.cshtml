@@ -1,0 +1,84 @@
+﻿@page
+@model App.Pages.Admin.LogsModel
+@{
+    ViewData["Title"] = "Logs";
+    var PagingInfo = Model.PagingInfo;
+}
+}
+
+@section body {
+
+    <f:Panel ID="Panel1" BodyPadding="5" ShowBorder="false" ShowHeader="false" Layout="VBox" Title="日志" IsViewPort="true">
+        <Items>
+            <f:Grid ID="Grid1" BoxFlex="1" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="false" 
+                    DataIDField="ID" DataTextField="Name" AllowSorting="true"
+                    DataSource="@Model.Logs"  SortField="@PagingInfo.SortField" SortDirection="@PagingInfo.SortDirection"
+                    AllowPaging="true" IsDatabasePaging="true" PageSize="@PagingInfo.PageSize" RecordCount="@PagingInfo.RecordCount"
+                    OnPageIndexChanged="@Url.Handler("Logs_DoPostBack")" OnPageIndexChangedFields="Panel1"
+                    OnSort="@Url.Handler("Logs_DoPostBack")" OnSortFields="Panel1">
+                <Toolbars>
+                    <f:Toolbar>
+                        <Items>
+                            <f:TwinTriggerBox ID="ttbSearchMessage" ShowLabel="false" EmptyText="在用户名中搜索" Trigger1Icon="Clear" Trigger2Icon="Search"
+                                ShowTrigger1="false"
+                                OnTrigger1Click="@Url.Handler("Logs_DoPostBack")" OnTrigger1ClickParameter1="@(new Parameter("actionType","trigger1",ParameterMode.String))" OnTrigger1ClickFields="Panel1"
+                                OnTrigger2Click="@Url.Handler("Logs_DoPostBack")" OnTrigger2ClickParameter1="@(new Parameter("actionType","trigger2",ParameterMode.String))" OnTrigger2ClickFields="Panel1"
+                                />
+                        </Items>
+                    </f:Toolbar>
+                </Toolbars>
+                <Columns>
+                    <f:RowNumberField EnablePagingNumber="true" />
+                    <f:RenderField EnableColumnHide="false" EnableHeaderMenu="false" Width="50" RendererFunction="renderActionView" />
+                    <f:RenderField For="Logs.First().Level" SortField="Level" Width="150" />
+                    <f:RenderField For="Logs.First().CreateDt" SortField="CreateDt" FieldType="Date" Renderer="Date" RendererArgument="yyyy-MM-dd HH:mm" Width="150" />
+                    <f:RenderField For="Logs.First().Operator" SortField="Operator" Width="100" />
+                    <f:RenderField For="Logs.First().From" SortField="From" Width="100" />
+                    <f:RenderField For="Logs.First().Summary" ExpandUnusedSpace="true" />
+                </Columns>
+                <PageItems>
+                    <f:ToolbarSeparator/>
+                    <f:ToolbarText Text="每页记录数：" />
+                    <f:DropDownList ID="ddlGridPageSize" Width="80" SelectedValue="@PagingInfo.PageSize.ToString()"
+                            OnSelectedIndexChanged="@Url.Handler("Logs_DoPostBack")" 
+                            OnSelectedIndexChangedParameter1="@(new Parameter("actionType","changeGridPageSize",ParameterMode.String))" 
+                            OnSelectedIndexChangedFields="Panel1">
+                        <Items>
+                            <f:ListItem Text="10" Value="10" />
+                            <f:ListItem Text="20" Value="20" />
+                            <f:ListItem Text="50" Value="50" />
+                            <f:ListItem Text="100" Value="100"/>
+                        </Items>
+                    </f:DropDownList>
+                </PageItems>
+            </f:Grid>
+        </Items>
+    </f:Panel>
+
+    <f:Window ID="Window1" IsModal="true" Hidden="true" Target="Top" EnableResize="true"
+        EnableMaximize="true" EnableIFrame="true" Width="900" Height="550"
+        OnClose="@Url.Handler("Online_DoPostBack")" OnCloseFields="Panel1"
+        />
+
+}
+
+@section script {
+
+    <script>
+        function renderActionView(value, params) {
+            return '<a class="action-btn viewonline" href="javascript:;">查看</a>';
+        }
+
+        F.ready(function () {
+            var grid1 = F.ui.Grid1;
+            grid1.el.on('click', 'a.action-btn.viewonline', function (event) {
+                var cnode = $(this);
+                var rowData = grid1.getRowData(cnode.closest('.f-grid-row'));
+                F.ui.Window1.show('@Url.Content("~/Admin/LogForm?id=")' + rowData.id, "查看日志详情");
+            });
+
+        });
+
+    </script>
+}
+

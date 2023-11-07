@@ -1,4 +1,5 @@
-﻿using App.Utils;
+﻿using App.Components;
+using App.Utils;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,6 @@ namespace App.DAL
                 GetUsers().ForEach(u => context.Users.Add(u));
                 GetRoles().ForEach(r => context.Roles.Add(r));
                 GetPowers().ForEach(p => context.Powers.Add(p));
-                GetTitles().ForEach(t => context.Titles.Add(t));
                 context.SaveChanges();
                 GetMenus(context).ForEach(m => context.Menus.Add(m));  // 添加菜单时需要指定ViewPower，所以上面需要先保存到数据库
                 context.SaveChanges();
@@ -55,7 +55,7 @@ namespace App.DAL
             var menus = new List<Menu> {
                 new Menu
                 {
-                    Name = "首饰识别",
+                    Name = "商品识别",
                     SortIndex = 10,
                     Remark = "顶级菜单",
                     ImageUrl = "~/res/icon/folder.png",
@@ -64,7 +64,7 @@ namespace App.DAL
                         new Menu
                         {
                             Name = "识别",
-                            NavigateUrl = "~/AI/Jewels",
+                            NavigateUrl = "~/AI/Classify",
                             ImageUrl = "~/res/icon/page.png",
                             SortIndex = 20,
                         },
@@ -104,15 +104,6 @@ namespace App.DAL
                         },
                         new Menu
                         {
-                            Name = "职称",
-                            SortIndex = 30,
-                            Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/TitleUser",
-                            ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreTitleUserView").FirstOrDefault<Power>()
-                        },
-                        new Menu
-                        {
                             Name = "角色",
                             SortIndex = 70,
                             Remark = "二级菜单",
@@ -149,6 +140,15 @@ namespace App.DAL
                         },
                         new Menu
                         {
+                            Name = "日志",
+                            SortIndex = 200,
+                            Remark = "二级菜单",
+                            NavigateUrl = "~/Admin/Logs",
+                            ImageUrl = "~/res/icon/page.png",
+                            ViewPower = context.Powers.Where(p => p.Name == "CoreLogView").FirstOrDefault<Power>()
+                        },
+                        new Menu
+                        {
                             Name = "配置",
                             SortIndex = 120,
                             Remark = "二级菜单",
@@ -166,7 +166,7 @@ namespace App.DAL
                     Children = new List<Menu> {
                         new Menu
                         {
-                            Name = "FineUI",
+                            Name = "Controls",
                             SortIndex = 20,
                             ImageUrl = "~/res/icon/folder.png",
                             Children = new List<Menu> {
@@ -202,13 +202,6 @@ namespace App.DAL
                         },
                         new Menu
                         {
-                            Name = "Chat",
-                            NavigateUrl = "~/Chats/Chat",
-                            ImageUrl = "~/res/icon/page.png",
-                            SortIndex = 30,
-                        },
-                        new Menu
-                        {
                             Name = "Blazors",
                             SortIndex = 60,
                             ImageUrl = "~/res/icon/folder.png",
@@ -219,16 +212,16 @@ namespace App.DAL
                                     NavigateUrl = "~/Blazors/Index",
                                     ImageUrl = "~/res/icon/page.png",
                                     SortIndex = 60,
-                                },
-                               new Menu
-                                {
-                                    Name = "Blazor",
-                                    NavigateUrl = "~/Blazors/Index",
-                                    ImageUrl = "~/res/icon/page.png",
-                                    SortIndex = 60,
-                                },
+                                }
                             }
                        },
+                        new Menu
+                        {
+                            Name = "Chat",
+                            NavigateUrl = "~/Chats/Chat",
+                            ImageUrl = "~/res/icon/page.png",
+                            SortIndex = 80,
+                        },
                     }
                 },
                 new Menu
@@ -253,32 +246,7 @@ namespace App.DAL
             return menus;
         }
 
-
-        private static List<Title> GetTitles()
-        {
-            var titles = new List<Title>()
-            {
-                new Title()
-                {
-                    Name = "总经理"
-                },
-                new Title()
-                {
-                    Name = "部门经理"
-                },
-                new Title()
-                {
-                    Name = "高级工程师"
-                },
-                new Title()
-                {
-                    Name = "工程师"
-                }
-            };
-
-            return titles;
-        }
-
+ 
         private static List<Power> GetPowers()
         {
             var powers = new List<Power>

@@ -1,0 +1,43 @@
+﻿@page
+@using System.Text;
+@model App.Pages.AI.ClassifyModel
+@{
+    ViewData["Title"] = "Jewels Classfier";
+}
+
+@section head {
+    <style type="text/css">
+        ul.icons {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+            ul.icons li {
+                display: inline-block;
+                margin: 0 10px 10px 0;
+                text-align: center;
+                border-style: solid;
+                border-width: 1px;
+                padding: 10px 5px;
+                width: 300px;
+            }
+                ul.icons li img {
+                    width: 128px;
+                    height: 128px;
+                }
+                ul.icons li .title {
+                    margin-top: 10px;
+                }
+    </style>
+}
+
+@section body {
+
+    <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10" IsViewPort="true" AutoScroll="true">
+        <Items>
+            <f:Image ID="imgPhoto" CssClass="photo" ImageUrl="~/images/blank.png" ShowEmptyLabel="true" Label="图片"  Width="200" />
+            <f:FileUpload ID="filePhoto" ShowEmptyLabel="true" ButtonText="上传图片" ButtonOnly="true" ButtonIcon="ImageAdd" OnFileSelected="@Url.Handler("filePhoto_FileSelected")" OnFileSelectedFields="filePhoto,grid" />
+            <f:Panel ID="Panel1" BodyPadding="10" ShowBorder="false" ShowHeader="false"  />
+        </Items>
+    </f:SimpleForm>
+}

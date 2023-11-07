@@ -67,7 +67,9 @@ namespace App.Components
                 var url = GetUploadPath(folder);
                 var path = Asp.MapPath(url);
                 IO.PrepareDirectory(path);
-                image.Save(path);
+                image.Save(path);  // waring: 仅在 windows 上受支持
+                //using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+                //    image.Save(fs, image.RawFormat); // waring: 仅在 windows 上受支持
                 return url;
             }
             return "";

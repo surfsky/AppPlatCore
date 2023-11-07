@@ -1,15 +1,11 @@
-﻿@page "/FullScreen"
+﻿@page "/Bootstraps"
 @using BootstrapBlazor.Components;
 @using System.Diagnostics.CodeAnalysis;
 @using System.Collections.Concurrent;
-@inject FullScreenService FullScreenService
-@inject MessageService MessageService
-@inject ConsoleLogger Logger
 
-开源 Blazor 控件库，扩展功能非常丰富
 
+<h1>开源 Blazor 控件库，扩展功能非常丰富</h1>
 <a href="https://www.blazor.zone/">Bootstrap blazor controls</a>
-
 <div class="row g-3">
     <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button OnClick="@ButtonClick" Color="Color.Primary">主要按钮</Button></div>
     <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button OnClick="@ButtonClick" Color="Color.Secondary">次要按钮</Button></div>
@@ -23,53 +19,15 @@
     <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button OnClick="@ButtonClick" Color="Color.None">None 按钮</Button></div>
 </div>
 
-<div class="row g-3">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Primary">主要按钮</Button></div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Secondary">次要按钮</Button></div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Success">成功按钮</Button></div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Danger">危险按钮</Button></div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Round" Color="Color.Warning">警告按钮</Button></div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-auto"><Button ButtonStyle="ButtonStyle.Circle" Icon="fa-fw fa-solid fa-cubes"></Button></div>
-</div>
-
-<Button Text="异步请求" IsAsync="true" Icon="fa-solid fa-fw fa-font-awesome" OnClick="@ButtonClickAsync" />
-
-<div class="btn-group" role="group">
-    <Button Color="Color.Primary">按钮一</Button>
-    <Button Color="Color.Success">按钮二</Button>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <Button Text="全屏" OnClick="() => FullScreenService.Toggle()"></Button>
-        <FullScreenButton Title="点击进行全屏操作" FullScreenIcon="fa-solid fa-font-awesome" />
-    </div>
-</div>
-
-<button class="btn btn-primary" @onclick="@ShowMessage">打开消息提示</button>
-<Message @ref="Message" Placement="Placement.Bottom" />
 
 @code {
-    private Message? Message { get; set; }
-
-
-
+    //@inject FullScreenService FullScreenService
+    //@inject MessageService MessageService
+    //@inject ConsoleLogger Logger
     private void ButtonClick(MouseEventArgs e)
     {
-        Logger.Log($"Button Clicked");
+        //Logger.Log($"Button Clicked");
     }
 
-    void ButtonClickAsync()
-    {
-        Task.Delay(5000);
-    }
 
-    private async Task ShowMessage()
-    {
-        Message.SetPlacement(Placement.Top);
-        await MessageService.Show(new MessageOption()
-            {
-                Content = "This is a reminder message"
-            });
-    }
 }

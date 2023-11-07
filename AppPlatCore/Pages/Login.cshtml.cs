@@ -27,6 +27,7 @@ namespace App.Pages
         public  IActionResult OnPostBtnSubmit_Click(string userName, string password, string verifyCode)
         {
             var n = Auth.Login(userName, password, verifyCode);
+            Logger.LogDb(LogLevel.Info, userName, "Login code: " + n.ToString(), "Web");
             switch (n)
             {
                 case 0:  { return RedirectToPage("/Index"); }

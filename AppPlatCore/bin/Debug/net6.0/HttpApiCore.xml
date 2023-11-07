@@ -424,6 +424,7 @@
         <member name="M:App.HttpApi.ReflectHelper.GetPropertyValue(System.Object,System.String)">
             <summary>获取对象的属性值。也可考虑用dynamic实现。</summary>
             <param name="propertyName">属性名。可考虑用nameof()表达式来实现强类型。</param>
+            <param name="obj">any object</param>
         </member>
         <member name="M:App.HttpApi.ReflectHelper.GetEnumField(System.Object)">
             <summary>获取枚举值对应的字段</summary>
@@ -448,7 +449,7 @@
         </member>
         <member name="M:App.HttpApi.ReflectHelper.GetParameters(System.Reflection.MethodInfo,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>构造匹配方法的参数值列表（若方法名重名怎么处理？）</summary>
-            <param name="methodName">方法名</param>
+            <param name="info">方法名</param>
             <param name="args">参数名-值字典</param>
             <returns>排序后的参数值数组</returns>
         </member>
@@ -483,12 +484,9 @@
             <param name="response"></param>
             <param name="assembly"></param>
             <param name="resourceName"></param>
-            <param name="type">jpg, png, gif, etc</param>
-            <param name="caseSensitive"></param>
         </member>
         <member name="M:App.HttpApi.ResourceHelper.RenderText(Microsoft.AspNetCore.Http.HttpResponse,System.Reflection.Assembly,System.String)">
             <summary>输出文本资源</summary>
-            <param name="context"></param>
             <param name="assembly"></param>
             <param name="resourceName">资源名称。如Kingsow.Web.Handlers.WebHandlers.Help.txt</param>
             <param name="type">plain, css, html, xml, javascript</param>
@@ -554,8 +552,23 @@
         <member name="M:App.HttpApi.StringHelper.TrimQuery(System.String)">
             <summary>去除尾部的查询字符串</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:App.HttpApi.StringHelper.AddQueryString(System.String,System.String)" -->
-        <!-- Badly formed XML comment ignored for member "T:App.HttpApi.Url" -->
+        <member name="M:App.HttpApi.StringHelper.AddQueryString(System.String,System.String)">
+            <summary>为 Url 增加合并查询字符串（若存在则覆盖）</summary>
+            <param name="queryString">要添加的查询字符串，如a=x&amp;b=x</param>
+        </member>
+        <member name="T:App.HttpApi.Url">
+            <summary>
+            URL 辅助操作类，可以自由修改 QueryString 各部分。
+            </summary>
+            <example>
+                var url = new Url("http://www.company.com/a/b/c.aspx?mode=new&amp;parentid=1");
+                url["mode"] = "edit";
+                url["id"] = "5";
+                url["more"] = "8";
+                url.Remove("parentid");
+                var txt = url.ToString();
+            </example>
+        </member>
         <member name="P:App.HttpApi.Url.Dict">
             <summary>查询字符串字典</summary>
         </member>
@@ -737,7 +750,12 @@
             取得函数调用代码段
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:App.HttpApi.HttpApiMiddleware" -->
+        <member name="T:App.HttpApi.HttpApiMiddleware">
+            <summary>HttpApiModule</summary>
+            <remarks>
+            app.UseMiddleware&lt;HttpApiMiddleware&gt;();
+            </remarks>
+        </member>
         <member name="M:App.HttpApi.HttpApiMiddleware.TryCreateHandlerFromAssemblies(System.String)">
             <summary>尝试根据类型名称，从当前程序集中创建对象</summary>
         </member>

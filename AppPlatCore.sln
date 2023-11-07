@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Code-mvc.txt = Code-mvc.txt
 		Codes.txt = Codes.txt
 		README.MD = README.MD
+		Task-Deploy.txt = Task-Deploy.txt
 		Task.txt = Task.txt
 	EndProjectSection
 EndProject

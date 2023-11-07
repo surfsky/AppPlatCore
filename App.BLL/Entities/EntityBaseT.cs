@@ -126,7 +126,7 @@ namespace App.Entities
         // 缓存
         //--------------------------------------
         /// <summary>单例</summary>
-        public static T Instance => Cacher.Get(typeof(T).Name, () => Set.FirstOrDefault());
+        public static T Instance => Cacher.Get(typeof(T).Name, () => Set.OrderBy(t=>t.ID).FirstOrDefault());
 
         /// <summary>所有数据的缓存</summary>
         public static List<T> All => Cacher.Get(AllCacheName, () => ValidSet.ToList());

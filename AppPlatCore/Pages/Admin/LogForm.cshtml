@@ -1,0 +1,38 @@
+﻿@page
+@model App.Pages.Admin.LogFormModel
+@{
+    ViewData["Title"] = "Log";
+}
+
+@section body {
+
+    <f:Panel ID="Panel1" ShowBorder="false" ShowHeader="false" AutoScroll="true" IsViewPort="true" Layout="VBox">
+        <Toolbars>
+            <f:Toolbar ID="Toolbar1">
+                <Items>
+                    <f:Button ID="btnClose" Icon="SystemClose" Text="关闭" OnClientClick="F.activeWindow.hide();" />
+                </Items>
+            </f:Toolbar>
+        </Toolbars>
+        <Items>
+            <f:SimpleForm ID="SimpleForm1" ShowBorder="false" ShowHeader="false" BodyPadding="10">
+                <Items>
+                    <f:HiddenField For="Log.ID" />
+                    <f:TextBox  For="Log.Level" />
+                    <f:TextBox  For="Log.CreateDt" />
+                    <f:TextBox For="Log.LogDt" />
+                    <f:TextBox For="Log.Operator" />
+                    <f:TextBox  For="Log.From" />
+                    <f:TextBox For="Log.IP" />
+                    <f:TextBox For="Log.URL" />
+                    <f:TextBox For="Log.Method" />
+                    <f:TextBox For="Log.Referrer" />
+                    <f:TextArea For="Log.Message" />
+                </Items>
+            </f:SimpleForm>
+        </Items>
+    </f:Panel>
+
+}
+
+

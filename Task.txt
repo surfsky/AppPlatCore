@@ -1,20 +1,3 @@
---------------------------------------------------------
-TIP
---------------------------------------------------------
-使用Panel，再套form，可以让页面卷动时工具栏始终置顶
-部署(写个工具)：
-    拷贝AppPlatCore项目
-    CopyFolder("AppPlatCore", "AppPlatCore-Deploy");
-    Cd("AppPlatCore-Deploy");
-    DeleteHideFiles();     // .git,ds_store, thumbs.db
-    DeleteFiles("*.cs"); 
-    DeleteFolder("/Caches");
-    DeleteFolder("/Files");
-    DeleteFolder("/Logs");
-    DeleteFolder("/objs");
-    DeleteFolder("/Bin/Debug/net6.0/*.pdb");
-    DeleteFolders("/Bin/Debug/net6.0/", "zh-CN", false);    // 除了zh-CN目录其它同级别目录统统删除
-    
 
 
 
@@ -39,52 +22,31 @@ FineUI 控件优化
         使用什么策略，让Url.Handler()的方法不用 OnPost 开头，这样可以用强命名方式，避免错误
             @Url.Handler("btnGo_Click")  -> OnPostbtnGo_Click
             @Url.Handler(nameof(xxx).TrimStart("OnPost"));
-            ->
+        研究MVC Helper的编写方式
             @Url.Handler(nameof(xxx))
             @Handler(nameof(xxx))
+
+封装为 docker，报错
 
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-调试部署网站
-    项目右键>部署》部署到文件夹》net6.0/publish，其实就是编译成功后复制 wwwroot 目录到 net6.0 目录下，其它一切代码文件都编译了，包括页面文件。
-    调试部署后的报错原因
+实现日志管理页面
+实现菜单隐藏能力
+点击编译模型时，禁止页面操作
+实现 WindowField，缩减代码
+实现 GridPro，内置分页、排序等逻辑
+简化 TwinTriggerBox 两个按钮的操作
 
-/移除 Humanizer 乱七八糟的语言支持目录: 
-    https://www.cnblogs.com/qinfeng888/p/12619772.html
-    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
-/移除多余的数据库支撑能力，只保留sqlite和sqlserver
-简化 PagingInfo
+图片上传和显示
+    用户编辑和查看页面显示显示用户头像
+    用户列表页面显示缩略图: 图像列
+    设置登录页背景
 
-移除 Title 数据库表
-设置登录页背景
-设置登录对话框背景
-目录的target属性似乎没有用
-
-云主机部署
-    封装为 docker
-    linux 环境部署: 
-        需要安装 libgdiplus 并开启 System.Drawing 支持
-        https://blog.51cto.com/u_15765017/5620121
-    tensionflow 库文件的部署
-
-业务
-    /生成AI识别框架
-    /实现AI识别分类页面
-    /实现上传缩略图（用 ImageMiddleware ）
-    /展示分类结果
-    /异步编译“AI模型”
-    /展示子目录图像：用图片列表展示
-    /显示 FTP 地址，供管理员上传图片
-
-
-/给用户加头像，
-    /实现图片上传
-    /保存用户数据
-    /点击图片上传
-    编辑和查看页面显示显示用户头像
-    列表页面显示缩略图: 图像列
-
+实现 FormPage，支持New、Edit、View 三种显示模式
+解决BUG：目录的target属性似乎没有用
+优化登陆页面：设置登录对话框背景
+实现自定义 404 页面
 
 数据库及DAL
     权限用枚举
@@ -92,9 +54,6 @@ Task
     实体类全部改为继承自 EntityBase
     测试 sqlserver 2012 
     排序用linq语法，强名称
-
-
-
 
 修改页面模型
     简化列表页面（PageListor）
@@ -109,6 +68,48 @@ Task
 --------------------------------------------------------
 Done
 --------------------------------------------------------
+/相关依赖项目更新到 net6，使用System.Drawing.Common
+/设置网站端口 dotnet app.dll --ursl=http://localhost:8080
+/捕捉错误，避免错误崩溃： /Error
+/先用 System.Drawing.Common 替代 DrawingCore，linux支持的问题以后再说
+    External component has thrown an exception.
+       at System.DrawingCore.GDIPlus.GdipDeletePrivateFontCollection(IntPtr& collection)
+       at System.DrawingCore.Text.PrivateFontCollection.Dispose(Boolean disposing)
+       at System.DrawingCore.Text.FontCollection.Finalize()
+    /看是否要迁移到 SkiaSharp/Aspose.Drawing, System.Drawing.Common 在net6以后的版本也不支持
+/AI/JewelsAI -> ClassifyAI
+
+/部署(写个工具)：
+    拷贝AppPlatCore项目
+    CopyFolder("AppPlatCore", "AppPlatCore-Deploy");
+    Cd("AppPlatCore-Deploy");
+    DeleteHideFiles();     // .git,ds_store, thumbs.db
+    DeleteFiles("*.cs"); 
+    DeleteFolder("/Caches");
+    DeleteFolder("/Files");
+    DeleteFolder("/Logs");
+    DeleteFolder("/objs");
+    DeleteFolder("/Bin/Debug/net6.0/*.pdb");
+    DeleteFolders("/Bin/Debug/net6.0/", "zh-CN", false);    // 除了zh-CN目录其它同级别目录统统删除
+    不用了，直接用project、右键、deploy解决
+    
+/实现业务逻辑
+    /生成AI识别框架
+    /实现AI识别分类页面
+    /实现上传缩略图（用 ImageMiddleware ）
+    /展示分类结果
+    /异步编译“AI模型”
+    /展示子目录图像：用图片列表展示
+    /显示 FTP 地址，供管理员上传图片
+
+/移除 Humanizer 乱七八糟的语言支持目录: 
+    https://www.cnblogs.com/qinfeng888/p/12619772.html
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+/移除多余的数据库支撑能力，只保留sqlite和sqlserver
+/简化 PagingInfo
+/设置AI/Config/Ftp
+
+
 /优化BaseModel
     /BaseModel代码过重，考虑把UI相关的抽出来，数据库相关的用 partial class
     /用Attribute的方式自动检测权限 CheckPowerAttribute
@@ -157,7 +158,11 @@ Done
         /menu 增加 target 属性
     /增加 logout 页面
     /优化用户相关页面：user, userview（改为用textbox更美观）, usernew
-    /实现用户图标
+    /用户管理（给用户加头像）
+        /实现图片上传
+        /保存用户数据
+        /点击图片上传
+        /实现用户图标
     /修正在线用户网页
     /将所有列表页面的操作按钮放到左侧，且设置宽度为38
     /简化CheckPowerAttribute，增加构造函数。
@@ -183,6 +188,7 @@ Done
         /实现属性：All，Entity等
     /实现实体类变更数据库自动迁移：https://learn.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
     /EntityBase.Instance 用了缓存有点问题，无法保存，要用普通方法。
+    /移除 Title 数据库表
 
 /其它
     /更新到 github

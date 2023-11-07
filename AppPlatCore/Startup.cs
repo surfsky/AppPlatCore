@@ -1,8 +1,9 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FineUICore;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,7 @@ using App.Components;
 using App.Entities;
 using App.Pages.AI;
 using App.Pages.Chats;
+using FineUICore;
 
 namespace App
 {
@@ -32,15 +34,27 @@ namespace App
             Configuration = configuration;
         }
 
-        // 注册一些上下文服务对象（可在页面中查询并使用这些对象）
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// 注册上下文服务（可在页面中用 IOC 方式查询并使用这些对象）
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             Logger.Info("server start");
             services.AddHttpContextAccessor();                  // 注册 HttpContext 服务
             services.AddDistributedMemoryCache();               // 注册内存缓存服务（session用得到）
-            services.AddSession();                              // 注册 Session 服务
+
+            // 注册 Session 服务
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(12);
+                //options.Cookie.Name = ".AppPlat.Session";
+                //options.Cookie.IsEssential = true;
+            });
+            //services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "DataProtection"));  // kill warn: Microsoft.AspNetCore.Session.SessionMiddleware
+
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();  // 修改 cshtml 后自动生效
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
@@ -60,6 +74,7 @@ namespace App
                 .AddNewtonsoftJson()                            // 用 NewtonsoftJson 来序列化json（而非自带的）
                 ;
             services.AddServerSideBlazor();                     // 启用 Blazor
+            services.AddBootstrapBlazor();                      // 启用 BootstrapBlazor 组件库
             services.AddSignalR(op =>
             {
                 //op.KeepAliveInterval = new TimeSpan(0, 1, 0);
@@ -94,16 +109,25 @@ namespace App
             EntityConfig.Instance.OnGetDb += () => Common.GetDbConnection();
         }
 
-        // 配置 Http 请求处理管道
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 配置 Http 请求处理管道。
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // 开发及部署环境设置
             if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
+            {
+                app.UseExceptionHandler("/Error");
+                //app.UseStatusCodePagesWithReExecute("/Error");
+                app.UseStatusCodePagesWithRedirects("/Error?code={0}");
+                //app.UseDeveloperExceptionPage();
+            }
             else
             {
                 app.UseExceptionHandler("/Error");
+                //app.UseStatusCodePagesWithReExecute("/Error");
+                app.UseStatusCodePagesWithRedirects("/Error?code={0}");
                 //app.UseHsts();
                 //app.UseHttpsRedirection();                    // 自动将 http 转化为 https
             }
@@ -133,7 +157,7 @@ namespace App
             {
                 endpoints.MapRazorPages();                  // 启用 RazorPage 解析引擎
                 endpoints.MapHub<ChatHub>("/ChatHub");      // 启用 ChatHub
-                endpoints.MapHub<JewelsHub>("/JewelsHub");  // 启用 JewelsHub
+                endpoints.MapHub<ClassifyHub>("/JewelsHub");  // 启用 JewelsHub
                 endpoints.MapBlazorHub();                   // 启用 Blazor
                 //endpoints.MapFallbackToPage("/Blazor");   // 
             });

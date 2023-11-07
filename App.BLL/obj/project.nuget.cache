@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yTrnMWmGQE/MhgBiIvM/FYsWsB/29wPwS+O9Mc7SaUwM0hkWEGykRuHY75fIG5LjAjnlOSExxyP7qTQK5ZToKQ==",
+  "dgSpecHash": "FAgIBTVg4xe+c+aLo1NqdYr3tXKsEQFc7MA7Hg/ciOJbMhu0ujAlKtxBKDfcKO0+Gg7+QXgargY7IYHVgmbmOg==",
   "success": true,
   "projectFilePath": "\\\\Mac\\Home\\Downloads\\Dev\\180701-AppPlat\\AppPlatCore\\AppPlatCore-github\\App.BLL\\App.BLL.csproj",
   "expectedPackageFiles": [
@@ -60,10 +60,6 @@
     "C:\\Users\\CJH\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
-    "C:\\Users\\CJH\\.nuget\\packages\\system.collections.specialized\\4.3.0\\system.collections.specialized.4.3.0.nupkg.sha512",
-    "C:\\Users\\CJH\\.nuget\\packages\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
-    "C:\\Users\\CJH\\.nuget\\packages\\system.componentmodel.primitives\\4.3.0\\system.componentmodel.primitives.4.3.0.nupkg.sha512",
-    "C:\\Users\\CJH\\.nuget\\packages\\system.componentmodel.typeconverter\\4.3.0\\system.componentmodel.typeconverter.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.data.common\\4.3.0\\system.data.common.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
@@ -103,7 +99,6 @@
     "C:\\Users\\CJH\\.nuget\\packages\\system.runtime.interopservices\\4.3.0\\system.runtime.interopservices.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.runtime.interopservices.runtimeinformation\\4.3.0\\system.runtime.interopservices.runtimeinformation.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.runtime.numerics\\4.3.0\\system.runtime.numerics.4.3.0.nupkg.sha512",
-    "C:\\Users\\CJH\\.nuget\\packages\\system.runtime.serialization.primitives\\4.3.0\\system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.security.claims\\4.3.0\\system.security.claims.4.3.0.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\system.security.cryptography.algorithms\\4.3.0\\system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
@@ -133,7 +128,6 @@
     "C:\\Users\\CJH\\.nuget\\packages\\z.entityframework.extensions.efcore\\6.100.0.3\\z.entityframework.extensions.efcore.6.100.0.3.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\z.entityframework.plus.efcore\\6.100.0.3\\z.entityframework.plus.efcore.6.100.0.3.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\z.expressions.eval\\5.0.10\\z.expressions.eval.5.0.10.nupkg.sha512",
-    "C:\\Users\\CJH\\.nuget\\packages\\zkweb.system.drawing\\4.0.1\\zkweb.system.drawing.4.0.1.nupkg.sha512",
     "C:\\Users\\CJH\\.nuget\\packages\\app.utils\\3.0.2\\app.utils.3.0.2.nupkg.sha512"
   ],
   "logs": []
