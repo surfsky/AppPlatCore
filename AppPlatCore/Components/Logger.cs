@@ -46,7 +46,7 @@ namespace App.Components
             log.Operator = user;
             if (Asp.Request != null)
             {
-                log.Operator = Asp.User?.Identity?.Name;
+                //log.Operator = Asp.User?.Identity?.Name;
                 log.URL = Asp.Url;
                 log.IP = Asp.ClientIP;
                 log.Method = Asp.Request.Method;

@@ -17,7 +17,7 @@
                     <f:Label ID="Label1"  ShowLabel="false" Text="这是一个标签" />
                 </Items>
             </f:FormRow>
-            <f:FormRow Items="@ViewBag.DynamicItems" />
+            <f:FormRow Items="@Model.Fields" />
         </Rows>
     </f:Form>
 }

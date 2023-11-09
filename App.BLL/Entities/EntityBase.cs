@@ -46,8 +46,9 @@ namespace App.Entities
         /// <remarks>此处用virtual标注，不会在本表中生成数据库字段，而在子类表中生成字段</remarks>
         [Key]
         [UI("ID", Mode=PageMode.View | PageMode.Edit, ReadOnly=true)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [SnowflakeID]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[SnowflakeID]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual long ID { get; set; }
         
         [UI("创建时间", Mode=PageMode.Edit, ReadOnly=true)]    

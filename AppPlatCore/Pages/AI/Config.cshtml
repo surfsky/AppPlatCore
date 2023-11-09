@@ -11,7 +11,7 @@
                 <Items>
                     <f:Button ID="btnFtp" Icon="ApplicationGo" OnClientClick="window.open('@Model.FtpPath', '_blank');" Text="Ftp" />
                     <f:Button ID="btnBuild" Icon="ApplicationGo" OnClick="@Url.Handler("Config_btnBuild_OnClick")" ValidateTarget="Top" Text="编译模型" Hidden="true" />
-                    <f:Button ID="btnBuild2" Icon="ApplicationGo" OnClientClick="build();" ValidateTarget="Top" Text="编译模型" />
+                    <f:Button ID="btnBuild2" Icon="ApplicationGo" OnClientClick="build();" ValidateTarget="Top" Text="编译模型"  />
                     <f:Label ID="lblInfo" CssStyle="color:red" Text="模型编译需要的时间较久（预计10分钟），请耐心等待" color="yellow" />
                 </Items>
             </f:Toolbar>

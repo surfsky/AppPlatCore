@@ -10,6 +10,7 @@ using FineUICore;
 using Newtonsoft.Json.Linq;
 using App.Components;
 using App.Web;
+using App.UIs;
 
 namespace App.Pages.AI
 {

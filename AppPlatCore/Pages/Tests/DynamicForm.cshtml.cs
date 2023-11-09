@@ -8,11 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using FineUICore;
 using App.Components;
+using App.UIs;
 
 namespace App.Pages.Tests
 {
     public class FormDynamicModel : BaseModel
     {
+        public Field[] Fields { get; set; }
+
         public void OnGet()
         {
             InitFormRows();
@@ -42,7 +45,8 @@ namespace App.Pages.Tests
             fields.Add(ddlGender);
 
             // 用 ViewBag 将控件传递给客户端
-            ViewBag.DynamicItems = fields.ToArray();
+            //ViewBag.DynamicItems = fields.ToArray();  // @ViewBag.DynamicItems
+            this.Fields = fields.ToArray();
         }
 
 

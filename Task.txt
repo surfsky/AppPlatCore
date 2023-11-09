@@ -1,8 +1,5 @@
-
-
-
 --------------------------------------------------------
-BUG
+研究
 --------------------------------------------------------
 FineUI 控件优化
     默认的控件Helper没有完全覆盖到所有控件的属性
@@ -15,7 +12,6 @@ FineUI 控件优化
     研究 Grid 的强类型列绑定
 
 研究
-    /删除所有 ViewBag，用属性方式替代。(RazorPageBase.ViewBag/ModelBase.ViewBag 感觉有重叠，算了不用就是了，不动了)
     研究 razorpage 的生命周期
         异步同步方法的执行顺序的异同
         修改 OnPost 方法的命名方式，以进行强类型绑定客户端方法
@@ -25,32 +21,33 @@ FineUI 控件优化
         研究MVC Helper的编写方式
             @Url.Handler(nameof(xxx))
             @Handler(nameof(xxx))
+    封装为 docker，报错: 目录不对什么的
 
-封装为 docker，报错
 
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-实现日志管理页面
-实现菜单隐藏能力
-点击编译模型时，禁止页面操作
-实现 WindowField，缩减代码
-实现 GridPro，内置分页、排序等逻辑
-简化 TwinTriggerBox 两个按钮的操作
+准备用 Powers 枚举来实现权限校验
+    角色权限管理
+    页面访问控制
+    FormPage 再看如何简化，融合到FormPageModel中去
 
-图片上传和显示
-    用户编辑和查看页面显示显示用户头像
-    用户列表页面显示缩略图: 图像列
-    设置登录页背景
+FixBug: UserForm 如何跳过 FileUpload 表单校验
+用户列表页面显示缩略图: 图像列
+点击图片上传按钮时，禁止页面操作
 
-实现 FormPage，支持New、Edit、View 三种显示模式
+扩展控件
+    实现 WindowField，缩减代码
+    实现 GridPro，内置分页、排序等逻辑
+    简化 TwinTriggerBox 两个按钮的操作
+
+
 解决BUG：目录的target属性似乎没有用
-优化登陆页面：设置登录对话框背景
-实现自定义 404 页面
+优化登陆页面：设置登录对话框背景、设置登录页背景
 
 数据库及DAL
     权限用枚举
-    Menu 增加 Target 属性
+    /Menu 增加 Target 属性
     实体类全部改为继承自 EntityBase
     测试 sqlserver 2012 
     排序用linq语法，强名称
@@ -68,6 +65,25 @@ Task
 --------------------------------------------------------
 Done
 --------------------------------------------------------
+/实现 PageMode 逻辑
+    /用户编辑和查看页面显示显示用户头像
+/实现 FormPage，支持New、Edit、View 三种显示模式
+    /先手工撸一个，实现所有代码
+    /DeptForm
+    /MenuForm
+    /PowerForm
+    /RoleForm
+    /UserForm
+
+/修改目录 Admin 为 Admins
+/修改所有列表页面为 XXXs
+
+/实现自定义 404 页面
+/简化首页 RegionPanel 的写法，改不动，一放到 Content中去就消失了
+/回复git history 比对能力：git config --global --add safe.directory "*";
+/删除所有 ViewBag，用属性方式替代。(RazorPageBase.ViewBag/ModelBase.ViewBag 感觉有重叠，算了不用就是了，不动了)
+/实现日志管理页面: Log.Get(id) 返回null？   1833214689845186600，经测试是 sqlite 的问题，或者是ef的问题，换回int自增的id，就没问题了
+/实现菜单隐藏能力
 /相关依赖项目更新到 net6，使用System.Drawing.Common
 /设置网站端口 dotnet app.dll --ursl=http://localhost:8080
 /捕捉错误，避免错误崩溃： /Error

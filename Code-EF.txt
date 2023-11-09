@@ -13,3 +13,7 @@
     "DM": "Server=localhost; User Id=SYSDBA; PWD=SYSDBA; SCHEMA=App; PORT=5236; CONNPOOLING=TRUE;"
   },
 
+
+Log.Get(id) 返回null？1833214689845186600
+    经测试是 sqlite 的问题，或者是ef的问题
+    换回int自增的id，就没问题了

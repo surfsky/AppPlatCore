@@ -543,3 +543,30 @@ ResultFilterAttribute
     ```
 
 
+
+#--------------------------------------------
+# TagHelper
+#--------------------------------------------
+内置Tag Helpers列表
+表单相关Tag Helpers：
+
+Form
+FormAction
+Input
+Label
+Option
+Select
+TextArea
+ValidationMessage
+ValidationSummary
+缓存：
+
+Cache
+Distributed
+其他：文章来源地址:https://www.yii666.com/article/674511.html
+
+Image
+Anchor
+Script
+Link
+Environment

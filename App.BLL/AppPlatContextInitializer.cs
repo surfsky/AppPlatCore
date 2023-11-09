@@ -89,7 +89,7 @@ namespace App.DAL
                             Name = "用户",
                             SortIndex = 10,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/UserList",
+                            NavigateUrl = "~/Admins/Users",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreUserView").FirstOrDefault<Power>()
                         },
@@ -98,7 +98,7 @@ namespace App.DAL
                             Name = "部门",
                             SortIndex = 50,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/DeptUser",
+                            NavigateUrl = "~/Admins/DeptUser",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreDeptUserView").FirstOrDefault<Power>()
                         },
@@ -107,7 +107,7 @@ namespace App.DAL
                             Name = "角色",
                             SortIndex = 70,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/RoleUser",
+                            NavigateUrl = "~/Admins/RoleUser",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreRoleUserView").FirstOrDefault<Power>()
                         },
@@ -116,7 +116,7 @@ namespace App.DAL
                             Name = "权限",
                             SortIndex = 90,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/RolePower",
+                            NavigateUrl = "~/Admins/RolePower",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreRolePowerView").FirstOrDefault<Power>()
                         },
@@ -125,7 +125,7 @@ namespace App.DAL
                             Name = "菜单",
                             SortIndex = 100,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Menu",
+                            NavigateUrl = "~/Admins/Menus",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreMenuView").FirstOrDefault<Power>()
                         },
@@ -134,7 +134,7 @@ namespace App.DAL
                             Name = "在线",
                             SortIndex = 110,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Online",
+                            NavigateUrl = "~/Admins/Onlines",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreOnlineView").FirstOrDefault<Power>()
                         },
@@ -143,16 +143,16 @@ namespace App.DAL
                             Name = "日志",
                             SortIndex = 200,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Logs",
+                            NavigateUrl = "~/Admins/Logs",
                             ImageUrl = "~/res/icon/page.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreLogView").FirstOrDefault<Power>()
                         },
                         new Menu
                         {
                             Name = "配置",
-                            SortIndex = 120,
+                            SortIndex = 900,
                             Remark = "二级菜单",
-                            NavigateUrl = "~/Admin/Config",
+                            NavigateUrl = "~/Admins/Config",
                             ImageUrl = "~/res/icon/cog.png",
                             ViewPower = context.Powers.Where(p => p.Name == "CoreConfigView").FirstOrDefault<Power>()
                         },
@@ -163,6 +163,7 @@ namespace App.DAL
                     Name = "测试",
                     SortIndex = 30,
                     ImageUrl = "~/res/icon/folder.png",
+                    Visible = false,
                     Children = new List<Menu> {
                         new Menu
                         {

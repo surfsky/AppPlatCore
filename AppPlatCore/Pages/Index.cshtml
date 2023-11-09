@@ -2,7 +2,6 @@
 @model App.Pages.IndexModel
 
 @section head {
-
     <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
     <style>
         div#leftRegion {
@@ -17,8 +16,10 @@
     </style>
 }
 
-@section body{
 
+
+
+@section body{
     <div id="header" class="f-widget-header f-mainheader" style="display:none;">
         <table>
             <tr>
@@ -47,24 +48,27 @@
             <td style="width: 260px;">
                 &nbsp;版本：@Model.ProductVersion
             </td>
-            <td style="text-align: center;"></td>
+            <td style="text-align: center;"><email mail-to="surfsky@sina.com">Contact</email></td>
             <td style="width: 260px; text-align: right;">在线人数：&nbsp;@Model.OnlineUserCount</td>
         </tr>
     </table>
 
     <f:RegionPanel ID="RegionPanel1" ShowBorder="false" CssClass="mainpanel" IsViewPort="true">
         <Regions>
-            <f:Region ID="topRegion" ShowBorder="false" ShowHeader="false" RegionPosition="Top" CssClass="topregion bgpanel" ContentEl="#header"></f:Region>
-            <f:Region ID="leftRegion" ShowBorder="false" ShowHeader="true" RegionPosition="Left" CssClass="leftregion bgpanel" RegionSplitIcon="false" RegionSplitWidth="3" RegionSplit="true" Width="200" Title="系统菜单" EnableCollapse="true" Layout="Fit">
+            <f:Region ID="topRegion" ShowBorder="false" ShowHeader="false" RegionPosition="Top" CssClass="topregion bgpanel" ContentEl="#header" >
+            </f:Region>
+
+            <f:Region ID="leftRegion" ShowBorder="false" ShowHeader="true" RegionPosition="Left" CssClass="leftregion bgpanel" RegionSplitIcon="false" RegionSplitWidth="3" RegionSplit="true" Width="200" Title="菜单"  EnableCollapse="true" Layout="Fit" Icon="Application">
                 <Items>
                     <f:Tree ShowBorder="false" ShowHeader="false" ID="treeMenu" EnableSingleClickExpand="true" Nodes="@Model.MenuTreeNodes"></f:Tree>
                 </Items>
             </f:Region>
+
             <f:Region ID="mainRegion" CssClass="centerregion" ShowBorder="false" ShowHeader="false" Layout="Fit" RegionPosition="Center">
                 <Items>
                     <f:TabStrip ID="mainTabStrip" EnableTabCloseMenu="true" ShowBorder="false" ShowInkBar="true">
                         <Tabs>
-                            <f:Tab ID="Tab1" Title="首页" Layout="Fit" Icon="House" EnableIFrame="true" IFrameUrl="~/Admin/Index"></f:Tab>
+                            <f:Tab ID="Tab1" Title="首页" Layout="Fit" Icon="House" EnableIFrame="true" IFrameUrl="~/Admins/Index"></f:Tab>
                         </Tabs>
                         <Tools>
                             <f:Tool IconFont="_Refresh" CssClass="tabtool" ToolTip="刷新" ID="toolRefresh" OnClientClick="onToolRefreshClick();" />
@@ -74,7 +78,9 @@
                     </f:TabStrip>
                 </Items>
             </f:Region>
-            <f:Region ID="bottomRegion" EnableCollapse="false" ShowBorder="false" ShowHeader="false" RegionPosition="Bottom" CssClass="bottomregion bgpanel" ContentEl="#footer"></f:Region>
+
+            <f:Region ID="bottomRegion" EnableCollapse="false" ShowBorder="false" ShowHeader="false" RegionPosition="Bottom" CssClass="bottomregion bgpanel" ContentEl="#footer">
+            </f:Region>
         </Regions>
     </f:RegionPanel>
 
@@ -110,9 +116,6 @@
         function onToolCloseClick(event) {
             var mainTabStrip = F.ui.mainTabStrip;
             mainTabStrip.hideAllTabs();
-            //mainTabStrip.Items.forEach(function(item, index, arr)){
-            //    item.close();
-            //});
         }
 
 
@@ -121,7 +124,6 @@
             var topRegion = F.ui.topRegion;
             var leftRegion = F.ui.leftRegion;
             var bottomRegion = F.ui.bottomRegion;
-
             var currentTool = this;
             F.noAnimation(function () {
                 if (currentTool.iconFont === 'f-iconfont-maximize') {
@@ -149,7 +151,6 @@
         // refreshWhenExist： 添加选项卡时，如果选项卡已经存在，是否刷新内部IFrame
         // iconFont： 选项卡图标字体
         function addExampleTab(tabOptions) {
-
             if (typeof (tabOptions) === 'string') {
                 tabOptions = {
                     id: arguments[0],
@@ -169,7 +170,6 @@
         // 移出当前激活选项卡
         function removeActiveTab() {
             var mainTabStrip = F.ui.mainTabStrip;
-
             var activeTab = mainTabStrip.getActiveTab();
             mainTabStrip.removeTab(activeTab.id);
         }
@@ -177,7 +177,6 @@
 
         // 页面控件初始化完毕后，会调用用户自定义的onReady函数
         F.ready(function () {
-
             var mainTabStrip = F.ui.mainTabStrip;
             var treeMenu = F.ui.treeMenu;
 

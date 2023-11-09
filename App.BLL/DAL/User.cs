@@ -20,7 +20,6 @@ namespace App.DAL
 
         [Display(Name = "邮箱")]
         [StringLength(100)]
-        [Required]
         public string Email { get; set; }
 
         [Display(Name = "密码")]
@@ -30,11 +29,10 @@ namespace App.DAL
 
         [Display(Name = "是否启用")]
         [Required]
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
 
         [Display(Name = "性别")]
         [StringLength(10)]
-        [Required]
         public string Gender { get; set; }
 
         [Display(Name = "中文名")]

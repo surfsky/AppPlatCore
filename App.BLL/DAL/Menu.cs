@@ -8,6 +8,9 @@ using App.Utils;
 
 namespace App.DAL
 {
+    /// <summary>
+    /// 菜单
+    /// </summary>
     public class Menu : ITreeNode, IKeyID, ICloneable
     {
         [Key]
@@ -58,24 +61,25 @@ namespace App.DAL
         public List<Menu> Children { get; set; }
 
 
-        /// <summary>
-        /// 菜单在树形结构中的层级（从0开始）
-        /// </summary>
+        //------------------------------------------------
+        // 扩展属性（不入数据库）
+        //------------------------------------------------
+        /// <summary>菜单在树形结构中的层级（从0开始）</summary>
         [NotMapped]
         public int TreeLevel { get; set; }
 
-        /// <summary>
-        /// 是否可用（默认true）,在模拟树的下拉列表中使用
-        /// </summary>
+        /// <summary>是否可用（默认true）,在模拟树的下拉列表中使用</summary>
         [NotMapped]
         public bool Enabled { get; set; }
 
-        /// <summary>
-        /// 是否叶子节点（默认true）
-        /// </summary>
+        /// <summary>是否叶子节点（默认true）</summary>
         [NotMapped]
         public bool IsTreeLeaf { get; set; }
 
+
+        //------------------------------------------------
+        // 方法
+        //------------------------------------------------
         public object Clone()
         {
             Menu menu = new Menu
@@ -87,6 +91,7 @@ namespace App.DAL
                 Remark = Remark,
                 Target = Target,
                 Expanded = Expanded,
+                Visible = Visible,
                 SortIndex = SortIndex,
                 TreeLevel = TreeLevel,
                 Enabled = Enabled,
