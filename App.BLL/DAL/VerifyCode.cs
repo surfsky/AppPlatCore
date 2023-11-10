@@ -13,9 +13,9 @@ namespace App.DAL
     [UI("基础", "短信验证码")]
     public class VerifyCode : EntityBase<VerifyCode>
     {
-        [UI("验证码")] public string Code { get; set; }
-        [UI("手机号")] public string Mobile { get; set; }
-        [UI("过期时间")] public DateTime ExpireDt { get; set; }
+        [UI("验证码")]   public string Code { get; set; }
+        [UI("手机号")]   public string Mobile { get; set; }
+        [UI("过期时间")] public DateTime? ExpireDt { get; set; }
         [UI("请求来源")] public string Source { get; set; }
 
         //-----------------------------------------------
@@ -25,9 +25,9 @@ namespace App.DAL
         public static IQueryable<VerifyCode> Search(string mobile, DateTime? startDt = null, DateTime? endDt = null)
         {
             IQueryable<VerifyCode> q = Set;
-            if (!String.IsNullOrEmpty(mobile)) q = q.Where(t => t.Mobile.Contains(mobile));
-            if (startDt != null) q = q.Where(t => t.CreateDt >= startDt);
-            if (endDt != null) q = q.Where(t => t.CreateDt <= endDt);
+            if (mobile.IsNotEmpty()) q = q.Where(t => t.Mobile.Contains(mobile));
+            if (startDt != null)     q = q.Where(t => t.CreateDt >= startDt);
+            if (endDt != null)       q = q.Where(t => t.CreateDt <= endDt);
             return q;
         }
 

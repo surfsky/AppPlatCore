@@ -4,45 +4,33 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using App.Entities;
+using App.Utils;
+using Z.EntityFramework.Plus;
 
 namespace App.DAL
 {
-    // https://docs.microsoft.com/en-us/ef/core/modeling/relationships
-    // Many-to-many relationships without an entity class to represent the join table are not yet supported.
-
-    public class RolePower : IKey2ID
+    /// <summary>
+    /// 角色拥有的权限
+    /// </summary>
+    [UI("系统", "角色拥有的权限")]
+    public class RolePower : EntityBase<RolePower>
     {
-        public int RoleID { get; set; }
-        public Role Role { get; set; }
-
-        public int PowerID { get; set; }
-        public Power Power { get; set; }
+        public long RoleID { get; set; }
+        public Power PowerID { get; set; }
+        public virtual Role Role{get;set;}
 
 
-        [NotMapped]
-        public int ID1
+        /// <summary>设置某个角色拥有的权限列表</summary>
+        public static void SetRolePowers(long roleID, List<long> powerIDs)
         {
-            get
+            RolePower.Set.Where(t => t.RoleID == roleID).Delete();
+            foreach (var powerId in powerIDs)
             {
-                return RoleID;
-            }
-            set
-            {
-                RoleID = value;
+                var item = new RolePower() { RoleID = roleID, PowerID = (Power)powerId };
+                item.Save();
             }
         }
-        [NotMapped]
-        public int ID2
-        {
-            get
-            {
-                return PowerID;
-            }
-            set
-            {
-                PowerID = value;
-            }
-        }
-
     }
+
 }

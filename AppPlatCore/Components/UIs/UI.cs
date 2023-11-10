@@ -2,6 +2,7 @@
 using FineUICore;
 using System.Collections.Generic;
 using System;
+using App.Utils;
 
 namespace App.UIs
 {
@@ -71,19 +72,19 @@ namespace App.UIs
         //-----------------------------------------------------------------
         // 模拟树的下拉列表
         //-----------------------------------------------------------------
-        public static List<T> ResolveDDL<T>(List<T> mys) where T : ITreeNode, ICloneable, IKeyID, new()
+        public static List<T> ResolveDDL<T>(List<T> mys) where T : ITreeNode, ICloneable, IID, new()
         {
             return ResolveDDL<T>(mys, -1, true);
         }
 
-        public static List<T> ResolveDDL<T>(List<T> mys, int currentId) where T : ITreeNode, ICloneable, IKeyID, new()
+        public static List<T> ResolveDDL<T>(List<T> mys, int currentId) where T : ITreeNode, ICloneable, IID, new()
         {
             return ResolveDDL<T>(mys, currentId, true);
         }
 
 
         // 将一个树型结构放在一个下列列表中可供选择
-        public static List<T> ResolveDDL<T>(List<T> source, int currentID, bool addRootNode) where T : ITreeNode, ICloneable, IKeyID, new()
+        public static List<T> ResolveDDL<T>(List<T> source, int currentID, bool addRootNode) where T : ITreeNode, ICloneable, IID, new()
         {
             List<T> result = new List<T>();
 

@@ -24,7 +24,7 @@ namespace App.Pages.AI
 
         public void OnGet()
         {
-            PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
+            PowerCoreConfigEdit = CheckPower(Power.ConfigAI);
             TrainPath = Asp.MapPath(ClassifyAI.TrainPath);
             ModelPath = Asp.MapPath(ClassifyAI.ModelPath);
         }

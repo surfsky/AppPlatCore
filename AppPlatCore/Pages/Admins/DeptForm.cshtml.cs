@@ -14,8 +14,8 @@ using Microsoft.EntityFrameworkCore;
 namespace App.Pages.Admin
 {
 
-    [Auth(Powers.DeptView, Powers.DeptNew, Powers.DeptEdit, Powers.DeptDelete)]
-    [CheckPower("CoreDeptEdit")]
+    [Auth(Power.DeptView, Power.DeptNew, Power.DeptEdit, Power.DeptDelete)]
+    [CheckPower(Power.DeptEdit)]
     public class DeptFormModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }

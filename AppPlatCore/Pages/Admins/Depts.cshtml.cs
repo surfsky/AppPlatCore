@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreDeptView")]
+    [CheckPower(Power.DeptView)]
     public class DeptsModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }
@@ -23,9 +23,9 @@ namespace App.Pages.Admin
 
         public void OnGet()
         {
-            PowerCoreDeptNew = CheckPower("CoreDeptNew");
-            PowerCoreDeptEdit = CheckPower("CoreDeptEdit");
-            PowerCoreDeptDelete = CheckPower("CoreDeptDelete");
+            PowerCoreDeptNew = CheckPower(Power.DeptView);
+            PowerCoreDeptEdit = CheckPower(Power.DeptEdit);
+            PowerCoreDeptDelete = CheckPower(Power.DeptDelete);
             Depts = DeptHelper.Depts;
         }
 
@@ -34,7 +34,7 @@ namespace App.Pages.Admin
             if (actionType == "delete")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreDeptDelete"))
+                if (!CheckPower(Power.DeptDelete))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();

@@ -5,14 +5,12 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using App.Utils;
+using App.Entities;
 
 namespace App.DAL
 {
-    public class Dept : ITreeNode, IKeyID, ICloneable
+    public class Dept : EntityBase<Dept>, ITreeNode, ICloneable
     {
-        [Key]
-        public int ID { get; set; }
-
         [Display(Name = "名称")]
         [StringLength(50)]
         [Required]
@@ -26,40 +24,20 @@ namespace App.DAL
         [StringLength(500)]
         public string Remark { get; set; }
 
-
-
         [Display(Name = "上级部门")]
-        public int? ParentID { get; set; }
+        public long? ParentID { get; set; }
+
+
+        //
         public Dept Parent { get; set; }
-
-
-        
         public List<Dept> Children { get; set; }
-
-
         public List<User> Users { get; set; }
 
 
 
-
-
-        /// <summary>
-        /// 菜单在树形结构中的层级（从0开始）
-        /// </summary>
-        [NotMapped]
-        public int TreeLevel { get; set; }
-
-        /// <summary>
-        /// 是否可用（默认true）,在模拟树的下拉列表中使用
-        /// </summary>
-        [NotMapped]
-        public bool Enabled { get; set; }
-
-        /// <summary>
-        /// 是否叶子节点（默认true）
-        /// </summary>
-        [NotMapped]
-        public bool IsTreeLeaf { get; set; }
+        [NotMapped]      public int TreeLevel { get; set; }
+        [NotMapped]      public bool Enabled { get; set; }
+        [NotMapped]      public bool IsTreeLeaf { get; set; }
 
 
         public object Clone()

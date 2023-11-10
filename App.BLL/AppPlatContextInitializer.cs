@@ -9,7 +9,10 @@ using System.Web;
 
 namespace App.DAL
 {
-    // https://docs.microsoft.com/zh-cn/aspnet/core/data/ef-rp/intro
+    /// <summary>
+    /// 数据库初始化
+    /// https://docs.microsoft.com/zh-cn/aspnet/core/data/ef-rp/intro
+    /// </summary>
     public static class AppPlatContextInitializer
     {
         public static void Initialize(AppPlatContext context)
@@ -27,7 +30,6 @@ namespace App.DAL
                 GetDepts().ForEach(d => context.Depts.Add(d));
                 GetUsers().ForEach(u => context.Users.Add(u));
                 GetRoles().ForEach(r => context.Roles.Add(r));
-                GetPowers().ForEach(p => context.Powers.Add(p));
                 context.SaveChanges();
                 GetMenus(context).ForEach(m => context.Menus.Add(m));  // 添加菜单时需要指定ViewPower，所以上面需要先保存到数据库
                 context.SaveChanges();
@@ -91,7 +93,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/Users",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreUserView").FirstOrDefault<Power>()
+                            Power = Power.UserView
                         },
                         new Menu
                         {
@@ -100,7 +102,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/DeptUser",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreDeptUserView").FirstOrDefault<Power>()
+                            Power = Power.DeptView
                         },
                         new Menu
                         {
@@ -109,7 +111,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/RoleUser",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreRoleUserView").FirstOrDefault<Power>()
+                            Power = Power.RoleUserEdit
                         },
                         new Menu
                         {
@@ -118,7 +120,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/RolePower",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreRolePowerView").FirstOrDefault<Power>()
+                            Power = Power.RolePowerEdit
                         },
                         new Menu
                         {
@@ -127,7 +129,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/Menus",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreMenuView").FirstOrDefault<Power>()
+                            Power = Power.ConfigMenu
                         },
                         new Menu
                         {
@@ -136,7 +138,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/Onlines",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreOnlineView").FirstOrDefault<Power>()
+                            Power = Power.MonitorOnline
                         },
                         new Menu
                         {
@@ -145,7 +147,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/Logs",
                             ImageUrl = "~/res/icon/page.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreLogView").FirstOrDefault<Power>()
+                            Power = Power.MonitorLog
                         },
                         new Menu
                         {
@@ -154,7 +156,7 @@ namespace App.DAL
                             Remark = "二级菜单",
                             NavigateUrl = "~/Admins/Config",
                             ImageUrl = "~/res/icon/cog.png",
-                            ViewPower = context.Powers.Where(p => p.Name == "CoreConfigView").FirstOrDefault<Power>()
+                            Power = Power.ConfigSite
                         },
                     }
                 },
@@ -248,272 +250,6 @@ namespace App.DAL
         }
 
  
-        private static List<Power> GetPowers()
-        {
-            var powers = new List<Power>
-            {
-                new Power
-                {
-                    Name = "CoreUserView",
-                    Title = "浏览用户列表",
-                    GroupName = "CoreUser"
-                },
-                new Power
-                {
-                    Name = "CoreUserNew",
-                    Title = "新增用户",
-                    GroupName = "CoreUser"
-                },
-                new Power
-                {
-                    Name = "CoreUserEdit",
-                    Title = "编辑用户",
-                    GroupName = "CoreUser"
-                },
-                new Power
-                {
-                    Name = "CoreUserDelete",
-                    Title = "删除用户",
-                    GroupName = "CoreUser"
-                },
-                new Power
-                {
-                    Name = "CoreUserChangePassword",
-                    Title = "修改用户登陆密码",
-                    GroupName = "CoreUser"
-                },
-                new Power
-                {
-                    Name = "CoreRoleView",
-                    Title = "浏览角色列表",
-                    GroupName = "CoreRole"
-                },
-                new Power
-                {
-                    Name = "CoreRoleNew",
-                    Title = "新增角色",
-                    GroupName = "CoreRole"
-                },
-                new Power
-                {
-                    Name = "CoreRoleEdit",
-                    Title = "编辑角色",
-                    GroupName = "CoreRole"
-                },
-                new Power
-                {
-                    Name = "CoreRoleDelete",
-                    Title = "删除角色",
-                    GroupName = "CoreRole"
-                },
-                new Power
-                {
-                    Name = "CoreRoleUserView",
-                    Title = "浏览角色用户列表",
-                    GroupName = "CoreRoleUser"
-                },
-                new Power
-                {
-                    Name = "CoreRoleUserNew",
-                    Title = "向角色添加用户",
-                    GroupName = "CoreRoleUser"
-                },
-                new Power
-                {
-                    Name = "CoreRoleUserDelete",
-                    Title = "从角色中删除用户",
-                    GroupName = "CoreRoleUser"
-                },
-                new Power
-                {
-                    Name = "CoreOnlineView",
-                    Title = "浏览在线用户列表",
-                    GroupName = "CoreOnline"
-                },
-                new Power
-                {
-                    Name = "CoreConfigView",
-                    Title = "浏览全局配置参数",
-                    GroupName = "CoreConfig"
-                },
-                new Power
-                {
-                    Name = "CoreConfigEdit",
-                    Title = "修改全局配置参数",
-                    GroupName = "CoreConfig"
-                },
-                new Power
-                {
-                    Name = "CoreMenuView",
-                    Title = "浏览菜单列表",
-                    GroupName = "CoreMenu"
-                },
-                new Power
-                {
-                    Name = "CoreMenuNew",
-                    Title = "新增菜单",
-                    GroupName = "CoreMenu"
-                },
-                new Power
-                {
-                    Name = "CoreMenuEdit",
-                    Title = "编辑菜单",
-                    GroupName = "CoreMenu"
-                },
-                new Power
-                {
-                    Name = "CoreMenuDelete",
-                    Title = "删除菜单",
-                    GroupName = "CoreMenu"
-                },
-                new Power
-                {
-                    Name = "CoreLogView",
-                    Title = "浏览日志列表",
-                    GroupName = "CoreLog"
-                },
-                new Power
-                {
-                    Name = "CoreLogDelete",
-                    Title = "删除日志",
-                    GroupName = "CoreLog"
-                },
-                new Power
-                {
-                    Name = "CoreTitleView",
-                    Title = "浏览职务列表",
-                    GroupName = "CoreTitle"
-                },
-                new Power
-                {
-                    Name = "CoreTitleNew",
-                    Title = "新增职务",
-                    GroupName = "CoreTitle"
-                },
-                new Power
-                {
-                    Name = "CoreTitleEdit",
-                    Title = "编辑职务",
-                    GroupName = "CoreTitle"
-                },
-                new Power
-                {
-                    Name = "CoreTitleDelete",
-                    Title = "删除职务",
-                    GroupName = "CoreTitle"
-                },
-                new Power
-                {
-                    Name = "CoreTitleUserView",
-                    Title = "浏览职务用户列表",
-                    GroupName = "CoreTitleUser"
-                },
-                new Power
-                {
-                    Name = "CoreTitleUserNew",
-                    Title = "向职务添加用户",
-                    GroupName = "CoreTitleUser"
-                },
-                new Power
-                {
-                    Name = "CoreTitleUserDelete",
-                    Title = "从职务中删除用户",
-                    GroupName = "CoreTitleUser"
-                },
-                new Power
-                {
-                    Name = "CoreDeptView",
-                    Title = "浏览部门列表",
-                    GroupName = "CoreDept"
-                },
-                new Power
-                {
-                    Name = "CoreDeptNew",
-                    Title = "新增部门",
-                    GroupName = "CoreDept"
-                },
-                new Power
-                {
-                    Name = "CoreDeptEdit",
-                    Title = "编辑部门",
-                    GroupName = "CoreDept"
-                },
-                new Power
-                {
-                    Name = "CoreDeptDelete",
-                    Title = "删除部门",
-                    GroupName = "CoreDept"
-                },
-                new Power
-                {
-                    Name = "CoreDeptUserView",
-                    Title = "浏览部门用户列表",
-                    GroupName = "CoreDeptUser"
-                },
-                new Power
-                {
-                    Name = "CoreDeptUserNew",
-                    Title = "向部门添加用户",
-                    GroupName = "CoreDeptUser"
-                },
-                new Power
-                {
-                    Name = "CoreDeptUserDelete",
-                    Title = "从部门中删除用户",
-                    GroupName = "CoreDeptUser"
-                },
-                new Power
-                {
-                    Name = "CorePowerView",
-                    Title = "浏览权限列表",
-                    GroupName = "CorePower"
-                },
-                new Power
-                {
-                    Name = "CorePowerNew",
-                    Title = "新增权限",
-                    GroupName = "CorePower"
-                },
-                new Power
-                {
-                    Name = "CorePowerEdit",
-                    Title = "编辑权限",
-                    GroupName = "CorePower"
-                },
-                new Power
-                {
-                    Name = "CorePowerDelete",
-                    Title = "删除权限",
-                    GroupName = "CorePower"
-                },
-                new Power
-                {
-                    Name = "CoreRolePowerView",
-                    Title = "浏览角色权限列表",
-                    GroupName = "CoreRolePower"
-                },
-                new Power
-                {
-                    Name = "CoreRolePowerEdit",
-                    Title = "编辑角色权限",
-                    GroupName = "CoreRolePower"
-                },
-                new Power
-                {
-                    Name = "TestPage1View",
-                    Title = "浏览测试页面一",
-                    GroupName = "Test"
-                },
-                new Power
-                {
-                    Name = "TestPage2View",
-                    Title = "浏览测试页面二",
-                    GroupName = "Test"
-                }
-            };
-
-            return powers;
-        }
 
         private static List<Role> GetRoles()
         {
@@ -592,7 +328,7 @@ namespace App.DAL
                 Gender = "男",
                 Password = PasswordUtil.CreateDbPassword("admin"),
                 ChineseName = "超级管理员",
-                Email = "admin@fineui.com",
+                Email = "admin@189.com",
                 Enabled = true,
                 CreateTime = DateTime.Now
             });

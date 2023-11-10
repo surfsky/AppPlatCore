@@ -1,4 +1,5 @@
 ﻿using App.DAL;
+using App.Utils;
 using App.Web;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication;
@@ -127,7 +128,7 @@ namespace App.Components
         //--------------------------------------------------
         // 在线用户
         //--------------------------------------------------
-        public static void UpdateOnlineUser(int? userID)
+        public static void UpdateOnlineUser(long? userID)
         {
             if (userID == null)
                 return;
@@ -149,7 +150,7 @@ namespace App.Components
             }
         }
 
-        public static void RegisterOnlineUser(int userID)
+        public static void RegisterOnlineUser(long userID)
         {
             var db = Common.GetDbConnection();
             DateTime now = DateTime.Now;
@@ -184,17 +185,12 @@ namespace App.Components
         // 权限校验
         //--------------------------------------------------
         /// <summary>检查当前用户是否拥有某个权限</summary>
-        public static bool CheckPower(HttpContext context, string powerName)
+        public static bool CheckPower(HttpContext context, Power power)
         {
-            // 如果权限名为空，则放行
-            if (string.IsNullOrEmpty(powerName))
-                return true;
-
             // 当前登陆用户的权限列表
-            List<string> rolePowerNames = GetRolePowerNames(context);
-            if (rolePowerNames.Contains(powerName))
+            List<Power> powers = GetUserPowers(context);
+            if (powers.Contains(power))
                 return true;
-
             return false;
         }
 
@@ -217,15 +213,15 @@ namespace App.Components
         // http://blog.163.com/zjlovety@126/blog/static/224186242010070024282/
         // http://www.cnblogs.com/gaoshuai/articles/1863231.html
         /// <summary>当前登录用户的角色列表</summary>
-        public static List<int> GetIdentityRoleIDs(HttpContext context)
+        public static List<long> GetIdentityRoleIDs(HttpContext context)
         {
-            List<int> roleIDs = new List<int>();
+            var roleIDs = new List<long>();
             if (context.User.Identity.IsAuthenticated)
             {
                 string userData = context.User.Claims.Where(x => x.Type == "RoleIDs").FirstOrDefault().Value;
                 foreach (string roleID in userData.Split(','))
                 {
-                    if (!string.IsNullOrEmpty(roleID))
+                    if (roleID.IsNotEmpty())
                         roleIDs.Add(Convert.ToInt32(roleID));
                 }
             }
@@ -234,41 +230,17 @@ namespace App.Components
         }
 
         /// <summary>获取当前登录用户拥有的全部权限列表</summary>
-        public static List<string> GetRolePowerNames(HttpContext context)
+        public static List<Power> GetUserPowers(HttpContext context)
         {
-            var db = Common.GetDbConnection();
-
             // 将用户拥有的权限列表保存在Session中，这样就避免每个请求多次查询数据库
-            if (context.Session.GetObject<List<string>>("UserPowerList") == null)
+            return Asp.GetSessionData<List<Power>>("UserPowers", () =>
             {
-                List<string> rolePowerNames = new List<string>();
-
-                if (GetIdentityName(context) == "admin")
-                {
-                    // 超级管理员拥有所有权限
-                    rolePowerNames = db.Powers.Select(p => p.Name).ToList();
-                }
-                else
-                {
-                    List<int> roleIDs = GetIdentityRoleIDs(context);
-                    var roles = db.Roles
-                        .Include(r => r.RolePowers)
-                        .ThenInclude(rp => rp.Power)
-                        .Where(r => roleIDs.Contains(r.ID))
-                        .ToList();
-                    foreach (var role in roles)
-                    {
-                        foreach (var rolepower in role.RolePowers)
-                        {
-                            if (!rolePowerNames.Contains(rolepower.Power.Name))
-                                rolePowerNames.Add(rolepower.Power.Name);
-                        }
-                    }
-                }
-
-                context.Session.SetObject("UserPowerList", rolePowerNames);
-            }
-            return context.Session.GetObject<List<string>>("UserPowerList");
+                var name = GetIdentityName(context);
+                if (name.IsEmpty())
+                    return new List<Power>();
+                var user = User.Set.FirstOrDefault(t => t.Name == name);
+                return user.GetPowers();
+            });
         }
     }
 }

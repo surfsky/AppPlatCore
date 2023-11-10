@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreDeptUserView")]
+    [CheckPower(Power.DeptView)]
     public class DeptUserModel : BaseAdminModel
     {
         public IEnumerable<Dept> Depts { get; set; }
@@ -26,9 +26,9 @@ namespace App.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync()
         {
-            PowerCoreDeptView = CheckPower("CoreDeptView");
-            PowerCoreDeptUserNew = CheckPower("CoreDeptUserNew");
-            PowerCoreDeptUserDelete = CheckPower("CoreDeptUserDelete");
+            PowerCoreDeptView = CheckPower(Power.DeptView);
+            PowerCoreDeptUserNew = CheckPower(Power.DeptEdit);
+            PowerCoreDeptUserDelete = CheckPower(Power.DeptEdit);
 
             // 表格1
             Depts = DeptHelper.Depts;
@@ -41,14 +41,14 @@ namespace App.Pages.Admin
             return Page();
         }
 
-        private async Task<IEnumerable<User>> DeptUser_LoadDataAsync(int grid1SelectedRowID)
+        private async Task<IEnumerable<User>> DeptUser_LoadDataAsync(long grid1SelectedRowID)
         {
             var grid2PagingInfo = new PagingInfo("Name", false);
             Grid2PagingInfo = grid2PagingInfo;
             return await DeptUser_GetDataAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);
         }
 
-        private async Task<IEnumerable<User>> DeptUser_GetDataAsync(PagingInfo pagingInfo, int deptID, string ttbSearchMessage)
+        private async Task<IEnumerable<User>> DeptUser_GetDataAsync(PagingInfo pagingInfo, long deptID, string ttbSearchMessage)
         {
             IQueryable<User> q = DB.Users;
             string searchText = ttbSearchMessage?.Trim();
@@ -81,7 +81,7 @@ namespace App.Pages.Admin
             else if (actionType == "delete")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreDeptUserDelete"))
+                if (!CheckPower(Power.DeptEdit))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();

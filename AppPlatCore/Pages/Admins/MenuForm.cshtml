@@ -22,7 +22,7 @@
                     <f:TextBox For="Menu.Name" />
                     <f:DropDownList For="Menu.ParentID" EnableSimulateTree="true" DataTextField="Name" DataValueField="ID" DataSimulateTreeLevelField="TreeLevel"  DataEnableSelectField="Enabled" DataSource="@Model.Menus" />
                     <f:TextBox For="Menu.SortIndex" />
-                    <f:TextBox For="Menu.ViewPowerID" Text="@Model.Menu?.ViewPower?.Name" Name="ViewPowerName" />
+                    <f:TextBox For="Menu.Power" Text="@Model.Menu?.Power" Name="PowerName" />
                     <f:TextBox For="Menu.NavigateUrl" />
                     <f:TextBox For="Menu.ImageUrl" />
                     <f:RadioButtonList ID="rblIconList" ColumnNumber="4" ShowEmptyLabel="true" Items="@Model.IconItems" />

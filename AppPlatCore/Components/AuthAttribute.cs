@@ -12,13 +12,13 @@ namespace App.Components
     public class AuthAttribute : Attribute
     {
         /// <summary>查看权限</summary>
-        public Powers? ViewPower { get; set; }
+        public Power? ViewPower { get; set; }
         /// <summary>新建权限</summary>
-        public Powers? NewPower { get; set; }
+        public Power? NewPower { get; set; }
         /// <summary>编辑权限</summary>
-        public Powers? EditPower { get; set; }
+        public Power? EditPower { get; set; }
         /// <summary>删除权限</summary>
-        public Powers? DeletePower { get; set; }
+        public Power? DeletePower { get; set; }
 
         /// <summary>校验登陆</summary>
         public bool AuthLogin { get; set; } = false;
@@ -40,14 +40,14 @@ namespace App.Components
         // 构造方法（注：Attribute 构造函数不支持可空类型，只能多写几个构造方法了）
         public AuthAttribute() { }
         public AuthAttribute(bool isSafe) { IsSafe = isSafe; }
-        public AuthAttribute(Powers viewPower)
+        public AuthAttribute(Power viewPower)
         {
             ViewPower = viewPower;
             NewPower = viewPower;
             EditPower = viewPower;
             DeletePower = viewPower;
         }
-        public AuthAttribute(Powers viewPower, Powers newPower, Powers editPower, Powers deletePower)
+        public AuthAttribute(Power viewPower, Power newPower, Power editPower, Power deletePower)
         {
             ViewPower = viewPower;
             NewPower = newPower;

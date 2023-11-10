@@ -4,14 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using App.Entities;
 
 namespace App.DAL
 {
-    public class Role : IKeyID
+    public class Role : EntityBase<Role>
     {
-        [Key]
-        public int ID { get; set; }
-
         [Display(Name="名称")]
         [StringLength(50)]
         [Required]
@@ -22,12 +20,7 @@ namespace App.DAL
         public string Remark { get; set; }
 
 
-        //public List<User> Users { get; set; }
-        //public List<Power> Powers { get; set; }
-
-
         public List<RoleUser> RoleUsers { get; set; }
-
         public List<RolePower> RolePowers { get; set; }
 
         public override string ToString()

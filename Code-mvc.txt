@@ -544,29 +544,70 @@ ResultFilterAttribute
 
 
 
-#--------------------------------------------
-# TagHelper
-#--------------------------------------------
-内置Tag Helpers列表
+--------------------------------------------
+TagHelper
+https://blog.csdn.net/sD7O95O/article/details/132484920
+https://github.com/bingbing-gui/Asp.Net-Core-Skill/tree/master/Fundamentals/AspNetCore.TagHelpers/AspNetCore.BuiltInTagHelpers
+--------------------------------------------
 表单相关Tag Helpers：
+    Form
+        asp-controller 根据应用程序的路由指定目标Controller，如果省略，使用当前视图文件所在的控制器
+        asp-action  根据应用程序的路由指定目标Action方法，如果省略，使用视图文件当前Action方法
+        asp-route 通过指定路由的名称生成action属性
+        asp-route-*  指定url额外的段，例如 asp-route-id 使用提供id段的值
+        asp-area  指定目标区域的名称
+        asp-antiforgery 生成一个隐藏的请求验证令牌用来防止跨站点请求攻击，经常和[ValidateAntiForgeryToken]特性一起使用，[ValidateAntiForgeryToken]使用在HTTP Post方法上
+    FormAction
+    Input
+    Label
+    Option
+    Select
+    TextArea
+    ValidationMessage
+    ValidationSummary
 
-Form
-FormAction
-Input
-Label
-Option
-Select
-TextArea
-ValidationMessage
-ValidationSummary
 缓存：
+    Cache
+        <cache expires-after="@TimeSpan.FromSeconds(20)">
+            Date Time: @DateTime.Now.ToString("HH:mm:ss")
+        </cache>
+    Distributed
 
-Cache
-Distributed
-其他：文章来源地址:https://www.yii666.com/article/674511.html
+其他：
+    Image
+    Anchor
+    Script
+        asp-src-include   指定在视图中包含的JavaScript文件
+        asp-src-exclude   指定在视图中排除的JavaScript文件
+        asp-append-version  指定是否把文件版本附加到连接地址，使用 Cache Busting
+        asp-fallback-src-include  如果使用的CDN出现一些问题时，指定备用的JavaScript文件
+        asp-fallback-src-exclude  如果使用CDN出现一些问题，指定排除的JavaScript文件
+        asp-fallback-test  JavaScript代码段，用来测试能否正确加载CDN
+    Link(css)
+        asp-href-include                  指定视图中包含的CSS文件
+        asp-href-exclude                  指定视图中排除的CSS文件
+        asp-append-version                指定css文件查询的版本号，用作Cache Busting
+        asp-fallback-href-include         指定包含的CSS文件，在CDN出现问题时
+        asp-fallback-href-exclude         指定排除的CSS文件，在CDN出现问题时
+        asp-fallback-href-test-class      指定一个CSS文件类测试CDN是否可用
+        asp-fallback-href-test-property   使用CSS类的属性测试CDN
+        asp-fallback-href-test-value      指定一个测试值，用来确定CDN是否可用
+    Environment
 
-Image
-Anchor
-Script
-Link
-Environment
+
+TrTagHelper
+    using Microsoft.AspNetCore.Razor.TagHelpers; 
+    namespace WebApp.TagHelpers 
+    { 
+      [HtmlTargetElement("tr", Attributes = "bg-color,text-color", ParentTag = "thead")] 
+      public class TrTagHelper: TagHelper 
+      { 
+        public string BgColor { get; set; } = "dark"; 
+        public string TextColor { get; set; } = "white"; 
+        public override void Process(TagHelperContext context, TagHelperOutput output) 
+        { 
+          output.Attributes.SetAttribute(
+            "class", $"bg-{BgColor} text-center text-{TextColor}"); 
+         } 
+       }
+    }

@@ -17,7 +17,7 @@ using App.Utils;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreUserEdit")]
+    [CheckPower(Power.UserEdit)]
     public class UserFormModel : BaseAdminModel
     {
         [BindProperty]
@@ -37,8 +37,8 @@ namespace App.Pages.Admin
             {
                 CurrentUser = await DB.Users
                     .Include(u => u.Dept)
-                    .Include(u => u.RoleUsers)
-                    .ThenInclude(ru => ru.Role)
+                    //.Include(u => u.RoleUsers)
+                    //.ThenInclude(ru => ru.Role)
                     .Where(m => m.ID == id).AsNoTracking().FirstOrDefaultAsync();
                 if (CurrentUser == null)
                     return Content("无效参数！");
@@ -46,8 +46,11 @@ namespace App.Pages.Admin
                     return Content("你无权编辑超级管理员！");
 
                 // 用户所属角色
-                SelectedRoleNames = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.Role.Name).ToArray());
-                SelectedRoleIDs = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.RoleID).ToArray());
+                var roles = RoleUser.Search(userId: id);
+                this.SelectedRoleNames = roles.Select(t => t.Role.Name).ToSeparatedString(",");
+                this.SelectedRoleIDs = roles.Select(t => t.RoleID).ToSeparatedString(",");
+                //SelectedRoleNames = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.Role.Name).ToArray());
+                //SelectedRoleIDs = String.Join(",", CurrentUser.RoleUsers.Select(ru => ru.RoleID).ToArray());
 
                 // 用户所属部门
                 if (CurrentUser.Dept != null)
@@ -98,9 +101,6 @@ namespace App.Pages.Admin
             ModelState.Remove("Name");
             ModelState.Remove("Password");
 
-            //string hfSelectedDept  = values["hfSelectedDept"].ToString();
-            //string hfSelectedRole  = values["hfSelectedRole"].ToString();
-            //string hfSelectedTitle = values["hfSelectedTitle"].ToString();
             string imgPhotoUrl     = values["imgPhotoUrl"].ToString();
             CurrentUser.Photo = imgPhotoUrl.TrimQuery();
             if (ModelState.IsValid)
@@ -119,18 +119,12 @@ namespace App.Pages.Admin
                     CurrentUser.Password = PasswordUtil.CreateDbPassword(CurrentUser.Password.Trim());
                     CurrentUser.CreateTime = DateTime.Now;
 
-                    if (hfSelectedRole.IsNotEmpty())
-                    {
-                        int[] roleIDs = Components.StringUtil.GetIntArrayFromString(hfSelectedRole);
-                        AddEntities2<RoleUser>(roleIDs, CurrentUser.ID);
-                    }
-                    if (hfSelectedDept.IsNotEmpty())
-                        CurrentUser.DeptID = Convert.ToInt32(hfSelectedDept);
+                    RoleUser.SetUserRoles(CurrentUser.ID, hfSelectedRole.SplitLong());
+                    CurrentUser.DeptID = hfSelectedDept.ParseLong();
                     DB.Users.Add(CurrentUser);
                 }
                 else
                 {
-                    // 更新
                     // 更新部分字段（先从数据库检索用户，再覆盖用户输入值，注意不更新Name，Password，CreateTime等字段）
                     var item = DB.Users
                         .Include(u => u.Dept)
@@ -150,15 +144,9 @@ namespace App.Pages.Admin
                     item.Title = CurrentUser.Title;
 
                     // role, dept
-                    int[] roleIDs = Components.StringUtil.GetIntArrayFromString(hfSelectedRole);
-                    ReplaceEntities2<RoleUser>(item.RoleUsers, roleIDs, item.ID);
-                    if (hfSelectedDept.IsEmpty())
-                        item.DeptID = null;
-                    else
-                        item.DeptID = Convert.ToInt32(hfSelectedDept);
-
+                    RoleUser.SetUserRoles(item.ID, hfSelectedRole.SplitLong());
+                    item.DeptID = hfSelectedDept.ParseLong();
                 }
-
 
                 await DB.SaveChangesAsync();
                 ActiveWindow.HidePostBack();

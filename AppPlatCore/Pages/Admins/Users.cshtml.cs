@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreUserView")]
+    [CheckPower(Power.UserView)]
     public class UsersModel : BaseAdminModel
     {
         public IEnumerable<User> Users { get; set; }
@@ -25,10 +25,10 @@ namespace App.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            PowerCoreUserNew = CheckPower("CoreUserNew");
-            PowerCoreUserEdit = CheckPower("CoreUserEdit");
-            PowerCoreUserDelete = CheckPower("CoreUserDelete");
-            PowerCoreUserChangePassword = CheckPower("CoreUserChangePassword");
+            PowerCoreUserNew = CheckPower(Power.UserNew);
+            PowerCoreUserEdit = CheckPower(Power.UserEdit);
+            PowerCoreUserDelete = CheckPower(Power.UserDelete);
+            PowerCoreUserChangePassword = CheckPower(Power.UserPassword);
 
             var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
@@ -55,9 +55,9 @@ namespace App.Pages.Admin
 
         public async Task<IActionResult> OnPostUserList_DoPostBackAsync(
             string[] Grid1_fields, int Grid1_pageIndex, string Grid1_sortField, string Grid1_sortDirection,
-            string ttbSearchMessage, string rblEnableStatus, int ddlGridPageSize, string actionType, int[] deletedRowIDs)
+            string ttbSearchMessage, string rblEnableStatus, int ddlGridPageSize, string actionType, long[] deletedRowIDs)
         {
-            List<int> ids = new List<int>();
+            List<long> ids = new List<long>();
             if (deletedRowIDs != null)
             {
                 ids.AddRange(deletedRowIDs);
@@ -79,7 +79,7 @@ namespace App.Pages.Admin
             else if (actionType == "delete")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreUserDelete"))
+                if (!CheckPower(Power.UserDelete))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();
@@ -91,7 +91,7 @@ namespace App.Pages.Admin
             else if (actionType == "enable")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreUserEdit"))
+                if (!CheckPower(Power.UserEdit))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();
@@ -103,7 +103,7 @@ namespace App.Pages.Admin
             else if (actionType == "disable")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreUserEdit"))
+                if (!CheckPower(Power.UserEdit))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();

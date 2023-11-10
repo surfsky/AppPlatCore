@@ -22,7 +22,7 @@ namespace App.Pages.Admin
 
         public async Task<IActionResult> OnPostChangePassword_btnSave_OnClickAsync(string tbxOldPassword, string tbxNewPassword, string tbxConfirmNewPassword)
         {
-            int? id = GetIdentityID();
+            long? id = GetIdentityID();
 
             // 检查当前密码是否正确
             string oldPass = tbxOldPassword.Trim();

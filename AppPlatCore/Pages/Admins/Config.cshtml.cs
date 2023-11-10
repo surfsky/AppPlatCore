@@ -12,7 +12,7 @@ using App.Components;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreConfigView")]
+    [CheckPower(Power.ConfigSite)]
     public class ConfigModel : BaseAdminModel
     {
         public bool PowerCoreConfigEdit { get; set; }
@@ -22,7 +22,7 @@ namespace App.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            PowerCoreConfigEdit = CheckPower("CoreConfigEdit");
+            PowerCoreConfigEdit = CheckPower(Power.ConfigSite);
             Config = SiteConfig.Instance; //.Set.FirstOrDefault(); //.Instance;
             await Task.Run(() =>
             {
@@ -35,7 +35,7 @@ namespace App.Pages.Admin
         public IActionResult OnPostConfig_btnSave_OnClick(int ddlPageSize, string tbxHelpList, string tbTitle, string tbIcon, string tbLoginBg, string tbBeiAnNo)
         {
             // 在操作之前进行权限检查
-            if (!CheckPower("CoreConfigEdit"))
+            if (!CheckPower(Power.ConfigSite))
             {
                 Auth.CheckPowerFailWithAlert();
                 return UIHelper.Result();

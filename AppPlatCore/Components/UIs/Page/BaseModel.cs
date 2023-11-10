@@ -75,25 +75,16 @@ namespace App
 
         #region 用户与权限检查
 
-        // http://blog.163.com/zjlovety@126/blog/static/224186242010070024282/
-        // http://www.cnblogs.com/gaoshuai/articles/1863231.html
-        /// <summary>当前登录用户的角色列表</summary>
-        protected List<int> GetIdentityRoleIDs()
-        {
-            return Auth.GetIdentityRoleIDs(HttpContext);
-        }
-
-
         /// <summary>检查当前用户是否拥有某个权限</summary>
-        protected bool CheckPower(string powerName)
+        protected bool CheckPower(Power power)
         {
-            return Auth.CheckPower(HttpContext, powerName);
+            return Auth.CheckPower(HttpContext, power);
         }
 
         /// <summary>获取当前登录用户拥有的全部权限列表</summary>
-        protected List<string> GetRolePowerNames()
+        protected List<Power> GetRolePowers()
         {
-            return Auth.GetRolePowerNames(HttpContext);
+            return Auth.GetUserPowers(HttpContext);
         }
 
 
@@ -103,7 +94,7 @@ namespace App
             return Auth.GetIdentityName(HttpContext);
         }
         /// <summary>当前登录用户标识符</summary>
-        protected int? GetIdentityID()
+        protected long? GetIdentityID()
         {
             return Auth.GetIdentityID(HttpContext);
         }

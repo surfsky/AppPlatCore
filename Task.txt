@@ -27,10 +27,21 @@ FineUI 控件优化
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-准备用 Powers 枚举来实现权限校验
+/迁移到 EntityBase
+/准备用 Powers 枚举来实现权限校验
     角色权限管理
     页面访问控制
     FormPage 再看如何简化，融合到FormPageModel中去
+/应用重新改为 AppPlat 或 AppPlatCore（算了）
+RolePower 页面无法保存数据
+完善 Menus 页面，列表显示 PowerName
+完善 MenuForm 页面，用下拉列表或弹窗显示权限
+处理掉 DeptHelper、MenuHelper
+
+
+做个文件浏览页面？显示上传的文件
+做好完备日志
+
 
 FixBug: UserForm 如何跳过 FileUpload 表单校验
 用户列表页面显示缩略图: 图像列

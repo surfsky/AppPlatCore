@@ -4,14 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using App.Entities;
 
 namespace App.DAL
 {
-    public class Online : IKeyID
+    public class Online : EntityBase<Online>
     {
-        [Key]
-        public int ID { get; set; }
-
         [Display(Name = "IP地址")]
         [StringLength(50)]
         public string IPAdddress { get; set; }
@@ -27,7 +25,7 @@ namespace App.DAL
 
         [Display(Name = "用户")]
         [Required]
-        public int UserID { get; set; }
+        public long UserID { get; set; }
         public User User { get; set; }
 
 

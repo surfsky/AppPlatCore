@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreOnlineView")]
+    [CheckPower(Power.MonitorOnline)]
     public class OnlinesModel : BaseAdminModel
     {
         public IEnumerable<Online> Onlines { get; set; }

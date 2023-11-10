@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using App.DAL;
 using FineUICore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,18 +16,18 @@ namespace App.Components
     public class CheckPowerAttribute : ResultFilterAttribute
     {
         /// <summary>权限名称</summary>
-        public string Name { get; set; }
+        public Power Power { get; set; }
 
-        public CheckPowerAttribute(string name = "")
+        public CheckPowerAttribute(Power power)
         {
-            Name = name;
+            Power = power;
         }
 
 
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             HttpContext context = filterContext.HttpContext;
-            if (!string.IsNullOrEmpty(Name) && !Auth.CheckPower(context, Name))
+            if (!Auth.CheckPower(context, Power))
             {
                 if (context.Request.Method == "GET")
                 {

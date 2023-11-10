@@ -25,6 +25,9 @@ namespace App.Pages
         public string ConfigTitle { get; set; }
         public FineUICore.Menu SystemHelpMenu { get; set; } = new FineUICore.Menu();
 
+        //-------------------------------------------------
+        // 首次进入页面
+        //-------------------------------------------------
         public async Task OnGetAsync()
         {
             // 用户菜单
@@ -34,7 +37,7 @@ namespace App.Pages
                 UI.ShowNotify("系统管理员尚未给你配置菜单！");
                 return;
             }
-            MenuTreeNodes = GetTreeNodes(menus).ToArray();
+            MenuTreeNodes = GetMenuTreeNodes(menus).ToArray();
 
             //
             UserName = GetIdentityName();
@@ -44,7 +47,9 @@ namespace App.Pages
             SystemHelpMenu = GetSystemHelpMenu();  // 动态组织客户端菜单
         }
 
-        // 帮助菜单
+        //-------------------------------------------------
+        // 顶部系统帮助菜单
+        //-------------------------------------------------
         private FineUICore.Menu GetSystemHelpMenu()
         {
             FineUICore.Menu menu = new FineUICore.Menu();
@@ -69,19 +74,19 @@ namespace App.Pages
         }
 
 
-        #region GetTreeNodes
-
+        //-------------------------------------------------
+        // 左侧用户菜单
+        //-------------------------------------------------
         /// <summary>创建树菜单</summary>
-        private IList<TreeNode> GetTreeNodes(List<DAL.Menu> menus)
+        private IList<TreeNode> GetMenuTreeNodes(List<DAL.Menu> menus)
         {
             IList<TreeNode> nodes = new List<TreeNode>();
             ResolveMenuTree(menus, null, nodes);
-            //nodes[0].Expanded = true; // 展开第一个树节点
             return nodes;
         }
 
         /// <summary>生成菜单树</summary>
-        private int ResolveMenuTree(List<DAL.Menu> menus, int? parentMenuID, IList<TreeNode> nodes)
+        private int ResolveMenuTree(List<DAL.Menu> menus, long? parentMenuID, IList<TreeNode> nodes)
         {
             int count = 0;
             foreach (var menu in menus.Where(m => m.ParentID == parentMenuID && m.Visible != false))
@@ -127,42 +132,30 @@ namespace App.Pages
             return count;
         }
 
-        #endregion
-
-        #region ResolveUserMenuList
 
         // 获取用户可用的菜单列表
         private List<DAL.Menu> ResolveUserMenuList()
         {
-            // 当前登陆用户的权限列表
-            List<string> rolePowerNames = GetRolePowerNames();
-
-            // 当前用户所属角色可用的菜单列表
-            List<DAL.Menu> menus = new List<DAL.Menu>();
-
+            var powers = GetRolePowers();
+            var menus = new List<DAL.Menu>();
             foreach (var menu in MenuHelper.Menus)
             {
                 // 如果此菜单不属于任何模块，或者此用户所属角色拥有对此模块的权限
-                if (menu.ViewPowerID == null || rolePowerNames.Contains(menu.ViewPower.Name))
-                {
+                if (menu.Power == null || powers.Contains(menu.Power.Value))
                     menus.Add(menu);
-                }
             }
-
             return menus;
         }
 
-        #endregion
 
-        #region btnSignOut_Click
+        //-------------------------------------------------
+        // 注销
+        //-------------------------------------------------
         public async Task<IActionResult> OnPostBtnSignOut_ClickAsync()
         {
             await HttpContext.SignOutAsync();
             HttpContext.Session.Clear();
             return RedirectToPage("/Login");
         }
-
-
-        #endregion
     }
 }

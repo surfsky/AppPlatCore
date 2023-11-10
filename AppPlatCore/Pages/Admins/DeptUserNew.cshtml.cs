@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreDeptUserNew")]
+    [CheckPower(Power.DeptEdit)]
     public class DeptUserNewModel : BaseAdminModel
     {
         public Dept Dept { get; set; }
@@ -90,19 +90,15 @@ namespace App.Pages.Admin
             return UIHelper.Result();
         }
 
-        public async Task<IActionResult> OnPostDeptUserNew_btnSaveClose_ClickAsync(int deptID, int[] selectedRowIDs)
+        public async Task<IActionResult> OnPostDeptUserNew_btnSaveClose_ClickAsync(int deptID, List<long> selectedRowIDs)
         {
             var users = await DB.Users
                  .Where(u => selectedRowIDs.Contains(u.ID))
                  .ToListAsync();
 
             users.ForEach(u => u.DeptID = deptID);
-
             await DB.SaveChangesAsync();
-
-            // 关闭本窗体（触发窗体的关闭事件）
             ActiveWindow.HidePostBack();
-
             return UIHelper.Result();
         }
     }

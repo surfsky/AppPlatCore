@@ -10,7 +10,7 @@ namespace App.DAL
     /// </summary>
     public interface IKeyID
     {
-        int ID { get; set; }
+        long ID { get; set; }
 
     }
 
@@ -19,9 +19,9 @@ namespace App.DAL
     /// </summary>
     public interface IKey2ID
     {
-        int ID1 { get; set; }
+        long ID1 { get; set; }
 
-        int ID2 { get; set; }
+        long ID2 { get; set; }
 
     }
 

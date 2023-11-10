@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreMenuView")]
+    [CheckPower(Power.ConfigMenu)]
     public class MenusModel : BaseAdminModel
     {
         public IEnumerable<DAL.Menu> Menus { get; set; }
@@ -23,16 +23,16 @@ namespace App.Pages.Admin
 
         public void OnGet()
         {
-            PowerCoreMenuNew = CheckPower("CoreMenuNew");
-            PowerCoreMenuEdit = CheckPower("CoreMenuEdit");
-            PowerCoreMenuDelete = CheckPower("CoreMenuDelete");
+            PowerCoreMenuNew = CheckPower(Power.ConfigMenu);
+            PowerCoreMenuEdit = CheckPower(Power.ConfigMenu);
+            PowerCoreMenuDelete = CheckPower(Power.ConfigMenu);
             Menus = MenuHelper.Menus;
         }
 
         public async Task<IActionResult> OnPostMenu_DeleteRowAsync(string[] Grid1_fields, int deletedRowID)
         {
             // 在操作之前进行权限检查
-            if (!CheckPower("CoreMenuDelete"))
+            if (!CheckPower(Power.ConfigMenu))
             {
                 Auth.CheckPowerFailWithAlert();
                 return UIHelper.Result();

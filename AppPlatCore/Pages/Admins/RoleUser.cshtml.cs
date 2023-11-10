@@ -27,8 +27,8 @@ namespace App.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync()
         {
-            PowerCoreRoleUserNew = CheckPower("CoreRoleUserNew");
-            PowerCoreRoleUserDelete = CheckPower("CoreRoleUserDelete");
+            PowerCoreRoleUserNew = CheckPower(Power.RoleUserEdit);
+            PowerCoreRoleUserDelete = CheckPower(Power.RoleUserEdit);
 
             // 表格1
             var grid1PagingInfo = new PagingInfo("Name", false);
@@ -43,7 +43,7 @@ namespace App.Pages.Admin
             return Page();
         }
 
-        private async Task<IEnumerable<User>> RoleUser_LoadDataAsync(int grid1SelectedRowID)
+        private async Task<IEnumerable<User>> RoleUser_LoadDataAsync(long grid1SelectedRowID)
         {
             // 表格2
             var grid2PagingInfo = new PagingInfo("Name", false);
@@ -51,7 +51,7 @@ namespace App.Pages.Admin
             return await RoleUser_GetDataAsync(grid2PagingInfo, grid1SelectedRowID, String.Empty);
         }
 
-        private async Task<IEnumerable<User>> RoleUser_GetDataAsync(PagingInfo pagingInfo, int roleID, string ttbSearchMessage)
+        private async Task<IEnumerable<User>> RoleUser_GetDataAsync(PagingInfo pagingInfo, long roleID, string ttbSearchMessage)
         {
             IQueryable<User> q = DB.Users;
             string searchText = ttbSearchMessage?.Trim();
@@ -84,7 +84,7 @@ namespace App.Pages.Admin
             else if (actionType == "delete")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreRoleUserDelete"))
+                if (!CheckPower(Power.RoleUserEdit))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();

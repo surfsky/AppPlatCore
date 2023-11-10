@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreRoleEdit")]
-    [Auth(Powers.ConfigRolePower)]
+    [CheckPower(Power.RolePowerEdit)]
+    [Auth(Power.RolePowerEdit)]
     public class RoleFormModel : BaseAdminModel
     {
         [BindProperty]

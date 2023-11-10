@@ -5,17 +5,15 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using App.Utils;
+using App.Entities;
 
 namespace App.DAL
 {
     /// <summary>
     /// 菜单
     /// </summary>
-    public class Menu : ITreeNode, IKeyID, ICloneable
+    public class Menu : EntityBase<Menu>, ITreeNode, ICloneable
     {
-        [Key]
-        public int ID { get; set; }
-
         [Display(Name = "菜单名称")]
         [StringLength(50)]
         [Required]
@@ -49,13 +47,12 @@ namespace App.DAL
 
 
         [Display(Name = "上级菜单")]
-        public int? ParentID { get; set; }
+        public long? ParentID { get; set; }
         public Menu Parent { get; set; }
 
 
         [Display(Name = "浏览权限")]
-        public int? ViewPowerID { get; set; }
-        public Power ViewPower { get; set; }
+        public Power? Power { get; set; }
 
         
         public List<Menu> Children { get; set; }

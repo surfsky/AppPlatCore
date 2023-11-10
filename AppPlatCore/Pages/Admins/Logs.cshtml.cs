@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreLogView")]
+    [CheckPower(Power.MonitorLog)]
     public class LogsModel : BaseAdminModel
     {
         public IEnumerable<Log> Logs { get; set; }

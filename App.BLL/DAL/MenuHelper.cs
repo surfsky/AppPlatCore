@@ -23,10 +23,7 @@ namespace App.DAL
                 if (_menus == null)
                 {
                     _menus = new List<Menu>();
-                    //var db = BaseModel.GetDbConnection();
-                    //List<Menu> dbMenus = db.Menus.Include(m => m.ViewPower).OrderBy(m => m.SortIndex).ToList();
-                    var db = EntityConfig.Db as AppPlatContext;
-                    List<Menu> dbMenus = db.Menus.Include(m => m.ViewPower).OrderBy(m => m.SortIndex).ToList();
+                    var dbMenus = Menu.Set.OrderBy(m => m.SortIndex).ToList();
                     ResolveMenuCollection(dbMenus, null, 0);
                 }
                 return _menus;

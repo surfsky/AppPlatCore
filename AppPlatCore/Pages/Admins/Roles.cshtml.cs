@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Pages.Admin
 {
-    [CheckPower("CoreRoleView")]
+    [CheckPower(Power.RolePowerEdit)]
     public class RolesModel : BaseAdminModel
     {
         public IEnumerable<Role> Roles { get; set; }
@@ -29,9 +29,9 @@ namespace App.Pages.Admin
 
         private async Task<IEnumerable<Role>> Role_LoadDataAsync()
         {
-            PowerCoreRoleNew = CheckPower("CoreRoleNew");
-            PowerCoreRoleEdit = CheckPower("CoreRoleEdit");
-            PowerCoreRoleDelete = CheckPower("CoreRoleDelete");
+            PowerCoreRoleNew = CheckPower(Power.RoleEdit);
+            PowerCoreRoleEdit = CheckPower(Power.RoleEdit);
+            PowerCoreRoleDelete = CheckPower(Power.RoleEdit);
 
             var pagingInfo = new PagingInfo("Name", false);
             PagingInfo = pagingInfo;
@@ -68,7 +68,7 @@ namespace App.Pages.Admin
             else if (actionType == "delete")
             {
                 // 在操作之前进行权限检查
-                if (!CheckPower("CoreRoleDelete"))
+                if (!CheckPower(Power.RoleEdit))
                 {
                     Auth.CheckPowerFailWithAlert();
                     return UIHelper.Result();

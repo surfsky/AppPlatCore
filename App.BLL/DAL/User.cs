@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using App.Utils;
+using App.Entities;
 
 namespace App.DAL
 {
-    public class User : IKeyID
+    //public class User : IKeyID
+    public class User : EntityBase<User>, IDeleteLogic
     {
-        [Key]
-        public int ID { get; set; }
+        [UI("是否在用")] public bool? InUsed { get; set; } = true;
 
         [Display(Name = "用户名")]
         [StringLength(50)]
@@ -94,20 +96,13 @@ namespace App.DAL
         public DateTime? CreateTime { get; set; }
 
 
-
-
-
-        //[Display(Name = "所属角色")]
-        //public List<Role> Roles { get; set; }
-        //[Display(Name = "拥有职称")]
-        //public List<Title> Titles { get; set; }
-
         [Display(Name = "职务")]
         public string  Title { get; set; }
 
 
         [Display(Name = "所属部门")]
-        public int? DeptID { get; set; }
+        public long? DeptID { get; set; }
+
         [Display(Name = "所属部门")]
         public Dept Dept { get; set; }
 
@@ -115,7 +110,44 @@ namespace App.DAL
         public List<RoleUser> RoleUsers { get; set; }
 
 
+        // 用户拥有的权限
+        [NotMapped]
+        public List<Power> Powers { get; set; }// => IO.GetCache(this.UniID + "-Power", () => GetUserPowers(this));
+
+        // 用户可访问的菜单
+        [NotMapped]
+        public List<Menu> Menus { get; set; }  // => GetAllowMenus(this.Powers);
+
+
+        //------------------------------------------------------
+        // 角色、权限
+        //------------------------------------------------------
+        /// <summary>是否具有某个权限</summary>
+        public bool HasPower(Power power)
+        {
+            if (this.Powers == null)
+                this.Powers = GetPowers();
+            return this.Powers.Contains(power);
+        }
+
+        // 获取用户权限（admin拥有所有权限、普通用户根据角色来获取权限）
+        public List<Power> GetPowers()
+        {
+            var powers = new List<Power>();
+            if (this.Name == "admin")
+                powers = typeof(Power).GetEnums<Power>();
+            else
+            {
+                var roleIds = RoleUser.Set.Where(t => t.UserID == this.ID).Select(t => t.RoleID).ToList();
+                RolePower.Search(t => roleIds.Contains(t.RoleID)).ToList().ForEach(t => powers.Add(t.PowerID));
+            }
+            return powers;
+        }
+
+
+
+
     }
 
-    
+
 }

@@ -17,7 +17,7 @@ namespace App.Pages.AI
         /// <summary>编译模型，供客户端调用</summary>
         public async Task BuildModel()
         {
-            if (Auth.CheckPower(Asp.Current, "CoreConfigEdit"))
+            if (Auth.CheckPower(Asp.Current, DAL.Power.ConfigAI))
             {
                 var startTime = DateTime.Now;
                 //System.Threading.Thread.Sleep(1000*60*20);
