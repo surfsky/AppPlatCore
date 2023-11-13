@@ -27,16 +27,22 @@ FineUI 控件优化
 --------------------------------------------------------
 Task
 --------------------------------------------------------
-/迁移到 EntityBase
-/准备用 Powers 枚举来实现权限校验
-    角色权限管理
-    页面访问控制
-    FormPage 再看如何简化，融合到FormPageModel中去
-/应用重新改为 AppPlat 或 AppPlatCore（算了）
 RolePower 页面无法保存数据
 完善 Menus 页面，列表显示 PowerName
 完善 MenuForm 页面，用下拉列表或弹窗显示权限
 处理掉 DeptHelper、MenuHelper
+从ModelBase类中剥离数据库操作相关的代码
+密码复杂度需求
+    // 密码复杂性校验的正则表达式：小写、大写、数字、8位
+    string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$";
+    var regex = new Regex(@"
+        (?=.*[0-9])                     #必须包含数字
+        (?=.*[a-zA-Z])                  #必须包含小写或大写字母
+        (?=([\x21-\x7e]+)[^a-zA-Z0-9])  #必须包含特殊符号
+        .{8,30}                         #至少8个字符，最多30个字符
+        ", RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
+    bool pwdIsMatch = regex.IsMatch(user.USER_PASS);
+
 
 
 做个文件浏览页面？显示上传的文件
@@ -57,9 +63,9 @@ FixBug: UserForm 如何跳过 FileUpload 表单校验
 优化登陆页面：设置登录对话框背景、设置登录页背景
 
 数据库及DAL
-    权限用枚举
+    /权限用枚举
     /Menu 增加 Target 属性
-    实体类全部改为继承自 EntityBase
+    /实体类全部改为继承自 EntityBase
     测试 sqlserver 2012 
     排序用linq语法，强名称
 
@@ -76,6 +82,12 @@ FixBug: UserForm 如何跳过 FileUpload 表单校验
 --------------------------------------------------------
 Done
 --------------------------------------------------------
+/迁移到 EntityBase
+/准备用 Powers 枚举来实现权限校验
+    角色权限管理
+    页面访问控制
+    FormPage 再看如何简化，融合到FormPageModel中去
+/应用重新改为 AppPlat 或 AppPlatCore（算了）
 /实现 PageMode 逻辑
     /用户编辑和查看页面显示显示用户头像
 /实现 FormPage，支持New、Edit、View 三种显示模式

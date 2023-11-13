@@ -94,6 +94,7 @@ namespace App.Pages.Admin
 
 
         //public async Task<IActionResult> OnPostbtnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, string hfSelectedTitle, IFormCollection values)
+        /// <summary>新增或修改用户</summary>
         public async Task<IActionResult> OnPostUserEdit_btnSaveClose_ClickAsync(string hfSelectedDept, string hfSelectedRole, IFormCollection values)
         {
             // 不对 Name 和 Password 进行模型验证，不保存
@@ -105,6 +106,7 @@ namespace App.Pages.Admin
             CurrentUser.Photo = imgPhotoUrl.TrimQuery();
             if (ModelState.IsValid)
             {
+                // TODO: 合并和简化用户新增和保存的代码
                 if (CurrentUser.ID == 0)
                 {
                     // 新增
@@ -112,6 +114,11 @@ namespace App.Pages.Admin
                     if (_user != null)
                     {
                         Alert.Show("用户 " + CurrentUser.Name + " 已经存在！");
+                        return UIHelper.Result();
+                    }
+                    if (CurrentUser.Password.IsComplexPassword())
+                    {
+                        Alert.Show("密码不符合复杂性需求（大小写、数字、特殊字符、8位以上）");
                         return UIHelper.Result();
                     }
 

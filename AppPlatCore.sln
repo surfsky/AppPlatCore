@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpApiCore", "..\..\App.Ht
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.BLL", "App.BLL\App.BLL.csproj", "{A21BF208-BA64-42EF-AFDC-587D4A5E7BBB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.UtilsTests", "..\..\App.Utils\App.Utils-github\NetStandard\App.UtilsTests\App.UtilsTests.csproj", "{C1634410-027A-4F66-BD37-7F17D586A917}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{A21BF208-BA64-42EF-AFDC-587D4A5E7BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21BF208-BA64-42EF-AFDC-587D4A5E7BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21BF208-BA64-42EF-AFDC-587D4A5E7BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1634410-027A-4F66-BD37-7F17D586A917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1634410-027A-4F66-BD37-7F17D586A917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1634410-027A-4F66-BD37-7F17D586A917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1634410-027A-4F66-BD37-7F17D586A917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
